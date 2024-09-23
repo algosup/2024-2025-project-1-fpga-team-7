@@ -112,3 +112,6 @@ compile.sh
 **/*.sim
 **/*.ip_user_files
 **/*.hw
+
+#OS files and folders
+.DS_Store
