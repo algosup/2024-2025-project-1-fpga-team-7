@@ -3,7 +3,7 @@
 
 | Project | Language | Hardware | School | Year | Team |
 |-|-|-|-|-|-|
-| Frogger Game | Verilog | Go Board (FPGA microcontroller) | ALGOSUP | 2024-2025 | 7 |
+| Frogger Game | Verilog | - Go Board (**FPGA** technology) <br> - VGA Display and cable | ALGOSUP | 2024-2025 | 7 |
 
 #### *Last Update on September 24th, 2024*
 ![alt text](<data/fpga circuit illustration.jpeg>)
