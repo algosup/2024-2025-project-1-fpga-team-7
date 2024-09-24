@@ -10,16 +10,16 @@
 
 ### Document Purpose
 
-This document, mainly intended to the **Project Manager** and the **Software Engineers**.<br>
-Its content aims to detail and explain all the technical aspects of the projects. <br>
-The question to answer is "**How to implement, technically, the decisions specified in the Functional Specification document ?**"<br>
+This document is mainly intended to the **Project Manager** and the **Software Engineers**.<br>
+Its content aims to detail and explain all the technical aspects of the project. <br>
+The question it answers is "**How to implement, technically, the decisions specified in the Functional Specification document ?**"<br>
 The **Software Engineers** should find in it, all the implementation processes, conventions, choices and explanations required in order to deliver a structured, optimized, readable, and stable code.
 
 ## The Project
 → [link to the GitHub of the project](https://github.com/algosup/2024-2025-project-1-fpga-team-7)
 ### Overview
 
-This student project, given by [ALGOSUP](https://github.com/algosup), is about coding the game *Frogger*, using a *Go Board*, with the language *Verilog*. All the requirements as well as the game design and logic are detailed in the [Functional Specification](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specification/functional_specification.md) of the project.
+This student project, given by [ALGOSUP](https://github.com/algosup), is about coding the game *Frogger*, using a *Go Board* (based on **FPGA** technology), with the language *Verilog*. All the requirements as well as the game design and logic are detailed in the [Functional Specification](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specification/functional_specification.md) of the project.
 
 
 ### Members
