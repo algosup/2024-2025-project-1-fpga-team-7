@@ -19,7 +19,7 @@ The **Software Engineers** should find in it, all the implementation processes, 
 → [link to the GitHub of the project](https://github.com/algosup/2024-2025-project-1-fpga-team-7)
 ### Overview
 
-This student project, given by [ALGOSUP](https://github.com/algosup), is about coding the game *Frogger*^[1], using a *Go Board*^[2], with the language *Verilog*^[3]. All the requirements as well as the game design and logic are detailed in the [Functional Specification](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specification/functional_specification.md) of the project.
+This student project, given by [ALGOSUP](https://github.com/algosup), is about coding the game *Frogger*, using a *Go Board*, with the language *Verilog*. All the requirements as well as the game design and logic are detailed in the [Functional Specification](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specification/functional_specification.md) of the project.
 
 
 ### Members
