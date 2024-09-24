@@ -1,9 +1,9 @@
 
 # Technical Specification
 
-| Project | Tools | School | Year | Team |
-|-|-|-|-|-|
-| Frogger Game | FPGA - Verilog | ALGOSUP | 2024-2025 | 7 |
+| Project | Language | Hardware | School | Year | Team |
+|-|-|-|-|-|-|
+| Frogger Game | Verilog | Go Board (FPGA microcontroller) | ALGOSUP | 2024-2025 | 7 |
 
 #### *Last Update on September 24th, 2024*
 ![alt text](<data/fpga circuit illustration.jpeg>)
