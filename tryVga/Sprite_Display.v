@@ -1,5 +1,7 @@
 module Sprite_Display (
     input  i_Clk,
+    input  [8:0] X_Position,
+    input  [8:0] Y_Position,
     output o_VGA_HSync,
     output o_VGA_VSync,
     output o_VGA_Red_2,
@@ -7,20 +9,8 @@ module Sprite_Display (
     output o_VGA_Blu_2,
 );
 
-reg [12:0] Map[20][15] = [];
-parameter H_VISIBLE_AREA = 640;
-parameter H_FRONT_PORCH  = 18;
-parameter H_SYNC_PULSE   = 92;
-parameter H_BACK_PORCH   = 50;
-parameter H_TOTAL        = H_VISIBLE_AREA + H_FRONT_PORCH + H_SYNC_PULSE + H_BACK_PORCH;
 
-parameter V_VISIBLE_AREA = 480;
-parameter V_FRONT_PORCH  = 10;
-parameter V_SYNC_PULSE   = 12;
-parameter V_BACK_PORCH   = 33;
-parameter V_TOTAL        = V_VISIBLE_AREA + V_FRONT_PORCH + V_SYNC_PULSE + V_BACK_PORCH;
-
-
+reg [12:0] Map[20][15];
 
 reg [9:0] h_counter = 0; // Horizontal counter
 reg [9:0] v_counter = 0; // Vertical counter
@@ -90,15 +80,16 @@ always @(posedge i_Clk) begin
     if (h_counter < H_VISIBLE_AREA && v_counter < V_VISIBLE_AREA) 
     begin
         // Simple pattern: horizontal color bars
-        if (v_counter < 384) 
+        if (((v_counter >= Y_Position) && (v_counter < Y_Position + 32)) &&
+                ((h_counter >= X_Position) && (h_counter < X_Position + 32))) 
         begin
-            red <= 8'h00;  
-            green <= 8'h00;
-            blue <= 8'h00;
-        end else if (v_counter < 416) begin
             red <= 8'hFF;  
             green <= 8'hFF;
             blue <= 8'hFF;
+        end else begin
+            red <= 8'h00;  
+            green <= 8'h00;
+            blue <= 8'h00;
         end
     end 
     else 
