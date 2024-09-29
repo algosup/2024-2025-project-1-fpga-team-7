@@ -45,40 +45,45 @@
 ## 1.Objectives 
 
 ## 2.Testing Strategy
+The test cases will be separated in 6 different domain of testing. Indeed, we want to check each type individually to ensure their performance before testing the cases together.
 
-Each type of testing can be tested individually
+### 2.1.Functional Testing
+Probably the most important, this first type of testing concerns the game logic: its goal is to ensure the game's functions work correctly, such as the player movements, the collisions and the reset conditions.
 
-### 2.1.Integration Testing
+The testing will be executed by the Q.A., with the possible assistance of the Software Engineer and the Program Manager. In fact, the test cases will be accomplished in a way the tester is currently playing the game.
 
-### 2.3.Functional Testing
+### 2.2.Performance Testing
+This testing deals about the clock timing, where the game logic follows the clock cycle allowed by the FPGA module. Furthermore, it will allow to measure the latency and the refresh rate of the game.
 
-### 2.4.Performance Testing
+The Q.A. and the Tech Lead will be the involved testers, where various softwares and tools would be required to measure the performance. In reality, the goal will be to test the game by monitoring the player's actions and the game's responses.
 
-### 2.5.Stress Testing
+### 2.3.Stress Testing
+Stress Testing is particular, because it involves inconsistent conditions such as simulating multiple inputs or slow loading conditions.
 
-### 2.6.Hardware Testing
+The Q.A., possibly accompanied by the Software Engineer and the Tech Lead, will work on that type of testing. For that, they will pretend to play the game in an "agressive manner" and use a software to simulate a slow latency.
 
-### 2.7.User Interface Testing
+### 2.4.Hardware Testing
+This one will be required because it's focused on the use of the FPGA module. Indeed, we will have to make sure the module will handle the required program of the game, that its components like switches and lead still work, and potentially display the level number on his LCD screen.
 
-### 2.8.Regression Testing
+The Q.A. will work on that testing with the assistance of the Tech Lead, where they will test various programs to ensure the hardware performance of the FPGA module.
+
+### 2.5.User Interface Testing
+
+### 2.6.Regression Testing
 
 ## 3.Features to test
 
-### 3.1.Unit Testing
+### 3.1.Functional Testing
 
-### 3.2.Integration Testing
+### 3.2.Performance Testing
 
-### 3.3.Functional Testing
+### 3.3.Stress Testing
 
-### 3.4.Performance Testing
+### 3.4.Hardware Testing
 
-### 3.5.Stress Testing
+### 3.5.User Interface Testing
 
-### 3.6.Hardware Testing
-
-### 3.7.User Interface Testing
-
-### 3.8.Regression Testing
+### 3.6.Regression Testing
 
 ## 4.Features to not test
 
