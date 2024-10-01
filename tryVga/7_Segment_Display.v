@@ -1,23 +1,23 @@
 module Segment_Display 
- (input       i_Clk,
-  input       i_Score,
-  output      o_Segment_A,
-  output      o_Segment_B,
-  output      o_Segment_C,
-  output      o_Segment_D,
-  output      o_Segment_E,
-  output      o_Segment_F,
-  output      o_Segment_G,
-  output      o_Segment2_A,
-  output      o_Segment2_B,
-  output      o_Segment2_C,
-  output      o_Segment2_D,
-  output      o_Segment2_E,
-  output      o_Segment2_F,
-  output      o_Segment2_G);
+ (input        i_Clk,
+  input  [6:0] i_Score,
+  output       o_Segment_A,
+  output       o_Segment_B,
+  output       o_Segment_C,
+  output       o_Segment_D,
+  output       o_Segment_E,
+  output       o_Segment_F,
+  output       o_Segment_G,
+  output       o_Segment2_A,
+  output       o_Segment2_B,
+  output       o_Segment2_C,
+  output       o_Segment2_D,
+  output       o_Segment2_E,
+  output       o_Segment2_F,
+  output       o_Segment2_G);
 
   reg [6:0]    i_Binary_Num = 7'd0;
-  reg [3:0]    i_Binary_Num2 = 4'd0;
+  reg [6:0]    i_Binary_Num2 = 7'd0;
   reg [6:0]    r_Hex_Encoding;
   reg [6:0]    r_Hex_Encoding2;
 

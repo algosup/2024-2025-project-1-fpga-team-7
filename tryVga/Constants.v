@@ -2,6 +2,8 @@ parameter TILE_SIZE      = 32;
 parameter X_TOTAL_TILE   = 20;
 parameter Y_TOTAL_TILE   = 15;
 
+parameter c_SCORE_INI       = 0;
+
 parameter c_X_BASE_POSITION = 320;
 parameter c_Y_BASE_POSITION = 384;
 
