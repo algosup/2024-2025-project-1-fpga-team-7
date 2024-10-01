@@ -10,7 +10,7 @@ module Sprite_Display (
 );
 
 
-reg [12:0] Map[20][15];
+// reg [12:0] Map[20][15];
 
 reg [9:0] h_counter = 0; // Horizontal counter
 reg [9:0] v_counter = 0; // Vertical counter
@@ -80,8 +80,8 @@ always @(posedge i_Clk) begin
     if (h_counter < H_VISIBLE_AREA && v_counter < V_VISIBLE_AREA) 
     begin
         // Simple pattern: horizontal color bars
-        if (((v_counter >= Y_Position) && (v_counter < Y_Position + 32)) &&
-                ((h_counter >= X_Position) && (h_counter < X_Position + 32))) 
+        if (((v_counter >= Y_Position) && (v_counter < Y_Position + TILE_SIZE)) &&
+                ((h_counter >= X_Position) && (h_counter < X_Position + TILE_SIZE))) 
         begin
             red <= 8'hFF;  
             green <= 8'hFF;
