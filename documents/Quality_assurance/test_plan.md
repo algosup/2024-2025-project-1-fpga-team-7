@@ -84,12 +84,13 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 #### Frogger
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
-| Frog Length Movement | We press a movement input to make the frog move from 1 tile to another.| 2 |    1. Start a game <br /> 2.Press a movement input on the keyboard  <br />  |    The frog's moves by only 1 tile.    |     TO BE TESTED.       |     High     |
-| Right Movement | We press a movement input to make the frog go to the Right.| 2 |    1. Start a game <br /> 2.Press the Right Key input on the keyboard  <br />  |    The frog's moves 1 tile on the Right.    |     TO BE TESTED.       |     High     |
-| Left Movement | We press a movement input to make the frog go to the Left.| 2 |    1. Start a game <br /> 2.Press the Left Key input on the keyboard  <br />  |    The frog's moves 1 tile on the Left.    |     TO BE TESTED.       |     High     |
-| Up Movement | We press a movement input to make the frog go Up.| 2 |    1. Start a game <br /> 2.Press the Up Key input on the keyboard  <br />  |    The frog's moves 1 tile upwards.    |     TO BE TESTED.       |     High     |
-| Down Movement | We press a movement input to make the frog go to the Right.| 2 |    1. Start a game <br /> 2.Press the Down Key input on the keyboard  <br />  |    The frog's moves 1 tile downwards.    |     TO BE TESTED.       |     High     |
-| Walking Animation | We press a movement input to make the frog animated.| 2 |    1. Start a game <br /> 2.Press a movement input on the keyboard  <br />  |    The frog's moving animation is triggered.    |     TO BE TESTED.       |     Medium     |
+| Frog Length Movement | We set a movement input signal to make the frog move from 1 tile to another.| 2 |    1. Start the game <br /> 2.Set a movement input signal.  <br />  |    The frog's moves by only 1 tile.    |     TO BE TESTED.       |     High     |
+| Right Movement | We set a movement input signal  to make the frog go to the Right.| 2 |    1. Start the game <br /> 2. Set the Right Key input signal.  <br />  |    The frog's moves 1 tile on the Right.    |     TO BE TESTED.       |     High     |
+| Left Movement | We set a movement input signal to make the frog go to the Left.| 2 |    1. Start the game <br /> 2. Set the Left Key input signal.  <br />  |    The frog's moves 1 tile on the Left.    |     TO BE TESTED.       |     High     |
+| Up Movement | We set a movement input signal to make the frog go Up.| 2 |    1. Start the game <br /> 2. Set the Up Key input signal.  <br />  |    The frog's moves 1 tile upwards.    |     TO BE TESTED.       |     High     |
+| Down Movement | We set a movement input signal to make the frog go to the Right.| 2 |    1. Start the game <br /> 2. Set the Down Key input signal.  <br />  |    The frog's moves 1 tile downwards.    |     TO BE TESTED.       |     High     |
+| Sprite Rotation | We set a movement input signal different from the actual frog's direction to make him turn.| 2 |    1. Start the game <br /> 2. Set a movement input signal different from the frog's actual direction.  <br />  |    The frog's sprite is rotated in the same direction than the last movement input.    |     TO BE TESTED.       |     High     |
+| Walking Animation | We set a movement input signal to play the frog's walking animation.| 2 |    1. Start the game <br /> 2. Set any movement input signal.  <br />  |    The frog's moving animation is triggered.    |     TO BE TESTED.       |     Medium     |
 
 #### Cars
 
