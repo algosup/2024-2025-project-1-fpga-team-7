@@ -53,13 +53,13 @@ wire w_Has_Collided;
 wire [6:0] w_Score, w_Score_After_Check;
 
 
-    Debounce_Switch Debounce_Switch_1_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_1), .o_Switch(w_Switch_1));
+    Debounce_Filter Debounce_Filter_1_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_1), .o_Switch(w_Switch_1));
 
-    Debounce_Switch Debounce_Switch_2_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_2), .o_Switch(w_Switch_2));
+    Debounce_Filter Debounce_Filter_2_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_2), .o_Switch(w_Switch_2));
 
-    Debounce_Switch Debounce_Switch_3_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_3), .o_Switch(w_Switch_3));
+    Debounce_Filter Debounce_Filter_3_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_3), .o_Switch(w_Switch_3));
 
-    Debounce_Switch Debounce_Switch_4_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_4), .o_Switch(w_Switch_4));
+    Debounce_Filter Debounce_Filter_4_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_4), .o_Switch(w_Switch_4));
 
     Frog_Movement Frog_Movement_Inst(
         .i_Clk(i_Clk),

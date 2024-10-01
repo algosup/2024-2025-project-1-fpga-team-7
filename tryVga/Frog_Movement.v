@@ -1,17 +1,31 @@
+// This module handle all the movements of the frog (Player). 
+// It includes Up, Down, Left, Right. It also set the respawn 
+// coordinates when you reach the top screen or hit a car.
 module Frog_Movement(
+  // Clock
   input            i_Clk,
+
+  // input for each directions (linked to switches)
   input            i_Frog_Up,
   input            i_Frog_Dn,
   input            i_Frog_Lt,
   input            i_Frog_Rt,
+
+  // state of collision
   input            i_Has_Collided,
+
   output reg       o_Draw_Frog,
+
+  // Variable storing score
   output reg [6:0] o_Score = c_SCORE_INI,
+
+  // Left corner of the frog (Player)
   output reg [9:0] o_Frog_X = c_X_BASE_POSITION,
   output reg [9:0] o_Frog_Y = c_Y_BASE_POSITION 
 );
 
-  wire w_Frog_En;
+  wire       w_Frog_En;
+
   reg [31:0] r_Counter = 0;
 
   // Only allow Frog to move if only one button is pushed (use XOR for exclusive movement).
@@ -33,6 +47,7 @@ module Frog_Movement(
       end
     end
 
+    // Check collision state
     if (i_Has_Collided == 1'b1) 
     begin
       o_Frog_Y <= c_Y_BASE_POSITION;
@@ -50,9 +65,9 @@ module Frog_Movement(
         end
         else
         begin
-          o_Frog_Y <= c_Y_BASE_POSITION;
+          o_Frog_Y <= c_Y_BASE_POSITION;    // Reset position when top reached
           o_Frog_X <= c_X_BASE_POSITION;
-          o_Score <= o_Score + 1'b1;
+          o_Score  <= o_Score + 1'b1;       // Add 1 to score when top reached
         end
       end 
       // Move Frog down: check that the frog doesn't exceed screen height
