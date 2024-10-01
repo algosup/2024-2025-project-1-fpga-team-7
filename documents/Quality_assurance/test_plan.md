@@ -111,7 +111,8 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
-| Car Collision with Frog | Detects a collision between the car and the frog.| 3 |    1. Start the game <br /> 2. Set a generateCar() signal.  <br /> 3. Wait for a few clock cycles to allow car generation. |    A car sprite appears on the road, within 1-2 seconds of setting generateCar().   |     TO BE TESTED.       |     High     |
+| Car Collision with Frog | Detects a collision between the car and the frog.| 6 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set a generateCar() signal.  <br /> 5. Wait for a few clock cycles to allow car generation. <br /> 6. Move the frog until he collides with the car. <br />  |    The game send a car_Frog_Collision() signal.   |     TO BE TESTED.       |     High     |
+| Frog death | Trigger the death animation of the frog.| 3 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set a generateCar() signal.  <br /> 5. Wait for a few clock cycles to allow car generation. <br /> 6. Set a car_Frog_Collision() signal. <br />  7. Stops Frog in place.  <br /> 8. Plays the Frog's death animation. <br /> |    The frog get immobilized and its sprite plays his death animation.   |     TO BE TESTED.       |     High     |
 
 #### Game Rules
 
