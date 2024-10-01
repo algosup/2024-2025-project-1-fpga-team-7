@@ -94,6 +94,12 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 
 #### Cars
 
+| Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
+| --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
+| Single Car | There should be at least on car appearing on the screen.| 3 |    1. Start the game <br /> 2. Set a generateCar() signal.  <br /> 3. Wait for a few clock cycles to allow car generation. |    A car sprite appears on the road, within 1-2 seconds of setting generateCar().   |     TO BE TESTED.       |     High     |
+| Left Movement | A car moves to the left throughout a lane.| 5 |    1. Start the game <br /> 2. Set a generateCar() signal.  <br /> 3. Wait for a few clock cycles to allow car generation. 4. Set the moveCarLeft() signal.  5. Wait for a few clock cycles to allow car movement. |    A car sprite appears on the screen, within 1-2 seconds of setting generateCar(), starts moving left, and passes through its lane smoothly.   |     TO BE TESTED.       |     High     |
+| Right Movement | A car moves to the right throughout a lane.| 5 |    1. Start the game <br /> 2. Set a generateCar() signal.  <br /> 3. Wait for a few clock cycles to allow car generation. 4. Set the moveCarRight() signal.  5. Wait for a few clock cycles to allow car movement. |    A car sprite appears on the screen, within 1-2 seconds of setting generateCar(), starts moving right, and passes through its lane smoothly.      |     TO BE TESTED.       |     High     |
+
 #### Collision
 
 #### Game Rules
