@@ -29,24 +29,36 @@ wire w_Switch_2;
 wire w_Switch_3;
 wire w_Switch_4;
 
-wire [8:0] w_Y_Position;
-wire [8:0] w_X_Position;
-wire       r_Draw_Frog;
+wire [9:0] w_ini_Y_Position, w_ini_X_Position, w_Y_Position, w_X_Position;
+wire w_Draw_Frog;
+
+assign w_ini_X_Position = c_X_BASE_POSITION;
+assign w_ini_Y_Position = c_Y_BASE_POSITION;
 
 reg [6:0] r_Score = 7'd0;
 
+
+    Debounce_Switch Debounce_Switch_1_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_1), .o_Switch(w_Switch_1));
+
+    Debounce_Switch Debounce_Switch_2_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_2), .o_Switch(w_Switch_2));
+
+    Debounce_Switch Debounce_Switch_3_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_3), .o_Switch(w_Switch_3));
+
+    Debounce_Switch Debounce_Switch_4_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_4), .o_Switch(w_Switch_4));
+
     Frog_Movement Frog_Movement_Inst(
         .i_Clk(i_Clk),
-        .i_Frog_X(w_X_Position),
-        .i_Frog_Y(w_Y_Position),
+        .i_Frog_X(w_ini_X_Position),
+        .i_Frog_Y(w_ini_Y_Position),
         .i_Frog_Up(w_Switch_1),
         .i_Frog_Lt(w_Switch_2),
         .i_Frog_Rt(w_Switch_3),
         .i_Frog_Dn(w_Switch_4),
-        //.o_Draw_Frog(r_Draw_Frog),
+        .o_Draw_Frog(w_Draw_Frog),
         .o_Frog_X(w_X_Position),
         .o_Frog_Y(w_Y_Position),
     );
+
 
     Sprite_Display Sprite_Display_Inst(
         .i_Clk(i_Clk),
@@ -57,30 +69,6 @@ reg [6:0] r_Score = 7'd0;
         .o_VGA_Blu_2(o_VGA_Blu_2),
         .o_VGA_Grn_2(o_VGA_Grn_2),
         .o_VGA_Red_2(o_VGA_Red_2),
-    );
-
-    Debounce_Switch Debounce_Switch_1_Inst(
-        .i_Clk(i_Clk),
-        .i_Switch(i_Switch_1),
-        .o_Switch(w_Switch_1),
-    );
-
-    Debounce_Switch Debounce_Switch_2_Inst(
-        .i_Clk(i_Clk),
-        .i_Switch(i_Switch_2),
-        .o_Switch(w_Switch_2),
-    );
-
-    Debounce_Switch Debounce_Switch_3_Inst(
-        .i_Clk(i_Clk),
-        .i_Switch(i_Switch_3),
-        .o_Switch(w_Switch_3),
-    );
-
-    Debounce_Switch Debounce_Switch_4_Inst(
-        .i_Clk(i_Clk),
-        .i_Switch(i_Switch_4),
-        .o_Switch(w_Switch_4),
     );
 
 endmodule
