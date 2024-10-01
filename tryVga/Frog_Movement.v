@@ -19,19 +19,21 @@ module Frog_Movement(
   // ^ is an XOR bitwise operation.
   assign w_Frog_En = i_Frog_Up ^ i_Frog_Dn ^ i_Frog_Lt ^ i_Frog_Rt;
 
-  always @(posedge i_Clk) 
+always @(posedge i_Clk) 
 begin
   if (w_Frog_En == 1)
   begin
-    if (r_Counter == COUNT_LIMIT)
+    if (r_Counter == COUNT_LIMIT) begin
       r_Counter <= 0;
+    end else begin
+      r_Counter <= r_Counter + 1;
+    end
   end
-  else
-    r_Counter <= r_Counter + 1;
+  
 
-  if (i_Frog_Up == 1'b1 && r_Counter == COUNT_LIMIT && o_Frog_Y !== 0)
+  if (i_Frog_Up == 1'b1 && r_Counter == COUNT_LIMIT && o_Frog_Y !== 0) begin
     o_Frog_Y <= o_Frog_Y - 32; // Move frog up
-
+  end
   else if (i_Frog_Dn == 1'b1 && r_Counter == COUNT_LIMIT && o_Frog_Y < (V_VISIBLE_AREA - TILE_SIZE))
     o_Frog_Y <= o_Frog_Y + 32; // Move frog down
 
