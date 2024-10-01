@@ -50,7 +50,7 @@ The test cases will be separated in 6 different domain of testing. Indeed, we wa
 ### 2.1.Functional Testing
 Probably the most important, this first type of testing concerns the game logic: its goal is to ensure the game's functions work correctly, such as the player movements, the collisions and the reset conditions.
 
-The testing will be executed by the Q.A., with the possible assistance of the Software Engineer and the Program Manager. In fact, the test cases will be accomplished in a way the tester is currently playing the game.
+The testing will be executed by the Q.A., with the possible assistance of the Software Engineers and the Program Manager. In fact, the test cases will be accomplished in a way the tester is currently playing the game.
 
 ### 2.2.Performance Testing
 This testing deals about the clock timing, where the game logic follows the clock cycle allowed by the FPGA module. Furthermore, it will allow to measure the latency and the refresh rate of the game.
@@ -60,7 +60,7 @@ The Q.A. and the Tech Lead will be the involved testers, where various softwares
 ### 2.3.Stress Testing
 Stress Testing is particular, because it involves inconsistent conditions such as simulating multiple inputs or slow loading conditions.
 
-The Q.A., possibly accompanied by the Software Engineer and the Tech Lead, will work on that type of testing. For that, they will pretend to play the game in an "agressive manner" and use a software to simulate a slow latency.
+The Q.A., possibly accompanied by the Software Engineers and the Tech Lead, will work on that type of testing. For that, they will pretend to play the game in an "agressive manner" and use a software to simulate a slow latency.
 
 ### 2.4.Hardware Testing
 This one will be required because it's focused on the use of the FPGA module. Indeed, we will have to make sure the module will handle the required program of the game, that its components like switches and lead still work, and potentially display the level number on his LCD screen.
@@ -68,12 +68,35 @@ This one will be required because it's focused on the use of the FPGA module. In
 The Q.A. will work on that testing with the assistance of the Tech Lead, where they will test various programs to ensure the hardware performance of the FPGA module.
 
 ### 2.5.User Interface Testing
+User Interface Testing, as its name implies, deals with the interaction between the user and the game's interface. Indeed, it will test if the games responds well to the player's inputs and if the game's screen displays correctly on a monitor or another device.
+
+Once again, the Q.A. will be in charge of the test, but with the possible assistance of the Software Engineers and the Program Manager. For that, they will execute various inputs with the keyboard and monitor differents screen settings to visualize the game.
 
 ### 2.6.Regression Testing
+Finally, Regression Testing should be done after one or several others types of testing have been tested. Indeed, bugs will potentially appear, and after fixing them, there is a huge chance we will have to execute the previous test cases again to ensure their functionnality.
+
+Every involved testers from previous testings, led by the Q.A., will be in charge with the previous rules decided for each testing.
 
 ## 3.Features to test
 
 ### 3.1.Functional Testing
+
+#### Frogger
+| Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
+| --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
+| Frog Length Movement | We press a movement input to make the frog move from 1 tile to another.| 2 |    1. Start a game <br /> 2.Press a movement input on the keyboard  <br />  |    The frog's moves by only 1 tile.    |     TO BE TESTED.       |     High     |
+| Right Movement | We press a movement input to make the frog go to the Right.| 2 |    1. Start a game <br /> 2.Press the Right Key input on the keyboard  <br />  |    The frog's moves 1 tile on the Right.    |     TO BE TESTED.       |     High     |
+| Left Movement | We press a movement input to make the frog go to the Left.| 2 |    1. Start a game <br /> 2.Press the Left Key input on the keyboard  <br />  |    The frog's moves 1 tile on the Left.    |     TO BE TESTED.       |     High     |
+| Up Movement | We press a movement input to make the frog go Up.| 2 |    1. Start a game <br /> 2.Press the Up Key input on the keyboard  <br />  |    The frog's moves 1 tile upwards.    |     TO BE TESTED.       |     High     |
+| Down Movement | We press a movement input to make the frog go to the Right.| 2 |    1. Start a game <br /> 2.Press the Down Key input on the keyboard  <br />  |    The frog's moves 1 tile downwards.    |     TO BE TESTED.       |     High     |
+| Walking Animation | We press a movement input to make the frog animated.| 2 |    1. Start a game <br /> 2.Press a movement input on the keyboard  <br />  |    The frog's moving animation is triggered.    |     TO BE TESTED.       |     Medium     |
+
+#### Cars
+
+#### Collision
+
+#### Game Rules
+
 
 ### 3.2.Performance Testing
 
