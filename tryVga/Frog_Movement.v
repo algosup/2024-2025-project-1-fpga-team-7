@@ -11,7 +11,8 @@ module Frog_Movement(
    output reg [8:0] o_Frog_Y);
 
   wire w_Frog_En;
-
+  reg  [8:0] r_Frog_X;
+  reg  [8:0] r_Frog_Y;
   reg [31:0] r_Counter = 0;
 
   // Only allow Frogs to move if only one button is pushed.
@@ -20,13 +21,13 @@ module Frog_Movement(
 
   always @(posedge i_Clk) 
   begin
-    if (r_Counter == COUNT_LIMIT)
+    if (w_Frog_En == 1)
     begin
-      if (w_Frog_En == 1)
+      if (r_Counter > COUNT_LIMIT)
+        r_Counter <= r_Counter + 1;
+      else
         r_Counter <= 0;
     end
-    else
-    r_Counter <= r_Counter + 1;
 
     if (i_Frog_Up == 1'b1 &&
         r_Counter == COUNT_LIMIT &&

@@ -31,9 +31,22 @@ wire w_Switch_4;
 
 wire [8:0] w_Y_Position;
 wire [8:0] w_X_Position;
+wire       r_Draw_Frog;
 
 reg [6:0] r_Score = 7'd0;
-reg       r_Draw_Frog = 1'b0;
+
+    Frog_Movement Frog_Movement_Inst(
+        .i_Clk(i_Clk),
+        .i_Frog_X(w_X_Position),
+        .i_Frog_Y(w_Y_Position),
+        .i_Frog_Up(w_Switch_1),
+        .i_Frog_Lt(w_Switch_2),
+        .i_Frog_Rt(w_Switch_3),
+        .i_Frog_Dn(w_Switch_4),
+        //.o_Draw_Frog(r_Draw_Frog),
+        .o_Frog_X(w_X_Position),
+        .o_Frog_Y(w_Y_Position),
+    );
 
     Sprite_Display Sprite_Display_Inst(
         .i_Clk(i_Clk),
@@ -69,19 +82,5 @@ reg       r_Draw_Frog = 1'b0;
         .i_Switch(i_Switch_4),
         .o_Switch(w_Switch_4),
     );
-
-    Frog_Movement Frog_Movement_Inst(
-        .i_Clk(i_Clk),
-        .i_Frog_X(c_X_BASE_POSITION),
-        .i_Frog_Y(c_Y_BASE_POSITION),
-        .i_Frog_Up(w_Switch_1),
-        .i_Frog_Lt(w_Switch_2),
-        .i_Frog_Rt(w_Switch_3),
-        .i_Frog_Dn(w_Switch_4),
-        .o_Draw_Frog(r_Draw_Frog),
-        .o_Frog_X(w_X_Position),
-        .o_Frog_Y(w_Y_Position),
-    );
-
 
 endmodule
