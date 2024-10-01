@@ -32,8 +32,6 @@ wire w_Switch_4;
 wire [9:0] w_ini_Y_Position, w_ini_X_Position, w_Y_Position, w_X_Position;
 wire w_Draw_Frog;
 
-assign w_ini_X_Position = c_X_BASE_POSITION;
-assign w_ini_Y_Position = c_Y_BASE_POSITION;
 
 reg [6:0] r_Score = 7'd0;
 
@@ -48,8 +46,6 @@ reg [6:0] r_Score = 7'd0;
 
     Frog_Movement Frog_Movement_Inst(
         .i_Clk(i_Clk),
-        .i_Frog_X(w_ini_X_Position),
-        .i_Frog_Y(w_ini_Y_Position),
         .i_Frog_Up(w_Switch_1),
         .i_Frog_Lt(w_Switch_2),
         .i_Frog_Rt(w_Switch_3),

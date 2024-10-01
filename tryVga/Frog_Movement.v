@@ -1,7 +1,5 @@
 module Frog_Movement(
   input            i_Clk,
-  input [8:0]      i_Frog_X,
-  input [8:0]      i_Frog_Y,
   input            i_Frog_Up,
   input            i_Frog_Dn,
   input            i_Frog_Lt,

@@ -1,7 +1,7 @@
 module Sprite_Display (
     input  i_Clk,
-    input  [8:0] X_Position,
-    input  [8:0] Y_Position,
+    input  [9:0] X_Position,
+    input  [9:0] Y_Position,
     output o_VGA_HSync,
     output o_VGA_VSync,
     output o_VGA_Red_2,
@@ -11,6 +11,10 @@ module Sprite_Display (
 
 
 // reg [12:0] Map[20][15];
+
+// Clamp X_Position and Y_Position so they don't go beyond the screen edges
+wire [9:0] clamped_X_Position = (X_Position + TILE_SIZE > H_VISIBLE_AREA) ? H_VISIBLE_AREA - TILE_SIZE : X_Position;
+wire [9:0] clamped_Y_Position = (Y_Position + TILE_SIZE > V_VISIBLE_AREA) ? V_VISIBLE_AREA - TILE_SIZE : Y_Position;
 
 reg [9:0] h_counter = 0; // Horizontal counter
 reg [9:0] v_counter = 0; // Vertical counter
@@ -79,9 +83,9 @@ end
 always @(posedge i_Clk) begin
     if (h_counter < H_VISIBLE_AREA && v_counter < V_VISIBLE_AREA) 
     begin
-        // Simple pattern: horizontal color bars
-        if (((v_counter >= Y_Position) && (v_counter < Y_Position + TILE_SIZE)) &&
-                ((h_counter >= X_Position) && (h_counter < X_Position + TILE_SIZE))) 
+        // Simple apattern: horizontal color bars
+        if (((v_counter >= clamped_Y_Position) && (v_counter < clamped_Y_Position + (TILE_SIZE))) &&
+                ((h_counter >= clamped_X_Position) && (h_counter < clamped_X_Position + (TILE_SIZE))))
         begin
             red <= 8'hFF;  
             green <= 8'hFF;
