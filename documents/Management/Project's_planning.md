@@ -33,7 +33,7 @@ The tasks for this project are divided into the following categories:
 | 05 | Documents, Technical | Technical Specifications | Write the project's technical specifications | 10/14/2024 | Technical Leader |
 | 06 | Documents | Test Plan | Write the project's test plan | 10/21/2024 | Quality Assurance |
 | 07 | Documents | Test Cases | Write the project's test cases | 10/21/2024 | Quality Assurance |
-| 08 | Documents | User Manual | Write the project's user manual | 10/28/2024 | Technical Writer |
+| 08 | Documents | User Manual | Write the project's user manual | 10/21/2024 | Technical Writer |
 | 09 | Development | Requirements Implementation | Implement the project's requirements as a MVP(Minimum Viable Product) | 10/04/2024 | Development Team |
 | 10 | Development | Objectives Implementation | Implement the project's objectives | 10/16/2024 | Development Team |
 | 11 | Development | Final Version | Develop the project's final version | 10/21/2024 | Development Team |
@@ -63,26 +63,26 @@ The schedule for this project is divided into 5 weeks. The project started on 09
 
 The project's deadlines are defined by the stakeholders and are:
 
-| Task 						| Due Date 	|
-| :-----------------------: | :-------: |
-| Functional Specification 	| 10/07 	|
-| Technical Specification 	| 10/14 	|
-| Code 						| 10/21 	|
-| Test Plan 				| 10/21 	|
-| User Manual 				| 10/21 	|
+| Task 						| Due Date   |
+| :-----------------------: | :--------: |
+| Functional Specification 	| 10/07/2024 |
+| Technical Specification 	| 10/14/2024 |
+| Code 						| 10/21/2024 |
+| Test Plan 				| 10/21/2024 |
+| User Manual 				| 10/21/2024 |
 
 #### Team's Deadlines
 
 The team's deadlines are defined by the project manager and are:
 
-| Task 							| Due Date 	|
-| :---------------------------: | :-------: |
-| Project Planning 				| 10/01 	|
-| Requirements Analysis 		| 09/27 	|
-| Architecture Development 		| 09/27 	|
-| Requirements Implementation 	| 10/04 	|
-| Objectives Implementation 	| 10/16 	|
-| Final Version 				| 10/21 	|
+| Task 							| Due Date 	 |
+| :---------------------------: | :--------: |
+| Project Planning 				| 10/01/2024 |
+| Requirements Analysis 		| 09/27/2024 |
+| Architecture Development 		| 09/27/2024 |
+| Requirements Implementation 	| 10/04/2024 |
+| Objectives Implementation 	| 10/16/2024 |
+| Final Version 				| 10/21/2024 |
 
 
 
@@ -103,7 +103,7 @@ The team is composed of the following members:
 - 1 Technical Leader
 - 1 Quality Assurance
 - 1 Technical Writer
-- 2 Developers
+- 2 Software Engineers
 
 ### Tools
 
