@@ -1,16 +1,21 @@
 // This file will contain all the constants we made for the game.
 
 // Grid constants
-parameter TILE_SIZE         = 32;
-parameter X_TOTAL_TILE      = 20;
-parameter Y_TOTAL_TILE      = 15;
+parameter TILE_SIZE             = 32;
+parameter X_TOTAL_TILE          = 20;
+parameter Y_TOTAL_TILE          = 15;
 
 // Scoring contant
-parameter c_SCORE_INI       = 0;
+parameter c_SCORE_INI           = 0;
 
 // Player constants
-parameter c_X_BASE_POSITION = 320;
-parameter c_Y_BASE_POSITION = 384;
+parameter c_X_BASE_POSITION     = 320;
+parameter c_Y_BASE_POSITION     = 384;
+
+// Obstacles constants
+parameter c_X_BASE_CAR_POSITION = 0;
+parameter c_Y_BASE_CAR_POSITION = 11;
+parameter c_BASE_CAR_SPEED = 781250;
 
 // VGA constants
 parameter H_VISIBLE_AREA    = 640;
