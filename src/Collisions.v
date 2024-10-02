@@ -25,5 +25,4 @@ always @(posedge i_Clk) begin
         o_Has_Collided <= 1'b0;
     end
 end
-
 endmodule
