@@ -103,8 +103,8 @@ always @(posedge i_Clk) begin
             green <= 3'b111;
             blue <= 3'b111;
         end 
-        else if (((v_counter >= vehicle_Y_Position) && (v_counter < vehicle_Y_Position + (TILE_SIZE))) &&
-                ((h_counter >= vehicle_X_Position) && (h_counter < vehicle_X_Position + (TILE_SIZE))))
+        else if (((v_counter >= vehicle_Y_Position) && (v_counter < (vehicle_Y_Position + TILE_SIZE))) &&
+                ((h_counter >= vehicle_X_Position) && (h_counter < (vehicle_X_Position + TILE_SIZE))))
         begin
             red <= 3'b111;  
             green <= 3'b000;

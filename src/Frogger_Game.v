@@ -78,7 +78,7 @@ wire [6:0] w_Score, w_Score_After_Check;
         .i_Clk(i_Clk),
         .X_Position(w_X_Position),
         .Y_Position(w_Y_Position),
-        .Car_X_Position(8*TILE_SIZE),
+        .Car_X_Position(w_Car_X_Position),
         .Car_Y_Position(10*TILE_SIZE),
         .o_VGA_HSync(o_VGA_HSync),
         .o_VGA_VSync(o_VGA_VSync),
@@ -87,13 +87,18 @@ wire [6:0] w_Score, w_Score_After_Check;
         .o_VGA_Red_2(o_VGA_Red_2),
     );
 
-    Collisions Car1(
+    Collisions #(.TILE_SIZE(TILE_SIZE)) Car1(
         .i_Clk(i_Clk),
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
-        .i_Car_X(8*TILE_SIZE),
+        .i_Car_X(w_Car_X_Position),
         .i_Car_Y(10*TILE_SIZE),
         .o_Has_Collided(w_Has_Collided),
+    );
+    
+    Obstacles_Movement MovCar1(
+        .i_Clk(i_Clk),
+        .o_Car_X(w_Car_X_Position),
     );
 
     Segment_Display Score_Inst(
