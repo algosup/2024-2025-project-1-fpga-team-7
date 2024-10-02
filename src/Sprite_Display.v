@@ -33,7 +33,7 @@ reg [9:0]  h_counter          = 0; // Horizontal counter
 reg [9:0]  v_counter          = 0; // Vertical counter
 
 reg hsync, vsync;
-reg [7:0] red, green, blue;
+reg [2:0] red, green, blue;
 
 // First Printing Sprite Test
 // reg [15:0] sprite [15:0]; // 16x16 sprite
@@ -99,29 +99,29 @@ always @(posedge i_Clk) begin
         if (((v_counter >= clamped_Y_Position) && (v_counter < clamped_Y_Position + (TILE_SIZE))) &&
                 ((h_counter >= clamped_X_Position) && (h_counter < clamped_X_Position + (TILE_SIZE))))
         begin
-            red <= 8'hFF;  
-            green <= 8'hFF;
-            blue <= 8'hFF;
+            red <= 3'b111;  
+            green <= 3'b111;
+            blue <= 3'b111;
         end 
         else if (((v_counter >= vehicle_Y_Position) && (v_counter < vehicle_Y_Position + (TILE_SIZE))) &&
                 ((h_counter >= vehicle_X_Position) && (h_counter < vehicle_X_Position + (TILE_SIZE))))
         begin
-            red <= 8'hFF;  
-            green <= 8'h00;
-            blue <= 8'hFF;
+            red <= 3'b111;  
+            green <= 3'b000;
+            blue <= 3'b111;
         end 
         else 
         begin
-            red <= 8'h00;  
-            green <= 8'h00;
-            blue <= 8'h00;
+            red <= 3'b000;  
+            green <= 3'b000;
+            blue <= 3'b000;
         end
     end 
     else 
     begin
-        red <= 8'h00;
-        green <= 8'h00;
-        blue <= 8'h00;
+        red <= 3'b000;  
+        green <= 3'b000;
+        blue <= 3'b000;
     end
 end
 
