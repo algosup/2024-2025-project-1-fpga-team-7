@@ -1,4 +1,7 @@
-module Collisions #(parameter TILE_SIZE = 32)(
+module Collisions #(
+    parameter TILE_SIZE = 32,
+    parameter c_NB_CARS = 1
+)(
     input  wire i_Clk,
 
     // Frog left corner
@@ -8,12 +11,12 @@ module Collisions #(parameter TILE_SIZE = 32)(
     // Cars left corner
     input  wire [9:0] i_Car1_X,
     input  wire [9:0] i_Car1_Y,
-    // input  wire [9:0] i_Car2_X,
-    // input  wire [9:0] i_Car2_Y,
-    // input  wire [9:0] i_Car3_X,
-    // input  wire [9:0] i_Car3_Y,
-    // input  wire [9:0] i_Car4_X,
-    // input  wire [9:0] i_Car4_Y,
+    input  wire [9:0] i_Car2_X,
+    input  wire [9:0] i_Car2_Y,
+    input  wire [9:0] i_Car3_X,
+    input  wire [9:0] i_Car3_Y,
+    input  wire [9:0] i_Car4_X,
+    input  wire [9:0] i_Car4_Y,
 
     // Is there a collision or not
     output reg o_Has_Collided
@@ -24,31 +27,31 @@ always @(posedge i_Clk) begin
     if (((i_Frog_X >= i_Car1_X) && (i_Frog_X < (i_Car1_X + TILE_SIZE)) &&
         (i_Frog_Y >= i_Car1_Y) && (i_Frog_Y < (i_Car1_Y + TILE_SIZE)) ||
         (((i_Frog_X + TILE_SIZE) >= i_Car1_X) && ((i_Frog_X + TILE_SIZE) < (i_Car1_X + TILE_SIZE)) &&
-        (i_Frog_Y >= i_Car1_Y) && (i_Frog_Y < (i_Car1_Y + TILE_SIZE)))))
+        (i_Frog_Y >= i_Car1_Y) && (i_Frog_Y < (i_Car1_Y + TILE_SIZE)))) && c_NB_CARS > 0)
     begin
         o_Has_Collided <= 1'b1;
     end
-    // else if (((i_Frog_X >= i_Car2_X) && (i_Frog_X < (i_Car2_X + TILE_SIZE)) &&
-    //     (i_Frog_Y >= i_Car2_Y) && (i_Frog_Y < (i_Car2_Y + TILE_SIZE)) ||
-    //     (((i_Frog_X + TILE_SIZE) >= i_Car2_X) && ((i_Frog_X + TILE_SIZE) < (i_Car2_X + TILE_SIZE)) &&
-    //     (i_Frog_Y >= i_Car2_Y) && (i_Frog_Y < (i_Car2_Y + TILE_SIZE)))))
-    // begin
-    //     o_Has_Collided <= 1'b1;
-    // end
-    // else if (((i_Frog_X >= i_Car3_X) && (i_Frog_X < (i_Car3_X + TILE_SIZE)) &&
-    //     (i_Frog_Y >= i_Car3_Y) && (i_Frog_Y < (i_Car3_Y + TILE_SIZE)) ||
-    //     (((i_Frog_X + TILE_SIZE) >= i_Car3_X) && ((i_Frog_X + TILE_SIZE) < (i_Car3_X + TILE_SIZE)) &&
-    //     (i_Frog_Y >= i_Car3_Y) && (i_Frog_Y < (i_Car3_Y + TILE_SIZE)))))
-    // begin
-    //     o_Has_Collided <= 1'b1;
-    // end
-    // else if (((i_Frog_X >= i_Car4_X) && (i_Frog_X < (i_Car4_X + TILE_SIZE)) &&
-    //     (i_Frog_Y >= i_Car4_Y) && (i_Frog_Y < (i_Car4_Y + TILE_SIZE)) ||
-    //     (((i_Frog_X + TILE_SIZE) >= i_Car4_X) && ((i_Frog_X + TILE_SIZE) < (i_Car4_X + TILE_SIZE)) &&
-    //     (i_Frog_Y >= i_Car4_Y) && (i_Frog_Y < (i_Car4_Y + TILE_SIZE)))))
-    // begin
-    //     o_Has_Collided <= 1'b1;
-    // end
+    else if (((i_Frog_X >= i_Car2_X) && (i_Frog_X < (i_Car2_X + TILE_SIZE)) &&
+        (i_Frog_Y >= i_Car2_Y) && (i_Frog_Y < (i_Car2_Y + TILE_SIZE)) ||
+        (((i_Frog_X + TILE_SIZE) >= i_Car2_X) && ((i_Frog_X + TILE_SIZE) < (i_Car2_X + TILE_SIZE)) &&
+        (i_Frog_Y >= i_Car2_Y) && (i_Frog_Y < (i_Car2_Y + TILE_SIZE)))) && c_NB_CARS > 1)
+    begin
+        o_Has_Collided <= 1'b1;
+    end
+    else if (((i_Frog_X >= i_Car3_X) && (i_Frog_X < (i_Car3_X + TILE_SIZE)) &&
+        (i_Frog_Y >= i_Car3_Y) && (i_Frog_Y < (i_Car3_Y + TILE_SIZE)) ||
+        (((i_Frog_X + TILE_SIZE) >= i_Car3_X) && ((i_Frog_X + TILE_SIZE) < (i_Car3_X + TILE_SIZE)) &&
+        (i_Frog_Y >= i_Car3_Y) && (i_Frog_Y < (i_Car3_Y + TILE_SIZE)))) && c_NB_CARS > 2)
+    begin
+        o_Has_Collided <= 1'b1;
+    end
+    else if (((i_Frog_X >= i_Car4_X) && (i_Frog_X < (i_Car4_X + TILE_SIZE)) &&
+        (i_Frog_Y >= i_Car4_Y) && (i_Frog_Y < (i_Car4_Y + TILE_SIZE)) ||
+        (((i_Frog_X + TILE_SIZE) >= i_Car4_X) && ((i_Frog_X + TILE_SIZE) < (i_Car4_X + TILE_SIZE)) &&
+        (i_Frog_Y >= i_Car4_Y) && (i_Frog_Y < (i_Car4_Y + TILE_SIZE)))) && c_NB_CARS > 3)
+    begin
+        o_Has_Collided <= 1'b1;
+    end
     else 
     begin
         o_Has_Collided <= 1'b0;

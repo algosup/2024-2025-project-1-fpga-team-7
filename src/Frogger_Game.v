@@ -99,12 +99,12 @@ wire [6:0] w_Score, w_Score_After_Check;
         .Y_Position(w_Y_Position),
         .Car_1X_Position(w_Car1_X_Position),
         .Car_1Y_Position(w_Car1_Y_Position),
-        // .Car_2X_Position(w_Car2_X_Position),
-        // .Car_2Y_Position(w_Car2_Y_Position),
-        // .Car_3X_Position(w_Car3_X_Position),
-        // .Car_3Y_Position(w_Car3_Y_Position),
-        // .Car_4X_Position(w_Car4_X_Position),
-        // .Car_4Y_Position(w_Car4_Y_Position),
+        .Car_2X_Position(w_Car2_X_Position),
+        .Car_2Y_Position(w_Car2_Y_Position),
+        .Car_3X_Position(w_Car3_X_Position),
+        .Car_3Y_Position(w_Car3_Y_Position),
+        .Car_4X_Position(w_Car4_X_Position),
+        .Car_4Y_Position(w_Car4_Y_Position),
         .o_VGA_HSync(o_VGA_HSync),
         .o_VGA_VSync(o_VGA_VSync),
         .o_VGA_Blu_2(o_VGA_Blu_2),
@@ -112,18 +112,21 @@ wire [6:0] w_Score, w_Score_After_Check;
         .o_VGA_Red_2(o_VGA_Red_2),
     );
 
-    Collisions #(.TILE_SIZE(TILE_SIZE))Car1(
+    Collisions #(
+        .TILE_SIZE(TILE_SIZE),
+        .c_NB_CARS(c_NB_CARS)
+    )Car(
         .i_Clk(i_Clk),
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
         .i_Car1_X(w_Car1_X_Position),
         .i_Car1_Y(w_Car1_Y_Position),
-        // .i_Car2_X(w_Car2_X_Position),
-        // .i_Car2_Y(w_Car2_Y_Position),
-        // .i_Car3_X(w_Car3_X_Position),
-        // .i_Car3_Y(w_Car3_Y_Position),
-        // .i_Car4_X(w_Car4_X_Position),
-        // .i_Car4_Y(w_Car4_Y_Position),
+        .i_Car2_X(w_Car2_X_Position),
+        .i_Car2_Y(w_Car2_Y_Position),
+        .i_Car3_X(w_Car3_X_Position),
+        .i_Car3_Y(w_Car3_Y_Position),
+        .i_Car4_X(w_Car4_X_Position),
+        .i_Car4_Y(w_Car4_Y_Position),
         .o_Has_Collided(w_Has_Collided),
     );
     
@@ -132,49 +135,16 @@ wire [6:0] w_Score, w_Score_After_Check;
         .c_X_REVERSE_BASE_CAR_POSITION(c_X_REVERSE_BASE_CAR_POSITION),
         .c_BASE_CAR_SPEED(c_BASE_CAR_SPEED),
         .H_VISIBLE_AREA(H_VISIBLE_AREA),
-        .TILE_SIZE(TILE_SIZE)
-    ) MovCar1(
+        .TILE_SIZE(TILE_SIZE),
+        .c_NB_CARS(c_NB_CARS)
+    ) MovCar(
         .i_Clk(i_Clk),
         .i_Reverse(1'b0),
-        .i_Nb_Cars(3'd1),
-        .o_Car_X(w_Car1_X_Position),
+        .o_Car_X_0(w_Car1_X_Position),
+        .o_Car_X_1(w_Car2_X_Position),
+        .o_Car_X_2(w_Car3_X_Position),
+        .o_Car_X_3(w_Car4_X_Position),
     );
-
-    // Obstacles_Movement #(
-    //     .c_X_BASE_CAR_POSITION(c_X_BASE_CAR_POSITION),
-    //     .c_X_REVERSE_BASE_CAR_POSITION(c_X_REVERSE_BASE_CAR_POSITION),
-    //     .c_BASE_CAR_SPEED(c_BASE_CAR_SPEED),
-    //     .H_VISIBLE_AREA(H_VISIBLE_AREA),
-    //     .TILE_SIZE(TILE_SIZE)
-    // ) MovCar2(
-    //     .i_Clk(i_Clk),
-    //     .i_Reverse(1'b0),
-    //     .o_Car_X(w_Car2_X_Position),
-    // );
-
-    // Obstacles_Movement #(
-    //     .c_X_BASE_CAR_POSITION(c_X_BASE_CAR_POSITION),
-    //     .c_X_REVERSE_BASE_CAR_POSITION(c_X_REVERSE_BASE_CAR_POSITION),
-    //     .c_BASE_CAR_SPEED(c_BASE_CAR_SPEED),
-    //     .H_VISIBLE_AREA(H_VISIBLE_AREA),
-    //     .TILE_SIZE(TILE_SIZE)
-    // ) MovCar3(
-    //     .i_Clk(i_Clk),
-    //     .i_Reverse(1'b1),
-    //     .o_Car_X(w_Car3_X_Position),
-    // );
-
-    // Obstacles_Movement #(
-    //     .c_X_BASE_CAR_POSITION(c_X_BASE_CAR_POSITION),
-    //     .c_X_REVERSE_BASE_CAR_POSITION(c_X_REVERSE_BASE_CAR_POSITION),
-    //     .c_BASE_CAR_SPEED(c_BASE_CAR_SPEED),
-    //     .H_VISIBLE_AREA(H_VISIBLE_AREA),
-    //     .TILE_SIZE(TILE_SIZE)
-    // ) MovCar4(
-    //     .i_Clk(i_Clk),
-    //     .i_Reverse(1'b0),
-    //     .o_Car_X(w_Car4_X_Position),
-    // );
 
     Segment_Display Score_Inst(
         .i_Clk(i_Clk),

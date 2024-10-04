@@ -21,6 +21,7 @@ parameter c_LINE_4_Y = 320;
 parameter c_LINE_3_Y = 256;
 parameter c_LINE_2_Y = 192;
 parameter c_LINE_1_Y = 128;
+parameter c_NB_CARS = 4;
 
 // VGA constants
 parameter H_VISIBLE_AREA    = 640;
