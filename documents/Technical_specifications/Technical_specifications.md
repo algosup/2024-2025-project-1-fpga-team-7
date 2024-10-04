@@ -5,11 +5,18 @@
 |-|-|-|-|-|-|
 | Frogger Game | Verilog | - Go Board (**FPGA** technology) <br> - VGA Monitor and Cable | ALGOSUP | 2024-2025 | 7 |
 
-#### *Last Update on September 24th, 2024*
+#### *Last Update on October 4th, 2024*
 ![alt text](<data/fpga circuit illustration.jpeg>)
 
+<details>
 
-<details- [Technical Specification](#technical-specification)
+<summary>
+
+# Table of Content  
+
+</summary>
+
+- [Technical Specification](#technical-specification)
       - [*Last Update on September 24th, 2024*](#last-update-on-september-24th-2024)
 - [Technical Specification](#technical-specification)
       - [*Last Update on September 24th, 2024*](#last-update-on-september-24th-2024)
@@ -49,15 +56,6 @@
     - [IV. Coding conventions](#iv-coding-conventions)
 - [Glossary](#glossary)
 - [](#)
->
-
-<summary>
-
-# Table of Content
-
-</summary>
-
-- Project
 
 </details>
 
@@ -106,17 +104,59 @@ This student project, given by [ALGOSUP](https://github.com/algosup), is about c
 
  <br><br>
 
+
+
 # The Implementation
 
 
 
-## The project
+## GitHub
 
-#### 1. Project files architecture
+#### 1. GitHub files architecture
 
-#### 2. Naming conventions
+```  
+origin  
+│
+├── documents
+│    │
+│    ├── Management
+│    │   ├── data
+│    │   ├── Weekly_report.md
+│    │   └── Project_planning.md
+│    │
+│    ├── Functional_specifications
+│    │   ├── data
+│    │   └── Functional_specifications.md
+│    │
+│    ├── Quality_assurance
+│    │   ├── data
+│    │   └── Test_plan.md
+│    │
+│    ├── User_manual
+│    │   └── User_manual.pdf
+│    │
+│    └── Technical_specifications
+│        ├── data
+│        └── Technical_specifications.md
+│
+├── src
+│    │
+│    ├── apio.ini
+│    ├── Go_Board_Constraints.pcf
+│    ├── Frogger_Games.v
+│    └── ... (modules)
+│
+└── README.md
+```
 
 #### 3. GitHub rules
+
+- The main branch is protected from direct push and merge.  
+- To update the main branch, the pull request needs 2 external validations from anyone else.  
+- A 'dev' branch is here to push all the source code
+- A 'documents' branch is here to push all the documents
+- Each member have to commit and push changes at least daily, with an explicit tittle and a complete description of the changes.
+- branches' names follow ```kebab-case```
 
 ## The Hardware
 
@@ -124,7 +164,21 @@ Here is only the description of the harware provided by the project
 
 #### 1. The Go Board
 
-Datasheet and specifications related to the hardware given such as the switches, LEDs, VGA, ...
+For this project, we have been given a 'Go Board'.
+Here is the official website of this board : https://nandland.com/the-go-board/  
+THis Go Board hadbeen designed to meet the needs of the game while remaining simple to use. As we can see, there's already, on the board itself a bunch of usefull components for video games.
+
+![The Go Board](data/go_board.png)
+
+The main component of this board is an FPGA chip :   
+The [Lattice iCE40 - HX1K](https://www.latticesemi.com/ice40)  
+
+Here is the [Datasheet](data/FPGA_ice40HX1K_datasheet.pdf) of this FPGA
+
+The main information to keep in mind is : 
+![HX1K Characteristics](data/HX1K_characteristics.png)
+
+Thus, the FPGA contains 1280 Logic Cells (either LUT or Register) and 16 384 bits of 'BLock RAM' memory.
 
 #### 2. The VGA Screen
 
@@ -138,7 +192,9 @@ Datasheet and specifications related to the hardware given such as the switches,
 
 #### 3. Modules and Instanciation
 
-#### 4. To go Further...
+#### 4. Steps to upload the code
+
+#### 5. To go Further...
 
 ### II. Algorithm Desccription
 
@@ -148,50 +204,59 @@ Future Algorigram to describe the evolution of the state machine, interaction be
 
 #### 1. Base files
 
-- Apio.ini
-- Frogger_Game.v 
-- Go_Board_Constraints.pcf
+- **apio.ini**  
+  Needed by the synthetizer to know wich is the top module to execute.
+- **Go_Board_Constraints.pcf**  
+  Contains the attribution of each GPIO to a name. This names are used at the beginning of the top module.
+- **Frogger_Game.v**   
+  Main file containing the top module. It serves to declare, include and link the different pieces of the code.
 
 #### 2. Independant Modules
 
 Theses modules are some universal modules, which can be used in many different types of FPGA projects. They are not containing any code related to the game algorithm.
 
 ##### VGA related modules
-- VGA_Sync_Porch.v
-- VGA_Sync_Pulses.v
-- Sync_To_Count.v
+- **VGA_Sync_Pulses.v**   
+  Generates the horizontal and vertical synchronization signals for the VGA output.
+- **VGA_Sync_Porch.v**  
+  Change a bit the pulses of the previous module to take the VGA porches into account.
+- **Sync_To_Count.v**  
+  Generates 2 counters, one for the columns, and another for the rows, synchronized with both pulses, to keep track of wich pixel is going to be written on the VGA output.
 
 ##### Switch related modules
-- Debounce_Filter.v
-- Spam_Signal.v
+- **Debounce_Filter.v**  
+  Module which takes the switch signal and output a 'debounced' signal of the switch. Basically, it allows the output signal to fit the input signal aafter validating its stability over time.
+- **Spam_Signal.v**  
+  Reads a signal, and if it stays HIGH for too long, this module generates a square wave that can be used as a second input.
+  Useful for allowing an action to loop if a button is held down for a long time.
 
 ##### Seven segments display related module
-- Seven_Segments_Display.v
+- **Seven_Segments_Display.v**
 
 ##### Pseudo-Random generator module
-- LFSR.v
+- **LFSR.v**
 
 #### 3. Game algorithm's module
 
 These modules are containing all the code directly related to the game logic and handling the game design.
 
-##### Global module
-- Constants.v
-- Memory.v
+##### Global modules
+- **Constants.v**
+- **Memory.v**
 
 ##### Game logic module
-- State_Machine.v
-- Update_Frequency_Settings.v
-- Levels.v
-- Sprite_Position.v
-- Character_Control.v
-- Obstacles_Movement.v
-- Collisions.v
+- **State_Machine.v**
+- **Update_Frequency_Settings.v**
+- **Levels.v**
+- **Sprite_Position.v**
+- **Character_Control.v**
+- **Obstacles_Movement.v**
+- **Collisions.v**
 
 ##### Game design module
-- Sprite_Definition.v
-- Sprite_Display.v
-- Background_Display.v
+- **Sprite_Definition.v**
+- **Sprite_Display.v**
+- **Background_Display.v**
 
 ### IV. Coding conventions
 
