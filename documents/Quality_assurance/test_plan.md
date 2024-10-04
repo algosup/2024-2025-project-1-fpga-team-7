@@ -3,7 +3,7 @@
 | Author        | Paul NOWAK (Q.A.) |
 |---------------|------------ |
 | Created       | 09/28/2024  |
-| Last Modified | 10/02/2024  |
+| Last Modified | 10/04/2024  |
 | Document Deadline | 10/21/2024  |
 
 ---
@@ -84,7 +84,7 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 #### Frogger
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
-| Frog Generation | Ensures to generate the Frog at his strating point on the screen.| 3 |    1. Start the game. <br /> 2.Set a generateFrogger() signal. <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br />  |    Frogger is generated at his starting point.    |     TO BE TESTED.       |     High     |
+| Frog Generation | Ensures to generate the Frog at his starting point on the screen.| 3 |    1. Start the game. <br /> 2.Set a generateFrogger() signal. <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br />  |    Frogger is generated at his starting point.    |     TO BE TESTED.       |     High     |
 | Frog Length Movement | We set a movement input signal to make the frog move from 1 tile to another.| 5 |    1. Start the game. <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4.Set a movement input signal. <br /> 5. Wait for a few clock cycles to allow frog's movement. <br />  |    The frog's moves by only 1 tile.    |     TO BE TESTED.       |     High     |
 | Right Movement | We set a movement input signal  to make the frog go to the Right.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set the Right Key input signal.<br /> 5. Wait for a few clock cycles to allow frog's movement.  |    The frog's moves 1 tile on the Right.    |     TO BE TESTED.       |     High     |
 | Left Movement | We set a movement input signal to make the frog go to the Left.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set the Left Key input signal. <br /> 5. Wait for a few clock cycles to allow frog's movement.  |    The frog's moves 1 tile on the Left.    |     TO BE TESTED.       |     High     |
@@ -141,6 +141,18 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 
 
 ### 3.2.Performance Testing
+
+#### Frogger Performance
+
+| Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
+| --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
+| Frog Generation Latency | Ensures the time latency between the game's launch and the frog's generation on its starting point is short (e.g. < 200 ms).| 3 |    1. Start the game <br /> 2. Set a generateFrogger() signal.  <br /> 3. Measure the number of clock cycles required to allow frog generation. <br />  |    The time required to generate the Frog on the map is short.   |     TO BE TESTED.       |     High     |
+
+#### Cars Performance
+
+#### Collision Performance
+
+#### Game Rules Performance
 
 ### 3.3.Stress Testing
 
