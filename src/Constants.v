@@ -6,7 +6,7 @@ parameter X_TOTAL_TILE          = 20;
 parameter Y_TOTAL_TILE          = 15;
 
 // Scoring contant
-parameter c_SCORE_INI           = 0;
+parameter c_SCORE_INI           = 1;
 
 // Player constants
 parameter c_X_BASE_POSITION     = 320;

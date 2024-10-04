@@ -116,3 +116,4 @@ compile.sh
 *.asc
 *.bin
 *.json
+*.DS_store
