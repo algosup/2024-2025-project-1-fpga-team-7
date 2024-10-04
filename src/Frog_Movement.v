@@ -1,7 +1,15 @@
 // This module handle all the movements of the frog (Player). 
 // It includes Up, Down, Left, Right. It also set the respawn 
 // coordinates when you reach the top screen or hit a car.
-module Frog_Movement(
+module Frog_Movement #(
+  parameter c_SCORE_INI       = 1,
+  parameter c_X_BASE_POSITION = 320,
+  parameter c_Y_BASE_POSITION = 384,
+  parameter COUNT_LIMIT       = 3125000,
+  parameter TILE_SIZE         = 32,
+  parameter V_VISIBLE_AREA    = 480,
+  parameter H_VISIBLE_AREA    = 640,
+  )(
   // Clock
   input            i_Clk,
 
@@ -54,7 +62,7 @@ module Frog_Movement(
     begin
       o_Frog_Y <= c_Y_BASE_POSITION;
       o_Frog_X <= c_X_BASE_POSITION;
-      o_Score <= 1'b0;
+      o_Score <= 1'b1;
     end
     else
     begin

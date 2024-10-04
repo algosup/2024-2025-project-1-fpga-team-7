@@ -53,15 +53,21 @@ wire w_Has_Collided;
 wire [6:0] w_Score, w_Score_After_Check;
 
 
-    Debounce_Filter Debounce_Filter_1_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_1), .o_Switch(w_Switch_1));
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_1_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_1), .o_Switch(w_Switch_1));
 
-    Debounce_Filter Debounce_Filter_2_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_2), .o_Switch(w_Switch_2));
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_2_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_2), .o_Switch(w_Switch_2));
 
-    Debounce_Filter Debounce_Filter_3_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_3), .o_Switch(w_Switch_3));
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_3_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_3), .o_Switch(w_Switch_3));
 
-    Debounce_Filter Debounce_Filter_4_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_4), .o_Switch(w_Switch_4));
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_4_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_4), .o_Switch(w_Switch_4));
 
-    Frog_Movement Frog_Movement_Inst(
+    Frog_Movement #(.c_SCORE_INI(c_SCORE_INI),
+                    .c_X_BASE_POSITION(c_X_BASE_POSITION),
+                    .c_Y_BASE_POSITION(c_Y_BASE_POSITION),
+                    .COUNT_LIMIT(COUNT_LIMIT),
+                    .TILE_SIZE(TILE_SIZE),
+                    .V_VISIBLE_AREA(V_VISIBLE_AREA),
+                    .H_VISIBLE_AREA(H_VISIBLE_AREA)) Frog_Movement_Inst(
         .i_Clk(i_Clk),
         .i_Has_Collided(w_Has_Collided),
         .i_Frog_Up(w_Switch_1),
@@ -74,7 +80,15 @@ wire [6:0] w_Score, w_Score_After_Check;
         .o_Frog_Y(w_Y_Position),
     );
 
-    Sprite_Display Sprite_Display_Inst(
+    Sprite_Display #(.TILE_SIZE(TILE_SIZE),
+                     .H_VISIBLE_AREA(H_VISIBLE_AREA),
+                     .V_VISIBLE_AREA(V_VISIBLE_AREA),
+                     .H_TOTAL(H_TOTAL),
+                     .V_TOTAL(V_TOTAL),
+                     .H_FRONT_PORCH(H_FRONT_PORCH),
+                     .H_SYNC_PULSE(H_SYNC_PULSE),
+                     .V_FRONT_PORCH(V_FRONT_PORCH),
+                     .V_SYNC_PULSE(V_SYNC_PULSE)) Sprite_Display_Inst(
         .i_Clk(i_Clk),
         .X_Position(w_X_Position),
         .Y_Position(w_Y_Position),
@@ -87,7 +101,7 @@ wire [6:0] w_Score, w_Score_After_Check;
         .o_VGA_Red_2(o_VGA_Red_2),
     );
 
-    Collisions Car1(
+    Collisions #(.TILE_SIZE(TILE_SIZE))Car1(
         .i_Clk(i_Clk),
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
