@@ -52,6 +52,25 @@ wire w_Has_Collided;
 
 wire [6:0] w_Score, w_Score_After_Check;
 
+wire [9:0] w_Address = 10'b0;
+
+assign w_Address = w_Address + 1;
+
+wire [8:0] w_Data;
+
+wire rd_dv;
+
+wire [8:0] w_Wr_Data = 9'd3;
+
+    RAM_Port #(.WIDTH(9), .DEPTH(1024)) RAM_inst(
+        .i_Clk(i_Clk),
+        .i_Addr(w_Address),
+        .i_Wr_DV(1'b1),
+        .i_Wr_Data(w_Wr_Data),
+        .i_Rd_En(1'b0),
+        .o_Rd_DV(rd_dv),
+        .o_Rd_Data(w_Data),
+    );
 
     Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_1_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_1), .o_Switch(w_Switch_1));
 
