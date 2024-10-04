@@ -11,16 +11,16 @@ module Frogger_Game (
     output o_VGA_HSync,
     output o_VGA_VSync,
     
-    output o_VGA_Red_0,
-    output o_VGA_Red_1,
+    // output o_VGA_Red_0,
+    // output o_VGA_Red_1,
     output o_VGA_Red_2,
 
-    output o_VGA_Blu_0,
-    output o_VGA_Blu_1,
+    // output o_VGA_Blu_0,
+    // output o_VGA_Blu_1,
     output o_VGA_Blu_2,
 
-    output o_VGA_Grn_0,
-    output o_VGA_Grn_1,
+    // output o_VGA_Grn_0,
+    // output o_VGA_Grn_1,
     output o_VGA_Grn_2,
 
     output o_Segment1_A,
@@ -45,7 +45,12 @@ wire w_Switch_2;
 wire w_Switch_3;
 wire w_Switch_4;
 
-wire [9:0] w_ini_Y_Position, w_ini_X_Position, w_Y_Position, w_X_Position, w_Car_X_Position, w_Car_Y_Position;
+wire [9:0] w_ini_Y_Position, w_ini_X_Position, w_Y_Position, w_X_Position;
+wire [9:0] w_Car1_X_Position, w_Car1_Y_Position = c_LINE_1_Y;
+wire [9:0] w_Car2_X_Position, w_Car2_Y_Position = c_LINE_2_Y;
+wire [9:0] w_Car3_X_Position, w_Car3_Y_Position = c_LINE_3_Y;
+wire [9:0] w_Car4_X_Position, w_Car4_Y_Position = c_LINE_4_Y;
+
 wire w_Draw_Frog;
 
 wire w_Has_Collided;
@@ -78,8 +83,14 @@ wire [6:0] w_Score, w_Score_After_Check;
         .i_Clk(i_Clk),
         .X_Position(w_X_Position),
         .Y_Position(w_Y_Position),
-        .Car_X_Position(w_Car_X_Position),
-        .Car_Y_Position(10*TILE_SIZE),
+        .Car_1X_Position(w_Car1_X_Position),
+        .Car_1Y_Position(w_Car1_Y_Position),
+        .Car_2X_Position(w_Car2_X_Position),
+        .Car_2Y_Position(w_Car2_Y_Position),
+        .Car_3X_Position(w_Car3_X_Position),
+        .Car_3Y_Position(w_Car3_Y_Position),
+        .Car_4X_Position(w_Car4_X_Position),
+        .Car_4Y_Position(w_Car4_Y_Position),
         .o_VGA_HSync(o_VGA_HSync),
         .o_VGA_VSync(o_VGA_VSync),
         .o_VGA_Blu_2(o_VGA_Blu_2),
@@ -91,14 +102,35 @@ wire [6:0] w_Score, w_Score_After_Check;
         .i_Clk(i_Clk),
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
-        .i_Car_X(w_Car_X_Position),
-        .i_Car_Y(10*TILE_SIZE),
+        .i_Car1_X(w_Car1_X_Position),
+        .i_Car1_Y(w_Car1_Y_Position),
+        .i_Car2_X(w_Car2_X_Position),
+        .i_Car2_Y(w_Car2_Y_Position),
+        .i_Car3_X(w_Car3_X_Position),
+        .i_Car3_Y(w_Car3_Y_Position),
+        .i_Car4_X(w_Car4_X_Position),
+        .i_Car4_Y(w_Car4_Y_Position),
         .o_Has_Collided(w_Has_Collided),
     );
     
     Obstacles_Movement MovCar1(
         .i_Clk(i_Clk),
-        .o_Car_X(w_Car_X_Position),
+        .o_Car_X(w_Car1_X_Position),
+    );
+
+    Obstacles_Movement MovCar2(
+        .i_Clk(i_Clk),
+        .o_Car_X(w_Car2_X_Position),
+    );
+
+    Obstacles_Movement MovCar3(
+        .i_Clk(i_Clk),
+        .o_Car_X(w_Car3_X_Position),
+    );
+
+    Obstacles_Movement MovCar4(
+        .i_Clk(i_Clk),
+        .o_Car_X(w_Car4_X_Position),
     );
 
     Segment_Display Score_Inst(

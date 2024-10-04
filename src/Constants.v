@@ -16,6 +16,10 @@ parameter c_Y_BASE_POSITION     = 384;
 parameter c_X_BASE_CAR_POSITION = 0;
 parameter c_Y_BASE_CAR_POSITION = 11;
 parameter c_BASE_CAR_SPEED = 781250;
+parameter c_LINE_4_Y = 320;
+parameter c_LINE_3_Y = 256;
+parameter c_LINE_2_Y = 192;
+parameter c_LINE_1_Y = 128;
 
 // VGA constants
 parameter H_VISIBLE_AREA    = 640;

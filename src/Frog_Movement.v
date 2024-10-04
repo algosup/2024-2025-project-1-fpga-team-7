@@ -33,8 +33,6 @@ module Frog_Movement(
 
   // Only allow Frog to move if only one button is pushed (use XOR for exclusive movement).
   assign w_Frog_En = (i_Frog_Up ^ i_Frog_Dn) ^ (i_Frog_Lt ^ i_Frog_Rt);
-  assign w_No_Lateral = (~i_Frog_Up | ~i_Frog_Dn);
-  assign w_No_Vertical = (~i_Frog_Lt | ~i_Frog_Rt);
 
   always @(posedge i_Clk) 
   begin
@@ -78,12 +76,12 @@ module Frog_Movement(
         o_Frog_Y <= o_Frog_Y + TILE_SIZE; // Move frog down
       end 
       // Move Frog left: check bounds to avoid underflow
-      else if (i_Frog_Lt == 1'b1 && r_Counter == COUNT_LIMIT && o_Frog_X > 0 && r_state == 0 && (i_Frog_Lt ^ i_Frog_Rt) && w_Frog_En && w_No_Vertical) 
+      else if (i_Frog_Lt == 1'b1 && r_Counter == COUNT_LIMIT && o_Frog_X > 0 && r_state == 0 && (i_Frog_Lt ^ i_Frog_Rt) && w_Frog_En) 
       begin
         o_Frog_X <= o_Frog_X - TILE_SIZE; // Move frog left
       end 
       // Move Frog right: check that the frog doesn't exceed screen width
-      else if (i_Frog_Rt == 1'b1 && r_Counter == COUNT_LIMIT && o_Frog_X < (H_VISIBLE_AREA - TILE_SIZE) && r_state == 0 && (i_Frog_Lt ^ i_Frog_Rt) && w_Frog_En && w_No_Vertical) 
+      else if (i_Frog_Rt == 1'b1 && r_Counter == COUNT_LIMIT && o_Frog_X < (H_VISIBLE_AREA - TILE_SIZE) && r_state == 0 && (i_Frog_Lt ^ i_Frog_Rt) && w_Frog_En) 
       begin
         o_Frog_X <= o_Frog_X + TILE_SIZE; // Move frog right
       end
