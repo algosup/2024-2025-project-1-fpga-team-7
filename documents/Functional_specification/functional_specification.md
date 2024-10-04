@@ -3,9 +3,7 @@
 <details>
 <summary>
 
-</summary>
-
-## Table of content
+## Table of content </summary>
 
 - [Functional Specifications](#functional-specifications)
   * [Table of content](#table-of-content)
@@ -345,7 +343,7 @@ Once the frog has reached this point of the screen you will go to the next level
 
 #### <ins>Speed</ins>
 
--figure out different speed increases-
+The car will start with x amount of speed and will increase by y every level.
 
 #### <ins>Colors</ins>
 
