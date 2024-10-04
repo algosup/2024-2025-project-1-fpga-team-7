@@ -4,7 +4,7 @@
 |---------------|------------ |
 | Created       | 09/28/2024  |
 | Last Modified | 10/04/2024  |
-| Number of Test Cases written| 63  |
+| Number of Test Cases written| 65  |
 | Document Deadline | 10/21/2024  |
 
 ---
@@ -185,6 +185,9 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 
 
 #### Game Rules Performance
+| Frog Respawn Latency | Ensure the time latency between the frog's death and its respawn at the starting point is short (e.g., < 200 ms).| 8 |    1. Start the game <br /> 2. Set a generateFrogger() signal.  <br /> 3. Move the frog into the path of a moving car to trigger a collision. <br /> 4. Upon collision, stop the frog and trigger the frog's death animation (ensure the frog has at least one remaining life). <br /> 5. Send a frogRespawn() signal once the death animation finishes. <br /> 6. Measure the number of clock cycles or time between the frogRespawn() signal and the frog's actual appearance at its starting point. <br /> 7. Track the framerate of the game during this process to ensure no slowdowns occur during respawn. <br /> 8. Ensure the frog appears smoothly at the starting point without  glitches or delays. |  The time required to respawn the frog after death should be less than 200 ms (or a pre-defined acceptable threshold), with no frame drops or slowdowns during the respawn process. The frog should reappear smoothly at the starting point, and the game should continue running at a consistent frame rate.   |     TO BE TESTED.       |     Medium     |
+| Frog Next Level Latency | Ensure the time latency between the frog's arrival to the end of the level and its respawn at the starting point for the next level is short (e.g., < 200 ms).| 8 |    1. Start the game. <br /> 2. Set a generateFrogger() signal.  <br /> 3. Move the frog until it reaches the end of the level. <br /> 4. Trigger the levelComplete() signal. <br /> 5. Measure the number of clock cycles or time between the frogRespawn() signal and the frog's actual appearance at its starting point. <br /> 6. Track the framerate of the game during this process to ensure no slowdowns occur during respawn. <br /> 7. Ensure the frog appears smoothly at the starting point without glitches or delays. | The time required to respawn the frog after a level is completed should be less than 200 ms (or a pre-defined acceptable threshold), with no frame drops or slowdowns during the respawn process. The frog should reappear smoothly at the starting point, and the game should continue running at a consistent frame rate.   |     TO BE TESTED.       |     Medium     |
+| Frog Level Progress Influence| Check if after each level passed, there is any frame drops or slowdowns among the frog, the cars or the game itself.| 8 |    1. Start the game. <br /> 2. Set a generateFrogger() signal.  <br /> 3. Move the frog until it reaches the end of the level. <br /> 4. Trigger the levelComplete() signal. <br /> 5. Measure the number of clock cycles or time between the frogRespawn() signal and the frog's actual appearance at its starting point. <br /> 6. Track the framerate of the game during this process to ensure no slowdowns occur during respawn. <br /> 7. Ensure the frog appears smoothly at the starting point without glitches or delays. <br /> 8. Repeat the steps 3-7 until you finish last level (e.g. 8). |    After each level passed and frog respawned, no significant frame drops or slowdowns occur. The game, frog, and cars continue running at their expected speeds and framerates with no visual or performance degradation.   |     TO BE TESTED.       |     Medium     |
 
 ### 3.3.Stress Testing
 
