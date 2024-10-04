@@ -288,23 +288,25 @@ The player plays as a frog.
 
 <p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/frog32x32.png?raw=true"alt="Frog" width="400"/></p> 
 
-He can move in 4 directions: Up, Down, Left, Right. 
+- The frog can move in 4 directions: Up, Down, Left, Right. 
 
-The frog will have moved 1 tile for every click of a directional button.
+- The frog will have moved 1 tile for every click of a directional button.
 
-If the corresponding button is being held down the frog will not continue to go in that direction. 
+- If the corresponding button is being held down the frog will not continue to go in that direction. 
 
 #### <ins>Cars</ins>
 
 <p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/car32x32.png?raw=true"alt="Car" width="400"/></p> 
 
-The cars will be moving on the roads from right to left and vise-versa. 
+- The cars will be moving on the roads from right to left and vise-versa. 
 
-There will be at least 16 cars on screen at a time.
+- There will be at least 16 cars on screen at a time.
 
-If the player collides with a car, the game will restart to level one.
+- The cars will have different colors for more variety.
 
-At higher levels the cars speed will increase.
+- If the player collides with a car, the game will restart to level one.
+
+- At higher levels the cars speed will increase.
 
 #### <ins>Level</ins>
 
@@ -365,7 +367,7 @@ Colors utilized for the sprites :
 
 #### <ins>Restart</ins>
 
-the game will restart once all four buttons are pressed at the same time and held for 2 seconds, no matter the condition of the game.
+The game will restart once all four buttons are pressed at the same time and held for 2 seconds, no matter the condition of the game.
 
 #### <ins>Controls</ins>
 
