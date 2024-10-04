@@ -266,7 +266,7 @@ We have estimated 90 man-hours total to complete this project
 #### <ins>Brief history...</ins>
 Frogger is a 1981 arcade action game developed by Konami and published by Sega. You control a small frog, and you need to cross the roads while dodging traffic and climbing on logs to reach the top.
 
-<p align="center"><img src=".https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/old_frogger.png?raw=true"alt="Old frogger" width="400"/></p> 
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/old_frogger.png?raw=true"alt="Old frogger" width="400"/></p> 
 
 In this picture, you can see that the frog (player) has 60 seconds to reach the top as many times as possible. The more times the frog reaches the top, the higher the final score will be.
 
