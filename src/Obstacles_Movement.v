@@ -5,8 +5,9 @@ module Obstacles_Movement#(
     parameter H_VISIBLE_AREA = 640,
     parameter TILE_SIZE = 32
 )(
-    input i_Clk,
-    input i_Reverse,
+    input       i_Clk,
+    input       i_Reverse,
+    input [2:0] i_Nb_Cars,
 
     output reg [9:0] o_Car_X = c_X_BASE_CAR_POSITION,
 );
@@ -16,16 +17,20 @@ module Obstacles_Movement#(
     begin
         if (r_Count == c_BASE_CAR_SPEED)
         begin
-            if (i_Reverse == 0) 
-            begin
-                o_Car_X <= o_Car_X + 1;
-                r_Count <= 0;    
-            end
-            else
-            begin
-                o_Car_X <= o_Car_X - 1;
-                r_Count <= 0;
-            end
+            case (i_Nb_Cars)
+                1: if (i_Reverse == 0) 
+                   begin
+                      o_Car_X <= o_Car_X + 1;
+                      r_Count <= 0;    
+                   end
+                   else
+                   begin
+                      o_Car_X <= o_Car_X - 1;
+                      r_Count <= 0;
+                   end
+                default:
+                    i_Nb_Cars <= i_Nb_Cars; 
+            endcase
         end
         else
         begin

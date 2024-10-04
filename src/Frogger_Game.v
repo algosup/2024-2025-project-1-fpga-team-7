@@ -136,6 +136,7 @@ wire [6:0] w_Score, w_Score_After_Check;
     ) MovCar1(
         .i_Clk(i_Clk),
         .i_Reverse(1'b0),
+        .i_Nb_Cars(3'd1),
         .o_Car_X(w_Car1_X_Position),
     );
 
