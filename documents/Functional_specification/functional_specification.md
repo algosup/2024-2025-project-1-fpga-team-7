@@ -7,33 +7,34 @@
 
     - [Functional Specifications](#functional-specifications)
         - [Table of content](#table-of-content)
-            - [Document information](#1--document-information)
-            - [Document History](#2-document-history)
-            - [Document Approval](#3-document-approval)
-        - [Introduction](#b-introduction)        
-            - [Glossary](#1-glossary)
-            - [Project Overview](#2-project-overview)
-            - [Project Definition](#3-project-definition)
+        -[A) Document Control](#a-document-control)
+            - [1) Document information](#1--document-information)
+            - [2) Document History](#2-document-history)
+            - [3) Document Approval](#3-document-approval)
+        - [B) Introduction](#b-introduction)        
+            - [1) Glossary](#1-glossary)
+            - [2) Project Overview](#2-project-overview)
+            - [3) Project Definition](#3-project-definition)
                 - [Vision](#vision)
                 - [Requirements/Objectives](#requirementsobjectives)
                 - [Deliverables](#deliverables)
-            - [Project Organisation](#4-project-organisation)
+            - [4) Project Organisation](#4-project-organisation)
                 - [Project Representatives](#project-representatives)
                 - [StakeHolders](#stakeholders)
                 - [Project Roles](#project-roles)
-            - [Project Plan](#5-project-plan)
+            - [5) Project Plan](#5-project-plan)
                 - [Milestones](#milestones)
                 - [Dependencies](#dependencies)
                 - [Resources/Financial Plan](#resourcesfinancial-plan)
                 - [Assumptions/Constraints](#assumptionsconstraints)
-        - [Functional Requirements](#c-functional-requirements)
-            - [Froggers Overview](#1a-froggers-overview)
+        - [C) Functional Requirements](#c-functional-requirements)
+            - [1.a) Froggers Overview](#1a-froggers-overview)
                 - [Brief History](#brief-history)
                 - [Objectives and Loss Condition](#objectives-and-loss-condition)
                 - [Player](#player)
                 - [Cars](#cars)
                 - [Level](#level)
-            - [Froggers Features Breakdown](#1b-froggers-features-breakdown)   
+            - [1.b) Froggers Features Breakdown](#1b-froggers-features-breakdown)   
                 - [Grid](#grid)
                 - [Background](#background)
                 - [Frog](#frog)         
@@ -43,10 +44,10 @@
                 - [Colors](#colors)
                 - [Restart](#restart)
                 - [Controls](#controls)
-            - [Personas Definition](#2-personas-definition)
-            - [Use Case Analysis](#3-use-case-analysis)
-            - [Functional Analysis](#4-functional-analysis)
-        - [Non Functional Requirements](#d-non-functional-requirements)
+            - [2) Personas Definition](#2-personas-definition)
+            - [3) Use Case Analysis](#3-use-case-analysis)
+            - [4) Functional Analysis](#4-functional-analysis)
+        - [D) Non Functional Requirements](#d-non-functional-requirements)
         - [Costs](#costs)
             - [Capital Expenditures](#capital-expenditures)
                 - [Material](#material)
@@ -65,7 +66,9 @@
 
 </details>
 
-### 1 ) Document Information
+## A) Document Control
+
+### 1) Document Information
 
 | Document ID | Document # 01 |
 |---|---|
