@@ -4,62 +4,63 @@
 <summary>
 
 ## Table of content </summary>
-    -[functional specifications](#functional-specifications)
-        -[Table of content](#table-of-content)
-            -[Document information](#1--document-information)
-            -[Document History](#2-document-history)
-            -[Document Approval](#3-document-approval)
-        -[Introduction](#b-introduction)        
-            -[Glossary](#1-glossary)
-            -[Project Overview](#2-project-overview)
-            -[Project Definition](#3-project-definition)
-                -[Vision](#vision)
-                -[Requirements/Objectives](#requirementsobjectives)
-                -[Deliverables](#deliverables)
-            -[Project Organisation](#4-project-organisation)
-                -[Project Representatives](#project-representatives)
-                -[StakeHolders](#stakeholders)
-                -[Project Roles](#project-roles)
-            -[Project Plan](#5-project-plan)
-                -[Milestones](#milestones)
-                -[Dependencies](#dependencies)
-                -[Resources/Financial Plan](#resourcesfinancial-plan)
-                -[Assumptions/Constraints](#assumptionsconstraints)
-        -[Functional Requirements](#c-functional-requirements)
-            -[Froggers Overview](#1a-froggers-overview)
-                -[Brief History](#brief-history)
-                -[Objectives and Loss Condition](#objectives-and-loss-condition)
-                -[Player](#player)
-                -[Cars](#cars)
-                -[Level](#level)
-            -[Froggers Features Breakdown](#1b-froggers-features-breakdown)   
-                -[Grid](#grid)
-                -[Background](#background)
-                -[Frog](#frog)         
-                -[Cars](#cars-1)
-                -[Flag](#flag)
-                -[Speed](#speed)
-                -[Colors](#colors)
-                -[Restart](#restart)
-                -[Controls](#controls)
-            -[Personas Definition](#2-personas-definition)
-            -[Use Case Analysis](#3-use-case-analysis)
-            -[Functional Analysis](#4-functional-analysis)
-        -[Non Functional Requirements](#d-non-functional-requirements)
-        -[Costs](#costs)
-            -[Capital Expenditures](#capital-expenditures)
-                -[Material](#material)
-                -[Software](#software)
-                -[Time Spent/Wages](#time-spentwages)
-                -[Operational Expenditures](#operational-expenditures)
-                -[Energies](#energies)
-        -[Reliability](#reliability)
-        -[Response/Performance](#responseperformance)
-        -[Operability](#operability)
-        -[Recovery](#recovery)
-        -[Delivery](#delivery)
-        -[Maintainability](#maintainability)
-        -[Security](#security)
+
+    - [Functional Specifications](#functional-specifications)
+        - [Table of content](#table-of-content)
+            - [Document information](#1--document-information)
+            - [Document History](#2-document-history)
+            - [Document Approval](#3-document-approval)
+        - [Introduction](#b-introduction)        
+            - [Glossary](#1-glossary)
+            - [Project Overview](#2-project-overview)
+            - [Project Definition](#3-project-definition)
+                - [Vision](#vision)
+                - [Requirements/Objectives](#requirementsobjectives)
+                - [Deliverables](#deliverables)
+            - [Project Organisation](#4-project-organisation)
+                - [Project Representatives](#project-representatives)
+                - [StakeHolders](#stakeholders)
+                - [Project Roles](#project-roles)
+            - [Project Plan](#5-project-plan)
+                - [Milestones](#milestones)
+                - [Dependencies](#dependencies)
+                - [Resources/Financial Plan](#resourcesfinancial-plan)
+                - [Assumptions/Constraints](#assumptionsconstraints)
+        - [Functional Requirements](#c-functional-requirements)
+            - [Froggers Overview](#1a-froggers-overview)
+                - [Brief History](#brief-history)
+                - [Objectives and Loss Condition](#objectives-and-loss-condition)
+                - [Player](#player)
+                - [Cars](#cars)
+                - [Level](#level)
+            - [Froggers Features Breakdown](#1b-froggers-features-breakdown)   
+                - [Grid](#grid)
+                - [Background](#background)
+                - [Frog](#frog)         
+                - [Cars](#cars-1)
+                - [Flag](#flag)
+                - [Speed](#speed)
+                - [Colors](#colors)
+                - [Restart](#restart)
+                - [Controls](#controls)
+            - [Personas Definition](#2-personas-definition)
+            - [Use Case Analysis](#3-use-case-analysis)
+            - [Functional Analysis](#4-functional-analysis)
+        - [Non Functional Requirements](#d-non-functional-requirements)
+        - [Costs](#costs)
+            - [Capital Expenditures](#capital-expenditures)
+                - [Material](#material)
+                - [Software](#software)
+                - [Time Spent/Wages](#time-spentwages)
+                - [Operational Expenditures](#operational-expenditures)
+                - [Energies](#energies)
+        - [Reliability](#reliability)
+        - [Response/Performance](#responseperformance)
+        - [Operability](#operability)
+        - [Recovery](#recovery)
+        - [Delivery](#delivery)
+        - [Maintainability](#maintainability)
+        - [Security](#security)
 
 
 </details>
@@ -208,7 +209,8 @@ As defined by the project owner (ALGOSUP), the team is arranged in the following
 
 ### 5) Project Plan
 
-<p align="center"><img src="documents\Pictures\Functional_specifications\project_plan.png" width="400"/></p>
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/project_plan.png?raw=true" width="400"/></p>
+
 
 #### <ins>Milestones</ins>
 
@@ -262,7 +264,7 @@ We have estimated 90 man-hours total to complete this project
 #### <ins>Brief history...</ins>
 Frogger is a 1981 arcade action game developed by Konami and published by Sega. You control a small frog, and you need to cross the roads while dodging traffic and climbing on logs to reach the top.
 
-<p align="center"><img src="documents\Pictures\Functional_specifications\old_frogger.png"alt="Old frogger" width="400"/></p> 
+<p align="center"><img src=".https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/old_frogger.png?raw=true"alt="Old frogger" width="400"/></p> 
 
 In this picture, you can see that the frog (player) has 60 seconds to reach the top as many times as possible. The more times the frog reaches the top, the higher the final score will be.
 
@@ -282,7 +284,7 @@ There is one loss condition : the player collides with a car. Once that occurs t
 
 The player plays as a frog. 
 
-<p align="center"><img src="documents\Pictures\Functional_specifications\frog32x32.png"alt="Frog" width="400"/></p> 
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/frog32x32.png?raw=true"alt="Frog" width="400"/></p> 
 
 He can move in 4 directions: Up, Down, Left, Right. 
 
@@ -292,7 +294,7 @@ If the corresponding button is being held down the frog will not continue to go 
 
 #### <ins>Cars</ins>
 
-<p align="center"><img src="documents\Pictures\Functional_specifications\car32x32.png"alt="Car" width="400"/></p> 
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/car32x32.png?raw=true"alt="Car" width="400"/></p> 
 
 The cars will be moving on the roads from right to left and vise-versa. 
 
@@ -343,22 +345,20 @@ Once the frog has reached this point of the screen you will go to the next level
 
 #### <ins>Colors</ins>
 
-The colors used for the sprites of the frog and car will be limited to 8 colors. The reason being is that the go-board has limited memory and reducing the color usage results in better memory optimization and performance. The sprites will be stored in the Block RAM (BRAM) for multiple benefiting reasons (see the [Technical specifications](#documents\Technical_specification\technical_specification.md) for a more detailed explanation)
+The colors used for the sprites of the frog and car will be limited to 8 colors. The reason being is that the go-board has limited memory and reducing the color usage results in better memory optimization and performance. The sprites will be stored in the Block RAM (BRAM) for multiple benefiting reasons (see the [Technical specifications](#https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Technical_specification/technical_specification.md) for a more detailed explanation)
 but the drawback is the limitation on the color usage.
 
 Colors utilized for the sprites : 
 
-- Yellow - <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 -3 24 24"><path fill="yellow" d="M3 3h18v18H3z"/></svg>
+- Yellow - 🟨
 
-- Green - <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 -3 24 24"><path fill="green" d="M3 3h18v18H3z"/></svg>
+- Green - 🟩
 
-- Black - <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 -3 24 24"><path fill="black" d="M3 3h18v18H3z"/></svg>
+- Black - ⬛
 
-- White - <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 -3 24 24"><path fill="white" d="M3 3h18v18H3z"/></svg>
+- White - ⬜
 
-- Grey 	- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 -3 24 24"><path fill="#808080" d="M3 3h18v18H3z"/></svg>
-
-- Red - <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 -3 24 24"><path fill="red" d="M3 3h18v18H3z"/></svg>
+- Red - 🟥
 
 
 #### <ins>Restart</ins>
@@ -369,17 +369,17 @@ the game will restart once all four buttons are pressed at the same time and hel
 
 The controls will be set accordingly: 
 
-<p align="center"><img src="documents\Pictures\Functional_specifications\controls.png"alt="Controls" width="400"/></p>
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/controls.png?raw=true"alt="Controls" width="400"/></p>
 
 The reasoning behind them is we envision the go-board to be held slightly sideways to the left so the player gets a better sense of the direction they want to move.
 
 ### 2) Personas Definition
 
-<p align="center"><img src="documents\Pictures\Functional_specifications\new_player.png"alt="New player" width="400"/></p>
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/new_player.png?raw=true"alt="New player" width="400"/></p>
 
-<p align="center"><img src="documents\Pictures\Functional_specifications\casual_player.png"alt="Casual player" width="400"/></p>
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/casual_player.png?raw=true"alt="Casual player" width="400"/></p>
 
-<p align="center"><img src="documents\Pictures\Functional_specifications\avid_gamer.png"alt="Avid gamer" width="400"/></p>
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/avid_gamer.png?raw=true"alt="Avid gamer" width="400"/></p>
 
 ### 3) Use Case Analysis
 
@@ -389,7 +389,7 @@ The reasoning behind them is we envision the go-board to be held slightly sidewa
 | 2 | Dying | The frog collides with a car | Player | Game is running, frog is alive | Once the car surpasses the frogs first pixel the game is pauses for a second and it is restarted | The frog returns to his default spot | The game is restarted to level one | 
 | 3 | Finishig a level | The frog reaches the top of the screen | Player | The frog avoided all cars and made it to the flag | the game pauses for a split second and the frog returns to his default spot | The level counter goes up by one and the game continues | 
 ### 4) Functional analysis
-<p align="center"><img src="documents\Pictures\Functional_specifications\functional_analysis.png"alt="Functional analysis" width="400"/></p> 
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/functional_analysis.png?raw=true"alt="Functional analysis" width="400"/></p> 
 
 ## D) Non-Functional Requirements
 
