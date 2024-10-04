@@ -1,5 +1,15 @@
 // This module display the sprites and white squares we use. WIP
-module Sprite_Display (
+module Sprite_Display #(
+    parameter TILE_SIZE = 32,
+    parameter H_VISIBLE_AREA = 640,
+    parameter V_VISIBLE_AREA = 480,
+    parameter H_TOTAL = 800,
+    parameter V_TOTAL = 525,
+    parameter H_FRONT_PORCH = 16,
+    parameter H_SYNC_PULSE = 96,
+    parameter V_FRONT_PORCH = 10,
+    parameter V_SYNC_PULSE = 2
+    )(
     // Clock
     input        i_Clk,
 

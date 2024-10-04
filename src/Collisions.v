@@ -1,4 +1,4 @@
-module Collisions (
+module Collisions #(parameter TILE_SIZE = 32)(
     input  wire i_Clk,
 
     // Frog left corner
