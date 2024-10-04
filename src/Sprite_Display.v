@@ -20,12 +20,12 @@ module Sprite_Display #(
     // Frog (Player) left corner position
     input  [9:0] Car_1X_Position,
     input  [9:0] Car_1Y_Position,
-    input  [9:0] Car_2X_Position,
-    input  [9:0] Car_2Y_Position,
-    input  [9:0] Car_3X_Position,
-    input  [9:0] Car_3Y_Position,
-    input  [9:0] Car_4X_Position,
-    input  [9:0] Car_4Y_Position,
+    // input  [9:0] Car_2X_Position,
+    // input  [9:0] Car_2Y_Position,
+    // input  [9:0] Car_3X_Position,
+    // input  [9:0] Car_3Y_Position,
+    // input  [9:0] Car_4X_Position,
+    // input  [9:0] Car_4Y_Position,
 
     // VGA Visible Area detector (0 in both when in Visible Area)
     output       o_VGA_HSync,
@@ -44,12 +44,12 @@ wire [9:0] clamped_Y_Position = (Y_Position + TILE_SIZE > V_VISIBLE_AREA) ? V_VI
 // Clamp Car_X_Position and Car_Y_Position so they don't go beyond the screen edges
 wire [9:0] vehicle_1X_Position = (Car_1X_Position + TILE_SIZE > H_VISIBLE_AREA) ? H_VISIBLE_AREA - TILE_SIZE : Car_1X_Position;
 wire [9:0] vehicle_1Y_Position = (Car_1Y_Position + TILE_SIZE > V_VISIBLE_AREA) ? V_VISIBLE_AREA - TILE_SIZE : Car_1Y_Position;
-wire [9:0] vehicle_2X_Position = (Car_2X_Position + TILE_SIZE > H_VISIBLE_AREA) ? H_VISIBLE_AREA - TILE_SIZE : Car_2X_Position;
-wire [9:0] vehicle_2Y_Position = (Car_2Y_Position + TILE_SIZE > V_VISIBLE_AREA) ? V_VISIBLE_AREA - TILE_SIZE : Car_2Y_Position;
-wire [9:0] vehicle_3X_Position = (Car_3X_Position + TILE_SIZE > H_VISIBLE_AREA) ? H_VISIBLE_AREA - TILE_SIZE : Car_3X_Position;
-wire [9:0] vehicle_3Y_Position = (Car_3Y_Position + TILE_SIZE > V_VISIBLE_AREA) ? V_VISIBLE_AREA - TILE_SIZE : Car_3Y_Position;
-wire [9:0] vehicle_4X_Position = (Car_4X_Position + TILE_SIZE > H_VISIBLE_AREA) ? H_VISIBLE_AREA - TILE_SIZE : Car_4X_Position;
-wire [9:0] vehicle_4Y_Position = (Car_4Y_Position + TILE_SIZE > V_VISIBLE_AREA) ? V_VISIBLE_AREA - TILE_SIZE : Car_4Y_Position;
+// wire [9:0] vehicle_2X_Position = (Car_2X_Position + TILE_SIZE > H_VISIBLE_AREA) ? H_VISIBLE_AREA - TILE_SIZE : Car_2X_Position;
+// wire [9:0] vehicle_2Y_Position = (Car_2Y_Position + TILE_SIZE > V_VISIBLE_AREA) ? V_VISIBLE_AREA - TILE_SIZE : Car_2Y_Position;
+// wire [9:0] vehicle_3X_Position = (Car_3X_Position + TILE_SIZE > H_VISIBLE_AREA) ? H_VISIBLE_AREA - TILE_SIZE : Car_3X_Position;
+// wire [9:0] vehicle_3Y_Position = (Car_3Y_Position + TILE_SIZE > V_VISIBLE_AREA) ? V_VISIBLE_AREA - TILE_SIZE : Car_3Y_Position;
+// wire [9:0] vehicle_4X_Position = (Car_4X_Position + TILE_SIZE > H_VISIBLE_AREA) ? H_VISIBLE_AREA - TILE_SIZE : Car_4X_Position;
+// wire [9:0] vehicle_4Y_Position = (Car_4Y_Position + TILE_SIZE > V_VISIBLE_AREA) ? V_VISIBLE_AREA - TILE_SIZE : Car_4Y_Position;
 
 reg [9:0]  h_counter          = 0; // Horizontal counter
 reg [9:0]  v_counter          = 0; // Vertical counter
@@ -108,27 +108,27 @@ always @(posedge i_Clk) begin
             green <= 3'b000;
             blue <= 3'b111;
         end 
-        else if (((v_counter >= vehicle_2Y_Position) && (v_counter < (vehicle_2Y_Position + TILE_SIZE))) &&
-                ((h_counter >= vehicle_2X_Position) && (h_counter < (vehicle_2X_Position + TILE_SIZE))))
-        begin
-            red <= 3'b111;  
-            green <= 3'b000;
-            blue <= 3'b111;
-        end 
-        else if (((v_counter >= vehicle_3Y_Position) && (v_counter < (vehicle_3Y_Position + TILE_SIZE))) &&
-                ((h_counter >= vehicle_3X_Position) && (h_counter < (vehicle_3X_Position + TILE_SIZE))))
-        begin
-            red <= 3'b111;  
-            green <= 3'b000;
-            blue <= 3'b111;
-        end 
-        else if (((v_counter >= vehicle_4Y_Position) && (v_counter < (vehicle_4Y_Position + TILE_SIZE))) &&
-                ((h_counter >= vehicle_4X_Position) && (h_counter < (vehicle_4X_Position + TILE_SIZE))))
-        begin
-            red <= 3'b111;  
-            green <= 3'b000;
-            blue <= 3'b111;
-        end 
+        // else if (((v_counter >= vehicle_2Y_Position) && (v_counter < (vehicle_2Y_Position + TILE_SIZE))) &&
+        //         ((h_counter >= vehicle_2X_Position) && (h_counter < (vehicle_2X_Position + TILE_SIZE))))
+        // begin
+        //     red <= 3'b111;  
+        //     green <= 3'b000;
+        //     blue <= 3'b111;
+        // end 
+        // else if (((v_counter >= vehicle_3Y_Position) && (v_counter < (vehicle_3Y_Position + TILE_SIZE))) &&
+        //         ((h_counter >= vehicle_3X_Position) && (h_counter < (vehicle_3X_Position + TILE_SIZE))))
+        // begin
+        //     red <= 3'b111;  
+        //     green <= 3'b000;
+        //     blue <= 3'b111;
+        // end 
+        // else if (((v_counter >= vehicle_4Y_Position) && (v_counter < (vehicle_4Y_Position + TILE_SIZE))) &&
+        //         ((h_counter >= vehicle_4X_Position) && (h_counter < (vehicle_4X_Position + TILE_SIZE))))
+        // begin
+        //     red <= 3'b111;  
+        //     green <= 3'b000;
+        //     blue <= 3'b111;
+        // end 
         else 
         begin
             red <= 3'b000;  
