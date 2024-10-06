@@ -366,9 +366,9 @@ Colors utilized for the sprites :
 
 - Red
 
--Blue
+- Blue
 
--Brown
+- Brown
 
 This will result in the background taking up to 300kb of storage.Adding any more colors increases the size to 1.2mb. Since the sprites are being stored seperately, they will have their own colors.
 
