@@ -285,7 +285,7 @@ There is one loss condition : the player collides with a car. Once that occurs t
 
 The player plays as a frog. 
 
-<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/frog32.png"alt="Frog" width="400"/></p> 
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/frog.png?raw=true"alt="Frog" width="400"/></p> 
 
 - The frog can move in 4 directions: Up, Down, Left, Right. 
 
@@ -295,7 +295,7 @@ The player plays as a frog.
 
 #### <ins>Cars</ins>
 
-<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/car32.png?raw=true"alt="Car" width="400"/></p> 
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/car.png?raw=true"alt="Car" width="400"/></p> 
 
 - The cars will be moving on the roads from right to left and vise-versa. 
 
