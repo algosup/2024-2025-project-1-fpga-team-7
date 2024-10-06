@@ -338,10 +338,13 @@ The frog will be 32x32 pixels, positioned on the bottom center of the map. He wi
 
 <p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/background_car.png?raw=true"alt="Car_position" width="400"/></p> 
 
-The cars will be appearing from the sides of the background where the roads are positioned, from left to right and vise-versa. When a car has appeared from left to right, the next car will appear from right to left.**
+The cars will be appearing from the sides of the background where the roads are positioned, from left to right and vise-versa. There will be at least 16 cars on screen at a time.
+
+**NOTE*** We are planning to add different car models and colors if we get everying else working.
 
 #### <ins>Finish Line</ins>
--instert flag.png-
+
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/finish_line.png?raw=true"alt="finish_line"/></p>   
 
 Once the frog has reached this point of the screen you will go to the next level and the frogs position will return to the default position.
 
