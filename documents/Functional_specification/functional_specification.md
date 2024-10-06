@@ -161,9 +161,9 @@ We are using the concept of **requirements** and **objectives** when describing 
 
 | Name | Type | Deadline | Link |
 | -- | -- | -- | -- |
-| Functional Specifications Document | Document (markdown) | 10/07/2024 | ([functionalSpecifications.md](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specification/functional_specification.md) |
+| Functional Specifications Document | Document (markdown) | 10/07/2024 | [functionalSpecifications.md](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specification/functional_specification.md) |
 | Technical Specifications Document | Document (markdown) | 14/07/2024 | [technicalSpecifications.md](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Technical_specification/technical_specification.md) |
-| Weekly reports | Document (markdown) | Every friday | ([weeklyReports](https://github.com/algosup/2024-2025-project-1-fpga-team-7/tree/management) |
+| Weekly reports | Document (markdown) | Every friday | [weeklyReports](https://github.com/algosup/2024-2025-project-1-fpga-team-7/tree/management) |
 | Test Plan | Document (markdown) | 21/10/2024 | [qualityAssurance/Test-Plan.md](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Quality_assurance/test_plan.md) | 
 
 ### 4) Project Organisation
