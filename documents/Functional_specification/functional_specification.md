@@ -39,7 +39,7 @@
       - [<ins>Background</ins>](#-ins-background--ins-)
       - [<ins>Frog</ins>](#-ins-frog--ins-)
       - [<ins>Cars</ins>](#-ins-cars--ins--1)
-      - [<ins>Flag</ins>](#-ins-flag--ins-)
+      - [<ins>Finish_Line</ins>](#-ins-finish-line--ins-)
       - [<ins>Speed</ins>](#-ins-speed--ins-)
       - [<ins>Colors</ins>](#-ins-colors--ins-)
       - [<ins>Restart</ins>](#-ins-restart--ins-)
@@ -310,7 +310,7 @@ The player plays as a frog.
 
 #### <ins>Level</ins>
 
--insert level image-
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/level.png?raw=true"alt="Level" width="400"/></p> 
 
 The level will increase by one every time the player reaches the top of the screen.
 
@@ -326,19 +326,21 @@ The background can be subdivided into a grid. In that grid, the Maze is made of 
 
 We will create a custom background closely ressembling frogger's background, excluding the river and the logs mechanic, since it is not in our objectives or requirements.
  
--instert game background.png-
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/background.png?raw=true"alt="Background" width="400"/></p> 
 
 #### <ins>Frog</ins>
 
 The frog will be 32x32 pixels, positioned on the bottom center of the map. He will be able to move in any direction, not exceeding the background. 
 
--instert frog position.png-
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/background_frog.png?raw=true"alt="Frog_position" width="400"/></p> 
 
 #### <ins>Cars</ins>
--insert car_position.png-
+
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/background_car.png?raw=true"alt="Car_position" width="400"/></p> 
+
 The cars will be appearing from the sides of the background where the roads are positioned, from left to right and vise-versa. When a car has appeared from left to right, the next car will appear from right to left.**
 
-#### <ins>Flag</ins>
+#### <ins>Finish Line</ins>
 -instert flag.png-
 
 Once the frog has reached this point of the screen you will go to the next level and the frogs position will return to the default position.
@@ -349,20 +351,26 @@ The car will start with x amount of speed and will increase by y every level.
 
 #### <ins>Colors</ins>
 
-The colors used for the sprites of the frog and car will be limited to 8 colors. The reason being is that the go-board has limited memory and reducing the color usage results in better memory optimization and performance. The sprites will be stored in the Block RAM (BRAM) for multiple benefiting reasons (see the [Technical specifications](#https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Technical_specification/technical_specification.md) for a more detailed explanation)
+The colors used for the background will be limited to 8 colors. The reason being is that the go-board has limited memory and reducing the color usage results in better memory optimization and performance. The sprites will be stored in the Block RAM (BRAM) for multiple benefiting reasons (see the [Technical specifications](#https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Technical_specification/technical_specification.md) for a more detailed explanation)
 but the drawback is the limitation on the color usage.
 
 Colors utilized for the sprites : 
 
-- Yellow - 🟨
+- Yellow
 
-- Green - 🟩
+- Green
 
-- Black - ⬛
+- Black 
 
-- White - ⬜
+- White 
 
-- Red - 🟥
+- Red
+
+-Blue
+
+-Brown
+
+This will result in the background taking up to 300kb of storage.Adding any more colors increases the size to 1.2mb. Since the sprites are being stored seperately, they will have their own colors.
 
 
 #### <ins>Restart</ins>
