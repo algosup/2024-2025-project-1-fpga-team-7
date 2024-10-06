@@ -73,7 +73,7 @@
 |---|---|
 | Document Owner | Pavlo PRENDI |
 | Issue date | 09/24/2024 |
-| Last Issue Date | 09/24/2024 |
+| Last Issue Date | 10/06/2024 |
 | Document Name | Functional-Specification|
 
 
@@ -82,18 +82,18 @@
 
 | Version n° | Edits completed by | Date | Description of edit |
 |---|---|---|---|
-|01|Pavlo PRENDI| 10/05/2024 | Initial Release (V.01) |
+|01|Pavlo PRENDI| 10/06/2024 | Initial Release (V.01) |
 
 
 ### 3) Document Approval
 
 | Role | Name | Signature | Date |
 |---|---|---|---|
-| Project Manager | Laurent	BOUQUIN | ✅ | **/**/2024 |
-| Tech Lead | Benoit DE KEYN | ✅ | **/**/2024 |
-| Software Developer | Tino	GABET | ✅ | **/**/2024 |
-| Software Developer | Maxime THIZEAU |✅ | **/**/2024|
-| Quality Assurance | Paul NOWAK | ✅ | **/**/2024 |
+| Project Manager | Laurent	BOUQUIN | ✅ | 10/05/2024 |
+| Tech Lead | Benoit DE KEYN | ✅ | 10/05/2024 |
+| Software Developer | Tino	GABET | ✅ | 10/05/2024 |
+| Software Developer | Maxime THIZEAU |✅ | 10/05/2024|
+| Quality Assurance | Paul NOWAK | ✅ | 10/05/2024 |
 
 <!-- Introduction  -->
 
@@ -155,24 +155,23 @@ We are using the concept of **requirements** and **objectives** when describing 
 | New roads will be added with increasing difficulty. |
 | The frog and cars will have slight animation. |
 | There will be an end screen when you beat the game. |
-
-
+| Adding a variety of cars with different colors and models. |
 
 ####  <ins>Deliverables</ins>
 
 | Name | Type | Deadline | Link |
 | -- | -- | -- | -- |
-| Functional Specifications Document | Document (markdown) | 10/07/2024 | (./functionalSpecifications.md) |
-| Technical Specifications Document | Document (markdown) | 14/07/2024 | (./technicalSpecifications.md) |
-| Weekly reports | Document (markdown) | Every friday | (./weeklyReports/) |
-| Test Plan | Document (markdown) | 21/10/2024 | (./qualityAssurance/Test-Plan.md) | 
+| Functional Specifications Document | Document (markdown) | 10/07/2024 | ([functionalSpecifications.md](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specification/functional_specification.md) |
+| Technical Specifications Document | Document (markdown) | 14/07/2024 | [technicalSpecifications.md](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Technical_specification/technical_specification.md) |
+| Weekly reports | Document (markdown) | Every friday | ([weeklyReports](https://github.com/algosup/2024-2025-project-1-fpga-team-7/tree/management) |
+| Test Plan | Document (markdown) | 21/10/2024 | [qualityAssurance/Test-Plan.md](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Quality_assurance/test_plan.md) | 
 
 ### 4) Project Organisation
 
 #### <ins>Project Representatives</ins>
 
 | Project Owner | Represented by... | 
-| --- |
+| --- | --- | 
 | **Franck JEANNIN** | Represented by himself | 
 | Laurent	BOUQUIN | Represented by Pavlo PRENDI(Project Manager) | 
 
@@ -286,7 +285,7 @@ There is one loss condition : the player collides with a car. Once that occurs t
 
 The player plays as a frog. 
 
-<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/frog32x32.png?raw=true"alt="Frog" width="400"/></p> 
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/frog32.png"alt="Frog" width="400"/></p> 
 
 - The frog can move in 4 directions: Up, Down, Left, Right. 
 
@@ -296,7 +295,7 @@ The player plays as a frog.
 
 #### <ins>Cars</ins>
 
-<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/car32x32.png?raw=true"alt="Car" width="400"/></p> 
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/car32.png?raw=true"alt="Car" width="400"/></p> 
 
 - The cars will be moving on the roads from right to left and vise-versa. 
 
@@ -339,8 +338,6 @@ The frog will be 32x32 pixels, positioned on the bottom center of the map. He wi
 <p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/background_car.png?raw=true"alt="Car_position" width="400"/></p> 
 
 The cars will be appearing from the sides of the background where the roads are positioned, from left to right and vise-versa. There will be at least 16 cars on screen at a time.
-
-**NOTE*** We are planning to add different car models and colors if we get everying else working.
 
 #### <ins>Finish Line</ins>
 
