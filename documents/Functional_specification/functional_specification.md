@@ -108,10 +108,10 @@
 | Frog | A character controlled by the player. |
 | Go-Board | An FPGA development board. |
 | Player | The person playing the game. | 
-| Sprite | a computer graphic depicting a character or environment | 
+| Sprite | A computer graphic depicting a character or environment. | 
 | Tile | A space located on a grid. | 
-| Team | ALGOSUP team 7 (2024-2025 - projec 1) | 
-| Verilog | A programming languange used to model electronic systems | 
+| Team | ALGOSUP team 7 (2024-2025 - project 1). | 
+| Verilog | A programming languange used to model electronic systems. | 
 | VGA (Video Graphics Array)| A video display controller |  
 
 ### 2) Project Overview
