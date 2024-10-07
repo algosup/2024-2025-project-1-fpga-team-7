@@ -401,7 +401,7 @@ The reasoning behind them is we envision the go-board to be held slightly sidewa
 | 2 | Dying | The frog collides with a car | Player | Game is running, frog is alive | Once the car surpasses the frogs first pixel the game is pauses for a second and it is restarted | The frog returns to his default spot | The game is restarted to level one | 
 | 3 | Finishig a level | The frog reaches the top of the screen | Player | The frog avoided all cars and made it to the flag | the game pauses for a split second and the frog returns to his default spot | The level counter goes up by one and the game continues | 
 ### 4) Functional analysis
-<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/functional_analysis.png?raw=true"alt="Functional analysis" width="400"/></p> 
+<p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/functional_analysis.png?raw=true"alt="Functional analysis" width="600"/></p> 
 
 ## D) Non-Functional Requirements
 
