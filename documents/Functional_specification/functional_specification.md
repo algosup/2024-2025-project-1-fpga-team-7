@@ -201,7 +201,7 @@ As defined by the project owner (ALGOSUP), the team is arranged in the following
 
 | Role | Description | Name |
 |---|---|---|
-| Project Manager | Is in charge of organization, planing and budgeting.<br>Keep the team motivated.  | Laurent	BOUQUIN |
+| Project Manager | Is in charge of organization, planning and budgeting.<br>Keep the team motivated.  | Laurent	BOUQUIN |
 | Program Manager | Makes sure the project meets expectation.<br>Is in charge of design.<br>Is responsible for writing the Functional Specifications | Pavlo PRENDI |
 | Tech Lead | Makes the technical decision in the project.<br>Translates the Functional Specification into Technical Specifications.<br> Does code review. | Benoit DE KEYN |
 | Software Engineer | Writes the code.<br>Writes documentation<br>Participate in the technical design. | Tino GABET |
@@ -319,7 +319,7 @@ Additionaly with every new level the car speed will increase.
 
 #### <ins>Grid</ins>
 
-The background can be subdivided into a grid. In that grid, the Maze is made of 20 by 15 tiles. A single subdivision will be referred to as a 'Tile'. Each tile will contain 32 by 32 pixles.
+The background can be subdivided into a grid. In that grid, the Maze is made of 20 by 15 tiles. A single subdivision will be referred to as a 'Tile'. Each tile will contain 32 by 32 pixels.
 
 #### <ins>Background</ins>
 
@@ -399,7 +399,7 @@ The reasoning behind them is we envision the go-board to be held slightly sidewa
 |---|---|---|---|---|---|---|---|---|
 | 1 | Navigating the map | Player | The game is running | The player is able to move in all four directions with no input latency  | The frog follows the inputs of the player | The frog stops its movement on the position it was left |
 | 2 | Dying | The frog collides with a car | Player | Game is running, frog is alive | Once the car surpasses the frogs first pixel the game is pauses for a second and it is restarted | The frog returns to his default spot | The game is restarted to level one | 
-| 3 | Finishig a level | The frog reaches the top of the screen | Player | The frog avoided all cars and made it to the flag | the game pauses for a split second and the frog returns to his default spot | The level counter goes up by one and the game continues | 
+| 3 | Finishing a level | The frog reaches the top of the screen | Player | The frog avoided all cars and made it to the flag | the game pauses for a split second and the frog returns to his default spot | The level counter goes up by one and the game continues | 
 ### 4) Functional analysis
 <p align="center"><img src="https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/Funtionalspecifications/documents/Pictures/Functional_specifications/functional_analysis.png?raw=true"alt="Functional analysis" width="400"/></p> 
 
