@@ -31,25 +31,11 @@ module Segment_Display (
   reg [6:0]    r_Hex_Encoding;            // Use to activate segments separately
   reg [6:0]    r_Hex_Encoding2;
 
-  always @(posedge i_Clk)
-  begin
-    i_Binary_Num <= i_Score;
-    // Check if above 10
-    if (i_Binary_Num >= 4'b1010)
-    begin
-      i_Binary_Num2 <= i_Binary_Num2 + 1;
-      i_Binary_Num  <= i_Binary_Num - 10;
-    end
-    else if (i_Binary_Num2 == 4'b1010) // Check if equal to 100
-    begin
-      i_Binary_Num2 <= 0;
-      i_Binary_Num  <= 0;
-    end
-  end
-
-  // Loop to activate segments corresponding to the decimal value
+// Loop to activate segments corresponding to the decimal value
   always @(posedge i_Clk)
     begin
+      i_Binary_Num  <= (i_Score % 10);
+      i_Binary_Num2 <= (i_Score / 10);
       case (i_Binary_Num)
         4'b0000 : r_Hex_Encoding2 <= 7'h7E;
         4'b0001 : r_Hex_Encoding2 <= 7'h30;
