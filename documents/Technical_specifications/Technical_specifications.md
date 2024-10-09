@@ -87,9 +87,9 @@ This student project, given by [ALGOSUP](https://github.com/algosup), is about c
 ## Members
 | Role | Name | Author of |
 |---|---|---|
-| Project Manager | [Laurent BOUQUIN](https://github.com/laurentbouquin) | Project Planning |
-| Program Manager   | [Pavlo PRENDI](https://github.com/PavloPrendi) | [Functional Specification](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specification/functional_specification.md) |
-| Technical Leader  | [Benoît DE KEYN](https://github.com/benoitdekeyn) | [Technical Specification](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Technical_specification/technical_specification.md) |
+| Project Manager   | [Laurent BOUQUIN](https://github.com/laurentbouquin) | Project Planning |
+| Program Manager   | [Pavlo PRENDI](https://github.com/PavloPrendi) | [Functional Specification](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specifications/Functional_specification.md) |
+| Technical Leader  | [Benoît DE KEYN](https://github.com/benoitdekeyn) | [Technical Specification](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Technical_specifications/Technical_specification.md) |
 | Software Engineer | [Maxime THIZEAU](https://github.com/MaximeTAlgosup) | Source Code |
 | Software Engineer | [Tino GABET](https://github.com/Furimizu) | Source Code |
 | Quality Assurance | [Paul NOWAK](https://github.com/PaulNowak36) | [Test Plan](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Quality_assurance/test_plan.md) |
@@ -165,45 +165,7 @@ origin
 │         ├── data
 │         └── Technical_specifications.md
 │
-├── src- [Technical Specification](#technical-specification)
-      - [*Last Update on October 4th, 2024*](#last-update-on-october-4th-2024)
-- [Table of Content](#table-of-content)
-  - [Document Purpose](#document-purpose)
-  - [Document Audience](#document-audience)
-- [The Project](#the-project)
-  - [Overview](#overview)
-  - [Members](#members)
-  - [Description](#description)
-- [The Implementation](#the-implementation)
-  - [GitHub](#github)
-      - [1. GitHub files architecture](#1-github-files-architecture)
-      - [3. GitHub rules](#3-github-rules)
-  - [The Hardware](#the-hardware)
-      - [1. The Go Board](#1-the-go-board)
-      - [2. The VGA Screen](#2-the-vga-screen)
-  - [The code](#the-code)
-    - [I. Introduction about Verilog and FPGA](#i-introduction-about-verilog-and-fpga)
-      - [1. Inside](#1-inside)
-      - [2. Parallelism of execution](#2-parallelism-of-execution)
-      - [3. Modules and Instanciation](#3-modules-and-instanciation)
-      - [4. Steps to upload the code](#4-steps-to-upload-the-code)
-      - [5. To go Further...](#5-to-go-further)
-    - [II. Algorithm Desccription](#ii-algorithm-desccription)
-    - [III. Code files architecture](#iii-code-files-architecture)
-      - [1. Base files](#1-base-files)
-      - [2. Independant Modules](#2-independant-modules)
-        - [VGA related modules](#vga-related-modules)
-        - [Switch related modules](#switch-related-modules)
-        - [Seven segments display related module](#seven-segments-display-related-module)
-        - [Pseudo-Random generator module](#pseudo-random-generator-module)
-      - [3. Game algorithm's module](#3-game-algorithms-module)
-        - [Global modules](#global-modules)
-        - [Game logic module](#game-logic-module)
-        - [Game design module](#game-design-module)
-    - [IV. Coding conventions](#iv-coding-conventions)
-- [Glossary](#glossary)
-- [](#)
-
+├── src
 │    │
 │    ├── apio.ini
 │    ├── Go_Board_Constraints.pcf
@@ -230,7 +192,7 @@ Here is only the description of the harware provided by the project
 
 For this project, we have been given a 'Go Board'.
 Here is the official website of this board : https://nandland.com/the-go-board/  
-THis Go Board hadbeen designed to meet the needs of the game while remaining simple to use. As we can see, there's already, on the board itself a bunch of usefull components for video games.
+This Go Board had been designed to meet the needs of the game while remaining simple to use. As we can see, there's already, on the board itself a bunch of usefull components for video games.
 
 ![The Go Board](data/go_board.png)
 
