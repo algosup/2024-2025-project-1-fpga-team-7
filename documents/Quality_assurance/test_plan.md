@@ -3,8 +3,9 @@
 | Author        | Paul NOWAK (Q.A.) |
 |---------------|------------ |
 | Created       | 09/28/2024  |
-| Last Modified | 10/04/2024  |
-| Number of Test Cases written| 65  |
+| Last Modified | 10/09/2024  |
+| Number of Test Cases written| 66  |
+| Number of Test Cases completed| 0  |
 | Document Deadline | 10/21/2024  |
 
 ---
@@ -142,6 +143,7 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 | Cars Speed Increase | Increase the speed of all cars slightly when advancing to the next level.| 7 |    1. Start the game.<br /> 2. Generate the frog.<br /> 3. Wait for a few clock cycles to allow frog generation.<br /> 4. Move the frog to the end of the level.<br /> 5. Trigger the levelComplete() signal.<br /> 6. Increase the level counter by one.<br /> 7. Monitor and record the car speeds before and after the level increase. <br /> | All cars' speed increases by a fixed factor (e.g., multiplied by 1.1), and the increase is reflected within a specific number of clock cycles. |     TO BE TESTED.       |     Low     |
 | Cars Number Increase | Increase the number of cars by 1 when advancing to the next level.| 7 |    1. Start the game.<br /> 2. Generate the frog.<br /> 3. Wait for a few clock cycles to allow frog generation.<br /> 4. Move the frog to the end of the level.<br /> 5. Trigger the levelComplete() signal.<br /> 6. Increase the level counter by one.<br /> 7. Monitor car lanes and ensure a new car is generated in a free lane without colliding with other cars. <br />|    A new car is generated within a free space in the lane, with a minimum distance (collision-free) from other cars, and appears within a set time frame after the level increase.   |     TO BE TESTED.       |     Low     |
 | Cars Continuous Movement | Ensure that when the frog respawns, the cars on the road continue moving smoothly.| 9 |    1. Start the game.<br /> 2. Generate the frog.<br /> 3. Wait for a few clock cycles to allow frog generation.<br /> 4. Generate multiple moving cars.<br /> 5. Wait for car generation and verify all cars are moving.<br /> 6. Trigger the car_Frog_Collision() signal.<br /> 7. Play the frog’s death animation for a set duration (e.g., 2-3 seconds).<br /> 8. Send the restartLevel() signal.<br /> 9. Monitor the movement of cars while the frog respawns, ensuring no interruption in their motion. <br /> |    All cars continue moving without interruption throughout the frog's death and respawn cycle. The frog respawns correctly, and car positions are consistent.   |     TO BE TESTED.       |     Low     |
+| Game Restart | Test the ability to restart the game by sending all movement signals (Right, Left, Up, Down) simultaneously for at least 2 seconds. Verify that the game resets to level 1.| 8 |    1. Start the game. <br /> 2. Send the generateFrog() signal.  <br /> 3. Wait for a few clock cycles to allow frog generation. <br /> 4. Set a generateCar() signal.  <br /> 5. Wait for a few clock cycles to allow car generation. <br /> 6. Send a Right, Left, Up and Down signals all at the same time. <br /> 7. Monitor the signals to ensure they are held for the full 2-second duration. <br /> 8. Wait a few clock cycles before the restartGame() signal is triggered. |    The game has restarted back to level 1, where the frog has teleported back to its starting point, the level counter went back to 1, the score went back to 0, and the number of cars present in the road have decreased at its initial number.    |     TO BE TESTED.       |     High     |
 
 
 ### 3.2.Performance Testing
