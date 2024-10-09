@@ -55,8 +55,21 @@ wire w_Draw_Frog;
 
 wire w_Has_Collided;
 
+wire [NUM_BITS - 1:0] w_LFSR_Data;
+wire                  w_LFSR_Done;
+
+wire w_Level_Up;
+
 wire [6:0] w_Score, w_Score_After_Check;
 
+    LFSR #(.NUM_BITS(NUM_BITS)) RandomGenerator (
+        .i_Clk(i_Clk),
+        .i_Enable(1'b1),
+        .i_Seed_DV(0),
+        // .i_Seed_Data(14),
+        .o_LFSR_Data(w_LFSR_Data),
+        .o_LFSR_Done(w_LFSR_Done),
+    );
 
     Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_1_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_1), .o_Switch(w_Switch_1));
 
@@ -80,6 +93,7 @@ wire [6:0] w_Score, w_Score_After_Check;
         .i_Frog_Rt(w_Switch_3),
         .i_Frog_Dn(w_Switch_4),
         .o_Score(w_Score),
+        .o_Level_Up(w_Level_Up),
         .o_Draw_Frog(w_Draw_Frog),
         .o_Frog_X(w_X_Position),
         .o_Frog_Y(w_Y_Position),
@@ -136,10 +150,12 @@ wire [6:0] w_Score, w_Score_After_Check;
         .c_BASE_CAR_SPEED(c_BASE_CAR_SPEED),
         .H_VISIBLE_AREA(H_VISIBLE_AREA),
         .TILE_SIZE(TILE_SIZE),
-        .c_NB_CARS(c_NB_CARS)
+        .c_NB_CARS(c_NB_CARS),
+        .NUM_BITS(NUM_BITS)
     ) MovCar(
         .i_Clk(i_Clk),
-        .i_Reverse(1'b0),
+        .i_Level_Up(w_Level_Up),
+        .i_Reverse(w_LFSR_Data),
         .o_Car_X_0(w_Car1_X_Position),
         .o_Car_X_1(w_Car2_X_Position),
         .o_Car_X_2(w_Car3_X_Position),

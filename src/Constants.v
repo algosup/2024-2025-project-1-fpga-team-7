@@ -40,3 +40,5 @@ parameter V_TOTAL           = V_VISIBLE_AREA + V_FRONT_PORCH + V_SYNC_PULSE + V_
 parameter c_DEBOUNCE_LIMIT  = 250000;
 
 parameter COUNT_LIMIT       = 3125000;
+
+parameter NUM_BITS          = 5;

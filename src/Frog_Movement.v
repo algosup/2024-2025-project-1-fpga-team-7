@@ -23,6 +23,7 @@ module Frog_Movement #(
   input            i_Has_Collided,
 
   output reg       o_Draw_Frog,
+  output reg       o_Level_Up = 0,
 
   // Variable storing score
   output reg [6:0] o_Score = c_SCORE_INI,
@@ -44,6 +45,7 @@ module Frog_Movement #(
 
   always @(posedge i_Clk) 
   begin
+    o_Level_Up <= 0;
     r_state <= w_Frog_En;
     // Simple delay counter for movement
     if ((r_Counter == COUNT_LIMIT) && (w_Frog_En == 1) && (r_state == 0))
@@ -76,6 +78,7 @@ module Frog_Movement #(
           o_Frog_Y <= c_Y_BASE_POSITION;    // Reset position when top reached
           o_Frog_X <= c_X_BASE_POSITION;
           o_Score  <= o_Score + 1'b1;       // Add 1 to score when top reached
+          o_Level_Up <= 1;
         end
       end 
       // Move Frog down: check that the frog doesn't exceed screen height
