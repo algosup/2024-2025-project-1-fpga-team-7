@@ -18,8 +18,6 @@
 
 - [Technical Specification](#technical-specification)
       - [*Last Update on September 24th, 2024*](#last-update-on-september-24th-2024)
-- [Technical Specification](#technical-specification)
-      - [*Last Update on September 24th, 2024*](#last-update-on-september-24th-2024)
 - [Table of Content](#table-of-content)
   - [Document Purpose](#document-purpose)
   - [Document Audience](#document-audience)
@@ -120,7 +118,7 @@ origin
 ├── documents
 │    │
 │    ├── Management
-│    │   ├── data
+│    │   ├── data
 │    │   ├── Weekly_report.md
 │    │   └── Project_planning.md
 │    │
@@ -227,27 +225,36 @@ Theses modules are some universal modules, which can be used in many different t
 - **Debounce_Filter.v**  
   Module which takes the switch signal and output a 'debounced' signal of the switch. Basically, it allows the output signal to fit the input signal aafter validating its stability over time.
 - **Spam_Signal.v**  
-  Reads a signal, and if it stays HIGH for too long, this module generates a square wave that can be used as a second input.
+  It reads a signal, and if it remains HIGH for too long time, this module generates a square wave that can be used as a second input.
   Useful for allowing an action to loop if a button is held down for a long time.
 
 ##### Seven segments display related module
-- **Seven_Segments_Display.v**
+- **Seven_Segments_Display.v**  
+  Takes a binary input and handle the display the coresponding character on the 7 segments display.
 
 ##### Pseudo-Random generator module
-- **LFSR.v**
+- **LFSR.v**  
+  This module can generate pseudo-random numbers.
 
 #### 3. Game algorithm's module
 
 These modules are containing all the code directly related to the game logic and handling the game design.
 
 ##### Global modules
-- **Constants.v**
-- **Memory.v**
+- **Constants.v**  
+  In this file, each constant value are stored as a label, usable trough all the files.
+- **Memory.v**  
+  This file is here to define the memory modules needed to store each sprite
 
 ##### Game logic module
-- **State_Machine.v**
-- **Update_Frequency_Settings.v**
-- **Levels.v**
+- **State_Machine.v**  
+  In this file, the variables keeping track of the current state of the game.
+  This file handle modules instantiation.
+- **Clock_Divider.v**
+  This file generates the different clocks used to delay the update frequency of movement or display.
+  it take as input the wanted speed for each sprite-related always loop.
+- **Levels.v**  
+  This module handle all the modifications such as speed, car position, related to the level increase.
 - **Sprite_Position.v**
 - **Character_Control.v**
 - **Obstacles_Movement.v**
