@@ -117,3 +117,4 @@ compile.sh
 *.bin
 *.json
 *.DS_store
+*abc.history
