@@ -98,10 +98,38 @@ This student project, given by [ALGOSUP](https://github.com/algosup), is about c
 
 ## Description
 
- Will be updated according to the functionnal specification, for each aspect linked to technical choices.
+The game is a simple game where the player controls a frog that must cross a road.
+The frog can move in 4 directions (up, down, left, right).
+The frog must avoid cars that move from left to right.
 
- <br><br>
 
+| Requirements |
+| ----- | 
+| Utilisation of Go-Board. |
+| Frog can move at least in one direction. |
+| Utilisation of the VGA on the Go-Board. |
+| No use of other hardware. |
+| Immobile cars (Have at least one on screen). |
+| Game will be played on a 20x15 grid(each grid will be 32x32 pixels). |
+| Game can be restarted by pressing all 4 buttons(Hold the buttons for at least 2 seconds). |
+| There will be at least 1 level |
+| The frog should move 1 tile at a time |
+| When the frog collides with the car the game will restart. |
+| There will be at least 5 rows of roads |
+| The buttons will be functional at every click. |
+
+| Objectives |
+| -- |
+| The frog will be a sprite with full colors. |
+| The cars will be moving on the roads from left to right(there will be at least 16 max on screen). |
+| The speed of the cars will increase with the difficulty. |
+
+| Bonus | 
+| -- | 
+| New roads will be added with increasing difficulty. |
+| The frog and cars will have slight animation. |
+| There will be an end screen when you beat the game. |
+| Adding a variety of cars with different colors and models. |
 
 
 # The Implementation
