@@ -197,22 +197,35 @@ This Go Board had been designed to meet the needs of the game while remaining si
 ![The Go Board](data/go_board.png)
 
 The main component of this board is an FPGA chip :   
+![The FPGA](data/fpga.jpg)
 The [Lattice iCE40 - HX1K](https://www.latticesemi.com/ice40)  
 
-Here is the [Datasheet](data/FPGA_ice40HX1K_datasheet.pdf) of this FPGA
-
-The main information to keep in mind is : 
+This FPGA is composed of the following elements :
 ![HX1K Characteristics](data/HX1K_characteristics.png)
 
-Thus, the FPGA contains 1280 Logic Cells (either LUT or Register) and 16 384 bits of 'BLock RAM' memory.
+Thus, the FPGA contains 1280 Logic Cells (either LUT or Register) and 16 384 bits of 'BLock RAM' memory. These two numbers are important to keep in mind when designing the game.
+
+Some additional documentation and links about the Go Board and FPGA :
+
+- [Go Board Tutorials](https://nandland.com/go-board-tutorials/)
+- [Go Board PCB schematic](data/Go_Board_PCB_scheme.pdf)
+- [FPGA Datasheet](data/FPGA-DS-02029-4-2-iCE40-LP-HX-Family-Data-Sheet.pdf)
+- [Technology Library for FPGA](data/FPGA-TN-02026-3-3-iCE40-Technology-Library.pdf)
+- [Memory Usage for FPGA](data/FPGA-TN-02002-1-7-Memory-Usage-Guide-for-iCE40-Devices.pdf)
+- [FPGA Tutorials](https://youtube.com/playlist?list=PLEBQazB0HUyT1WmMONxRZn9NmQ_9CIKhb&si=ZDZhqj2Bj44o1vI3)
+
 
 #### 2. The VGA Screen
+
+We had been given a commom FullHD VGA screen and its cable to display the game.
 
 ## The code
 
 ### I. Introduction about Verilog and FPGA
 
-#### 1. Inside
+#### 1. Inside the FPGA
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iHg0mmIg0UU?si=PVsuK7WJKbZwVpu2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 #### 2. Parallelism of execution
 
