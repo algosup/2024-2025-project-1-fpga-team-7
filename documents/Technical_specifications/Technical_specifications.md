@@ -197,7 +197,7 @@ This Go Board had been designed to meet the needs of the game while remaining si
 ![The Go Board](data/go_board.png)
 
 The main component of this board is an FPGA chip :   
-![The FPGA](data/fpga.jpg)
+  <img src="./data/fpga.jpg" alt="The FPGA" width="50%">  
 The [Lattice iCE40 - HX1K](https://www.latticesemi.com/ice40)  
 
 This FPGA is composed of the following elements :
@@ -225,7 +225,9 @@ We had been given a commom FullHD VGA screen and its cable to display the game.
 
 #### 1. Inside the FPGA
 
+<html>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/iHg0mmIg0UU?si=PVsuK7WJKbZwVpu2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</html>
 
 #### 2. Parallelism of execution
 
