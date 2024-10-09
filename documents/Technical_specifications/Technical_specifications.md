@@ -17,7 +17,7 @@
 </summary>
 
 - [Technical Specification](#technical-specification)
-      - [*Last Update on September 24th, 2024*](#last-update-on-september-24th-2024)
+      - [*Last Update on October 4th, 2024*](#last-update-on-october-4th-2024)
 - [Table of Content](#table-of-content)
   - [Document Purpose](#document-purpose)
   - [Document Audience](#document-audience)
@@ -26,19 +26,19 @@
   - [Members](#members)
   - [Description](#description)
 - [The Implementation](#the-implementation)
-  - [The project](#the-project-1)
-      - [1. Project files architecture](#1-project-files-architecture)
-      - [2. Naming conventions](#2-naming-conventions)
+  - [GitHub](#github)
+      - [1. GitHub files architecture](#1-github-files-architecture)
       - [3. GitHub rules](#3-github-rules)
   - [The Hardware](#the-hardware)
-    - [I. The Go Board](#i-the-go-board)
-    - [II. The VGA Screen](#ii-the-vga-screen)
+      - [1. The Go Board](#1-the-go-board)
+      - [2. The VGA Screen](#2-the-vga-screen)
   - [The code](#the-code)
     - [I. Introduction about Verilog and FPGA](#i-introduction-about-verilog-and-fpga)
       - [1. Inside](#1-inside)
       - [2. Parallelism of execution](#2-parallelism-of-execution)
       - [3. Modules and Instanciation](#3-modules-and-instanciation)
-      - [4. To go Further...](#4-to-go-further)
+      - [4. Steps to upload the code](#4-steps-to-upload-the-code)
+      - [5. To go Further...](#5-to-go-further)
     - [II. Algorithm Desccription](#ii-algorithm-desccription)
     - [III. Code files architecture](#iii-code-files-architecture)
       - [1. Base files](#1-base-files)
@@ -48,7 +48,7 @@
         - [Seven segments display related module](#seven-segments-display-related-module)
         - [Pseudo-Random generator module](#pseudo-random-generator-module)
       - [3. Game algorithm's module](#3-game-algorithms-module)
-        - [Global module](#global-module)
+        - [Global modules](#global-modules)
         - [Game logic module](#game-logic-module)
         - [Game design module](#game-design-module)
     - [IV. Coding conventions](#iv-coding-conventions)
@@ -118,26 +118,64 @@ origin
 ├── documents
 │    │
 │    ├── Management
-│    │   ├── data
-│    │   ├── Weekly_report.md
-│    │   └── Project_planning.md
+│    │    ├── data
+│    │    ├── Weekly_report.md
+│    │    └── Project_planning.md
 │    │
 │    ├── Functional_specifications
-│    │   ├── data
-│    │   └── Functional_specifications.md
+│    │    ├── data
+│    │    └── Functional_specifications.md
 │    │
 │    ├── Quality_assurance
-│    │   ├── data
-│    │   └── Test_plan.md
+│    │    ├── data
+│    │    └── Test_plan.md
 │    │
 │    ├── User_manual
-│    │   └── User_manual.pdf
+│    │    └── User_manual.pdf
 │    │
 │    └── Technical_specifications
-│        ├── data
-│        └── Technical_specifications.md
+│         ├── data
+│         └── Technical_specifications.md
 │
-├── src
+├── src- [Technical Specification](#technical-specification)
+      - [*Last Update on October 4th, 2024*](#last-update-on-october-4th-2024)
+- [Table of Content](#table-of-content)
+  - [Document Purpose](#document-purpose)
+  - [Document Audience](#document-audience)
+- [The Project](#the-project)
+  - [Overview](#overview)
+  - [Members](#members)
+  - [Description](#description)
+- [The Implementation](#the-implementation)
+  - [GitHub](#github)
+      - [1. GitHub files architecture](#1-github-files-architecture)
+      - [3. GitHub rules](#3-github-rules)
+  - [The Hardware](#the-hardware)
+      - [1. The Go Board](#1-the-go-board)
+      - [2. The VGA Screen](#2-the-vga-screen)
+  - [The code](#the-code)
+    - [I. Introduction about Verilog and FPGA](#i-introduction-about-verilog-and-fpga)
+      - [1. Inside](#1-inside)
+      - [2. Parallelism of execution](#2-parallelism-of-execution)
+      - [3. Modules and Instanciation](#3-modules-and-instanciation)
+      - [4. Steps to upload the code](#4-steps-to-upload-the-code)
+      - [5. To go Further...](#5-to-go-further)
+    - [II. Algorithm Desccription](#ii-algorithm-desccription)
+    - [III. Code files architecture](#iii-code-files-architecture)
+      - [1. Base files](#1-base-files)
+      - [2. Independant Modules](#2-independant-modules)
+        - [VGA related modules](#vga-related-modules)
+        - [Switch related modules](#switch-related-modules)
+        - [Seven segments display related module](#seven-segments-display-related-module)
+        - [Pseudo-Random generator module](#pseudo-random-generator-module)
+      - [3. Game algorithm's module](#3-game-algorithms-module)
+        - [Global modules](#global-modules)
+        - [Game logic module](#game-logic-module)
+        - [Game design module](#game-design-module)
+    - [IV. Coding conventions](#iv-coding-conventions)
+- [Glossary](#glossary)
+- [](#)
+
 │    │
 │    ├── apio.ini
 │    ├── Go_Board_Constraints.pcf
@@ -203,11 +241,13 @@ Future Algorigram to describe the evolution of the state machine, interaction be
 #### 1. Base files
 
 - **apio.ini**  
-  Needed by the synthetizer to know wich is the top module to execute.
+  Needed by the synthetizer to know wich is the top module to execute.  
+
 - **Go_Board_Constraints.pcf**  
-  Contains the attribution of each GPIO to a name. This names are used at the beginning of the top module.
+  Contains the attribution of each GPIO to a name. This names are used at the beginning of the top module.  
+
 - **Frogger_Game.v**   
-  Main file containing the top module. It serves to declare, include and link the different pieces of the code.
+  Main file containing the top module. It serves to declare, include and link the different pieces of the code.  
 
 #### 2. Independant Modules
 
@@ -215,18 +255,17 @@ Theses modules are some universal modules, which can be used in many different t
 
 ##### VGA related modules
 - **VGA_Sync_Pulses.v**   
-  Generates the horizontal and vertical synchronization signals for the VGA output.
+  Generates the horizontal and vertical synchronization signals for the VGA output.  
+
 - **VGA_Sync_Porch.v**  
-  Change a bit the pulses of the previous module to take the VGA porches into account.
+  Change a bit the pulses of the previous module to take the VGA porches into account.  
+
 - **Sync_To_Count.v**  
   Generates 2 counters, one for the columns, and another for the rows, synchronized with both pulses, to keep track of wich pixel is going to be written on the VGA output.
 
 ##### Switch related modules
 - **Debounce_Filter.v**  
   Module which takes the switch signal and output a 'debounced' signal of the switch. Basically, it allows the output signal to fit the input signal aafter validating its stability over time.
-- **Spam_Signal.v**  
-  It reads a signal, and if it remains HIGH for too long time, this module generates a square wave that can be used as a second input.
-  Useful for allowing an action to loop if a button is held down for a long time.
 
 ##### Seven segments display related module
 - **Seven_Segments_Display.v**  
@@ -242,28 +281,41 @@ These modules are containing all the code directly related to the game logic and
 
 ##### Global modules
 - **Constants.v**  
-  In this file, each constant value are stored as a label, usable trough all the files.
+  In this file, each constant value are stored as a label, usable trough all the files.  
+
 - **Memory.v**  
   This file is here to define the memory modules needed to store each sprite
 
 ##### Game logic module
 - **State_Machine.v**  
   In this file, the variables keeping track of the current state of the game.
-  This file handle modules instantiation.
+  This file handle modules instantiation.  
+
 - **Clock_Divider.v**
   This file generates the different clocks used to delay the update frequency of movement or display.
-  it take as input the wanted speed for each sprite-related always loop.
+  it takes as input the wanted speed for each sprite-related always loop.  
+
 - **Levels.v**  
-  This module handle all the modifications such as speed, car position, related to the level increase.
-- **Sprite_Position.v**
-- **Character_Control.v**
-- **Obstacles_Movement.v**
-- **Collisions.v**
+  This module handles all the modifications such as speed, car position, related to the level increase.  
+
+- **Character_Control.v**  
+  In this module, the switches are controlling the frog position.   
+
+- **Obstacles_Movement.v**    
+  In this module, the cars are moved at a certain speed and direction.  
+
+- **Collisions.v**   
+  Here the collisions between the frog and the cars is checked according to their position.
 
 ##### Game design module
-- **Sprite_Definition.v**
-- **Sprite_Display.v**
-- **Background_Display.v**
+- **Sprite_Definition.v**  
+  This module handles all sprites' design, encoding and storage in memory.  
+
+- **Sprite_Display.v**  
+  This module handles the display of the sprites on the VGA screen from the memory.  
+
+- **Background_Display.v**  
+  This module handles the display of the background on the VGA screen.
 
 ### IV. Coding conventions
 
@@ -275,6 +327,6 @@ This glossary is here to help to understand the technical vocabulary of this doc
 | Term | Definition |
 | ---- | ---------- |
 | FPGA | A field-programmable gate array (FPGA) is a type of programmable microcontroller, where you can program only the components you need to create your integrated circuit. FPGAs are often used in custom-made products, and in research and development. Other applications for FPGAs include aerospace or industrial sectors, due to their flexibility, high signal processing speed, and parallel processing abilities. |
-| Verilog | Verilog is one of the language used to program FPGAs. |
+| Verilog | Verilog is one of the languages used to program FPGAs. |
 
-# 
+#
