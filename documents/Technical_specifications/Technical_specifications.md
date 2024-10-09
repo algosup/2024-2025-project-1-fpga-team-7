@@ -224,16 +224,52 @@ We had been given a commom FullHD VGA screen and its cable to display the game.
 ### I. Introduction about Verilog and FPGA
 
 #### 1. Inside the FPGA
+[Youtube Video to understand how basically the FPGA works](https://www.youtube.com/embed/iHg0mmIg0UU?si=PVsuK7WJKbZwVpu2)
 
-<html>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/iHg0mmIg0UU?si=PVsuK7WJKbZwVpu2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</html>
 
 #### 2. Parallelism of execution
 
+It's important to keep in mind that the FPGA is a parallel execution device. This means that all the code is executed at the same time. This is why we have to be careful with the memory usage and the number of logic cells used.
+
+Concretely, this means that all the always loops spread in the code are executed simultaneously.
+
+While in a processor, the code is executed sequentially, line by line, and the results of the previous lines are used in the next ones,  
+In FPGA, input information goes accross a complex circuit of logic gates, and the output is the instant result of the whole circuit.
+
+![FPGA vs Processor](data/Animation_CPU-vs-FPGA-Still_3.png)
+
 #### 3. Modules and Instanciation
 
+In Verilog, we can define modules, which are like functions in other languages.
+
+Concretely, a module is an electronic scheme using FPGA components. Each time a module is used in the program, The computer will burn into the FPGA the electronic scheme corresponding to the module. Then, you simply have to connect the inputs and outputs of the module to the rest of the program to use it as a function.
+
+The usage of a new instance of a module on the FPGA is caled instantiation.
+
+An example of works a complex process with FPGA using modules wired together :
+![module_instanciation example](data/system_overall.png)
+
 #### 4. Steps to upload the code
+
+When the code is ready, the next step is to upload it to the FPGA.
+
+There is the official tutorial to do that :  
+[Nand Land - Tutorial to upload a verilog program in your Go Board](https://nandland.com/set-up-apio-fpga-build-and-program/)
+
+Each Verilog code Has to be in a folder containing at least :
+- top_module.v  
+  This file contains the top module of the code, which is the one that calls all the other modules. You can name it as you like, but don't forgot to change the name in the apio.ini file.  
+
+- apio.ini   
+  This file is needed by the synthetizer to know wich is the top module to execute.  
+
+When you upload your code, the APIO synthetizer will compile the code, and then upload it to the FPGA.
+
+The synthetization process is the one that will transform the Verilog code into a binary file that the FPGA can understand.
+
+It analyzes the code, and then, depending on the FPGA's architecture, it will create a circuit of logic gates that will be able to execute the code.
+
+Warning : On windows, the APIO synthetizer is not such optimizing the code to make it working with the minimum number of logic cells on the FPGA. Thus, maybe only a mac or linux computer will be able to synthetize a code without any overflow of logic cells.
 
 #### 5. To go Further...
 
