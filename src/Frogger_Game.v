@@ -40,18 +40,22 @@ module Frogger_Game (
     output o_Segment2_G,
 );
 
+reg r_State;
+
+wire w_Game_Active;
+
 wire w_Switch_1;
 wire w_Switch_2;
 wire w_Switch_3;
 wire w_Switch_4;
+
+wire w_All_Switch = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
 
 wire [9:0] w_ini_Y_Position, w_ini_X_Position, w_Y_Position, w_X_Position;
 wire [9:0] w_Car1_X_Position, w_Car1_Y_Position = c_LINE_1_Y;
 wire [9:0] w_Car2_X_Position, w_Car2_Y_Position = c_LINE_2_Y;
 wire [9:0] w_Car3_X_Position, w_Car3_Y_Position = c_LINE_3_Y;
 wire [9:0] w_Car4_X_Position, w_Car4_Y_Position = c_LINE_4_Y;
-
-wire w_Draw_Frog;
 
 wire w_Has_Collided;
 
@@ -65,8 +69,6 @@ wire [6:0] w_Score, w_Score_After_Check;
     LFSR #(.NUM_BITS(NUM_BITS)) RandomGenerator (
         .i_Clk(i_Clk),
         .i_Enable(1'b1),
-        .i_Seed_DV(0),
-        // .i_Seed_Data(14),
         .o_LFSR_Data(w_LFSR_Data),
         .o_LFSR_Done(w_LFSR_Done),
     );
@@ -92,9 +94,9 @@ wire [6:0] w_Score, w_Score_After_Check;
         .i_Frog_Lt(w_Switch_2),
         .i_Frog_Rt(w_Switch_3),
         .i_Frog_Dn(w_Switch_4),
+        .i_Game_Active(w_Game_Active),
         .o_Score(w_Score),
         .o_Level_Up(w_Level_Up),
-        .o_Draw_Frog(w_Draw_Frog),
         .o_Frog_X(w_X_Position),
         .o_Frog_Y(w_Y_Position),
     );
@@ -126,10 +128,8 @@ wire [6:0] w_Score, w_Score_After_Check;
         .o_VGA_Red_2(o_VGA_Red_2),
     );
 
-    Collisions #(
-        .TILE_SIZE(TILE_SIZE),
-        .c_NB_CARS(c_NB_CARS)
-    )Car(
+    Collisions #(.TILE_SIZE(TILE_SIZE),
+                 .c_NB_CARS(c_NB_CARS))Car(
         .i_Clk(i_Clk),
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
@@ -144,17 +144,16 @@ wire [6:0] w_Score, w_Score_After_Check;
         .o_Has_Collided(w_Has_Collided),
     );
     
-    Obstacles_Movement #(
-        .c_X_BASE_CAR_POSITION(c_X_BASE_CAR_POSITION),
-        .c_X_REVERSE_BASE_CAR_POSITION(c_X_REVERSE_BASE_CAR_POSITION),
-        .c_BASE_CAR_SPEED(c_BASE_CAR_SPEED),
-        .H_VISIBLE_AREA(H_VISIBLE_AREA),
-        .TILE_SIZE(TILE_SIZE),
-        .c_NB_CARS(c_NB_CARS),
-        .NUM_BITS(NUM_BITS)
-    ) MovCar(
+    Obstacles_Movement #(.c_X_BASE_CAR_POSITION(c_X_BASE_CAR_POSITION),
+                         .c_X_REVERSE_BASE_CAR_POSITION(c_X_REVERSE_BASE_CAR_POSITION),
+                         .c_BASE_CAR_SPEED(c_BASE_CAR_SPEED),
+                         .H_VISIBLE_AREA(H_VISIBLE_AREA),
+                         .TILE_SIZE(TILE_SIZE),
+                         .c_NB_CARS(c_NB_CARS),
+                         .NUM_BITS(NUM_BITS)) MovCar(
         .i_Clk(i_Clk),
         .i_Level_Up(w_Level_Up),
+        .i_Score(w_Score),
         .i_Reverse(w_LFSR_Data),
         .o_Car_X_0(w_Car1_X_Position),
         .o_Car_X_1(w_Car2_X_Position),
@@ -181,4 +180,17 @@ wire [6:0] w_Score, w_Score_After_Check;
         .o_Segment2_G(o_Segment2_G),
     );
 
+    always @(posedge i_Clk)
+    case (r_State)
+        IDLE: if (w_All_Switch == 1'b1) begin
+            r_State <= RUNNING;
+        end
+        RUNNING: if (w_Has_Collided == 1'b1) begin
+            r_State <= IDLE;
+        end
+        default: r_State <= IDLE;
+    endcase
+
+    assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;
+    
 endmodule
