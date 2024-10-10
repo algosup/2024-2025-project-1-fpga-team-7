@@ -5,7 +5,7 @@
 |-|-|-|-|-|-|
 | Frogger Game | Verilog | - Go Board (**FPGA** technology) <br> - VGA Monitor and Cable | ALGOSUP | 2024-2025 | 7 |
 
-#### *Last Update on October 4th, 2024*
+#### *Last Update on October 10th, 2024*
 ![alt text](<data/fpga circuit illustration.jpeg>)
 
 <details>
@@ -17,7 +17,7 @@
 </summary>
 
 - [Technical Specification](#technical-specification)
-      - [*Last Update on October 4th, 2024*](#last-update-on-october-4th-2024)
+      - [*Last Update on October 10th, 2024*](#last-update-on-october-4th-2024)
 - [Table of Content](#table-of-content)
   - [Document Purpose](#document-purpose)
   - [Document Audience](#document-audience)
@@ -178,11 +178,16 @@ origin
 #### 3. GitHub rules
 
 - The main branch is protected from direct push and merge.  
+  
 - To update the main branch, the pull request needs 2 external validations from anyone else.  
-- A 'dev' branch is here to push all the source code
-- A 'documents' branch is here to push all the documents
-- Each member have to commit and push changes at least daily, with an explicit tittle and a complete description of the changes.
-- branches' names follow ```kebab-case```
+  
+- A 'dev' branch is here to push all the source code modifications.
+  
+- A 'documents' branch is here to push all the documents modifications. 
+  
+- Each member have to commit and push changes at least daily, with an explicit tittle and a complete description of the changes.  
+  
+- The name of a branch follows ```kebab-case```
 
 ## The Hardware
 
@@ -205,14 +210,7 @@ This FPGA is composed of the following elements :
 
 Thus, the FPGA contains 1280 Logic Cells (either LUT or Register) and 16 384 bits of 'BLock RAM' memory. These two numbers are important to keep in mind when designing the game.
 
-Some additional documentation and links about the Go Board and FPGA :
-
-- [Go Board Tutorials](https://nandland.com/go-board-tutorials/)
-- [Go Board PCB schematic](data/Go_Board_PCB_scheme.pdf)
-- [FPGA Datasheet](data/FPGA-DS-02029-4-2-iCE40-LP-HX-Family-Data-Sheet.pdf)
-- [Technology Library for FPGA](data/FPGA-TN-02026-3-3-iCE40-Technology-Library.pdf)
-- [Memory Usage for FPGA](data/FPGA-TN-02002-1-7-Memory-Usage-Guide-for-iCE40-Devices.pdf)
-- [FPGA Tutorials](https://youtube.com/playlist?list=PLEBQazB0HUyT1WmMONxRZn9NmQ_9CIKhb&si=ZDZhqj2Bj44o1vI3)
+For more information about the FPGA and the Go Board, [check here](#5-to-go-further).
 
 
 #### 2. The VGA Screen
@@ -272,6 +270,13 @@ It analyzes the code, and then, depending on the FPGA's architecture, it will cr
 Warning : On windows, the APIO synthetizer is not such optimizing the code to make it working with the minimum number of logic cells on the FPGA. Thus, maybe only a mac or linux computer will be able to synthetize a code without any overflow of logic cells.
 
 #### 5. To go Further...
+
+- [Go Board Tutorials](https://nandland.com/go-board-tutorials/)
+- [Go Board PCB schematic](data/Go_Board_PCB_scheme.pdf)
+- [FPGA Datasheet](data/FPGA-DS-02029-4-2-iCE40-LP-HX-Family-Data-Sheet.pdf)
+- [Technology Library for FPGA](data/FPGA-TN-02026-3-3-iCE40-Technology-Library.pdf)
+- [Memory Usage for FPGA](data/FPGA-TN-02002-1-7-Memory-Usage-Guide-for-iCE40-Devices.pdf)
+- [FPGA Tutorials](https://youtube.com/playlist?list=PLEBQazB0HUyT1WmMONxRZn9NmQ_9CIKhb&si=ZDZhqj2Bj44o1vI3)
 
 ### II. Algorithm Desccription
 
@@ -360,6 +365,43 @@ These modules are containing all the code directly related to the game logic and
 
 ### IV. Coding conventions
 
+When coding in Verilog, it's important to keep the code clean and readable. Here are some conventions to follow :
+
+#### Indentation
+  - **Tabulation** - Use **4 spaces** for statement indentation.  
+  
+  - **Alignement** - When declaring multiple in/output, reg, wire, parameter, assign, ...  
+    Align the beginning of the names and values as well as the common signs (=, ;, ...).  
+  
+  - **begin/end** - In a statement, the 'begin' keyword should be idented, **underneath** the statement declaration. As well, the 'end' keyword should be aligned with the 'begin' keyword, alone on the last lign of the statement.  
+  
+#### Comments
+  - Use comments to **explain** the code  
+  
+  - he comments should be placed **before** the code they explain.  
+  
+  - Use comments to explain the **purpose** of the code, not the code itself.  
+  
+  - Use comments when declaring a reg, wire, parameter, ... to explain its purpose and its value.  
+  
+  - For each module, describe how to use the module, its purpose, the inputs and outputs, and the global behavior of the module.  
+  
+#### Naming
+  - **Module** - The names of the modules are given [here](#iii-code-files-architecture). The name of the file is also the name of the module (aside '.v').  
+  
+  - **Instances** - The name of the instance of a module should be the same as the module name, with a suffix ```_Inst_X``` where X is the numbering.  
+  
+  - **Registers** - The name of a register begins with ```r_``` and is in ```snake_case```.  
+  
+  - **Wires** - The name of a wire begins with ```w_``` and is in ```snake_case```.  
+  
+  - **localparameters** - The name of a local parameter is in ```SCREAMING_CAMEL_CASE```.  
+  
+  - **parameters** - The name of a parameter is in ```SCREAMING_CAMEL_CASE``` and is stored in the 'Constants.v' file.
+  
+  - **input/output** - The name of an input or output begins with either ```i_``` or ```o_``` and is in ```apple_Snake_CASE``` (apple snake case : basically, the only rule is to have underscore between words).  
+  
+  
 
 # Glossary
 
