@@ -1,27 +1,27 @@
 module Obstacles_Movement#(
-    parameter c_X_BASE_CAR_POSITION = 0,
+    parameter c_X_BASE_CAR_POSITION         = 0,
     parameter c_X_REVERSE_BASE_CAR_POSITION = 608,
-    parameter c_BASE_CAR_SPEED = 781250,
-    parameter H_VISIBLE_AREA = 640,
-    parameter TILE_SIZE = 32,
-    parameter c_NB_CARS = 4,
-    parameter NUM_BITS = 4,
+    parameter c_BASE_CAR_SPEED              = 781250,
+    parameter H_VISIBLE_AREA                = 640,
+    parameter TILE_SIZE                     = 32,
+    parameter c_NB_CARS                     = 4,
+    parameter NUM_BITS                      = 4,
 )(
-    input       i_Clk,
-    input [NUM_BITS-1:0] i_Reverse,
+    input                      i_Clk,
+    input       [NUM_BITS-1:0] i_Reverse,
 
-    input [6:0] i_Score,
+    input       [6:0]          i_Score,
 
-    input i_Level_Up,
+    input                      i_Level_Up,
 
-    output reg [9:0] o_Car_X_0 = c_X_BASE_CAR_POSITION, // Car 0 X position
-    output reg [9:0] o_Car_X_1 = c_X_BASE_CAR_POSITION + TILE_SIZE + 10, // Car 1 X position
-    output reg [9:0] o_Car_X_2 = c_X_BASE_CAR_POSITION + 2 * (TILE_SIZE + 10), // Car 2 X position
-    output reg [9:0] o_Car_X_3 = c_X_BASE_CAR_POSITION + 3 * (TILE_SIZE + 10), // Car 3 X position
+    output reg [9:0]           o_Car_X_0 = c_X_BASE_CAR_POSITION, // Car 0 X position
+    output reg [9:0]           o_Car_X_1 = c_X_BASE_CAR_POSITION + TILE_SIZE + 10, // Car 1 X position
+    output reg [9:0]           o_Car_X_2 = c_X_BASE_CAR_POSITION + 2 * (TILE_SIZE + 10), // Car 2 X position
+    output reg [9:0]           o_Car_X_3 = c_X_BASE_CAR_POSITION + 3 * (TILE_SIZE + 10), // Car 3 X position
 );
-    reg [NUM_BITS - 1:0] r_Reverse;
-    reg [19:0] r_Count = 0; // Global counter for movement timing
-    reg [19:0] r_Car_Speed = c_BASE_CAR_SPEED;
+    reg         [NUM_BITS-1:0] r_Reverse;
+    reg         [19:0]         r_Count     = 0; // Global counter for movement timing
+    reg         [19:0]         r_Car_Speed = c_BASE_CAR_SPEED;
 
     always @(posedge i_Clk) begin
         case (i_Score)

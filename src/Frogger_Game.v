@@ -1,12 +1,12 @@
 `include "Constants.v"
 
 module Frogger_Game (
-    input i_Clk,
+    input  i_Clk,
 
-    input i_Switch_1,
-    input i_Switch_2,
-    input i_Switch_3,
-    input i_Switch_4,
+    input  i_Switch_1,
+    input  i_Switch_2,
+    input  i_Switch_3,
+    input  i_Switch_4,
 
     output o_VGA_HSync,
     output o_VGA_VSync,
@@ -40,31 +40,32 @@ module Frogger_Game (
     output o_Segment2_G,
 );
 
-reg r_State;
+reg                   r_State;
 
-wire w_Game_Active;
+wire                  w_Game_Active;
 
-wire w_Switch_1;
-wire w_Switch_2;
-wire w_Switch_3;
-wire w_Switch_4;
+wire                  w_Switch_1;
+wire                  w_Switch_2;
+wire                  w_Switch_3;
+wire                  w_Switch_4;
 
-wire w_All_Switch = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
+wire                  w_All_Switch = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
 
-wire [9:0] w_ini_Y_Position, w_ini_X_Position, w_Y_Position, w_X_Position;
-wire [9:0] w_Car1_X_Position, w_Car1_Y_Position = c_LINE_1_Y;
-wire [9:0] w_Car2_X_Position, w_Car2_Y_Position = c_LINE_2_Y;
-wire [9:0] w_Car3_X_Position, w_Car3_Y_Position = c_LINE_3_Y;
-wire [9:0] w_Car4_X_Position, w_Car4_Y_Position = c_LINE_4_Y;
+wire            [9:0] w_ini_Y_Position, w_ini_X_Position, w_Y_Position, w_X_Position;
 
-wire w_Has_Collided;
+wire            [9:0] w_Car1_X_Position, w_Car1_Y_Position = c_LINE_1_Y;
+wire            [9:0] w_Car2_X_Position, w_Car2_Y_Position = c_LINE_2_Y;
+wire            [9:0] w_Car3_X_Position, w_Car3_Y_Position = c_LINE_3_Y;
+wire            [9:0] w_Car4_X_Position, w_Car4_Y_Position = c_LINE_4_Y;
+
+wire                  w_Has_Collided;
 
 wire [NUM_BITS - 1:0] w_LFSR_Data;
 wire                  w_LFSR_Done;
 
-wire w_Level_Up;
+wire                  w_Level_Up;
 
-wire [6:0] w_Score, w_Score_After_Check;
+wire            [6:0] w_Score, w_Score_After_Check;
 
     LFSR #(.NUM_BITS(NUM_BITS)) RandomGenerator (
         .i_Clk(i_Clk),
@@ -73,13 +74,29 @@ wire [6:0] w_Score, w_Score_After_Check;
         .o_LFSR_Done(w_LFSR_Done),
     );
 
-    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_1_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_1), .o_Switch(w_Switch_1));
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_1_Inst(
+        .i_Clk(i_Clk), 
+        .i_Switch(i_Switch_1), 
+        .o_Switch(w_Switch_1)
+    );
 
-    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_2_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_2), .o_Switch(w_Switch_2));
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_2_Inst(
+        .i_Clk(i_Clk), 
+        .i_Switch(i_Switch_2), 
+        .o_Switch(w_Switch_2)
+    );
 
-    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_3_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_3), .o_Switch(w_Switch_3));
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_3_Inst(
+        .i_Clk(i_Clk), 
+        .i_Switch(i_Switch_3), 
+        .o_Switch(w_Switch_3)
+    );
 
-    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_4_Inst(.i_Clk(i_Clk), .i_Switch(i_Switch_4), .o_Switch(w_Switch_4));
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_4_Inst(
+        .i_Clk(i_Clk), 
+        .i_Switch(i_Switch_4), 
+        .o_Switch(w_Switch_4)
+    );
 
     Frog_Movement #(.c_SCORE_INI(c_SCORE_INI),
                     .c_X_BASE_POSITION(c_X_BASE_POSITION),
@@ -180,14 +197,17 @@ wire [6:0] w_Score, w_Score_After_Check;
         .o_Segment2_G(o_Segment2_G),
     );
 
+    //State Machine
     always @(posedge i_Clk)
     case (r_State)
-        IDLE: if (w_All_Switch == 1'b1) begin
-            r_State <= RUNNING;
-        end
-        RUNNING: if (w_Has_Collided == 1'b1) begin
-            r_State <= IDLE;
-        end
+        IDLE: if (w_All_Switch == 1'b1) 
+              begin
+                  r_State <= RUNNING;
+              end
+        RUNNING: if (w_Has_Collided == 1'b1)
+                 begin
+                     r_State <= IDLE;
+                 end
         default: r_State <= IDLE;
     endcase
 
