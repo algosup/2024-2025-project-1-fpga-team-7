@@ -4,7 +4,7 @@ module Obstacles_Movement#(
     parameter c_BASE_CAR_SPEED = 781250,
     parameter H_VISIBLE_AREA = 640,
     parameter TILE_SIZE = 32,
-    parameter c_NB_CARS = 1,
+    parameter c_NB_CARS = 4,
     parameter NUM_BITS = 4,
 )(
     input       i_Clk,
