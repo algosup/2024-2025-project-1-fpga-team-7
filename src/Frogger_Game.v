@@ -11,16 +11,10 @@ module Frogger_Game (
     output o_VGA_HSync,
     output o_VGA_VSync,
     
-    // output o_VGA_Red_0,
-    // output o_VGA_Red_1,
     output o_VGA_Red_2,
 
-    // output o_VGA_Blu_0,
-    // output o_VGA_Blu_1,
     output o_VGA_Blu_2,
 
-    // output o_VGA_Grn_0,
-    // output o_VGA_Grn_1,
     output o_VGA_Grn_2,
 
     output o_Segment1_A,
@@ -51,12 +45,10 @@ wire                  w_Switch_4;
 
 wire                  w_All_Switch = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
 
-wire            [9:0] w_ini_Y_Position, w_ini_X_Position, w_Y_Position, w_X_Position;
+wire            [9:0] w_Y_Position, w_X_Position;
 
-wire            [9:0] w_Car1_X_Position, w_Car1_Y_Position = c_LINE_1_Y;
-wire            [9:0] w_Car2_X_Position, w_Car2_Y_Position = c_LINE_2_Y;
-wire            [9:0] w_Car3_X_Position, w_Car3_Y_Position = c_LINE_3_Y;
-wire            [9:0] w_Car4_X_Position, w_Car4_Y_Position = c_LINE_4_Y;
+wire            [8:0] w_Car1_Y_Position = c_LINE_1_Y, w_Car2_Y_Position = c_LINE_2_Y, w_Car3_Y_Position = c_LINE_3_Y, w_Car4_Y_Position = c_LINE_4_Y;
+wire            [9:0] w_Car1_X_Position, w_Car2_X_Position, w_Car3_X_Position, w_Car4_X_Position; 
 
 wire                  w_Has_Collided;
 
@@ -65,7 +57,19 @@ wire                  w_LFSR_Done;
 
 wire                  w_Level_Up;
 
-wire            [6:0] w_Score, w_Score_After_Check;
+wire            [5:0] w_Score;
+
+wire            [7:0] w_data;
+
+    Memory #(.INIT_FILE("mem_init.txt")) test(
+        .i_Clk(i_Clk),
+        .w_en(1'b0),
+        .r_en(1'b1),
+        // .w_addr(1'h0),
+        .r_addr(4'b0000),
+        // .w_data(8'b0),
+        .r_data(w_data)
+    );
 
     LFSR #(.NUM_BITS(NUM_BITS)) RandomGenerator (
         .i_Clk(i_Clk),
