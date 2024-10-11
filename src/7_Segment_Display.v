@@ -6,7 +6,7 @@ module Segment_Display (
   input        i_Clk,
 
   // Score from Frog_Movement
-  input  [6:0] i_Score,
+  input  [5:0] i_Score,
 
   // Tens Segment
   output       o_Segment_A,
