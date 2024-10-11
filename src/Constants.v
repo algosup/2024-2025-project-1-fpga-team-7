@@ -46,4 +46,4 @@ parameter c_DEBOUNCE_LIMIT              = 250000;
 
 parameter COUNT_LIMIT                   = 3125000;
 
-parameter NUM_BITS                      = 4;
+parameter NUM_BITS                      = 4;                                                               // LFSR parameter

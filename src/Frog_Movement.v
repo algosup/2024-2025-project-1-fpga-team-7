@@ -28,25 +28,26 @@ module Frog_Movement #(
     output reg       o_Level_Up   = 0,
 
     // Variable storing score
-    output reg [6:0] o_Score = c_SCORE_INI,
+    output reg [6:0] o_Score      = c_SCORE_INI,
 
     // Left corner of the frog (Player)
-    output reg [9:0] o_Frog_X = c_X_BASE_POSITION,
-    output reg [9:0] o_Frog_Y = c_Y_BASE_POSITION 
+    output reg [9:0] o_Frog_X     = c_X_BASE_POSITION,
+    output reg [9:0] o_Frog_Y     = c_Y_BASE_POSITION 
 );
 
     wire       w_Frog_En;
     wire       w_No_Lateral;
     wire       w_No_Vertical;
 
-    reg        r_state        = 1'b0;
-    reg [31:0] r_Counter      = 0;
+    reg        r_state            = 1'b0;
+    reg [31:0] r_Counter          = 0;
 
     // Only allow Frog to move if only one button is pushed (use XOR for exclusive movement).
     assign w_Frog_En = (i_Frog_Up ^ i_Frog_Dn) ^ (i_Frog_Lt ^ i_Frog_Rt);
 
     always @(posedge i_Clk) 
     begin
+        // Only enable inputs if the game has started
         if (i_Game_Active == 1) 
         begin
             o_Level_Up <= 0;

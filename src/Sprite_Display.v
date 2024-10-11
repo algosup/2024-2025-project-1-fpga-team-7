@@ -54,7 +54,7 @@ wire [9:0] vehicle_4Y_Position = (Car_4Y_Position + TILE_SIZE > V_VISIBLE_AREA) 
 reg [9:0]  h_counter          = 0; // Horizontal counter
 reg [9:0]  v_counter          = 0; // Vertical counter
 
-reg hsync, vsync;
+reg           hsync, vsync;
 reg [2:0] red, green, blue;
 
 // Screen scanning
@@ -95,52 +95,52 @@ always @(posedge i_Clk) begin
     begin
         // Print a white square from left corner (x;y)
         if (((v_counter >= clamped_Y_Position) && (v_counter < clamped_Y_Position + (TILE_SIZE))) &&
-                ((h_counter >= clamped_X_Position) && (h_counter < clamped_X_Position + (TILE_SIZE))))
+            ((h_counter >= clamped_X_Position) && (h_counter < clamped_X_Position + (TILE_SIZE))))
         begin
             red <= 3'b111;  
             green <= 3'b111;
             blue <= 3'b111;
         end 
         else if (((v_counter >= vehicle_1Y_Position) && (v_counter < (vehicle_1Y_Position + TILE_SIZE))) &&
-                ((h_counter >= vehicle_1X_Position) && (h_counter < (vehicle_1X_Position + TILE_SIZE))) && c_NB_CARS > 0)
+                 ((h_counter >= vehicle_1X_Position) && (h_counter < (vehicle_1X_Position + TILE_SIZE))) && c_NB_CARS > 0)
         begin
             red <= 3'b111;  
             green <= 3'b000;
             blue <= 3'b111;
         end 
         else if (((v_counter >= vehicle_2Y_Position) && (v_counter < (vehicle_2Y_Position + TILE_SIZE))) &&
-                ((h_counter >= vehicle_2X_Position) && (h_counter < (vehicle_2X_Position + TILE_SIZE))) && c_NB_CARS > 1)
+                 ((h_counter >= vehicle_2X_Position) && (h_counter < (vehicle_2X_Position + TILE_SIZE))) && c_NB_CARS > 1)
         begin
             red <= 3'b111;  
             green <= 3'b000;
             blue <= 3'b111;
         end 
         else if (((v_counter >= vehicle_3Y_Position) && (v_counter < (vehicle_3Y_Position + TILE_SIZE))) &&
-                ((h_counter >= vehicle_3X_Position) && (h_counter < (vehicle_3X_Position + TILE_SIZE))) && c_NB_CARS > 2)
+                 ((h_counter >= vehicle_3X_Position) && (h_counter < (vehicle_3X_Position + TILE_SIZE))) && c_NB_CARS > 2)
         begin
             red <= 3'b111;  
             green <= 3'b000;
             blue <= 3'b111;
         end 
         else if (((v_counter >= vehicle_4Y_Position) && (v_counter < (vehicle_4Y_Position + TILE_SIZE))) &&
-                ((h_counter >= vehicle_4X_Position) && (h_counter < (vehicle_4X_Position + TILE_SIZE))) && c_NB_CARS > 3)
+                 ((h_counter >= vehicle_4X_Position) && (h_counter < (vehicle_4X_Position + TILE_SIZE))) && c_NB_CARS > 3)
         begin
-            red <= 3'b111;  
+            red   <= 3'b111;  
             green <= 3'b000;
-            blue <= 3'b111;
+            blue  <= 3'b111;
         end 
         else 
         begin
-            red <= 3'b000;  
+            red   <= 3'b000;  
             green <= 3'b000;
-            blue <= 3'b000;
+            blue  <= 3'b000;
         end
     end 
     else 
     begin
-        red <= 3'b000;  
+        red   <= 3'b000;  
         green <= 3'b000;
-        blue <= 3'b000;
+        blue  <= 3'b000;
     end
 end
 

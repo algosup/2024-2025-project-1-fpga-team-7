@@ -10,18 +10,12 @@ module Frogger_Game (
 
     output o_VGA_HSync,
     output o_VGA_VSync,
-    
-    // output o_VGA_Red_0,
-    // output o_VGA_Red_1,
-    output o_VGA_Red_2,
 
-    // output o_VGA_Blu_0,
-    // output o_VGA_Blu_1,
-    output o_VGA_Blu_2,
+    output o_VGA_Red_2, // Red
 
-    // output o_VGA_Grn_0,
-    // output o_VGA_Grn_1,
-    output o_VGA_Grn_2,
+    output o_VGA_Blu_2, // Blue
+
+    output o_VGA_Grn_2, // Green
 
     output o_Segment1_A,
     output o_Segment1_B,
@@ -70,7 +64,7 @@ wire            [6:0] w_Score, w_Score_After_Check;
     LFSR #(.NUM_BITS(NUM_BITS)) RandomGenerator (
         .i_Clk(i_Clk),
         .i_Enable(1'b1),
-        .o_LFSR_Data(w_LFSR_Data),
+        .o_LFSR_Data(w_LFSR_Data),                         // Initiate the "random" values generator
         .o_LFSR_Done(w_LFSR_Done),
     );
 
@@ -85,7 +79,7 @@ wire            [6:0] w_Score, w_Score_After_Check;
         .i_Switch(i_Switch_2), 
         .o_Switch(w_Switch_2)
     );
-
+                                                                                                // Initiate the 4 switches
     Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_3_Inst(
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_3), 
@@ -105,7 +99,7 @@ wire            [6:0] w_Score, w_Score_After_Check;
                     .TILE_SIZE(TILE_SIZE),
                     .V_VISIBLE_AREA(V_VISIBLE_AREA),
                     .H_VISIBLE_AREA(H_VISIBLE_AREA)) Frog_Movement_Inst(
-        .i_Clk(i_Clk),
+        .i_Clk(i_Clk),                                                              // Initiate the frog controls
         .i_Has_Collided(w_Has_Collided),
         .i_Frog_Up(w_Switch_1),
         .i_Frog_Lt(w_Switch_2),
@@ -127,7 +121,7 @@ wire            [6:0] w_Score, w_Score_After_Check;
                      .H_SYNC_PULSE(H_SYNC_PULSE),
                      .V_FRONT_PORCH(V_FRONT_PORCH),
                      .V_SYNC_PULSE(V_SYNC_PULSE)) Sprite_Display_Inst(
-        .i_Clk(i_Clk),
+        .i_Clk(i_Clk),                                                             // Display the game on the screen
         .X_Position(w_X_Position),
         .Y_Position(w_Y_Position),
         .Car_1X_Position(w_Car1_X_Position),
@@ -151,7 +145,7 @@ wire            [6:0] w_Score, w_Score_After_Check;
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
         .i_Car1_X(w_Car1_X_Position),
-        .i_Car1_Y(w_Car1_Y_Position),
+        .i_Car1_Y(w_Car1_Y_Position),                                       // Check collisions
         .i_Car2_X(w_Car2_X_Position),
         .i_Car2_Y(w_Car2_Y_Position),
         .i_Car3_X(w_Car3_X_Position),
@@ -168,7 +162,7 @@ wire            [6:0] w_Score, w_Score_After_Check;
                          .TILE_SIZE(TILE_SIZE),
                          .c_NB_CARS(c_NB_CARS),
                          .NUM_BITS(NUM_BITS)) MovCar(
-        .i_Clk(i_Clk),
+        .i_Clk(i_Clk),                                                          // Makes all cars move
         .i_Level_Up(w_Level_Up),
         .i_Score(w_Score),
         .i_Reverse(w_LFSR_Data),
@@ -188,7 +182,7 @@ wire            [6:0] w_Score, w_Score_After_Check;
         .o_Segment_E(o_Segment1_E),
         .o_Segment_F(o_Segment1_F),
         .o_Segment_G(o_Segment1_G),
-        .o_Segment2_A(o_Segment2_A),
+        .o_Segment2_A(o_Segment2_A),                                                // Display the score
         .o_Segment2_B(o_Segment2_B),
         .o_Segment2_C(o_Segment2_C),
         .o_Segment2_D(o_Segment2_D),
@@ -202,15 +196,15 @@ wire            [6:0] w_Score, w_Score_After_Check;
     case (r_State)
         IDLE: if (w_All_Switch == 1'b1) 
               begin
-                  r_State <= RUNNING;
+                  r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
               end
         RUNNING: if (w_Has_Collided == 1'b1)
                  begin
-                     r_State <= IDLE;
+                     r_State <= IDLE;           // Send the player to an Idle state at death
                  end
         default: r_State <= IDLE;
     endcase
 
-    assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;
+    assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not
     
 endmodule
