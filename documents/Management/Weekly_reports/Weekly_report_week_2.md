@@ -58,6 +58,7 @@ This table is designed based on the tasks defined in the [project_planning.md](.
 | 05 | Technical Specifications 	| 10/14/2024 	| 1 week 					| Technical Leader 	| On Time |
 | 06 | Test Plan 					| 10/21/2024 	| 2 weeks 					| Quality Assurance | On Time |
 | 07 | Test Cases 					| 10/21/2024 	| 2 weeks 					| Quality Assurance | On Time |
+| 08 | User Manual 					| 10/21/2024 	| 2 weeks 					| Technical Writer 	| On Time |
 | 10 | Objectives Implementation 	| 10/16/2024 	| 1 week 					| Development Team 	| On Time |
 
 
