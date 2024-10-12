@@ -1,17 +1,17 @@
 module Memory #(
-    parameter INIT_FILE = ""
+    parameter INIT_FILE = "mem_init.txt"
 )(
     input i_Clk,
     input w_en,
     input r_en,
-    input [3:0] w_addr,
-    input [3:0] r_addr,
+    input [4:0] w_addr,
+    input [4:0] r_addr,
     input [7:0] w_data,
 
     output reg [7:0] r_data,
 );
 
-    reg [7:0] mem [0:15];
+    reg [7:0] mem [0:31];
 
     always @(posedge i_Clk) 
     begin
@@ -26,6 +26,7 @@ module Memory #(
     end
     
     initial if (INIT_FILE) begin
-        $readmemh(INIT_FILE, mem);
+        $readmemb(INIT_FILE, mem);
+        $display(mem[9]);
     end
 endmodule

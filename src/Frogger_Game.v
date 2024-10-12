@@ -8,6 +8,14 @@ module Frogger_Game (
     input  i_Switch_3,
     input  i_Switch_4,
 
+    // input w_en,
+    input r_en,
+    // input [3:0] w_addr,
+    input [3:0] r_addr,
+    // input [7:0] w_data,
+
+    output reg [7:0] r_data,
+
     output o_VGA_HSync,
     output o_VGA_VSync,
     
@@ -59,16 +67,14 @@ wire                  w_Level_Up;
 
 wire            [5:0] w_Score;
 
-wire            [7:0] w_data;
-
     Memory #(.INIT_FILE("mem_init.txt")) test(
         .i_Clk(i_Clk),
-        .w_en(1'b0),
-        .r_en(1'b1),
-        // .w_addr(1'h0),
-        .r_addr(4'b0000),
-        // .w_data(8'b0),
-        .r_data(w_data)
+        .w_en(w_en),
+        .r_en(r_en),
+        .w_addr(w_addr),
+        .r_addr(r_addr),
+        .w_data(w_data),
+        .r_data(r_data)
     );
 
     LFSR #(.NUM_BITS(NUM_BITS)) RandomGenerator (
