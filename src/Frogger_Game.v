@@ -109,13 +109,13 @@ wire [7:0] w_test_data = r_data;
         .o_Switch(w_Switch_4)
     );
 
-    Frog_Movement #(.c_SCORE_INI(c_SCORE_INI),
-                    .c_X_BASE_POSITION(c_X_BASE_POSITION),
-                    .c_Y_BASE_POSITION(c_Y_BASE_POSITION),
-                    .COUNT_LIMIT(COUNT_LIMIT),
-                    .TILE_SIZE(TILE_SIZE),
-                    .V_VISIBLE_AREA(V_VISIBLE_AREA),
-                    .H_VISIBLE_AREA(H_VISIBLE_AREA)) Frog_Movement_Inst(
+    Character_Control #(.c_SCORE_INI(c_SCORE_INI),
+                        .c_X_BASE_POSITION(c_X_BASE_POSITION),
+                        .c_Y_BASE_POSITION(c_Y_BASE_POSITION),
+                        .COUNT_LIMIT(COUNT_LIMIT),
+                        .TILE_SIZE(TILE_SIZE),
+                        .V_VISIBLE_AREA(V_VISIBLE_AREA),
+                        .H_VISIBLE_AREA(H_VISIBLE_AREA)) Frog_Movement_Inst(
         .i_Clk(i_Clk),
         .i_Has_Collided(w_Has_Collided),
         .i_Frog_Up(w_Switch_1),
@@ -190,7 +190,7 @@ wire [7:0] w_test_data = r_data;
         .o_Car_X_3(w_Car4_X_Position),
     );
 
-    Segment_Display Score_Inst(
+    Seven_Segments_Display Score_Inst(
         .i_Clk(i_Clk),
         .i_Score(w_Score),
         .o_Segment_A(o_Segment1_A),

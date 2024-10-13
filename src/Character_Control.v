@@ -1,7 +1,7 @@
 // This module handle all the movements of the frog (Player). 
 // It includes Up, Down, Left, Right. It also set the respawn 
 // coordinates when you reach the top screen or hit a car.
-module Frog_Movement #(
+module Character_Control #(
     parameter c_SCORE_INI       = 1,
     parameter c_X_BASE_POSITION = 320,
     parameter c_Y_BASE_POSITION = 384,

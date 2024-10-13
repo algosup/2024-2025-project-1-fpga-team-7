@@ -1,7 +1,7 @@
 // This module show the score on the board by using the 7 segments.
 // The first one would be for the tens and the second one for the units.
 // It uses the score incremented in Frog_Movement.v as input.
-module Segment_Display (
+module Seven_Segments_Display (
   // Clock
   input        i_Clk,
 
