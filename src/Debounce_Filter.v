@@ -1,6 +1,6 @@
 // This module avoids what is called Rebounce when a button is pressed.
 // Avoid to click many times at once by accident.
-module Debounce_Filter #(parameter c_DEBOUNCE_LIMIT = 250000)(
+module Debounce_Filter #(parameter C_DEBOUNCE_LIMIT = 250000)(
   input  i_Clk, 
   input  i_Switch, 
   output o_Switch,
@@ -14,10 +14,10 @@ module Debounce_Filter #(parameter c_DEBOUNCE_LIMIT = 250000)(
 
   always @(posedge i_Clk)
   begin
-    if (i_Switch !== r_State && r_Count < c_DEBOUNCE_LIMIT)
+    if (i_Switch !== r_State && r_Count < C_DEBOUNCE_LIMIT)
       r_Count <= r_Count + 1;
 
-    else if (r_Count == c_DEBOUNCE_LIMIT)
+    else if (r_Count == C_DEBOUNCE_LIMIT)
     begin
       r_State <= i_Switch;
       r_Count <= 0;
