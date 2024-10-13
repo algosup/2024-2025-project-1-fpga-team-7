@@ -3,7 +3,7 @@
 module Debounce_Filter #(parameter C_DEBOUNCE_LIMIT = 250000)(
   input  i_Clk, 
   input  i_Switch, 
-  output o_Switch,
+  output o_Switch
 );
   
   // The counter is used to wait and cancel rebounces

@@ -8,7 +8,7 @@ module Character_Control #(
     parameter COUNT_LIMIT       = 3125000,
     parameter TILE_SIZE         = 32,
     parameter V_VISIBLE_AREA    = 480,
-    parameter H_VISIBLE_AREA    = 640,
+    parameter H_VISIBLE_AREA    = 640
     )(
     // Clock
     input            i_Clk,

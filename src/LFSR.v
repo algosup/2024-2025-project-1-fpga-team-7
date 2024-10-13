@@ -19,7 +19,7 @@ module LFSR #(
     input  [NUM_BITS-1:0] i_Seed_Data,
  
     output [NUM_BITS-1:0] o_LFSR_Data,
-    output                o_LFSR_Done,
+    output                o_LFSR_Done
 );
  
     reg    [NUM_BITS:1]   r_LFSR      = 0;

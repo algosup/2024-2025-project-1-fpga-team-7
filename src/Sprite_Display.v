@@ -13,7 +13,7 @@ module Sprite_Display #(
     // Clock
     input        i_Clk,
 
-    // input  [7:0] i_Color,
+    input  [7:0] i_Color,
 
     // Frog (Player) left corner position
     input  [9:0] i_X_Position,
@@ -36,7 +36,7 @@ module Sprite_Display #(
     // VGA Colors
     output       o_VGA_Red_2,
     output       o_VGA_Grn_2,
-    output       o_VGA_Blu_2,
+    output       o_VGA_Blu_2
 );
 
 reg [9:0] r_h_counter = 0; // Horizontal counter

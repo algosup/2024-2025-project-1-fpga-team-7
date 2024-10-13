@@ -8,11 +8,11 @@ module Frogger_Game (
     input  i_Switch_3,
     input  i_Switch_4,
 
-    // input i_write_en,
+    input i_write_en,
     input i_read_en,
-    // input [3:0] i_write_addr,
-    input [3:0] i_read_addr,
-    // input [7:0] i_write_data,
+    input [4:0] i_write_addr,
+    input [4:0] i_read_addr,
+    input [7:0] i_write_data,
 
     output reg [7:0] o_read_data,
 
@@ -39,7 +39,7 @@ module Frogger_Game (
     output o_Segment2_D,
     output o_Segment2_E,
     output o_Segment2_F,
-    output o_Segment2_G,
+    output o_Segment2_G
 );
 
 reg                   r_State;
@@ -82,39 +82,33 @@ wire [5:0]            w_Score;
         .i_write_addr(i_write_addr),
         .i_read_addr(i_read_addr),
         .i_write_data(i_write_data),
-        .o_read_data(o_read_data)
-    );
+        .o_read_data(o_read_data));
 
     LFSR #(.NUM_BITS(NUM_BITS)) LFSR_Inst(
         .i_Clk(i_Clk),
         .i_Enable(1'b1),
         .o_LFSR_Data(w_LFSR_Data),
-        .o_LFSR_Done(w_LFSR_Done),
-    );
+        .o_LFSR_Done(w_LFSR_Done));
 
     Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_1(
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_1), 
-        .o_Switch(w_Switch_1)
-    );
+        .o_Switch(w_Switch_1));
 
     Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_2(
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_2), 
-        .o_Switch(w_Switch_2)
-    );
+        .o_Switch(w_Switch_2));
 
     Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_3(
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_3), 
-        .o_Switch(w_Switch_3)
-    );
+        .o_Switch(w_Switch_3));
 
     Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_4(
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_4), 
-        .o_Switch(w_Switch_4)
-    );
+        .o_Switch(w_Switch_4));
 
     Character_Control #(.C_SCORE_INI(C_SCORE_INI),
                         .C_X_BASE_POSITION(C_X_BASE_POSITION),
@@ -133,8 +127,7 @@ wire [5:0]            w_Score;
         .o_Score(w_Score),
         .o_Level_Up(w_Level_Up),
         .o_Frog_X(w_X_Position),
-        .o_Frog_Y(w_Y_Position),
-    );
+        .o_Frog_Y(w_Y_Position));
 
     Sprite_Display #(.TILE_SIZE(TILE_SIZE),
                      .H_VISIBLE_AREA(H_VISIBLE_AREA),
@@ -161,8 +154,7 @@ wire [5:0]            w_Score;
         .o_VGA_VSync(o_VGA_VSync),
         .o_VGA_Blu_2(o_VGA_Blu_2),
         .o_VGA_Grn_2(o_VGA_Grn_2),
-        .o_VGA_Red_2(o_VGA_Red_2),
-    );
+        .o_VGA_Red_2(o_VGA_Red_2));
 
     Collisions #(.TILE_SIZE(TILE_SIZE),
                  .C_NB_CARS(C_NB_CARS))Collisions_Inst(
@@ -177,8 +169,7 @@ wire [5:0]            w_Score;
         .i_Car3_Y(w_Car3_Y_Position),
         .i_Car4_X(w_Car4_X_Position),
         .i_Car4_Y(w_Car4_Y_Position),
-        .o_Has_Collided(w_Has_Collided),
-    );
+        .o_Has_Collided(w_Has_Collided));
     
     Obstacles_Movement #(.C_X_BASE_CAR_POSITION(C_X_BASE_CAR_POSITION),
                          .C_X_REVERSE_BASE_CAR_POSITION(C_X_REVERSE_BASE_CAR_POSITION),
@@ -194,8 +185,7 @@ wire [5:0]            w_Score;
         .o_Car_X_0(w_Car1_X_Position),
         .o_Car_X_1(w_Car2_X_Position),
         .o_Car_X_2(w_Car3_X_Position),
-        .o_Car_X_3(w_Car4_X_Position),
-    );
+        .o_Car_X_3(w_Car4_X_Position));
 
     Seven_Segments_Display Seven_Segments_Display_Inst(
         .i_Clk(i_Clk),
@@ -213,8 +203,7 @@ wire [5:0]            w_Score;
         .o_Segment2_D(o_Segment2_D),
         .o_Segment2_E(o_Segment2_E),
         .o_Segment2_F(o_Segment2_F),
-        .o_Segment2_G(o_Segment2_G),
-    );
+        .o_Segment2_G(o_Segment2_G));
 
     //State Machine
     always @(posedge i_Clk)

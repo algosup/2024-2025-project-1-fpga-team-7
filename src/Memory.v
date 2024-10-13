@@ -8,7 +8,7 @@ module Memory #(
     input      [4:0] i_read_addr,
     input      [7:0] i_write_data,
 
-    output reg [7:0] o_read_data,
+    output reg [7:0] o_read_data
 );
 
     reg [7:0] r_mem [0:31];
