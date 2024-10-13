@@ -15,7 +15,8 @@ module Memory #(
 
     always @(posedge i_Clk) 
     begin
-        if (w_en == 1'b1) begin 
+        if (w_en == 1'b1) 
+        begin 
             mem[w_addr] <= w_data;
         end
         //  Read from memory
@@ -25,8 +26,8 @@ module Memory #(
         end
     end
     
-    initial if (INIT_FILE) begin
+    initial if (INIT_FILE) 
+    begin
         $readmemb(INIT_FILE, mem);
-        $display(mem[9]);
     end
 endmodule

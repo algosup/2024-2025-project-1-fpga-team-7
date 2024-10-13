@@ -66,6 +66,7 @@ wire                  w_LFSR_Done;
 wire                  w_Level_Up;
 
 wire            [5:0] w_Score;
+wire [7:0] w_test_data = r_data;
 
     Memory #(.INIT_FILE("mem_init.txt")) test(
         .i_Clk(i_Clk),
@@ -138,6 +139,7 @@ wire            [5:0] w_Score;
                      .V_FRONT_PORCH(V_FRONT_PORCH),
                      .V_SYNC_PULSE(V_SYNC_PULSE)) Sprite_Display_Inst(
         .i_Clk(i_Clk),
+        // .i_Color(r_data),
         .X_Position(w_X_Position),
         .Y_Position(w_Y_Position),
         .Car_1X_Position(w_Car1_X_Position),

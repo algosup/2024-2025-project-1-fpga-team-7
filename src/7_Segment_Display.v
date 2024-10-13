@@ -26,10 +26,10 @@ module Segment_Display (
   output       o_Segment2_F,
   output       o_Segment2_G);
 
-  reg [6:0]    i_Binary_Num    = 7'd0;    // Store units 
-  reg [6:0]    i_Binary_Num2   = 7'd0;    // Store tens
-  reg [6:0]    r_Hex_Encoding;            // Use to activate segments separately
-  reg [6:0]    r_Hex_Encoding2;
+  reg    [6:0] i_Binary_Num    = 7'd0;    // Store units 
+  reg    [6:0] i_Binary_Num2   = 7'd0;    // Store tens
+  reg    [6:0] r_Hex_Encoding;            // Use to activate segments separately
+  reg    [6:0] r_Hex_Encoding2;
 
 // Loop to activate segments corresponding to the decimal value
   always @(posedge i_Clk)

@@ -25,7 +25,7 @@ module Frog_Movement #(
     input            i_Game_Active,
 
     output reg       o_Draw_Frog,
-    output reg       o_Level_Up   = 0,
+    output reg       o_Level_Up                    = 0,
 
     // Variable storing score
     output reg [5:0] o_Score = c_SCORE_INI,

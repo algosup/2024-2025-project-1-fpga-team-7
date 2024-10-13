@@ -1,6 +1,6 @@
 module Collisions #(
-    parameter TILE_SIZE = 32,
-    parameter c_NB_CARS = 1
+    parameter   TILE_SIZE = 32,
+    parameter   c_NB_CARS = 1
 )(
     input  wire i_Clk,
 
@@ -19,10 +19,11 @@ module Collisions #(
     input  wire [8:0] i_Car4_Y,
 
     // Is there a collision or not
-    output reg o_Has_Collided
+    output reg        o_Has_Collided
 );
 
-always @(posedge i_Clk) begin
+always @(posedge i_Clk) 
+begin
     // Check if the frog's top-left corner is within the car's boundaries
     if (((i_Frog_X >= i_Car1_X) && (i_Frog_X < (i_Car1_X + TILE_SIZE)) &&
         (i_Frog_Y >= i_Car1_Y) && (i_Frog_Y < (i_Car1_Y + TILE_SIZE)) ||
