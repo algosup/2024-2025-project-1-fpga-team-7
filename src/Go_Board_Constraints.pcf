@@ -62,44 +62,44 @@ set_io -nowarn io_PMOD_1 65
 set_io -nowarn io_PMOD_2 64
 set_io -nowarn io_PMOD_3 63
 set_io -nowarn io_PMOD_4 62
-set_io -nowarn r_addr[4] 78
-set_io -nowarn w_addr[4] 79
-set_io -nowarn r_data[6] 80
-set_io -nowarn r_data[7] 81
 
 ## Memory Pins
 
 ### Enable
 
-set_io -nowarn w_en 66
-set_io -nowarn r_en 68
+set_io -nowarn i_write_en 66
+set_io -nowarn i_read_en 68
 
 ### Addresses
 
-set_io -nowarn w_addr[0] 69
-set_io -nowarn w_addr[1] 71
-set_io -nowarn w_addr[2] 72
-set_io -nowarn w_addr[3] 82
+set_io -nowarn i_write_addr[0] 69
+set_io -nowarn i_write_addr[1] 71
+set_io -nowarn i_write_addr[2] 72
+set_io -nowarn i_write_addr[3] 82
+set_io -nowarn i_write_addr[4] 79
 
-set_io -nowarn r_addr[0] 83
-set_io -nowarn r_addr[1] 85
-set_io -nowarn r_addr[2] 86
-set_io -nowarn r_addr[3] 87
+set_io -nowarn i_read_addr[0] 83
+set_io -nowarn i_read_addr[1] 85
+set_io -nowarn i_read_addr[2] 86
+set_io -nowarn i_read_addr[3] 87
+set_io -nowarn i_read_addr[4] 78
 
 ### Datas
 
-set_io -nowarn w_data[0] 89
-set_io -nowarn w_data[1] 34
-set_io -nowarn w_data[2] 7
-set_io -nowarn w_data[3] 9
-set_io -nowarn w_data[4] 10
-set_io -nowarn w_data[5] 12
-set_io -nowarn w_data[6] 13
-set_io -nowarn w_data[7] 16
+set_io -nowarn i_write_data[0] 89
+set_io -nowarn i_write_data[1] 34
+set_io -nowarn i_write_data[2] 7
+set_io -nowarn i_write_data[3] 9
+set_io -nowarn i_write_data[4] 10
+set_io -nowarn i_write_data[5] 12
+set_io -nowarn i_write_data[6] 13
+set_io -nowarn i_write_data[7] 16
 
-set_io -nowarn r_data[0] 18
-set_io -nowarn r_data[1] 19
-set_io -nowarn r_data[2] 20
-set_io -nowarn r_data[3] 21
-set_io -nowarn r_data[4] 24
-set_io -nowarn r_data[5] 25
+set_io -nowarn o_read_data[0] 18
+set_io -nowarn o_read_data[1] 19
+set_io -nowarn o_read_data[2] 20
+set_io -nowarn o_read_data[3] 21
+set_io -nowarn o_read_data[4] 24
+set_io -nowarn o_read_data[5] 25
+set_io -nowarn o_read_data[6] 80
+set_io -nowarn o_read_data[7] 81

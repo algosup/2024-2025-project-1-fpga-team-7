@@ -8,13 +8,13 @@ module Frogger_Game (
     input  i_Switch_3,
     input  i_Switch_4,
 
-    // input w_en,
-    input r_en,
-    // input [3:0] w_addr,
-    input [3:0] r_addr,
-    // input [7:0] w_data,
+    // input i_write_en,
+    input i_read_en,
+    // input [3:0] i_write_addr,
+    input [3:0] i_read_addr,
+    // input [7:0] i_write_data,
 
-    output reg [7:0] r_data,
+    output reg [7:0] o_read_data,
 
     output o_VGA_HSync,
     output o_VGA_VSync,
@@ -51,12 +51,19 @@ wire                  w_Switch_2;
 wire                  w_Switch_3;
 wire                  w_Switch_4;
 
-wire                  w_All_Switch = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
+wire                  w_All_Switch       = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
 
-wire            [9:0] w_Y_Position, w_X_Position;
+wire [9:0]            w_Y_Position; 
+wire [9:0]            w_X_Position;
 
-wire            [8:0] w_Car1_Y_Position = c_LINE_1_Y, w_Car2_Y_Position = c_LINE_2_Y, w_Car3_Y_Position = c_LINE_3_Y, w_Car4_Y_Position = c_LINE_4_Y;
-wire            [9:0] w_Car1_X_Position, w_Car2_X_Position, w_Car3_X_Position, w_Car4_X_Position; 
+wire [8:0]            w_Car1_Y_Position  = c_LINE_1_Y;
+wire [8:0]            w_Car2_Y_Position  = c_LINE_2_Y;
+wire [8:0]            w_Car3_Y_Position  = c_LINE_3_Y;
+wire [8:0]            w_Car4_Y_Position  = c_LINE_4_Y;
+wire [9:0]            w_Car1_X_Position;
+wire [9:0]            w_Car2_X_Position;
+wire [9:0]            w_Car3_X_Position;
+wire [9:0]            w_Car4_X_Position; 
 
 wire                  w_Has_Collided;
 
@@ -65,45 +72,45 @@ wire                  w_LFSR_Done;
 
 wire                  w_Level_Up;
 
-wire            [5:0] w_Score;
-wire [7:0] w_test_data = r_data;
+wire [5:0]            w_Score;
+// wire [7:0] w_test_data = r_data;
 
-    Memory #(.INIT_FILE("mem_init.txt")) test(
+    Memory #(.INIT_FILE("mem_init.txt")) Memory_Inst(
         .i_Clk(i_Clk),
-        .w_en(w_en),
-        .r_en(r_en),
-        .w_addr(w_addr),
-        .r_addr(r_addr),
-        .w_data(w_data),
-        .r_data(r_data)
+        .w_en(i_write_en),
+        .r_en(i_read_en),
+        .w_addr(i_write_addr),
+        .r_addr(i_read_addr),
+        .w_data(i_write_data),
+        .r_data(o_read_data)
     );
 
-    LFSR #(.NUM_BITS(NUM_BITS)) RandomGenerator (
+    LFSR #(.NUM_BITS(NUM_BITS)) LFSR_Inst(
         .i_Clk(i_Clk),
         .i_Enable(1'b1),
         .o_LFSR_Data(w_LFSR_Data),
         .o_LFSR_Done(w_LFSR_Done),
     );
 
-    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_1_Inst(
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_1(
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_1), 
         .o_Switch(w_Switch_1)
     );
 
-    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_2_Inst(
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_2(
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_2), 
         .o_Switch(w_Switch_2)
     );
 
-    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_3_Inst(
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_3(
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_3), 
         .o_Switch(w_Switch_3)
     );
 
-    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_4_Inst(
+    Debounce_Filter #(.c_DEBOUNCE_LIMIT(c_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_4(
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_4), 
         .o_Switch(w_Switch_4)
@@ -115,7 +122,7 @@ wire [7:0] w_test_data = r_data;
                         .COUNT_LIMIT(COUNT_LIMIT),
                         .TILE_SIZE(TILE_SIZE),
                         .V_VISIBLE_AREA(V_VISIBLE_AREA),
-                        .H_VISIBLE_AREA(H_VISIBLE_AREA)) Frog_Movement_Inst(
+                        .H_VISIBLE_AREA(H_VISIBLE_AREA)) Character_Control_Inst(
         .i_Clk(i_Clk),
         .i_Has_Collided(w_Has_Collided),
         .i_Frog_Up(w_Switch_1),
@@ -158,7 +165,7 @@ wire [7:0] w_test_data = r_data;
     );
 
     Collisions #(.TILE_SIZE(TILE_SIZE),
-                 .c_NB_CARS(c_NB_CARS))Car(
+                 .c_NB_CARS(c_NB_CARS))Collisions_Inst(
         .i_Clk(i_Clk),
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
@@ -179,7 +186,7 @@ wire [7:0] w_test_data = r_data;
                          .H_VISIBLE_AREA(H_VISIBLE_AREA),
                          .TILE_SIZE(TILE_SIZE),
                          .c_NB_CARS(c_NB_CARS),
-                         .NUM_BITS(NUM_BITS)) MovCar(
+                         .NUM_BITS(NUM_BITS)) Obstacles_Movement_Inst(
         .i_Clk(i_Clk),
         .i_Level_Up(w_Level_Up),
         .i_Score(w_Score),
@@ -190,7 +197,7 @@ wire [7:0] w_test_data = r_data;
         .o_Car_X_3(w_Car4_X_Position),
     );
 
-    Seven_Segments_Display Score_Inst(
+    Seven_Segments_Display Seven_Segments_Display_Inst(
         .i_Clk(i_Clk),
         .i_Score(w_Score),
         .o_Segment_A(o_Segment1_A),
