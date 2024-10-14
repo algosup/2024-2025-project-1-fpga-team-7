@@ -455,6 +455,8 @@ A sprite has several attributes :
 
 As already said, all the sprites will be loaded in memory before the game execution thanks to a binary file generated from a Bitmap file using a very simple Python program.
 
+### III. Code files architecture
+
 #### 1. Base files
 
 - **apio.ini**  
