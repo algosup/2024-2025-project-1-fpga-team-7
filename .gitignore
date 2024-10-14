@@ -118,3 +118,5 @@ compile.sh
 *.json
 *.DS_store
 *abc.history
+
+.vscode/
