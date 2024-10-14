@@ -17,6 +17,9 @@
 
 </summary>
 
+- [Technical Specifications](#technical-specifications)
+      - [*Last Update on October 13th, 2024*](#last-update-on-october-13th-2024)
+- [Table of Contents](#table-of-contents)
   - [Document Purpose](#document-purpose)
   - [Document Audience](#document-audience)
 - [The Project](#the-project)
@@ -43,11 +46,10 @@
       - [3. The Memory Management](#3-the-memory-management)
       - [4. VGA Display Process](#4-vga-display-process)
       - [5. Sprite Encoding and Display](#5-sprite-encoding-and-display)
-    - [III. Code files architecture](#iii-code-files-architecture)
       - [1. Base files](#1-base-files)
       - [2. Independent Modules](#2-independent-modules)
-        - [VGA related modules](#vga-related-modules)
-        - [Switch related modules](#switch-related-modules)
+        - [VGA-related modules](#vga-related-modules)
+        - [Switch-related modules](#switch-related-modules)
         - [Seven segments display related module](#seven-segments-display-related-module)
         - [Pseudo-Random generator module](#pseudo-random-generator-module)
       - [3. Game algorithm module](#3-game-algorithm-module)
@@ -92,11 +94,11 @@ This student project, given by [ALGOSUP](https://github.com/algosup), is about c
 | Role | Name | Author of |
 |---|---|---|
 | Project Manager   | [Laurent BOUQUIN](https://github.com/laurentbouquin) | Project Planning |
-| Program Manager   | [Pavlo PRENDI](https://github.com/PavloPrendi) | [Functional Specification](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specifications/Functional_specification.md) |
-| Technical Leader  | [Benoît DE KEYN](https://github.com/benoitdekeyn) | [Technical Specification](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Technical_specifications/Technical_specification.md) |
-| Software Engineer | [Maxime THIZEAU](https://github.com/MaximeTAlgosup) | Source Code |
-| Software Engineer | [Tino GABET](https://github.com/Furimizu) | Source Code |
-| Quality Assurance | [Paul NOWAK](https://github.com/PaulNowak36) | [Test Plan](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Quality_assurance/test_plan.md) |
+| Program Manager   | [Pavlo PRENDI](https://github.com/PavloPrendi) | [Functional Specifications](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Functional_specifications/Functional_specifications.md) |
+| Technical Leader  | [Benoît DE KEYN](https://github.com/benoitdekeyn) | [Technical Specifications](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Technical_specifications/Technical_specifications.md) |
+| Software Engineer | [Maxime THIZEAU](https://github.com/MaximeTAlgosup) | [Source Code](https://github.com/algosup/2024-2025-project-1-fpga-team-7/tree/main/src) |
+| Software Engineer | [Tino GABET](https://github.com/Furimizu) | [Source Code](https://github.com/algosup/2024-2025-project-1-fpga-team-7/tree/main/src) |
+| Quality Assurance | [Paul NOWAK](https://github.com/PaulNowak36) | [Test Plan](https://github.com/algosup/2024-2025-project-1-fpga-team-7/blob/main/documents/Quality_assurance/Test_plan.md) |
 | Technical Writer  | [Thomas PLANCHARD](https://github.com/thomas-planchard) | User Manual |
 
 
