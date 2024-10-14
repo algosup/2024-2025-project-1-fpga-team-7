@@ -17,9 +17,6 @@
 
 </summary>
 
-- [Technical Specifications](#technical-specifications)
-      - [*Last Update on October 13th, 2024*](#last-update-on-october-13th-2024)
-- [Table of Contents](#table-of-contents)
   - [Document Purpose](#document-purpose)
   - [Document Audience](#document-audience)
 - [The Project](#the-project)
@@ -46,6 +43,7 @@
       - [3. The Memory Management](#3-the-memory-management)
       - [4. VGA Display Process](#4-vga-display-process)
       - [5. Sprite Encoding and Display](#5-sprite-encoding-and-display)
+    - [III. Code files architecture](#iii-code-files-architecture)
       - [1. Base files](#1-base-files)
       - [2. Independent Modules](#2-independent-modules)
         - [VGA-related modules](#vga-related-modules)
@@ -57,9 +55,9 @@
         - [Game logic module](#game-logic-module)
         - [Game design module](#game-design-module)
     - [IV. Coding conventions](#iv-coding-conventions)
-      - [Indentation](#indentation)
-      - [Comments](#comments)
-      - [Naming](#naming)
+      - [1. Indentation](#1-indentation)
+      - [2. Comments](#2-comments)
+      - [3. Naming](#3-naming)
 - [Glossary](#glossary)
 
 </details>
@@ -540,7 +538,7 @@ These modules contain all the code directly related to the game logic and handli
 
 When coding in Verilog, it's important to keep the code clean and readable. Here are some conventions to follow :
 
-#### Indentation
+#### 1. Indentation
   - **Tabulation** - Use **4 spaces** for statement indentation.  
   
   - **Alignment** - When declaring multiple in/output, reg, wire, parameter, assign, ...  
@@ -548,7 +546,7 @@ When coding in Verilog, it's important to keep the code clean and readable. Here
   
   - **begin/end** - In a statement, the 'begin' keyword should be indented, **underneath** the statement declaration. As well, the 'end' keyword should be aligned with the 'begin' keyword, alone on the last line of the statement.  
   
-#### Comments
+#### 2. Comments
   - Use comments to **explain** the code  
   
   - The comments should be placed **before** the code they explain.  
@@ -559,7 +557,7 @@ When coding in Verilog, it's important to keep the code clean and readable. Here
   
   - For each module, describe how to use the module, its purpose, the inputs and outputs, and the global behavior of the module.  
   
-#### Naming
+#### 3. Naming
   - **Module** - The names of the modules are given [here](#iii-code-files-architecture). The name of the file is also the name of the module (aside '.v').  
   
   - **Instances** - The name of the instance of a module should be the same as the module name, with a suffix ```_Inst_X``` where X is the numbering.  
@@ -588,11 +586,9 @@ This glossary is here to help to understand the technical vocabulary of this doc
 | FPGA | A field-programmable gate array (FPGA) is a type of programmable microcontroller, where you can program only the components you need to create your integrated circuit. FPGAs are often used in custom-made products and in research and development. Other applications for FPGAs include aerospace or industrial sectors, due to their flexibility, high signal processing speed, and parallel processing abilities. |
 | Verilog | Verilog is one of the languages used to program FPGAs. |
 | VGA | Video Graphics Array (VGA) is a standard for video display controller first introduced with the IBM PS/2 line of computers in 1987. |
-| Lattice iCE40 - HX1K | The Lattice iCE40 is a family of FPGAs developed by Lattice Semiconductor. The HX1K is the smallest model of this family. |
 | Go Board | The Go Board is a development board based on the Lattice iCE40 FPGA. |
 | Sprite | A sprite is a two-dimensional image or animation that is integrated into a larger scene. |
 | APIO | APIO is a tool that allows you to synthesize and upload Verilog code to an FPGA. |
-| Binary file | A binary file is a computer file that is not a text file. It may contain data in a binary format that is only understood by the computer. |
-| Bitmap file | A bitmap file is an image file format used to store digital images. |
+| Bitmap file | A bitmap file is an image file format used to store digital pictures with a very simple binary encoding. |
 | Debounce | Debouncing is the process of removing noise from a signal. In this context, it is used to remove noise from the switch signal. |
 
