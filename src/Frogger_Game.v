@@ -53,7 +53,7 @@ wire                  w_Switch_4;
 
 wire                  w_All_Switch       = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
 
-wire [9:0]            w_Y_Position; 
+wire [8:0]            w_Y_Position; 
 wire [9:0]            w_X_Position;
 
 wire [8:0]            w_Car1_Y_Position  = C_LINE_1_Y;
@@ -156,8 +156,7 @@ wire [5:0]            w_Score;
         .o_VGA_Grn_2(o_VGA_Grn_2),
         .o_VGA_Red_2(o_VGA_Red_2));
 
-    Collisions #(.TILE_SIZE(TILE_SIZE),
-                 .C_NB_CARS(C_NB_CARS))Collisions_Inst(
+    Collisions #(.TILE_SIZE(TILE_SIZE))Collisions_Inst(
         .i_Clk(i_Clk),
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
@@ -176,7 +175,6 @@ wire [5:0]            w_Score;
                          .C_BASE_CAR_SPEED(C_BASE_CAR_SPEED),
                          .H_VISIBLE_AREA(H_VISIBLE_AREA),
                          .TILE_SIZE(TILE_SIZE),
-                         .C_NB_CARS(C_NB_CARS),
                          .NUM_BITS(NUM_BITS)) Obstacles_Movement_Inst(
         .i_Clk(i_Clk),
         .i_Level_Up(w_Level_Up),

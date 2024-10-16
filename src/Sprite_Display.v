@@ -17,7 +17,7 @@ module Sprite_Display #(
 
     // Frog (Player) left corner position
     input  [9:0] i_X_Position,
-    input  [9:0] i_Y_Position,
+    input  [8:0] i_Y_Position,
 
     // Frog (Player) left corner position
     input  [9:0] i_Car_1X_Position,
@@ -88,7 +88,6 @@ end
 task Car_Display;
     input  [9:0]    i_Car_X_Position;
     input  [9:0]    i_Car_Y_Position;
-    input  [3:0]    C_NB_CARS;
     input  [7:0]    i_Color;
     begin
         if (((r_v_counter >= i_Car_Y_Position) && (r_v_counter < (i_Car_Y_Position + TILE_SIZE))) &&

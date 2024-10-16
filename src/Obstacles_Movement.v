@@ -4,7 +4,6 @@ module Obstacles_Movement#(
     parameter C_BASE_CAR_SPEED              = 781250,
     parameter H_VISIBLE_AREA                = 640,
     parameter TILE_SIZE                     = 32,
-    parameter C_NB_CARS                     = 4,  // Adjusted to allow flexibility for number of cars
     parameter NUM_BITS                      = 4
 )(
     input                     i_Clk,
@@ -16,11 +15,6 @@ module Obstacles_Movement#(
     output reg [9:0]          o_Car_X_2   = C_X_BASE_CAR_POSITION + 2 * (TILE_SIZE),
     output reg [9:0]          o_Car_X_3   = C_X_BASE_CAR_POSITION + 3 * (TILE_SIZE)
 );
-
-    reg [9:0]            r_New_Car_X_0; 
-    reg [9:0]            r_New_Car_X_1; 
-    reg [9:0]            r_New_Car_X_2; 
-    reg [9:0]            r_New_Car_X_3;
 
     reg [NUM_BITS - 1:0] r_Reverse;
     reg [19:0]           r_Count      = 0; // Global counter for movement timing
@@ -83,33 +77,20 @@ module Obstacles_Movement#(
         if (r_Count == r_Car_Speed) 
         begin
             // Update Car 0
-            Update_Car_Position(o_Car_X_0, r_Reverse[0], 2, r_New_Car_X_0);  // Car 0 speed multiplier = 2
-            Check_Car_Boundary(r_New_Car_X_0, r_Reverse[0], r_New_Car_X_0);  // Adjust for boundary
-            o_Car_X_0 <= r_New_Car_X_0;  // Assign the updated value back
+            Update_Car_Position(o_Car_X_0, r_Reverse[0], 2, o_Car_X_0);  // Car 0 speed multiplier = 2
+            Check_Car_Boundary(o_Car_X_0, r_Reverse[0], o_Car_X_0);  // Adjust for boundary
 
-            // Update Car 1 if more cars exist
-            if (C_NB_CARS > 1) 
-            begin
-                Update_Car_Position(o_Car_X_1, r_Reverse[1], 4, r_New_Car_X_1);  // Car 1 speed multiplier = 4
-                Check_Car_Boundary(r_New_Car_X_1, r_Reverse[1], r_New_Car_X_1);  // Adjust for boundary
-                o_Car_X_1 <= r_New_Car_X_1;  // Assign the updated value back
-            end
+            // Update Car 1 
+            Update_Car_Position(o_Car_X_1, r_Reverse[1], 4, o_Car_X_1);  // Car 1 speed multiplier = 4
+            Check_Car_Boundary(o_Car_X_1, r_Reverse[1], o_Car_X_1);  // Adjust for boundary
 
-            // Update Car 2 if more cars exist
-            if (C_NB_CARS > 2) 
-            begin
-                Update_Car_Position(o_Car_X_2, r_Reverse[2], 2, r_New_Car_X_2);  // Car 2 speed multiplier = 2
-                Check_Car_Boundary(r_New_Car_X_2, r_Reverse[2], r_New_Car_X_2);  // Adjust for boundary
-                o_Car_X_2 <= r_New_Car_X_2;  // Assign the updated value back
-            end
+            // Update Car 2
+            Update_Car_Position(o_Car_X_2, r_Reverse[2], 2, o_Car_X_2);  // Car 2 speed multiplier = 2
+            Check_Car_Boundary(o_Car_X_2, r_Reverse[2], o_Car_X_2);  // Adjust for boundary
 
-            // Update Car 3 if more cars exist
-            if (C_NB_CARS > 3) 
-            begin
-                Update_Car_Position(o_Car_X_3, r_Reverse[3], 1, r_New_Car_X_3);  // Car 3 speed multiplier = 1
-                Check_Car_Boundary(r_New_Car_X_3, r_Reverse[3], r_New_Car_X_3);  // Adjust for boundary
-                o_Car_X_3 <= r_New_Car_X_3;  // Assign the updated value back
-            end
+            // Update Car 3
+            Update_Car_Position(o_Car_X_3, r_Reverse[3], 1, o_Car_X_3);  // Car 3 speed multiplier = 1
+            Check_Car_Boundary(o_Car_X_3, r_Reverse[3], o_Car_X_3);  // Adjust for boundary
 
             r_Count <= 0;  // Reset counter after updating positions
         end 

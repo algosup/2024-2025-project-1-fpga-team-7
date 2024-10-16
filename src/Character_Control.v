@@ -32,7 +32,7 @@ module Character_Control #(
 
     // Left corner of the frog (Player)
     output reg [9:0] o_Frog_X = C_X_BASE_POSITION,
-    output reg [9:0] o_Frog_Y = C_Y_BASE_POSITION 
+    output reg [8:0] o_Frog_Y = C_Y_BASE_POSITION 
 );
 
     wire       w_Frog_En;

@@ -12,6 +12,13 @@ module Memory #(
 );
 
     reg [7:0] r_mem [0:31];
+    
+    initial if (INIT_FILE) 
+    begin
+        $readmemb(INIT_FILE, r_mem);
+    end
+
+    
 
     always @(posedge i_Clk) 
     begin
@@ -26,8 +33,5 @@ module Memory #(
         end
     end
     
-    initial if (INIT_FILE) 
-    begin
-        $readmemb(INIT_FILE, r_mem);
-    end
+    
 endmodule
