@@ -187,14 +187,7 @@ wire [5:0]            w_Score;
         .o_Segment_D(o_Segment1_D),
         .o_Segment_E(o_Segment1_E),
         .o_Segment_F(o_Segment1_F),
-        .o_Segment_G(o_Segment1_G),
-        .o_Segment2_A(o_Segment2_A),
-        .o_Segment2_B(o_Segment2_B),
-        .o_Segment2_C(o_Segment2_C),
-        .o_Segment2_D(o_Segment2_D),
-        .o_Segment2_E(o_Segment2_E),
-        .o_Segment2_F(o_Segment2_F),
-        .o_Segment2_G(o_Segment2_G));
+        .o_Segment_G(o_Segment1_G));
 
     //State Machine
     always @(posedge i_Clk)
