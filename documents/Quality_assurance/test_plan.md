@@ -3,7 +3,7 @@
 | Author        | Paul NOWAK (Q.A.) |
 |---------------|------------|
 | Created       | 09/28/2024 |
-| Last Modified | 10/11/2024 |
+| Last Modified | 10/16/2024 |
 | Number of Test Cases written| 70 |
 | Number of Test Cases completed| 0 |
 | Document Deadline | 10/21/2024 |
@@ -220,15 +220,43 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 
 ### 3.3.Stress Testing
 
-Check for performance degradation when cars appear in large numbers (max load on cars).
+| Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
+| --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
+| Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
 
-Ensuring that even under heavy car generation, random positioning still happens without delay.
+| Several Buttons at the same time| Check the game's behavior and performance while the player press several buttons at the same time.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
 
-Check what happaned when the frog hits a moving cars from its back + performance.
+| Typing while Freeze| Check the game's behavior and performance when the player presses 1 to 3 buttons simultaneously while the game is frozen after the frog death, and before the game restart. | 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
+| Frog Hits Car's Back| Check the game's behavior and performance when the frog move towards the back of a moving car and they collide while both are moving in the same direction. Both direction should be checked.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
+| Car Chase Frog| Check the game's behavior and performance when the frog move while being chased by a moving frog from behind and they collide while both are moving in the same direction. Both direction should be checked.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
+| Frog to Bottom Wall| Check the game's behavior and performance while the player make the frog go to the bottom of the screen.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
+| Frog to Left Wall| Check the game's behavior and performance while the player make the frog go to the left limit of the screen.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
+| Frog to Right Wall| Check the game's behavior and performance while the player make the frog go to the right limit of the screen.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
+| Huge Loading Environment| Try playing the game and check its behavior and performance while several applications and software are loaded in parallel, creating a difficult loading environment.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
+| Low Battery| Try playing the game and check its behavior and performance while the computer's battery is lower than 20%.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
 
 ### 3.4.Hardware Testing
 
+| Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
+| --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
+| Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
+| Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
 ### 3.5.User Interface Testing
+
+| Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
+| --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
+| Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
+| Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
 
 ### 3.6.Regression Testing
 
