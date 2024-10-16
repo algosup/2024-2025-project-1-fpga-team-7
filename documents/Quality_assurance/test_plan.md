@@ -222,61 +222,64 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
-| Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
-| Several Buttons at the same time| Check the game's behavior and performance while the player press several buttons at the same time.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
+| Several Buttons at the Same Time| Check the game's behavior and performance while the player press several buttons at the same time.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
 | Typing while Freeze| Check the game's behavior and performance when the player presses 1 to 3 buttons simultaneously while the game is frozen after the frog death, and before the game restart. | 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
 | Frog Hits Car's Back| Check the game's behavior and performance when the frog move towards the back of a moving car and they collide while both are moving in the same direction. Both direction should be checked.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
 | Car Chase Frog| Check the game's behavior and performance when the frog move while being chased by a moving frog from behind and they collide while both are moving in the same direction. Both direction should be checked.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
 | Frog to Bottom Wall| Check the game's behavior and performance while the player make the frog go to the bottom of the screen.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
 | Frog to Left Wall| Check the game's behavior and performance while the player make the frog go to the left limit of the screen.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
 | Frog to Right Wall| Check the game's behavior and performance while the player make the frog go to the right limit of the screen.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
 | Huge Loading Environment| Try playing the game and check its behavior and performance while several applications and software are loaded in parallel, creating a difficult loading environment.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
 | Low Battery| Try playing the game and check its behavior and performance while the computer's battery is lower than 20%.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Low     |
 
 ### 3.4.Hardware Testing
 
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
-| Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
 | FPGA Module Connection| Check if the FPGA Module connects well to the computer.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
-
 | Target Hardware| Make sure the game runs correctly on the specific hardware (Go Board with an ICE40 FPGA).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
-
 | FPGA Module Upload| Check if the uploading FPGA Module update correctly the expected program to the game's logic.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
-
 | Left Button Switch| Check if the game responds correctly to the Left Button trigger of the FPGA module. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
-
 | Right Button Switch| Check if the game responds correctly to the Right Button trigger of the FPGA module. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
-
 | Up Button Switch| Check if the game responds correctly to the Up Button trigger of the FPGA module. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
-
 | Down Button Switch| Check if the game responds correctly to the Down Button trigger of the FPGA module. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
-
 | All Buttons Switches| Check if the game responds correctly when the player trigger all 4 buttons of the FPGA module simultaneously. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
-
 | 7-Segment Display| Make sure the 7-segment display of the FPGA module are functionnal.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
-
 | Level Counter Display| Make sure the 7-segment display the correct number from 1 to the max level when the player progresses throughout the levels. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
-
 | FPGA Ressources| Check if the FPGA’s resources (like LUTs, memory) are not being over-utilized.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Low     |
 
 ### 3.5.User Interface Testing
 
+#### Frog U.I.
+
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
-| Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+| Frog Sprite Display| Make sure the game displays correctly the frog's sprite on the screen.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+| Frog Movement Display| Make sure the game displays correctly the frog's movement on the screen when the player trigger a movement input. All 4 directions (Left, Right, Up and Down) must be tested.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+| Frog Orientation Display| Make sure the game displays correctly the frog's orientation on the screen when the player trigger a movement input different from the frog's current direction. All 4 directions (Left, Right, Up and Down) must be tested.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+| Frog Walking Animation Display| Make sure the game displays correctly the frog's walking animation on the screen while its moving.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Low     |
 
-| Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+#### Car U.I.
+
+| Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
+| --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
+| Car Sprite Display| Make sure the game displays correctly the car's sprite on the screen. This case must be tested for each of the car's possible directions (Left and Right).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+| Car Movement Display| Make sure the game displays correctly the car's movement while driving on the screen, from Right to Left and from Left to Right, and that its movement is straight and smooth.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+| Car Driving Animation Display| Make sure the game displays correctly the car's driving animation on the screen, from Right to Left and from Left to Right.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Low     |
+| Car Appearance Display| Make sure the game displays correctly the car sprite's progressive appearance from the left or right edge of the screen, and that its movement is straight and smooth.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+| Car Disappearance Display| Make sure the game displays correctly the car sprite's progressive fading when reaching the left or right edge of the screen, and that its movement is straight and smooth.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     
+
+#### Other U.I.
+
+| Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
+| --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
+| Score Display| Ensure the Score is correctly displayed at the top of the screen.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+| Score Update Display| Ensure the Score's update is correctly visible and changed with a low latency (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+| Game Freeze Display | Make sure the frog is shown at its starting point, the cars are displayed to new random locations, and everything look frozen if the player dies.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+| Game Unfreeze Display | Make sure that once the player restart the game, the game doesn't appear frozen anymore, the cars are shown moving, and the frog can be moved.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+| Game Cleared Message Displayed| Make sure that once the player finish the entire game, the "Good job !" message is correctly displayed on the screen with a short latency (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Low     |
+| Lane Display| Make sure the game displays correctly a lane on the screen.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+| Road Display| Make sure the game displays correctly 5 lanes side by side on the screen, forming a road.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
 
 ### 3.6.Regression Testing
 
