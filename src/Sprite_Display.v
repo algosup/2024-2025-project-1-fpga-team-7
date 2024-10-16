@@ -1,4 +1,3 @@
-// This module display the sprites and white squares we use. WIP
 module Sprite_Display #(
     parameter TILE_SIZE      = 32,
     parameter H_VISIBLE_AREA = 640,
@@ -9,17 +8,15 @@ module Sprite_Display #(
     parameter H_SYNC_PULSE   = 96,
     parameter V_FRONT_PORCH  = 10,
     parameter V_SYNC_PULSE   = 2
-    )(
+)(
     // Clock
     input        i_Clk,
-
-    input  [7:0] i_Color,
 
     // Frog (Player) left corner position
     input  [9:0] i_X_Position,
     input  [9:0] i_Y_Position,
 
-    // Frog (Player) left corner position
+    // Car positions
     input  [9:0] i_Car_1X_Position,
     input  [8:0] i_Car_1Y_Position,
     input  [9:0] i_Car_2X_Position,
@@ -132,7 +129,7 @@ begin
             (r_h_counter >= i_X_Position && r_h_counter < i_X_Position + TILE_SIZE))
         begin
             // Calculate the address in the frog sprite memory
-            frog_sprite_addr <= (r_v_counter - i_Y_Position) * TILE_SIZE + (r_h_counter - i_X_Position);
+            frog_sprite_addr <= ((r_v_counter - i_Y_Position) * TILE_SIZE) + (r_h_counter - i_X_Position);
             frog_read_en <= 1'b1;  // Enable read
 
             // Map 9-bit frog_pixel_data to RGB
@@ -145,18 +142,15 @@ begin
             frog_read_en <= 1'b0;  // Disable frog memory read when outside its area
         end
 
-        // Display Car Sprite 1 (You can replicate this for other cars)
+        // Display Car Sprite 1
         if ((r_v_counter >= i_Car_1Y_Position && r_v_counter < i_Car_1Y_Position + TILE_SIZE) &&
             (r_h_counter >= i_Car_1X_Position && r_h_counter < i_Car_1X_Position + TILE_SIZE))
-             begin
-            // Calculate the address in the car sprite memory
-            car_sprite_addr <= (r_v_counter - i_Car_1Y_Position) * TILE_SIZE + (r_h_counter - i_Car_1X_Position);
-            car_read_en <= 1'b1;  // Enable read
-
-            // Map 9-bit car_pixel_data to RGB
-            r_red   <= car_pixel_data[8:6];  // Top 3 bits for Red
-            r_green <= car_pixel_data[5:3];  // Middle 3 bits for Green
-            r_blue  <= car_pixel_data[2:0];  // Bottom 3 bits for Blue
+        begin
+            car_sprite_addr <= ((r_v_counter - i_Car_1Y_Position) * TILE_SIZE) + (r_h_counter - i_Car_1X_Position);
+            car_read_en <= 1'b1;
+            r_red   <= car_pixel_data[8:6];
+            r_green <= car_pixel_data[5:3];
+            r_blue  <= car_pixel_data[2:0];
         end
         else
         begin
