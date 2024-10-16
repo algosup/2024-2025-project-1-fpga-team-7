@@ -28,7 +28,7 @@ module Frog_Movement #(
     output reg       o_Level_Up   = 0,
 
     // Variable storing score
-    output reg [6:0] o_Score      = c_SCORE_INI,
+    output reg [5:0] o_Score = c_SCORE_INI,
 
     // Left corner of the frog (Player)
     output reg [9:0] o_Frog_X     = c_X_BASE_POSITION,

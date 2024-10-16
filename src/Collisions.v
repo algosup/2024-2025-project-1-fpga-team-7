@@ -10,13 +10,13 @@ module Collisions #(
 
     // Cars left corner
     input  wire [9:0] i_Car1_X,
-    input  wire [9:0] i_Car1_Y,
+    input  wire [8:0] i_Car1_Y,
     input  wire [9:0] i_Car2_X,
-    input  wire [9:0] i_Car2_Y,
+    input  wire [8:0] i_Car2_Y,
     input  wire [9:0] i_Car3_X,
-    input  wire [9:0] i_Car3_Y,
+    input  wire [8:0] i_Car3_Y,
     input  wire [9:0] i_Car4_X,
-    input  wire [9:0] i_Car4_Y,
+    input  wire [8:0] i_Car4_Y,
 
     // Is there a collision or not
     output reg o_Has_Collided
