@@ -73,16 +73,7 @@ wire                  w_LFSR_Done;
 wire                  w_Level_Up;
 
 wire [5:0]            w_Score;
-// wire [7:0] w_test_data = o_read_data;
 
-    Memory #(.INIT_FILE("mem_init.txt")) Memory_Inst(
-        .i_Clk(i_Clk),
-        .i_write_en(i_write_en),
-        .i_read_en(i_read_en),
-        .i_write_addr(i_write_addr),
-        .i_read_addr(i_read_addr),
-        .i_write_data(i_write_data),
-        .o_read_data(o_read_data));
 
     LFSR #(.NUM_BITS(NUM_BITS)) LFSR_Inst(
         .i_Clk(i_Clk),
