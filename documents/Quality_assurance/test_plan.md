@@ -240,7 +240,7 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 
 | Huge Loading Environment| Try playing the game and check its behavior and performance while several applications and software are loaded in parallel, creating a difficult loading environment.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
 
-| Low Battery| Try playing the game and check its behavior and performance while the computer's battery is lower than 20%.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+| Low Battery| Try playing the game and check its behavior and performance while the computer's battery is lower than 20%.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Low     |
 
 ### 3.4.Hardware Testing
 
@@ -248,7 +248,27 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
 | Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
 
-| Temp| Template sentence| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+| FPGA Module Connection| Check if the FPGA Module connects well to the computer.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+
+| Target Hardware| Make sure the game runs correctly on the specific hardware (Go Board with an ICE40 FPGA).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+
+| FPGA Module Upload| Check if the uploading FPGA Module update correctly the expected program to the game's logic.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+
+| Left Button Switch| Check if the game responds correctly to the Left Button trigger of the FPGA module. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+
+| Right Button Switch| Check if the game responds correctly to the Right Button trigger of the FPGA module. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+
+| Up Button Switch| Check if the game responds correctly to the Up Button trigger of the FPGA module. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+
+| Down Button Switch| Check if the game responds correctly to the Down Button trigger of the FPGA module. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+
+| All Buttons Switches| Check if the game responds correctly when the player trigger all 4 buttons of the FPGA module simultaneously. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Medium     |
+
+| 7-Segment Display| Make sure the 7-segment display of the FPGA module are functionnal.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+
+| Level Counter Display| Make sure the 7-segment display the correct number from 1 to the max level when the player progresses throughout the levels. Also ensure the latency is low (e.g. < 200ms).| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     High     |
+
+| FPGA Ressources| Check if the FPGA’s resources (like LUTs, memory) are not being over-utilized.| 5 |    1. Inst.<br /> 2. Inst.<br /> 3. Inst. <br /> 4. Inst. <br /> 5. Inst.|    Inst  |     TO BE TESTED.       |     Low     |
 
 ### 3.5.User Interface Testing
 
