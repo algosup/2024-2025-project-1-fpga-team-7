@@ -332,7 +332,24 @@ Furthermore, we have decided to avoid to work on these features:
 
 ## 5.Hardware Requirements
 
+Since this project is programmed exclusively for the FPGA module, we will require specific hardware to upload and execute the code effectively.
+
+First, a Go Board is essential. This board includes a USB port for connecting to a device, four switches for player movement control, two 7-segment displays to show the level counter, and a VGA connector to output the game on a computer screen. Additionally, it incorporates an FPGA chip, which is necessary for utilizing LUTs (Look-Up Tables) and Flip-Flops for logic operations.
+
+Next, we will need either a flipbook or mapbook to carry out the project tests. The program should be compatible with both Apple and Microsoft devices to ensure cross-platform functionality.
+
+Finally, a secondary computer will be required to display the game through a full HD VGA screen and establish a connection to the FPGA module.
+
 ## 6.Environment Requirements
+
+A robust programming environment is crucial to conducting tests smoothly and efficiently.
+
+To begin, we utilize VS Code for writing the program and GitHub for version control and collaboration within the team.
+
+However, additional software tools are required for specific testing tasks. These include:
+
+- A tool to monitor the game's framerate and overall performance
+- A simulator, such as EDA Playground, to facilitate testbench execution and verify the code functionality in a controlled environment.
 
 ## 7.Problem Reporting
 
