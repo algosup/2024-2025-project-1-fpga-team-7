@@ -21,7 +21,7 @@ module Frogger_Game (
     
     output o_VGA_Red_1,
     output o_VGA_Red_2,
-    output o_VGA_Red_1,
+    output o_VGA_Red_3,
     output o_VGA_Blu_1,
     output o_VGA_Blu_2,
     output o_VGA_Blu_3,
