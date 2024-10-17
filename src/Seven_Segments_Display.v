@@ -13,6 +13,7 @@ module Seven_Segments_Display(
   output      o_Segment_G);
 
   reg [6:0]    r_Hex_Encoding;
+  
   // Purpose: Creates a case statement for all possible input binary numbers.
   // Drives r_Hex_Encoding appropriately for each input combination.
   always @(posedge i_Clk)
@@ -39,5 +40,5 @@ module Seven_Segments_Display(
   assign o_Segment_E = ~r_Hex_Encoding[2];
   assign o_Segment_F = ~r_Hex_Encoding[1];
   assign o_Segment_G = ~r_Hex_Encoding[0];
-
+  
 endmodule
