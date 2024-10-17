@@ -43,6 +43,9 @@ module Sprite_Display #(
 
 );
 
+localparam CAR_SPRITE = "car_sprite.txt";
+localparam FROG_SPRITE = "frog_sprite.txt";
+
 reg [9:0] r_h_counter = 0; // Horizontal counter
 reg [9:0] r_v_counter = 0; // Vertical counter
 
@@ -57,29 +60,26 @@ reg  [9:0] car_sprite_addr;
 reg        frog_read_en, car_read_en;
 
 // Instantiate the Frog Memory
-Memory frog_memory (
+Memory #(.INIT_TXT_FILE(FROG_SPRITE)) frog_memory (
     .i_Clk(i_Clk),
     .i_write_en(1'b0),  // No writes during display
     .i_read_en(frog_read_en),
     .i_write_addr(10'b0),  // Not used during display
     .i_read_addr(frog_sprite_addr),
     .i_write_data(9'b0),   // Not used during display
-    .i_mem_select(1'b0),   // Select frog memory
     .o_read_data(frog_pixel_data)  // Output pixel data for frog
 );
 
 // Instantiate the Car Memory
-Memory car_memory (
+Memory #(.INIT_TXT_FILE(CAR_SPRITE)) car_memory (
     .i_Clk(i_Clk),
     .i_write_en(1'b0),  // No writes during display
     .i_read_en(car_read_en),
     .i_write_addr(10'b0),  // Not used during display
     .i_read_addr(car_sprite_addr),
     .i_write_data(9'b0),   // Not used during display
-    .i_mem_select(1'b1),   // Select car memory
     .o_read_data(car_pixel_data)  // Output pixel data for car
 );
-
 
 // Screen scanning logic
 always @(posedge i_Clk) 
@@ -121,35 +121,7 @@ begin
         r_vsync <= 1;
 end
 
-// task Display;
-//     input  [9:0]    i_Car_X_Position;
-//     input  [9:0]    i_Car_Y_Position;
-//     input  [3:0]    C_NB_CARS;
-//     input  [7:0]    i_Color;
-//     begin
-//         if (((r_v_counter >= i_Car_Y_Position) && (r_v_counter < (i_Car_Y_Position + TILE_SIZE))) &&
-//             ((r_h_counter >= i_Car_X_Position) && (r_h_counter < (i_Car_X_Position + TILE_SIZE))))
-//         begin
-//             r_red <= 3'b111;
-//             r_green <= 3'b000;
-//             r_blue <= 3'b111;
-//             // case (i_Color)
-//             //     0: 
-//             //     begin
-//             //         r_red <= 3'b111;
-//             //         r_green <= 3'b000;
-//             //         r_blue <= 3'b111;
-//             //     end
-//             //     default: 
-//             //     begin
-//             //         r_red <= 3'b111;  
-//             //         r_green <= 3'b111;
-//             //         r_blue <= 3'b111;
-//             //     end
-//             // endcase
-//         end
-//     end
-// endtask
+
 
 // Display logic
 always @(posedge i_Clk) 
