@@ -290,7 +290,24 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 
 ## 4.Features to not test
 
+Because the time granted of our project will be limited, we have no choice but to put aside some features. 
+
+Indeed, only the 1st part of Frogger, the road, will be present to our version of the game. So any game elements related to the River zone will be ommitted, such as: 
+
+- the floating bushes, and other moving platforms, which would allow the frog to reach the end of the level.
+- the possibility to drown, if the frog misses a moving platforms, which will result to a death.
+- bonuses to receive points, like a female frog hoping on the character's back, won't be present in our version.
+
+Furthermore, we have decided to avoid to work on these features: 
+
+- a life counter, which will display on screen the number of remaining lives, won't be added because the game will only have 1 life.
+- no sound nor music will be added, because they would be hard to program and consume too much memory.
+- there won't be any menu and neither a high score chart, as the game starts immediately when the program starts.
+- a Game Over screen has been considered, but it won't be added.
+
 ## 5.Hardware Requirements
+
+
 
 ## 6.Environment Requirements
 
