@@ -28,7 +28,7 @@ module Character_Control #(
     output reg       o_Level_Up                    = 0,
 
     // Variable storing score
-    output reg [5:0] o_Score = C_SCORE_INI,
+    output reg [3:0] o_Score = C_SCORE_INI,
 
     // Left corner of the frog (Player)
     output reg [9:0] o_Frog_X = C_X_BASE_POSITION,

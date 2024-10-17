@@ -26,14 +26,6 @@ set_io o_Segment1_E 90
 set_io o_Segment1_F 1
 set_io o_Segment1_G 2
 
-set_io o_Segment2_A 100
-set_io o_Segment2_B 99
-set_io o_Segment2_C 97
-set_io o_Segment2_D 95
-set_io o_Segment2_E 94
-set_io o_Segment2_F 8
-set_io o_Segment2_G 96
-
 ## UART Outputs
 
 set_io -nowarn i_UART_RX 73

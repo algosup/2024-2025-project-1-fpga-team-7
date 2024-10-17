@@ -1,6 +1,4 @@
 module Obstacles_Movement#(
-    parameter C_X_BASE_CAR_POSITION         = 0,
-    parameter C_X_REVERSE_BASE_CAR_POSITION = 608,
     parameter C_BASE_CAR_SPEED              = 781250,
     parameter H_VISIBLE_AREA                = 640,
     parameter TILE_SIZE                     = 32,
@@ -8,12 +6,12 @@ module Obstacles_Movement#(
 )(
     input                     i_Clk,
     input      [NUM_BITS-1:0] i_Reverse,
-    input      [5:0]          i_Score,
+    input      [3:0]          i_Score,
     input                     i_Level_Up,
-    output reg [9:0]          o_Car_X_0   = C_X_BASE_CAR_POSITION,
-    output reg [9:0]          o_Car_X_1   = C_X_BASE_CAR_POSITION + (TILE_SIZE),
-    output reg [9:0]          o_Car_X_2   = C_X_BASE_CAR_POSITION + 2 * (TILE_SIZE),
-    output reg [9:0]          o_Car_X_3   = C_X_BASE_CAR_POSITION + 3 * (TILE_SIZE)
+    output reg [9:0]          o_Car_X_0,
+    output reg [9:0]          o_Car_X_1     = (TILE_SIZE),
+    output reg [9:0]          o_Car_X_2     = 2 * (TILE_SIZE),
+    output reg [9:0]          o_Car_X_3     = 3 * (TILE_SIZE),
 );
 
     reg [NUM_BITS - 1:0] r_Reverse;

@@ -18,8 +18,6 @@ parameter RUNNING                       = 1'b1;
 
 
 // Obstacles constants
-parameter C_X_BASE_CAR_POSITION         = 1'b0;
-parameter C_X_REVERSE_BASE_CAR_POSITION = 608;
 parameter C_Y_BASE_CAR_POSITION         = 11;
 parameter C_BASE_CAR_SPEED              = 390625;
 parameter C_LINE_4_Y                    = 320;

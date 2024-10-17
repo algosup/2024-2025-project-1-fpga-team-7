@@ -32,14 +32,6 @@ module Frogger_Game (
     output o_Segment1_E,
     output o_Segment1_F,
     output o_Segment1_G,
-
-    output o_Segment2_A,
-    output o_Segment2_B,
-    output o_Segment2_C,
-    output o_Segment2_D,
-    output o_Segment2_E,
-    output o_Segment2_F,
-    output o_Segment2_G
 );
 
 reg                   r_State;
@@ -72,7 +64,7 @@ wire                  w_LFSR_Done;
 
 wire                  w_Level_Up;
 
-wire [5:0]            w_Score;
+wire [3:0]            w_Score;
 // wire [7:0] w_test_data = o_read_data;
 
     Memory #(.INIT_FILE("mem_init.txt")) Memory_Inst(
@@ -170,9 +162,7 @@ wire [5:0]            w_Score;
         .i_Car4_Y(w_Car4_Y_Position),
         .o_Has_Collided(w_Has_Collided));
     
-    Obstacles_Movement #(.C_X_BASE_CAR_POSITION(C_X_BASE_CAR_POSITION),
-                         .C_X_REVERSE_BASE_CAR_POSITION(C_X_REVERSE_BASE_CAR_POSITION),
-                         .C_BASE_CAR_SPEED(C_BASE_CAR_SPEED),
+    Obstacles_Movement #(.C_BASE_CAR_SPEED(C_BASE_CAR_SPEED),
                          .H_VISIBLE_AREA(H_VISIBLE_AREA),
                          .TILE_SIZE(TILE_SIZE),
                          .NUM_BITS(NUM_BITS)) Obstacles_Movement_Inst(
@@ -194,14 +184,7 @@ wire [5:0]            w_Score;
         .o_Segment_D(o_Segment1_D),
         .o_Segment_E(o_Segment1_E),
         .o_Segment_F(o_Segment1_F),
-        .o_Segment_G(o_Segment1_G),
-        .o_Segment2_A(o_Segment2_A),
-        .o_Segment2_B(o_Segment2_B),
-        .o_Segment2_C(o_Segment2_C),
-        .o_Segment2_D(o_Segment2_D),
-        .o_Segment2_E(o_Segment2_E),
-        .o_Segment2_F(o_Segment2_F),
-        .o_Segment2_G(o_Segment2_G));
+        .o_Segment_G(o_Segment1_G));
 
     //State Machine
     always @(posedge i_Clk)

@@ -66,8 +66,6 @@ begin
     end
 end
 
-
-
 always @(posedge i_Clk) 
 begin
     // HSYNC signal generation
@@ -85,9 +83,10 @@ begin
         r_vsync <= 1;
 end
 
-task Car_Display;
+task Display;
     input  [9:0]    i_Car_X_Position;
     input  [9:0]    i_Car_Y_Position;
+    input  [3:0]    C_NB_CARS;
     input  [7:0]    i_Color;
     begin
         if (((r_v_counter >= i_Car_Y_Position) && (r_v_counter < (i_Car_Y_Position + TILE_SIZE))) &&
@@ -116,26 +115,19 @@ endtask
 
 always @(posedge i_Clk) 
 begin
-    if (r_h_counter < H_VISIBLE_AREA && r_v_counter < V_VISIBLE_AREA) 
+    if (r_h_counter < H_VISIBLE_AREA && r_v_counter < V_VISIBLE_AREA)
     begin
-        // Print a white square from left corner (x;y)
-        if (((r_v_counter >= i_Y_Position) && (r_v_counter < i_Y_Position + (TILE_SIZE))) &&
-                ((r_h_counter >= i_X_Position) && (r_h_counter < i_X_Position + (TILE_SIZE))))
-        begin
-            r_red <= 3'b111;  
-            r_green <= 3'b111;
-            r_blue <= 3'b111;
-        end
-        else 
-        begin
-            r_red <= 3'b000;  
-            r_green <= 3'b000;
-            r_blue <= 3'b000;
-        end
-        Car_Display(i_Car_1X_Position, i_Car_1Y_Position, i_Color);
-        Car_Display(i_Car_2X_Position, i_Car_2Y_Position, i_Color);
-        Car_Display(i_Car_3X_Position, i_Car_3Y_Position, i_Color);
-        Car_Display(i_Car_4X_Position, i_Car_4Y_Position, i_Color);
+
+        r_red <= 3'b000;  
+        r_green <= 3'b000;
+        r_blue <= 3'b000;
+        
+        Display(i_Car_1X_Position, i_Car_1Y_Position, i_Color);
+        Display(i_Car_2X_Position, i_Car_2Y_Position, i_Color);
+        Display(i_Car_3X_Position, i_Car_3Y_Position, i_Color);
+        Display(i_Car_4X_Position, i_Car_4Y_Position, i_Color);
+        Display(i_X_Position, i_Y_Position, i_Color);
+
     end
 end
 
