@@ -31,9 +31,16 @@ module Sprite_Display #(
     output       o_VGA_VSync,
 
     // VGA Colors
+    output       o_VGA_Red_1,
     output       o_VGA_Red_2,
+    output       o_VGA_Red_3,
+    output       o_VGA_Grn_1,
     output       o_VGA_Grn_2,
-    output       o_VGA_Blu_2
+    output       o_VGA_Grn_3,
+    output       o_VGA_Blu_1,
+    output       o_VGA_Blu_2,
+    output       o_VGA_Blu_3,
+
 );
 
 reg [9:0] r_h_counter = 0; // Horizontal counter
@@ -199,9 +206,15 @@ end
 // Assign HSYNC, VSYNC, and VGA colors
 assign o_VGA_HSync = r_hsync;
 assign o_VGA_VSync = r_vsync;
-assign o_VGA_Red_2 = r_red[2];    // MSB of red signal
-assign o_VGA_Grn_2 = r_green[2];  // MSB of green signal
-assign o_VGA_Blu_2 = r_blue[2];   // MSB of blue signal
+assign o_VGA_Red_1 = r_red[0];    // LSB of red signal
+assign o_VGA_Red_2 = r_red[1];    // Middle bit of red signal
+assign o_VGA_Red_3 = r_red[2];    // MSB of red signal
+assign o_VGA_Grn_1 = r_green[0];  // LSB of green signal
+assign o_VGA_Grn_2 = r_green[1];  // Middle bit of green signal
+assign o_VGA_Grn_3 = r_green[2];  // MSB of green signal
+assign o_VGA_Blu_1 = r_blue[0];   // LSB of blue signal
+assign o_VGA_Blu_2 = r_blue[1];   // Middle bit of blue signal
+assign o_VGA_Blu_3 = r_blue[2];   // MSB of blue signal
 
 endmodule
 

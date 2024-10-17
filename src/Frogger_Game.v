@@ -19,11 +19,15 @@ module Frogger_Game (
     output o_VGA_HSync,
     output o_VGA_VSync,
     
+    output o_VGA_Red_1,
     output o_VGA_Red_2,
-
+    output o_VGA_Red_1,
+    output o_VGA_Blu_1,
     output o_VGA_Blu_2,
-
+    output o_VGA_Blu_3,
+    output o_VGA_Grn_1,
     output o_VGA_Grn_2,
+    output o_VGA_Grn_3,
 
     output o_Segment1_A,
     output o_Segment1_B,
@@ -143,9 +147,17 @@ wire [5:0]            w_Score;
         .i_Car_4Y_Position(w_Car4_Y_Position),
         .o_VGA_HSync(o_VGA_HSync),
         .o_VGA_VSync(o_VGA_VSync),
+        .o_VGA_Blu_1(o_VGA_Blu_1),
         .o_VGA_Blu_2(o_VGA_Blu_2),
+        .o_VGA_Blu_3(o_VGA_Blu_3),
+        .o_VGA_Grn_1(o_VGA_Grn_1),
         .o_VGA_Grn_2(o_VGA_Grn_2),
-        .o_VGA_Red_2(o_VGA_Red_2));
+        .o_VGA_Grn_3(o_VGA_Grn_3),
+        .o_VGA_Red_1(o_VGA_Red_1),
+        .o_VGA_Red_2(o_VGA_Red_2),
+        .o_VGA_Red_3(o_VGA_Red_3)
+        
+        );
 
     Collisions #(.TILE_SIZE(TILE_SIZE),
                  .C_NB_CARS(C_NB_CARS))Collisions_Inst(

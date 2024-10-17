@@ -44,17 +44,17 @@ set_io -nowarn o_UART_TX 74
 set_io o_VGA_HSync 26
 set_io o_VGA_VSync 27
 
-set_io -nowarn o_VGA_Red_0 36
-set_io -nowarn o_VGA_Red_1 37
-set_io -nowarn o_VGA_Red_2 40
+set_io -nowarn o_VGA_Red_1 36
+set_io -nowarn o_VGA_Red_2 37
+set_io -nowarn o_VGA_Red_3 40
 
-set_io -nowarn o_VGA_Grn_0 29
-set_io -nowarn o_VGA_Grn_1 30
-set_io -nowarn o_VGA_Grn_2 33
+set_io -nowarn o_VGA_Grn_1 29
+set_io -nowarn o_VGA_Grn_2 30
+set_io -nowarn o_VGA_Grn_3 33
 
-set_io -nowarn o_VGA_Blu_0 28
-set_io -nowarn o_VGA_Blu_1 41
-set_io -nowarn o_VGA_Blu_2 42
+set_io -nowarn o_VGA_Blu_1 28
+set_io -nowarn o_VGA_Blu_2 41
+set_io -nowarn o_VGA_Blu_3 42
 
 ## PMOD Signals
 
