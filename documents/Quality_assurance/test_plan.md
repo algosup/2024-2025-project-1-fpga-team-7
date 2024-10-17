@@ -33,10 +33,9 @@
 - [4.Features to not test](#4-features-to-not-test) 
 - [5.Hardware Requirements](#5-hardware-requirements) 
 - [6.Environment Requirements](#6-environment-requirements) 
-- [7.Test Schedule](#7-test-schedule) 
-- [8.Problem Reporting](#8-problem-reporting) 
-- [9.Risks & Assumptions](#9-risks-&-assumptions) 
-- [10.Approvals](#10-approvals) 
+- [7.Problem Reporting](#7-problem-reporting) 
+- [8.Risks & Assumptions](#8-risks-&-assumptions) 
+- [9.Approvals](#9-approvals) 
 
 </details>
 
@@ -48,7 +47,7 @@
 
 The goal of this project is to program a version of the famous game Frogger: it's a game where we play a frog attempting to cross a road and a river to join his home, and who must avoid certain obstacles like cars while trying to get the highest score possible.
 
-Furthermore, the main difficulty is to program this game for an FPGA module, using the Verilog programming language. Indeed, we will need to program the 
+Furthermore, the main difficulty is to program this game for an FPGA module, using the Verilog programming language. Indeed, we will need to program the game while testing it on the FPGA module and checking its performance.
 
 Concerning the game rules:
 - The frog must reach the end of the road to go to the next level, where he will be teleported back to its starting location. The player gets points after each level passed.
@@ -57,6 +56,8 @@ Concerning the game rules:
 - At each level, the difficulty will increase with the acceleration of the moving cars.
 - If the player collides with a car, it will trigger a death and he will be teleported back to level 1 at the starting point.
 - After a death, the game will be frozen and the player will need to push all 4 buttons simultaneously to restart the game.
+
+The project must be completed for October 25th 2024.
 
 ## 2.Testing Strategy
 The test cases will be separated in 6 different domain of testing. Indeed, we want to check each type individually to ensure their performance before testing the cases together.
@@ -300,6 +301,18 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 
 ### 3.6.Regression Testing
 
+Throughout the project, we will update the game many times, and the program will be different at each use. So new problems due to the update could occur, even influencing some test cases that have been declared completed.
+
+That's the reason we will perform bunches of testing between each update, and attempt to fix the bugs encountered after new updates.
+
+| Bunch of testing | Date of testing | Number of tests performed |  Number of bugs found (including the tests already completed)    |    Number of tests completed|  
+| --------- | ----------------- | -------------------- |    ---------------     |    --------    |
+| Bunch of testing n°1 | TBD  |  TBD   | TBD  | TBD  |
+| Bunch of testing n°2 | TBD  |  TBD   | TBD  | TBD  |
+| Bunch of testing n°3 | TBD  |  TBD   | TBD  | TBD  |
+| Bunch of testing n°4 | TBD  |  TBD   | TBD  | TBD  |
+| Bunch of testing n°5 | TBD  |  TBD   | TBD  | TBD  |
+
 ## 4.Features to not test
 
 Because the time granted of our project will be limited, we have no choice but to put aside some features. 
@@ -319,14 +332,10 @@ Furthermore, we have decided to avoid to work on these features:
 
 ## 5.Hardware Requirements
 
-
-
 ## 6.Environment Requirements
 
-## 7.Test Schedule
+## 7.Problem Reporting
 
-## 8.Problem Reporting
+## 8.Risks & Assumptions
 
-## 9.Risks & Assumptions
-
-## 10.Approvals
+## 9.Approvals
