@@ -28,7 +28,7 @@ module Seven_Segments_Display(
         4'b0111 : r_Hex_Encoding <= 7'h70;
         4'b1000 : r_Hex_Encoding <= 7'h7F;
         4'b1001 : r_Hex_Encoding <= 7'h7B;
-        4'b1010 : r_Hex_Encoding <= 7'h47;
+        default : r_Hex_Encoding <= 7'h47;
       endcase
     end
 
