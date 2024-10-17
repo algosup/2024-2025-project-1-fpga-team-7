@@ -57,27 +57,18 @@ wire [8:0] frog_pixel_data;
 wire [8:0] car_pixel_data;
 reg  [9:0] frog_sprite_addr;
 reg  [9:0] car_sprite_addr;
-reg        frog_read_en, car_read_en;
 
 // Instantiate the Frog Memory
 Memory #(.INIT_TXT_FILE(FROG_SPRITE)) frog_memory (
     .i_Clk(i_Clk),
-    .i_write_en(1'b0),  // No writes during display
-    .i_read_en(frog_read_en),
-    .i_write_addr(10'b0),  // Not used during display
     .i_read_addr(frog_sprite_addr),
-    .i_write_data(9'b0),   // Not used during display
     .o_read_data(frog_pixel_data)  // Output pixel data for frog
 );
 
 // Instantiate the Car Memory
 Memory #(.INIT_TXT_FILE(CAR_SPRITE)) car_memory (
     .i_Clk(i_Clk),
-    .i_write_en(1'b0),  // No writes during display
-    .i_read_en(car_read_en),
-    .i_write_addr(10'b0),  // Not used during display
     .i_read_addr(car_sprite_addr),
-    .i_write_data(9'b0),   // Not used during display
     .o_read_data(car_pixel_data)  // Output pixel data for car
 );
 
@@ -139,7 +130,6 @@ begin
         begin
             // Calculate the address in the frog sprite memory
             frog_sprite_addr <= ((r_v_counter - i_Y_Position) * TILE_SIZE) + (r_h_counter - i_X_Position);
-            frog_read_en <= 1'b1;  // Enable read
 
             // Map 9-bit frog_pixel_data to RGB
             r_red   <= frog_pixel_data[8:6];  // Top 3 bits for Red
@@ -147,9 +137,6 @@ begin
             r_blue  <= frog_pixel_data[2:0];  // Bottom 3 bits for Blue
         end
         else
-        begin
-            frog_read_en <= 1'b0;  // Disable frog memory read when outside its area
-        end
 
         // Display Car 1
         if ((r_v_counter >= i_Car_1Y_Position && r_v_counter < i_Car_1Y_Position + TILE_SIZE) &&
@@ -157,7 +144,6 @@ begin
         begin
             // The same sprite address range for all cars (0 to 1023)
             car_sprite_addr <= ((r_v_counter - i_Car_1Y_Position) * TILE_SIZE) + (r_h_counter - i_Car_1X_Position);
-            car_read_en <= 1'b1;
             r_red   <= car_pixel_data[8:6];
             r_green <= car_pixel_data[5:3];
             r_blue  <= car_pixel_data[2:0];
@@ -169,7 +155,6 @@ begin
         begin
             // The same sprite address range for all cars (0 to 1023)
             car_sprite_addr <= ((r_v_counter - i_Car_2Y_Position) * TILE_SIZE) + (r_h_counter - i_Car_2X_Position);
-            car_read_en <= 1'b1;
             r_red   <= car_pixel_data[8:6];
             r_green <= car_pixel_data[5:3];
             r_blue  <= car_pixel_data[2:0];
@@ -181,7 +166,6 @@ begin
         begin
             // The same sprite address range for all cars (0 to 1023)
             car_sprite_addr <= ((r_v_counter - i_Car_3Y_Position) * TILE_SIZE) + (r_h_counter - i_Car_3X_Position);
-            car_read_en <= 1'b1;
             r_red   <= car_pixel_data[8:6];
             r_green <= car_pixel_data[5:3];
             r_blue  <= car_pixel_data[2:0];
@@ -193,15 +177,10 @@ begin
         begin
             // The same sprite address range for all cars (0 to 1023)
             car_sprite_addr <= ((r_v_counter - i_Car_4Y_Position) * TILE_SIZE) + (r_h_counter - i_Car_4X_Position);
-            car_read_en <= 1'b1;
             r_red   <= car_pixel_data[8:6];
             r_green <= car_pixel_data[5:3];
             r_blue  <= car_pixel_data[2:0];
         end
-    end
-    else
-    begin
-        car_read_en <= 1'b0;  // Disable car memory read when outside its area
     end
 end
 
