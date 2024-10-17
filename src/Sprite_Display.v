@@ -18,13 +18,9 @@ module Sprite_Display #(
 
     // Car positions
     input  [9:0] i_Car_1X_Position,
-    input  [8:0] i_Car_1Y_Position,
     input  [9:0] i_Car_2X_Position,
-    input  [8:0] i_Car_2Y_Position,
     input  [9:0] i_Car_3X_Position,
-    input  [8:0] i_Car_3Y_Position,
     input  [9:0] i_Car_4X_Position,
-    input  [8:0] i_Car_4Y_Position,
 
     // VGA Visible Area detector (0 in both when in Visible Area)
     output       o_VGA_HSync,
@@ -139,44 +135,44 @@ begin
         else
 
         // Display Car 1
-        if ((r_v_counter >= i_Car_1Y_Position && r_v_counter < i_Car_1Y_Position + TILE_SIZE) &&
+        if ((r_v_counter >= C_LINE_1_Y && r_v_counter < C_LINE_1_Y + TILE_SIZE) &&
             (r_h_counter >= i_Car_1X_Position && r_h_counter < i_Car_1X_Position + TILE_SIZE))
         begin
             // The same sprite address range for all cars (0 to 1023)
-            car_sprite_addr <= ((r_v_counter - i_Car_1Y_Position) * TILE_SIZE) + (r_h_counter - i_Car_1X_Position);
+            car_sprite_addr <= ((r_v_counter - C_LINE_1_Y) * TILE_SIZE) + (r_h_counter - i_Car_1X_Position);
             r_red   <= car_pixel_data[8:6];
             r_green <= car_pixel_data[5:3];
             r_blue  <= car_pixel_data[2:0];
         end
 
         // Display Car 2
-        if ((r_v_counter >= i_Car_2Y_Position && r_v_counter < i_Car_2Y_Position + TILE_SIZE) &&
+        if ((r_v_counter >= C_LINE_2_Y && r_v_counter < C_LINE_2_Y + TILE_SIZE) &&
             (r_h_counter >= i_Car_2X_Position && r_h_counter < i_Car_2X_Position + TILE_SIZE))
         begin
             // The same sprite address range for all cars (0 to 1023)
-            car_sprite_addr <= ((r_v_counter - i_Car_2Y_Position) * TILE_SIZE) + (r_h_counter - i_Car_2X_Position);
+            car_sprite_addr <= ((r_v_counter - C_LINE_2_Y) * TILE_SIZE) + (r_h_counter - i_Car_2X_Position);
             r_red   <= car_pixel_data[8:6];
             r_green <= car_pixel_data[5:3];
             r_blue  <= car_pixel_data[2:0];
         end
 
         // Display Car 3
-        if ((r_v_counter >= i_Car_3Y_Position && r_v_counter < i_Car_3Y_Position + TILE_SIZE) &&
+        if ((r_v_counter >= C_LINE_3_Y && r_v_counter < C_LINE_3_Y + TILE_SIZE) &&
             (r_h_counter >= i_Car_3X_Position && r_h_counter < i_Car_3X_Position + TILE_SIZE))
         begin
             // The same sprite address range for all cars (0 to 1023)
-            car_sprite_addr <= ((r_v_counter - i_Car_3Y_Position) * TILE_SIZE) + (r_h_counter - i_Car_3X_Position);
+            car_sprite_addr <= ((r_v_counter - C_LINE_3_Y) * TILE_SIZE) + (r_h_counter - i_Car_3X_Position);
             r_red   <= car_pixel_data[8:6];
             r_green <= car_pixel_data[5:3];
             r_blue  <= car_pixel_data[2:0];
         end
 
         // Display Car 4
-        if ((r_v_counter >= i_Car_4Y_Position && r_v_counter < i_Car_4Y_Position + TILE_SIZE) &&
+        if ((r_v_counter >= C_LINE_4_Y && r_v_counter < C_LINE_4_Y + TILE_SIZE) &&
             (r_h_counter >= i_Car_4X_Position && r_h_counter < i_Car_4X_Position + TILE_SIZE))
         begin
             // The same sprite address range for all cars (0 to 1023)
-            car_sprite_addr <= ((r_v_counter - i_Car_4Y_Position) * TILE_SIZE) + (r_h_counter - i_Car_4X_Position);
+            car_sprite_addr <= ((r_v_counter - C_LINE_4_Y) * TILE_SIZE) + (r_h_counter - i_Car_4X_Position);
             r_red   <= car_pixel_data[8:6];
             r_green <= car_pixel_data[5:3];
             r_blue  <= car_pixel_data[2:0];

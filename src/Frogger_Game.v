@@ -50,10 +50,6 @@ wire                  w_All_Switch       = w_Switch_1 && w_Switch_2 && w_Switch_
 wire [8:0]            w_Y_Position; 
 wire [9:0]            w_X_Position;
 
-wire [8:0]            w_Car1_Y_Position  = C_LINE_1_Y;
-wire [8:0]            w_Car2_Y_Position  = C_LINE_2_Y;
-wire [8:0]            w_Car3_Y_Position  = C_LINE_3_Y;
-wire [8:0]            w_Car4_Y_Position  = C_LINE_4_Y;
 wire [9:0]            w_Car1_X_Position;
 wire [9:0]            w_Car2_X_Position;
 wire [9:0]            w_Car3_X_Position;
@@ -129,13 +125,9 @@ wire [3:0]            w_Score;
         .i_X_Position(w_X_Position),
         .i_Y_Position(w_Y_Position),
         .i_Car_1X_Position(w_Car1_X_Position),
-        .i_Car_1Y_Position(w_Car1_Y_Position),
         .i_Car_2X_Position(w_Car2_X_Position),
-        .i_Car_2Y_Position(w_Car2_Y_Position),
         .i_Car_3X_Position(w_Car3_X_Position),
-        .i_Car_3Y_Position(w_Car3_Y_Position),
         .i_Car_4X_Position(w_Car4_X_Position),
-        .i_Car_4Y_Position(w_Car4_Y_Position),
         .o_VGA_HSync(o_VGA_HSync),
         .o_VGA_VSync(o_VGA_VSync),
         .o_VGA_Blu_1(o_VGA_Blu_1),
@@ -155,13 +147,9 @@ wire [3:0]            w_Score;
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
         .i_Car1_X(w_Car1_X_Position),
-        .i_Car1_Y(w_Car1_Y_Position),                                       // Check collisions
         .i_Car2_X(w_Car2_X_Position),
-        .i_Car2_Y(w_Car2_Y_Position),
         .i_Car3_X(w_Car3_X_Position),
-        .i_Car3_Y(w_Car3_Y_Position),
         .i_Car4_X(w_Car4_X_Position),
-        .i_Car4_Y(w_Car4_Y_Position),
         .o_Has_Collided(w_Has_Collided));
     
     Obstacles_Movement #(.C_BASE_CAR_SPEED(C_BASE_CAR_SPEED),
