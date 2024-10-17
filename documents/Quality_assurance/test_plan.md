@@ -46,6 +46,18 @@
 
 ## 1.Objectives 
 
+The goal of this project is to program a version of the famous game Frogger: it's a game where we play a frog attempting to cross a road and a river to join his home, and who must avoid certain obstacles like cars while trying to get the highest score possible.
+
+Furthermore, the main difficulty is to program this game for an FPGA module, using the Verilog programming language. Indeed, we will need to program the 
+
+Concerning the game rules:
+- The frog must reach the end of the road to go to the next level, where he will be teleported back to its starting location. The player gets points after each level passed.
+- The player must use the different switch buttons from the FPGA module to progress through the game: Left, Right, Up and Down.
+- The player must avoid the moving car which came from the right and the left, while crossing through the different lanes.
+- At each level, the difficulty will increase with the acceleration of the moving cars.
+- If the player collides with a car, it will trigger a death and he will be teleported back to level 1 at the starting point.
+- After a death, the game will be frozen and the player will need to push all 4 buttons simultaneously to restart the game.
+
 ## 2.Testing Strategy
 The test cases will be separated in 6 different domain of testing. Indeed, we want to check each type individually to ensure their performance before testing the cases together.
 
