@@ -18,15 +18,12 @@ parameter RUNNING                       = 1'b1;
 
 
 // Obstacles constants
-parameter C_X_BASE_CAR_POSITION         = 1'b0;
-parameter C_X_REVERSE_BASE_CAR_POSITION = 608;
 parameter C_Y_BASE_CAR_POSITION         = 11;
 parameter C_BASE_CAR_SPEED              = 390625;
 parameter C_LINE_4_Y                    = 320;
 parameter C_LINE_3_Y                    = 256;
 parameter C_LINE_2_Y                    = 192;
 parameter C_LINE_1_Y                    = 128;
-parameter C_NB_CARS                     = 4;
 
 // VGA constants
 parameter H_VISIBLE_AREA                = 640;
@@ -46,4 +43,4 @@ parameter C_DEBOUNCE_LIMIT              = 250000;
 
 parameter COUNT_LIMIT                   = 3125000;
 
-parameter NUM_BITS                      = 4;
+parameter NUM_BITS                      = 4;                                                               // LFSR parameter

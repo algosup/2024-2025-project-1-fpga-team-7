@@ -39,8 +39,7 @@ module LFSR #(
         end
     end
  
-    // Create Feedback Polynomials.  Based on Application Note:
-    // http://www.xilinx.com/support/documentation/application_notes/xapp052.pdf
+    // Change pseudo-randomly the value of a register that is used as a random value.
     always @(*)
     begin
         case (NUM_BITS)

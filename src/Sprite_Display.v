@@ -14,7 +14,7 @@ module Sprite_Display #(
 
     // Frog (Player) left corner position
     input  [9:0] i_X_Position,
-    input  [9:0] i_Y_Position,
+    input  [8:0] i_Y_Position,
 
     // Car positions
     input  [9:0] i_Car_1X_Position,
@@ -121,10 +121,40 @@ begin
         r_vsync <= 1;
 end
 
+// task Display;
+//     input  [9:0]    i_Car_X_Position;
+//     input  [9:0]    i_Car_Y_Position;
+//     input  [3:0]    C_NB_CARS;
+//     input  [7:0]    i_Color;
+//     begin
+//         if (((r_v_counter >= i_Car_Y_Position) && (r_v_counter < (i_Car_Y_Position + TILE_SIZE))) &&
+//             ((r_h_counter >= i_Car_X_Position) && (r_h_counter < (i_Car_X_Position + TILE_SIZE))))
+//         begin
+//             r_red <= 3'b111;
+//             r_green <= 3'b000;
+//             r_blue <= 3'b111;
+//             // case (i_Color)
+//             //     0: 
+//             //     begin
+//             //         r_red <= 3'b111;
+//             //         r_green <= 3'b000;
+//             //         r_blue <= 3'b111;
+//             //     end
+//             //     default: 
+//             //     begin
+//             //         r_red <= 3'b111;  
+//             //         r_green <= 3'b111;
+//             //         r_blue <= 3'b111;
+//             //     end
+//             // endcase
+//         end
+//     end
+// endtask
+
 // Display logic
 always @(posedge i_Clk) 
 begin
-    if (r_h_counter < H_VISIBLE_AREA && r_v_counter < V_VISIBLE_AREA) 
+    if (r_h_counter < H_VISIBLE_AREA && r_v_counter < V_VISIBLE_AREA)
     begin
         // Default background color (black)
         r_red <= 3'b000;  

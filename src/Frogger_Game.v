@@ -36,14 +36,6 @@ module Frogger_Game (
     output o_Segment1_E,
     output o_Segment1_F,
     output o_Segment1_G,
-
-    output o_Segment2_A,
-    output o_Segment2_B,
-    output o_Segment2_C,
-    output o_Segment2_D,
-    output o_Segment2_E,
-    output o_Segment2_F,
-    output o_Segment2_G
 );
 
 reg                   r_State;
@@ -57,7 +49,7 @@ wire                  w_Switch_4;
 
 wire                  w_All_Switch       = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
 
-wire [9:0]            w_Y_Position; 
+wire [8:0]            w_Y_Position; 
 wire [9:0]            w_X_Position;
 
 wire [8:0]            w_Car1_Y_Position  = C_LINE_1_Y;
@@ -76,7 +68,8 @@ wire                  w_LFSR_Done;
 
 wire                  w_Level_Up;
 
-wire [5:0]            w_Score;
+wire [3:0]            w_Score;
+// wire [7:0] w_test_data = o_read_data;
 
 
     LFSR #(.NUM_BITS(NUM_BITS)) LFSR_Inst(
@@ -159,13 +152,12 @@ wire [5:0]            w_Score;
         
         );
 
-    Collisions #(.TILE_SIZE(TILE_SIZE),
-                 .C_NB_CARS(C_NB_CARS))Collisions_Inst(
+    Collisions #(.TILE_SIZE(TILE_SIZE))Collisions_Inst(
         .i_Clk(i_Clk),
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
         .i_Car1_X(w_Car1_X_Position),
-        .i_Car1_Y(w_Car1_Y_Position),
+        .i_Car1_Y(w_Car1_Y_Position),                                       // Check collisions
         .i_Car2_X(w_Car2_X_Position),
         .i_Car2_Y(w_Car2_Y_Position),
         .i_Car3_X(w_Car3_X_Position),
@@ -174,12 +166,9 @@ wire [5:0]            w_Score;
         .i_Car4_Y(w_Car4_Y_Position),
         .o_Has_Collided(w_Has_Collided));
     
-    Obstacles_Movement #(.C_X_BASE_CAR_POSITION(C_X_BASE_CAR_POSITION),
-                         .C_X_REVERSE_BASE_CAR_POSITION(C_X_REVERSE_BASE_CAR_POSITION),
-                         .C_BASE_CAR_SPEED(C_BASE_CAR_SPEED),
+    Obstacles_Movement #(.C_BASE_CAR_SPEED(C_BASE_CAR_SPEED),
                          .H_VISIBLE_AREA(H_VISIBLE_AREA),
                          .TILE_SIZE(TILE_SIZE),
-                         .C_NB_CARS(C_NB_CARS),
                          .NUM_BITS(NUM_BITS)) Obstacles_Movement_Inst(
         .i_Clk(i_Clk),
         .i_Level_Up(w_Level_Up),
@@ -206,15 +195,15 @@ wire [5:0]            w_Score;
     case (r_State)
         IDLE: if (w_All_Switch == 1'b1) 
               begin
-                  r_State <= RUNNING;
+                  r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
               end
         RUNNING: if (w_Has_Collided == 1'b1)
                  begin
-                     r_State <= IDLE;
+                     r_State <= IDLE;           // Send the player to an Idle state at death
                  end
         default: r_State <= IDLE;
     endcase
 
-    assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;
+    assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not
     
 endmodule
