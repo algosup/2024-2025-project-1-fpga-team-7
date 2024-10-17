@@ -67,8 +67,23 @@ wire                  w_LFSR_Done;
 wire                  w_Level_Up;
 
 wire [3:0]            w_Score;
-// wire [7:0] w_test_data = o_read_data;
 
+wire [9:0]            w_V_Counter;
+wire [9:0]            w_H_Counter;
+// wire [7:0] w_test_data = o_read_data;
+    VGA_Bridge #(.H_VISIBLE_AREA(H_VISIBLE_AREA),
+                 .V_VISIBLE_AREA(V_VISIBLE_AREA),
+                 .H_TOTAL(H_TOTAL),
+                 .V_TOTAL(V_TOTAL),
+                 .H_FRONT_PORCH(H_FRONT_PORCH),
+                 .H_SYNC_PULSE(H_SYNC_PULSE),
+                 .V_FRONT_PORCH(V_FRONT_PORCH),
+                 .V_SYNC_PULSE(V_SYNC_PULSE))VGA_Bridge_Inst(
+        .i_Clk(i_Clk),
+        .o_VGA_HSync(o_VGA_HSync),
+        .o_VGA_VSync(o_VGA_VSync),
+        .o_V_Counter(w_V_Counter),
+        .o_H_Counter(w_H_Counter));
 
     LFSR #(.NUM_BITS(NUM_BITS)) LFSR_Inst(
         .i_Clk(i_Clk),
@@ -117,14 +132,10 @@ wire [3:0]            w_Score;
 
     Sprite_Display #(.TILE_SIZE(TILE_SIZE),
                      .H_VISIBLE_AREA(H_VISIBLE_AREA),
-                     .V_VISIBLE_AREA(V_VISIBLE_AREA),
-                     .H_TOTAL(H_TOTAL),
-                     .V_TOTAL(V_TOTAL),
-                     .H_FRONT_PORCH(H_FRONT_PORCH),
-                     .H_SYNC_PULSE(H_SYNC_PULSE),
-                     .V_FRONT_PORCH(V_FRONT_PORCH),
-                     .V_SYNC_PULSE(V_SYNC_PULSE)) Sprite_Display_Inst(
+                     .V_VISIBLE_AREA(V_VISIBLE_AREA)) Sprite_Display_Inst(
         .i_Clk(i_Clk),
+        .i_H_Counter(w_H_Counter),
+        .i_V_Counter(w_V_Counter),
         // .i_Color(o_read_data),
         .i_X_Position(w_X_Position),
         .i_Y_Position(w_Y_Position),
@@ -136,8 +147,6 @@ wire [3:0]            w_Score;
         .i_Car_3Y_Position(w_Car3_Y_Position),
         .i_Car_4X_Position(w_Car4_X_Position),
         .i_Car_4Y_Position(w_Car4_Y_Position),
-        .o_VGA_HSync(o_VGA_HSync),
-        .o_VGA_VSync(o_VGA_VSync),
         .o_VGA_Blu_1(o_VGA_Blu_1),
         .o_VGA_Blu_2(o_VGA_Blu_2),
         .o_VGA_Blu_3(o_VGA_Blu_3),
