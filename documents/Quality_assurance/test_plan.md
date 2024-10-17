@@ -353,6 +353,34 @@ However, additional software tools are required for specific testing tasks. Thes
 
 ## 7.Problem Reporting
 
+In case of a bug encountered, here are the following tasks to follow:
+
+- Step 1: Describe the bug, where we examine what kind of issue it causes to our program.
+
+- Step 2: Analyze the bug, where we write down the conditions to perform the bug.
+
+- Step 3: Update the bug list, where we enter the causes and consequences of our bug as well as its history.
+
+- Step 4: Perform a strategy to attempt countering the problem and fix the issue. Help from other people could be required.
+
+- Step 5: Correct the issue, and make sure to test if the problem doesnt occur anymore.
+
 ## 8.Risks & Assumptions
 
+| Risks | Assumptions | 
+| ------| ----------- | 
+| Limited time and ressources for completing test cases | Prioritize what test cases must be completed first.  |
+| The game perform some crashes in some situations. | Ensure the FPGA's memory isnt overused.  |
+| The VGA screen has trouble displaying some elements of the game. | Certain sprites must be simplified to use less memory as possible.  |
+| Buttons may not respond consistently due to hardware bounce issues. | The debounce logic in the code is correctly implemented and tested for all buttons.  |
+| Difficulty debugging hardware-specific issues (e.g., slow execution on FPGA but not in simulation). | Simulation matches the FPGA's actual behavior closely, and FPGA tools provide sufficient insight into performance issues.  |
+
 ## 9.Approvals
+
+| Role | Name | Signature | Date |
+|---|---|---|---|
+| Project Manager | Laurent	BOUQUIN | TBD | TBD |
+| Program Manager | Pavlo Prendi | TBD | TBD|
+| Tech Lead | Benoit DE KEYN | TBD | TBD |
+| Software Developer | Tino	GABET | TBD | TBD |
+| Software Developer | Maxime THIZEAU |TBD | TBD|
