@@ -14,8 +14,6 @@ module Frogger_Game (
     input [4:0] i_read_addr,
     input [7:0] i_write_data,
 
-    output reg [7:0] o_read_data,
-
     output o_VGA_HSync,
     output o_VGA_VSync,
     
