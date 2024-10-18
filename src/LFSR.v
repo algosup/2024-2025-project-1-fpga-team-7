@@ -12,7 +12,6 @@ module LFSR #(
     parameter             NUM_BITS    = 4
     )(
     input                 i_Clk,
-    input                 i_Enable,
  
     output [NUM_BITS-1:0] o_LFSR_Data,
 );

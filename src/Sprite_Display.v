@@ -68,10 +68,10 @@ task Car_Display;
         if (((i_V_Counter >= i_Car_Y_Position) && (i_V_Counter <= (i_Car_Y_Position + TILE_SIZE))) &&
             ((i_H_Counter >= i_Car_X_Position) && (i_H_Counter <= (i_Car_X_Position + TILE_SIZE))))
         begin
-            car_sprite_addr = (i_T_Reverse) ? ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + (i_H_Counter - i_Car_X_Position) : ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + (TILE_SIZE - (i_H_Counter - i_Car_X_Position));
-            r_red   <= car_pixel_data[8:6];
-            r_green <= car_pixel_data[5:3];
-            r_blue  <= car_pixel_data[2:0];
+            car_sprite_addr <= (i_T_Reverse) ? ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + (TILE_SIZE - (i_H_Counter - i_Car_X_Position)) : ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + (i_H_Counter - i_Car_X_Position);
+            r_red           <= car_pixel_data[8:6];
+            r_green         <= car_pixel_data[5:3];
+            r_blue          <= car_pixel_data[2:0];
         end
     end
 endtask
