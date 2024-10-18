@@ -86,12 +86,12 @@ begin
     if (i_H_Counter < H_VISIBLE_AREA && i_V_Counter < V_VISIBLE_AREA)
     begin
         case (r_current_tile_row)
-            0:
+            0,14:
             begin
                 water_sprite_addr <= (i_V_Counter * TILE_SIZE) + i_H_Counter[4:0];
                 o_VGA_Pixel   <= water_pixel_data;
             end
-            1:
+            1,12,13:
             begin
                 grass_sprite_addr <= (i_V_Counter * TILE_SIZE) + i_H_Counter[4:0];
                 o_VGA_Pixel   <= grass_pixel_data;
@@ -110,16 +110,6 @@ begin
             begin
                 road_sprite_addr <= (i_V_Counter * TILE_SIZE) + i_H_Counter[4:0];
                 o_VGA_Pixel   <= road_pixel_data;
-            end
-            12:
-            begin
-                ground_sprite_addr <= (i_V_Counter * TILE_SIZE) + i_H_Counter[4:0];
-                o_VGA_Pixel   <= ground_pixel_data;
-            end
-            13,14:
-            begin
-                ground_rock_sprite_addr <= (i_V_Counter * TILE_SIZE) + i_H_Counter[4:0];
-                o_VGA_Pixel   <= ground_rock_pixel_data;
             end
             default:
             begin
