@@ -21,7 +21,6 @@ module Character_Control #(
 
   // state of collision
     input            i_Has_Collided,
-    input            i_End_Game,
 
 
     input            i_Game_Active,
@@ -65,13 +64,7 @@ module Character_Control #(
             end
 
             // Check collision state
-            if (i_Has_Collided == 1'b1 && i_End_Game == 1'b1) 
-            begin
-                o_Frog_Y <= C_Y_BASE_POSITION;
-                o_Frog_X <= C_X_BASE_POSITION;
-                o_Score <= 1'b1;
-            end
-            else if (i_Has_Collided == 1'b1) 
+            if (i_Has_Collided == 1'b1) 
             begin
                 o_Frog_Y <= C_Y_BASE_POSITION;
                 o_Frog_X <= C_X_BASE_POSITION;
@@ -109,6 +102,10 @@ module Character_Control #(
                     o_Frog_X <= o_Frog_X + TILE_SIZE; // Move frog right
                 end
             end
+        end 
+        else 
+        begin
+            o_Score <= 1'b1;
         end
     end
 

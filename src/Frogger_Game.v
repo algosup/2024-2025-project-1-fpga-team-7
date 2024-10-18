@@ -32,6 +32,7 @@ module Frogger_Game (
     output o_LED_1,
     output o_LED_2,
     output o_LED_3,
+    output o_LED_4
 );
 
 reg                   r_State;
@@ -46,7 +47,6 @@ reg                   r_Has_Collided_tracking;
 
 wire                  w_Game_Active;
 
-wire                  w_End_Game;
 
 wire                  w_Switch_1;
 wire                  w_Switch_2;
@@ -121,7 +121,6 @@ wire [8:0]            w_VGA_Pixel;
                         .H_VISIBLE_AREA(H_VISIBLE_AREA)) Character_Control_Inst(
         .i_Clk(i_Clk),
         .i_Has_Collided(w_Has_Collided),
-        .i_End_Game(w_End_Game),
         .i_Frog_Up(w_Switch_1),
         .i_Frog_Lt(w_Switch_2),
         .i_Frog_Rt(w_Switch_3),
@@ -231,13 +230,14 @@ wire [8:0]            w_VGA_Pixel;
         RUNNING: if (w_Has_Collided == 1'b1 && r_Has_Collided_tracking == 1'b0)
                  begin
                     // shift right the number of lives
-                     if (r_Life_Counter == 0) 
+                    r_Life_Counter <= (r_Life_Counter >> 1);
+                     if (r_Life_Counter == 1) 
                      begin
-                         r_State <= IDLE;
+                        // Send the player to an Idle state at death
+                        r_State <= IDLE;
                      end
                      else
-                     begin
-                        r_Life_Counter <= (r_Life_Counter >> 1);           // Send the player to an Idle state at death
+                     begin          // Send the player to an Idle state at death
                         r_State <= RUNNING;
                      end
                  end
@@ -246,10 +246,11 @@ wire [8:0]            w_VGA_Pixel;
     end
 
     assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not
-    assign w_End_Game    = (r_Life_Counter == 0) ? 1'b1 : 1'b0;
+    //assign w_End_Game    = (r_Life_Counter == 0) ? 1'b1 : 1'b0;
 
-    assign o_LED_1 = r_Life_Counter[0];
-    assign o_LED_2 = r_Life_Counter[1];
-    assign o_LED_3 = r_Life_Counter[2];
+    assign o_LED_1 = 1'b0;
+    assign o_LED_2 = r_Life_Counter[2];
+    assign o_LED_3 = r_Life_Counter[1];
+    assign o_LED_4 = r_Life_Counter[0];
     
 endmodule

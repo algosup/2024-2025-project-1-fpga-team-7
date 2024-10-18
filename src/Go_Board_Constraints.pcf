@@ -7,6 +7,7 @@ set_io i_Clk 15
 set_io -nowarn o_LED_1 56
 set_io -nowarn o_LED_2 57
 set_io -nowarn o_LED_3 59
+set_io -nowarn o_LED_4 60
 
 ## Push-Button Switches
 
