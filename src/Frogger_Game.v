@@ -32,16 +32,19 @@ module Frogger_Game (
     output o_LED_1,
     output o_LED_2,
     output o_LED_3,
-    output o_LED_4,
 );
 
 reg                   r_State;
+
+reg  [2:0]            r_Life_Counter     = 3'b111;
 
 reg  [NUM_BITS - 1:0] r_Reverse          = 4'b1010;
 
 reg  [1:0]            r_Frog_Direction;
 
 wire                  w_Game_Active;
+
+wire                  w_End_Game;
 
 wire                  w_Switch_1;
 wire                  w_Switch_2;
@@ -65,8 +68,7 @@ wire                  w_LFSR_Done;
 
 wire                  w_Level_Up;
 
-
-wire [3:0]            w_Score;
+reg  [3:0]            r_Score;
 
 wire [9:0]            w_V_Counter;
 wire [9:0]            w_H_Counter;
@@ -86,10 +88,6 @@ wire [8:0]            w_VGA_Pixel;
         .o_VGA_VSync(o_VGA_VSync),
         .o_V_Counter(w_V_Counter),
         .o_H_Counter(w_H_Counter));
-
-    // LFSR #(.NUM_BITS(NUM_BITS)) LFSR_Inst(
-    //     .i_Clk(i_Clk),
-    //     .o_LFSR_Data(w_LFSR_Data));
 
     Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_1(
         .i_Clk(i_Clk), 
@@ -120,12 +118,13 @@ wire [8:0]            w_VGA_Pixel;
                         .H_VISIBLE_AREA(H_VISIBLE_AREA)) Character_Control_Inst(
         .i_Clk(i_Clk),
         .i_Has_Collided(w_Has_Collided),
+        .i_End_Game(w_End_Game),
         .i_Frog_Up(w_Switch_1),
         .i_Frog_Lt(w_Switch_2),
         .i_Frog_Rt(w_Switch_3),
         .i_Frog_Dn(w_Switch_4),
         .i_Game_Active(w_Game_Active),
-        .o_Score(w_Score),
+        .o_Score(r_Score),
         .o_Level_Up(w_Level_Up),
         .o_Frog_X(w_X_Position),
         .o_Frog_Y(w_Y_Position));
@@ -179,7 +178,7 @@ wire [8:0]            w_VGA_Pixel;
                          .TILE_SIZE(TILE_SIZE),
                          .NUM_BITS(NUM_BITS)) Obstacles_Movement_Inst(
         .i_Clk(i_Clk),
-        .i_Score(w_Score),
+        .i_Score(r_Score),
         .i_Reverse(r_Reverse),
         .o_Car_X_0(w_Car1_X_Position),
         .o_Car_X_1(w_Car2_X_Position),
@@ -188,7 +187,7 @@ wire [8:0]            w_VGA_Pixel;
 
     Seven_Segments_Display Seven_Segments_Display_Inst(
         .i_Clk(i_Clk),
-        .i_Score(w_Score),
+        .i_Score(r_Score),
         .o_Segment_A(o_Segment1_A),
         .o_Segment_B(o_Segment1_B),
         .o_Segment_C(o_Segment1_C),
@@ -224,25 +223,26 @@ wire [8:0]            w_VGA_Pixel;
         IDLE: if (w_All_Switch == 1'b1) 
               begin
                   r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
-                  r_LED_lives <= 4'b1111;       // Reset the number of lives
+                  r_Life_Counter <= 3'b111;       // Reset the number of lives
               end
         RUNNING: if (w_Has_Collided == 1'b1)
                  begin
                     // shift right the number of lives
-                    r_LED_lives <= r_LED_lives >> 1;
-                    if (r_LED_lives == 4'b0001) begin
-                        r_State <= IDLE;           // Send the player to an Idle state at death
-                    end
+                     if (r_Life_Counter == 0) 
+                     begin
+                         r_State <= IDLE;
+                     end
+                     r_Life_Counter <= (r_Life_Counter >> 1);           // Send the player to an Idle state at death
+                     r_State <= RUNNING;
                  end
-        default: r_State <= IDLE;
     endcase
     end
 
     assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not
+    assign w_End_Game    = (r_Life_Counter == 0) ? 1'b1 : 1'b0;
 
-    assign o_LED_1 = r_LED_lives[0];
-    assign o_LED_2 = r_LED_lives[1];
-    assign o_LED_3 = r_LED_lives[2];
-    assign o_LED_4 = r_LED_lives[3];
+    assign o_LED_1 = r_Life_Counter[0];
+    assign o_LED_2 = r_Life_Counter[1];
+    assign o_LED_3 = r_Life_Counter[2];
     
 endmodule
