@@ -34,6 +34,8 @@ reg                   r_State;
 
 reg  [NUM_BITS - 1:0] r_Reverse;
 
+reg  [1:0]            r_Frog_Direction;
+
 wire                  w_Game_Active;
 
 wire                  w_Switch_1;
@@ -125,6 +127,7 @@ wire [9:0]            w_H_Counter;
                      .H_VISIBLE_AREA(H_VISIBLE_AREA),
                      .V_VISIBLE_AREA(V_VISIBLE_AREA)) Sprite_Display_Inst(
         .i_Clk(i_Clk),
+        .i_Frog_Direction(r_Frog_Direction),
         .i_H_Counter(w_H_Counter),
         .i_V_Counter(w_V_Counter),
         .i_X_Position(w_X_Position),
@@ -184,6 +187,27 @@ wire [9:0]            w_H_Counter;
     if (r_Reverse == 0 || w_Level_Up == 1) 
     begin
         r_Reverse <= w_LFSR_Data;
+    end
+
+    // Update r_Frog_Direction if necessary
+    always @(posedge i_Clk) 
+    begin
+        if (w_Switch_1 == 1)
+        begin
+            r_Frog_Direction <= 0;
+        end
+        else if (w_Switch_2 == 1)
+        begin
+            r_Frog_Direction <= 1;
+        end
+        else if (w_Switch_3 == 1)
+        begin
+            r_Frog_Direction <= 2;
+        end
+        else if (w_Switch_4 == 1)
+        begin
+            r_Frog_Direction <= 3;
+        end
     end
 
     //State Machine

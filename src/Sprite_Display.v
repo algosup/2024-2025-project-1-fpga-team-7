@@ -6,6 +6,9 @@ module Sprite_Display #(
     // Clock
     input        i_Clk,
 
+    // Switches
+    input  [1:0] i_Frog_Direction,
+
     // Frog (Player) left corner position
     input  [9:0] i_X_Position,
     input  [8:0] i_Y_Position,
@@ -46,6 +49,8 @@ wire [8:0] car_pixel_data;
 reg  [9:0] frog_sprite_addr;
 reg  [9:0] car_sprite_addr;
 reg  [4:0] r_Car_X_Memory;
+reg  [4:0] r_Frog_X_Memory;
+reg  [4:0] r_Frog_Y_Memory;
 
 // Instantiate the Frog Memory
 Memory #(.INIT_TXT_FILE(FROG_SPRITE)) frog_memory (
@@ -92,8 +97,33 @@ begin
         if ((i_V_Counter >= i_Y_Position && i_V_Counter <= i_Y_Position + TILE_SIZE) &&
             (i_H_Counter >= i_X_Position && i_H_Counter <= i_X_Position + TILE_SIZE))
         begin
-            // Calculate the address in the frog sprite memory
-            frog_sprite_addr <= ((i_V_Counter - i_Y_Position) * TILE_SIZE) + (i_H_Counter - i_X_Position);
+            case (i_Frog_Direction)
+                0: 
+                begin
+                    r_Frog_X_Memory = (i_H_Counter - i_X_Position);
+                    r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
+                    frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
+                end
+                1:
+                begin
+                    r_Frog_X_Memory = (i_H_Counter - i_X_Position);
+                    r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
+                    frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
+                end
+                2:
+                begin
+                    r_Frog_X_Memory = (TILE_SIZE - (i_H_Counter - i_X_Position));
+                    r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
+                    frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
+                end
+                3:
+                begin
+                    r_Frog_X_Memory = (i_H_Counter - i_X_Position);
+                    r_Frog_Y_Memory = (TILE_SIZE - (i_V_Counter - i_Y_Position));
+                    frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
+                end
+            endcase
+            
 
             // Map 9-bit frog_pixel_data to RGB
             r_red   <= frog_pixel_data[8:6];  // Top 3 bits for Red
