@@ -80,7 +80,10 @@ task Car_Display;
         begin
             r_Car_X_Memory = i_T_Reverse ? (i_H_Counter - i_Car_X_Position) : (TILE_SIZE - (i_H_Counter - i_Car_X_Position));
             car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + r_Car_X_Memory;
-            r_VGA_Pixel <= car_pixel_data;
+            if (car_pixel_data != 9'b111101110)
+            begin
+                r_VGA_Pixel <= car_pixel_data;    
+            end
         end
     end
 endtask
@@ -124,9 +127,11 @@ begin
                 end
             endcase
             
-
             // Map 9-bit frog_pixel_data to RGB
-            r_VGA_Pixel   <= frog_pixel_data;
+            if (frog_pixel_data != 9'b111101110)
+            begin
+                r_VGA_Pixel <= frog_pixel_data;    
+            end
         end
 
         Car_Display(i_Car_1X_Position, C_LINE_1_Y, i_Reverse[0]);

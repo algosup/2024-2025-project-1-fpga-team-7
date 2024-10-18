@@ -3,7 +3,7 @@ module Background_Display #(
     parameter H_VISIBLE_AREA = 640,
     parameter V_VISIBLE_AREA = 480,
 )(
-    input i_Clk,
+    input            i_Clk,
 
     input      [9:0] i_V_Counter,
     input      [9:0] i_H_Counter,
@@ -12,13 +12,13 @@ module Background_Display #(
     output reg [8:0] o_VGA_Pixel,
 );
 
-localparam ROAD_SPRITE = "Road_Sprite.txt";
-localparam SIDEWALK_SPRITE = "Sidewalk_Sprite.txt";
+localparam ROAD_SPRITE         = "Road_Sprite.txt";
+localparam SIDEWALK_SPRITE     = "Sidewalk_Sprite.txt";
 localparam GRASS_FINISH_SPRITE = "Grass_Finish_Sprite.txt";
-localparam GRASS_SPRITE = "Grass_Sprite.txt";
-localparam WATER_SPRITE = "Water_Sprite.txt";
-localparam GROUND_SPRITE = "Ground_Sprite.txt";
-localparam GROUND_ROCK_SPRITE = "Ground_Rock_Sprite.txt";
+localparam GRASS_SPRITE        = "Grass_Sprite.txt";
+localparam WATER_SPRITE        = "Water_Sprite.txt";
+localparam GROUND_SPRITE       = "Ground_Sprite.txt";
+localparam GROUND_ROCK_SPRITE  = "Ground_Rock_Sprite.txt";
 
 reg  [4:0] r_current_tile_row = i_V_Counter[9:5];
 

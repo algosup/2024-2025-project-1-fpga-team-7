@@ -32,7 +32,7 @@ module Frogger_Game (
 
 reg                   r_State;
 
-reg  [NUM_BITS - 1:0] r_Reverse;
+reg  [NUM_BITS - 1:0] r_Reverse          = 4'b1010;
 
 reg  [1:0]            r_Frog_Direction;
 
@@ -191,13 +191,6 @@ wire [8:0]            w_VGA_Pixel;
         .o_Segment_E(o_Segment1_E),
         .o_Segment_F(o_Segment1_F),
         .o_Segment_G(o_Segment1_G));
-
-    // Update r_Reverse if necessary
-    always @(posedge i_Clk)
-    if (r_Reverse == 0 || w_Level_Up == 1) 
-    begin
-        r_Reverse <= w_LFSR_Data;
-    end
 
     // Update r_Frog_Direction if necessary
     always @(posedge i_Clk) 
