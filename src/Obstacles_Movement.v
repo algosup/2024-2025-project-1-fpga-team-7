@@ -12,7 +12,7 @@ module Obstacles_Movement#(
     output reg [9:0]            o_Car_X_1     = (TILE_SIZE),
     output reg [9:0]            o_Car_X_2     = 2 * (TILE_SIZE),
     output reg [9:0]            o_Car_X_3     = 3 * (TILE_SIZE),
-    output reg [NUM_BITS:0]     o_Reverse,
+    output reg [NUM_BITS-1:0]     o_Reverse,
 );
 
     reg [19:0]           r_Count      = 0; // Global counter for movement timing
