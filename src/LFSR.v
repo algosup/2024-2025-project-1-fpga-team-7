@@ -14,34 +14,17 @@ module LFSR #(
     input                 i_Clk,
     input                 i_Enable,
  
-    // Optional Seed Value
-    input                 i_Seed_DV   = 0,
-    input  [NUM_BITS-1:0] i_Seed_Data,
- 
     output [NUM_BITS-1:0] o_LFSR_Data,
-    output                o_LFSR_Done
 );
  
     reg    [NUM_BITS:1]   r_LFSR      = 0;
     reg                   r_XNOR;
- 
- 
-    // Purpose: Load up LFSR with Seed if Data Valid (DV) pulse is detected.
-    // Othewise just run LFSR when enabled.
-    always @(posedge i_Clk)
-    begin
-        if (i_Enable == 1'b1)
-        begin
-            if (i_Seed_DV == 1'b1)
-                r_LFSR <= i_Seed_Data;
-            else
-                r_LFSR <= {r_LFSR[NUM_BITS-1:1], r_XNOR};
-        end
-    end
- 
+
+
     // Change pseudo-randomly the value of a register that is used as a random value.
     always @(*)
     begin
+        r_LFSR <= {r_LFSR[NUM_BITS-1:1], r_XNOR};
         case (NUM_BITS)
             3: 
             begin
@@ -169,8 +152,5 @@ module LFSR #(
  
  
     assign o_LFSR_Data = r_LFSR[NUM_BITS:1];
-
-    // Conditional Assignment (?)
-    assign o_LFSR_Done = (r_LFSR[NUM_BITS:1] == i_Seed_Data) ? 1'b1 : 1'b0;
  
 endmodule // LFSR
