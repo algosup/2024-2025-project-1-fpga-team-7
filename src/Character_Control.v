@@ -65,14 +65,16 @@ module Character_Control #(
             end
 
             // Check collision state
-            if (i_Has_Collided == 1'b1) 
+            if (i_Has_Collided == 1'b1 && i_End_Game == 1'b1) 
             begin
                 o_Frog_Y <= C_Y_BASE_POSITION;
                 o_Frog_X <= C_X_BASE_POSITION;
-            end
-            else if (i_End_Game == 1'b1) 
-            begin
                 o_Score <= 1'b1;
+            end
+            else if (i_Has_Collided == 1'b1) 
+            begin
+                o_Frog_Y <= C_Y_BASE_POSITION;
+                o_Frog_X <= C_X_BASE_POSITION;
             end
             else
             begin

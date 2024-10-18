@@ -222,8 +222,8 @@ wire [8:0]            w_VGA_Pixel;
     case (r_State)
         IDLE: if (w_All_Switch == 1'b1) 
               begin
-                  r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
                   r_Life_Counter <= 3'b111;       // Reset the number of lives
+                  r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
               end
         RUNNING: if (w_Has_Collided == 1'b1)
                  begin
@@ -232,8 +232,11 @@ wire [8:0]            w_VGA_Pixel;
                      begin
                          r_State <= IDLE;
                      end
-                     r_Life_Counter <= (r_Life_Counter >> 1);           // Send the player to an Idle state at death
-                     r_State <= RUNNING;
+                     else
+                     begin
+                        r_Life_Counter <= (r_Life_Counter >> 1);           // Send the player to an Idle state at death
+                        r_State <= RUNNING;
+                     end
                  end
     endcase
     end
