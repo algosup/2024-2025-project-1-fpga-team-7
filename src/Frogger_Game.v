@@ -42,6 +42,8 @@ reg  [NUM_BITS - 1:0] r_Reverse          = 4'b1010;
 
 reg  [1:0]            r_Frog_Direction;
 
+reg                   r_Has_Collided_tracking;
+
 wire                  w_Game_Active;
 
 wire                  w_End_Game;
@@ -108,6 +110,7 @@ wire [8:0]            w_VGA_Pixel;
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_4), 
         .o_Switch(w_Switch_4));
+    
 
     Character_Control #(.C_SCORE_INI(C_SCORE_INI),
                         .C_X_BASE_POSITION(C_X_BASE_POSITION),
@@ -225,7 +228,7 @@ wire [8:0]            w_VGA_Pixel;
                   r_Life_Counter <= 3'b111;       // Reset the number of lives
                   r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
               end
-        RUNNING: if (w_Has_Collided == 1'b1)
+        RUNNING: if (w_Has_Collided == 1'b1 && r_Has_Collided_tracking == 1'b0)
                  begin
                     // shift right the number of lives
                      if (r_Life_Counter == 0) 
@@ -239,6 +242,7 @@ wire [8:0]            w_VGA_Pixel;
                      end
                  end
     endcase
+    r_Has_Collided_tracking <= w_Has_Collided;
     end
 
     assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not
