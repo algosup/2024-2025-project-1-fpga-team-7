@@ -60,6 +60,8 @@ wire                  w_Has_Collided;
 wire [NUM_BITS - 1:0] w_LFSR_Data;
 wire                  w_LFSR_Done;
 
+wire [NUM_BITS - 1:0] w_Reverse;
+
 wire                  w_Level_Up;
 
 wire [3:0]            w_Score;
@@ -132,13 +134,13 @@ wire [9:0]            w_H_Counter;
         .i_Clk(i_Clk),
         .i_H_Counter(w_H_Counter),
         .i_V_Counter(w_V_Counter),
-        // .i_Color(o_read_data),
         .i_X_Position(w_X_Position),
         .i_Y_Position(w_Y_Position),
         .i_Car_1X_Position(w_Car1_X_Position),
         .i_Car_2X_Position(w_Car2_X_Position),
         .i_Car_3X_Position(w_Car3_X_Position),
         .i_Car_4X_Position(w_Car4_X_Position),
+        .i_Reverse(w_Reverse),
         .o_VGA_Blu_1(o_VGA_Blu_1),
         .o_VGA_Blu_2(o_VGA_Blu_2),
         .o_VGA_Blu_3(o_VGA_Blu_3),
@@ -172,7 +174,8 @@ wire [9:0]            w_H_Counter;
         .o_Car_X_0(w_Car1_X_Position),
         .o_Car_X_1(w_Car2_X_Position),
         .o_Car_X_2(w_Car3_X_Position),
-        .o_Car_X_3(w_Car4_X_Position));
+        .o_Car_X_3(w_Car4_X_Position),
+        .o_Reverse(w_Reverse));
 
     Seven_Segments_Display Seven_Segments_Display_Inst(
         .i_Clk(i_Clk),
