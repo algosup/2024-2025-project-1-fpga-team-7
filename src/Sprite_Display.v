@@ -41,7 +41,7 @@ module Sprite_Display #(
 localparam CAR_SPRITE = "car_sprite.txt";
 localparam FROG_SPRITE = "frog_sprite.txt";
 
-reg [2:0] r_red, r_green, r_blue;
+reg [8:0] r_VGA_Pixel;
 
 // Signals to connect to the Memory modules
 wire [8:0] frog_pixel_data;
@@ -76,9 +76,7 @@ task Car_Display;
         begin
             r_Car_X_Memory = i_T_Reverse ? (i_H_Counter - i_Car_X_Position) : (TILE_SIZE - (i_H_Counter - i_Car_X_Position));
             car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + r_Car_X_Memory;
-            r_red           <= car_pixel_data[8:6];
-            r_green         <= car_pixel_data[5:3];
-            r_blue          <= car_pixel_data[2:0];
+            r_VGA_Pixel <= car_pixel_data;
         end
     end
 endtask
@@ -89,9 +87,7 @@ begin
     if (i_H_Counter < H_VISIBLE_AREA && i_V_Counter < V_VISIBLE_AREA)
     begin
         // Default background color (black)
-        r_red <= 3'b000;  
-        r_green <= 3'b000;
-        r_blue <= 3'b000;
+        r_VGA_Pixel <= 9'b000000000;
 
         // Display Frog Sprite
         if ((i_V_Counter >= i_Y_Position && i_V_Counter <= i_Y_Position + TILE_SIZE) &&
@@ -126,9 +122,7 @@ begin
             
 
             // Map 9-bit frog_pixel_data to RGB
-            r_red   <= frog_pixel_data[8:6];  // Top 3 bits for Red
-            r_green <= frog_pixel_data[5:3];  // Middle 3 bits for Green
-            r_blue  <= frog_pixel_data[2:0];  // Bottom 3 bits for Blue
+            r_VGA_Pixel   <= frog_pixel_data;
         end
 
         Car_Display(i_Car_1X_Position, C_LINE_1_Y, i_Reverse[0]);
@@ -140,15 +134,15 @@ begin
 end
 
 // Assign VGA colors
-assign o_VGA_Red_1 = r_red[0];    // LSB of red signal
-assign o_VGA_Red_2 = r_red[1];    // Middle bit of red signal
-assign o_VGA_Red_3 = r_red[2];    // MSB of red signal
-assign o_VGA_Grn_1 = r_green[0];  // LSB of green signal
-assign o_VGA_Grn_2 = r_green[1];  // Middle bit of green signal
-assign o_VGA_Grn_3 = r_green[2];  // MSB of green signal
-assign o_VGA_Blu_1 = r_blue[0];   // LSB of blue signal
-assign o_VGA_Blu_2 = r_blue[1];   // Middle bit of blue signal
-assign o_VGA_Blu_3 = r_blue[2];   // MSB of blue signal
+assign o_VGA_Blu_1 = r_VGA_Pixel[0];    // LSB of red signal
+assign o_VGA_Blu_2 = r_VGA_Pixel[1];    // Middle bit of red signal
+assign o_VGA_Blu_3 = r_VGA_Pixel[2];    // MSB of red signal
+assign o_VGA_Grn_1 = r_VGA_Pixel[3];  // LSB of green signal
+assign o_VGA_Grn_2 = r_VGA_Pixel[4];  // Middle bit of green signal
+assign o_VGA_Grn_3 = r_VGA_Pixel[5];  // MSB of green signal
+assign o_VGA_Red_1 = r_VGA_Pixel[6];   // LSB of blue signal
+assign o_VGA_Red_2 = r_VGA_Pixel[7];   // Middle bit of blue signal
+assign o_VGA_Red_3 = r_VGA_Pixel[8];   // MSB of blue signal
 
 endmodule
 
