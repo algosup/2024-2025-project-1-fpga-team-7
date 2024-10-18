@@ -64,18 +64,14 @@ task Car_Display;
     input  [9:0]    i_Car_X_Position;
     input  [9:0]    i_Car_Y_Position;
     input           i_T_Reverse;
+
+    reg [9:0]       r_Car_X_Memory;
     begin
         if (((i_V_Counter >= i_Car_Y_Position) && (i_V_Counter <= (i_Car_Y_Position + TILE_SIZE))) &&
             ((i_H_Counter >= i_Car_X_Position) && (i_H_Counter <= (i_Car_X_Position + TILE_SIZE))))
         begin
-            if (i_T_Reverse == 0)
-            begin
-                car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + (i_H_Counter - i_Car_X_Position);
-            end 
-            else
-            begin
-                car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + (TILE_SIZE - (i_H_Counter - i_Car_X_Position));
-            end
+            r_Car_X_Memory = i_T_Reverse ? (TILE_SIZE - (i_H_Counter - i_Car_X_Position)) : (i_H_Counter - i_Car_X_Position);
+            car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + r_Car_X_Memory;
             r_red   <= car_pixel_data[8:6];
             r_green <= car_pixel_data[5:3];
             r_blue  <= car_pixel_data[2:0];
