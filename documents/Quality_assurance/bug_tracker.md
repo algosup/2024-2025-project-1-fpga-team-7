@@ -46,7 +46,7 @@
 ## Hardware Testing Bugs:
 | Bug Name | Description | Person in Charge |    Date of Discovery     |    Related Test Case    |       How to fix it       |       Date of resolution       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       |
-| Windows Upload|  We receive the message: "ERROR: Failed to expand region (0, 0) |_> (13, 17) of 1382 ICESTORM_LCs" when we attempt to upload the game's program from a Windows computer. | Benoit DE KEYN  |    10/18/2024    |    FPGA Module Upload    |       TBD       |       TBD        |
+| Windows Upload|  We receive the message: "ERROR: 4294967295" when we attempt to upload the game's program from a Windows computer. | Benoit DE KEYN  |    10/18/2024    |    FPGA Module Upload    |       TBD       |       TBD        |
 
 ## User Interface Testing Bugs:
 | Bug Name | Description | Person in Charge |    Date of Discovery     |    Related Test Case    |       How to fix it       |       Date of resolution       | 
