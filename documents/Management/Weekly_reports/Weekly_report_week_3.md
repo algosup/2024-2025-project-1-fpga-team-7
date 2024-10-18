@@ -45,7 +45,7 @@ The development team was trying to implement multiple cars in the game and the m
 
 Furthermore, while launching the program from a windows machine, the memory usage was far greater than when launching the program from a mac machine.
 
-#### Solution
+#### Status
 
 The development team do not have a solution for this problem yet.
 The team will try to find a solution for this problem in the next week.
