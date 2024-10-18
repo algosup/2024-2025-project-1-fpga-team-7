@@ -28,6 +28,11 @@ module Frogger_Game (
     output o_Segment1_E,
     output o_Segment1_F,
     output o_Segment1_G,
+
+    output o_LED_1,
+    output o_LED_2,
+    output o_LED_3,
+    output o_LED_4,
 );
 
 reg                   r_State;
@@ -214,19 +219,30 @@ wire [8:0]            w_VGA_Pixel;
     end
 
     //State Machine
-    always @(posedge i_Clk)
+    always @(posedge i_Clk) begin
     case (r_State)
         IDLE: if (w_All_Switch == 1'b1) 
               begin
                   r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
+                  r_LED_lives <= 4'b1111;       // Reset the number of lives
               end
         RUNNING: if (w_Has_Collided == 1'b1)
                  begin
-                     r_State <= IDLE;           // Send the player to an Idle state at death
+                    // shift right the number of lives
+                    r_LED_lives <= r_LED_lives >> 1;
+                    if (r_LED_lives == 4'b0001) begin
+                        r_State <= IDLE;           // Send the player to an Idle state at death
+                    end
                  end
         default: r_State <= IDLE;
     endcase
+    end
 
     assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not
+
+    assign o_LED_1 = r_LED_lives[0];
+    assign o_LED_2 = r_LED_lives[1];
+    assign o_LED_3 = r_LED_lives[2];
+    assign o_LED_4 = r_LED_lives[3];
     
 endmodule
