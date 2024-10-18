@@ -38,6 +38,8 @@ module Frogger_Game (
 
 reg                   r_State;
 
+reg  [NUM_BITS - 1:0] r_Reverse;
+
 wire                  w_Game_Active;
 
 wire                  w_Switch_1;
@@ -62,6 +64,7 @@ wire                  w_LFSR_Done;
 
 wire                  w_Level_Up;
 
+
 wire [3:0]            w_Score;
 
 wire [9:0]            w_V_Counter;
@@ -83,9 +86,7 @@ wire [9:0]            w_H_Counter;
 
     LFSR #(.NUM_BITS(NUM_BITS)) LFSR_Inst(
         .i_Clk(i_Clk),
-        .i_Enable(1'b1),
-        .o_LFSR_Data(w_LFSR_Data),
-        .o_LFSR_Done(w_LFSR_Done));
+        .o_LFSR_Data(w_LFSR_Data));
 
     Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_1(
         .i_Clk(i_Clk), 
@@ -132,7 +133,6 @@ wire [9:0]            w_H_Counter;
         .i_Clk(i_Clk),
         .i_H_Counter(w_H_Counter),
         .i_V_Counter(w_V_Counter),
-        // .i_Color(o_read_data),
         .i_X_Position(w_X_Position),
         .i_Y_Position(w_Y_Position),
         .i_Car_1X_Position(w_Car1_X_Position),
@@ -166,9 +166,8 @@ wire [9:0]            w_H_Counter;
                          .TILE_SIZE(TILE_SIZE),
                          .NUM_BITS(NUM_BITS)) Obstacles_Movement_Inst(
         .i_Clk(i_Clk),
-        .i_Level_Up(w_Level_Up),
         .i_Score(w_Score),
-        .i_Reverse(w_LFSR_Data),
+        .i_Reverse(r_Reverse),
         .o_Car_X_0(w_Car1_X_Position),
         .o_Car_X_1(w_Car2_X_Position),
         .o_Car_X_2(w_Car3_X_Position),
@@ -184,6 +183,13 @@ wire [9:0]            w_H_Counter;
         .o_Segment_E(o_Segment1_E),
         .o_Segment_F(o_Segment1_F),
         .o_Segment_G(o_Segment1_G));
+
+    // Update r_Reverse if necessary
+    always @(posedge i_Clk)
+    if (r_Reverse == 0 || w_Level_Up == 1) 
+    begin
+        r_Reverse <= w_LFSR_Data;
+    end
 
     //State Machine
     always @(posedge i_Clk)

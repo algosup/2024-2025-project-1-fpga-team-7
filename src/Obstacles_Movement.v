@@ -7,14 +7,12 @@ module Obstacles_Movement#(
     input                     i_Clk,
     input      [NUM_BITS-1:0] i_Reverse,
     input      [3:0]          i_Score,
-    input                     i_Level_Up,
     output reg [9:0]          o_Car_X_0,
     output reg [9:0]          o_Car_X_1     = (TILE_SIZE),
     output reg [9:0]          o_Car_X_2     = 2 * (TILE_SIZE),
     output reg [9:0]          o_Car_X_3     = 3 * (TILE_SIZE),
 );
 
-    reg [NUM_BITS - 1:0] r_Reverse;
     reg [19:0]           r_Count      = 0; // Global counter for movement timing
     reg [19:0]           r_Car_Speed  = C_BASE_CAR_SPEED;
 
@@ -65,30 +63,24 @@ module Obstacles_Movement#(
             default: r_Car_Speed <= C_BASE_CAR_SPEED >> 3;
         endcase
 
-        // Update r_Reverse if necessary
-        if (r_Reverse == 0 || i_Level_Up == 1) 
-        begin
-            r_Reverse <= i_Reverse;
-        end
-
         // Update positions if counter reaches car speed threshold
         if (r_Count == r_Car_Speed) 
         begin
             // Update Car 0
-            Update_Car_Position(o_Car_X_0, r_Reverse[0], 2, o_Car_X_0);  // Car 0 speed multiplier = 2
-            Check_Car_Boundary(o_Car_X_0, r_Reverse[0], o_Car_X_0);  // Adjust for boundary
+            Update_Car_Position(o_Car_X_0, i_Reverse[0], 2, o_Car_X_0);  // Car 0 speed multiplier = 2
+            Check_Car_Boundary(o_Car_X_0, i_Reverse[0], o_Car_X_0);  // Adjust for boundary
 
             // Update Car 1 
-            Update_Car_Position(o_Car_X_1, r_Reverse[1], 4, o_Car_X_1);  // Car 1 speed multiplier = 4
-            Check_Car_Boundary(o_Car_X_1, r_Reverse[1], o_Car_X_1);  // Adjust for boundary
+            Update_Car_Position(o_Car_X_1, i_Reverse[1], 4, o_Car_X_1);  // Car 1 speed multiplier = 4
+            Check_Car_Boundary(o_Car_X_1, i_Reverse[1], o_Car_X_1);  // Adjust for boundary
 
             // Update Car 2
-            Update_Car_Position(o_Car_X_2, r_Reverse[2], 2, o_Car_X_2);  // Car 2 speed multiplier = 2
-            Check_Car_Boundary(o_Car_X_2, r_Reverse[2], o_Car_X_2);  // Adjust for boundary
+            Update_Car_Position(o_Car_X_2, i_Reverse[2], 2, o_Car_X_2);  // Car 2 speed multiplier = 2
+            Check_Car_Boundary(o_Car_X_2, i_Reverse[2], o_Car_X_2);  // Adjust for boundary
 
             // Update Car 3
-            Update_Car_Position(o_Car_X_3, r_Reverse[3], 1, o_Car_X_3);  // Car 3 speed multiplier = 1
-            Check_Car_Boundary(o_Car_X_3, r_Reverse[3], o_Car_X_3);  // Adjust for boundary
+            Update_Car_Position(o_Car_X_3, i_Reverse[3], 1, o_Car_X_3);  // Car 3 speed multiplier = 1
+            Check_Car_Boundary(o_Car_X_3, i_Reverse[3], o_Car_X_3);  // Adjust for boundary
 
             r_Count <= 0;  // Reset counter after updating positions
         end 
