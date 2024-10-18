@@ -43,6 +43,12 @@
 
 ## Introduction
 
+The purpose of this document is to outline the testing strategy aimed at ensuring the functionality, quality, and performance of the Frogger game, developed for the FPGA module. 
+
+The test plan covers a broad range of scenarios, including hardware, software, and user interface components. Our primary objective is to verify that the game meets the defined requirements, operates smoothly under various conditions, and maintains high performance throughout gameplay.
+
+This document will also enumerate the test cases required to cover these areas, detailing both functional and performance tests to ensure the Frogger game performs optimally on the FPGA platform.
+
 ## 1.Objectives 
 
 The goal of this project is to program a version of the famous game Frogger: it's a game where we play a frog attempting to cross a road and a river to join his home, and who must avoid certain obstacles like cars while trying to get the highest score possible.
@@ -57,7 +63,7 @@ Concerning the game rules:
 - If the player collides with a car, it will trigger a death and he will be teleported back to level 1 at the starting point.
 - After a death, the game will be frozen and the player will need to push all 4 buttons simultaneously to restart the game.
 
-The project must be completed for October 25th 2024.
+The project must be completed for October 21th 2024.
 
 ## 2.Testing Strategy
 The test cases will be separated in 6 different domain of testing. Indeed, we want to check each type individually to ensure their performance before testing the cases together.
@@ -289,8 +295,7 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
-| Displaying Colors | Ensure the following colors utilized for the sprites are displayed correctly on screen: Yellow, Green, Black, White, Red, Blue and Brown. 
-| 5 |    1. Start the game.<br /> 2. Observe all sprite colors on the screen.<br /> 3. Verify that Yellow, Green, Black, White, Red, Blue, and Brown are displayed correctly.<br /> 4. Ensure no color distortion or mismatches occur.<br /> 5. Confirm that each color matches the expected appearance.|    All listed colors should appear correctly and without distortion.  |     TO BE TESTED.       |     Low|
+| Displaying Colors | Ensure the following colors utilized for the sprites are displayed correctly on screen: Yellow, Green, Black, White, Red, Blue and Brown. | 5 |    1. Start the game.<br /> 2. Observe all sprite colors on the screen.<br /> 3. Verify that Yellow, Green, Black, White, Red, Blue, and Brown are displayed correctly.<br /> 4. Ensure no color distortion or mismatches occur.<br /> 5. Confirm that each color matches the expected appearance.|    All listed colors should appear correctly and without distortion.  |     TO BE TESTED.       |     Low|
 | Score Display| Ensure the Score is correctly displayed at the top of the screen.| 4 |    1. Start the game.<br /> 2. Observe the score at the top of the screen.<br /> 3. Verify that the initial score is 0.<br /> 4. Ensure that the score is clear, fully displayed, and not distorted.|    The score is displayed at the top, starting from 0, and appears clearly.  |     TO BE TESTED.       |     Medium     |
 | Score Update Display| Ensure the Score's update is correctly visible and changed with a low latency (e.g. < 200ms).| 3 |    1. Play the game and increase the score by accomplishing levels.<br /> 2. Observe the score update on the screen.<br /> 3. Verify that the score change occurs within 200ms.|    The score updates correctly, visible immediately after the event with no noticeable delay.  |     TO BE TESTED.       |     Medium     |
 | Game Freeze Display | Ensure the frog is shown at its starting point, the cars are displayed to new random locations, and everything look frozen if the player dies.| 4 |    1. Start the game.<br /> 2. Let the frog die (collision).<br /> 3. Observe that the frog respawns at the starting point.<br /> 4. Verify that cars are displayed in new locations and both frog and cars are frozen.|    The game freezes, with the frog at the start and cars in random new spots.  |     TO BE TESTED.       |     Medium     |
