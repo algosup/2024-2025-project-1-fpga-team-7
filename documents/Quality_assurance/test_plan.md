@@ -4,8 +4,8 @@
 |---------------|------------|
 | Created       | 09/28/2024 |
 | Last Modified | 10/18/2024 |
-| Number of Test Cases written| 110 |
-| Number of Test Cases completed| 76 |
+| Number of Test Cases written| 109 |
+| Number of Test Cases completed| 81 |
 | Document Deadline | 10/21/2024 |
 
 ---
@@ -14,28 +14,28 @@
 
 <summary>📖 Table of content</summary>
 
-- [Introduction](#introduction) 
-- [1.Objectives](#1-objectives) 
-- [2.Testing Strategy](#2-testing-strategy) 
- - [2.1.Functional Testing](#21-functional-testing) 
- - [2.2.Performance Testing](#22-performance-testing) 
- - [2.3.Stress Testing](#23-stress-testing) 
- - [2.4.Hardware Testing](#24-hardware-testing) 
- - [2.5.User Interface Testing](#25-user-interface-testing) 
- - [2.6.Regression Testing](#26-regression-testing) 
-- [3.Features to test](#3-features-to-test)
- - [3.1.Functional Testing](#31-functional-testing) 
- - [3.2.Performance Testing](#32-performance-testing) 
- - [3.3.Stress Testing](#33-stress-testing) 
- - [3.4.Hardware Testing](#34-hardware-testing) 
- - [3.5.User Interface Testing](#35-user-interface-testing) 
- - [3.6.Regression Testing](#36-regression-testing) 
-- [4.Features to not test](#4-features-to-not-test) 
-- [5.Hardware Requirements](#5-hardware-requirements) 
-- [6.Environment Requirements](#6-environment-requirements) 
-- [7.Problem Reporting](#7-problem-reporting) 
-- [8.Risks & Assumptions](#8-risks-&-assumptions) 
-- [9.Approvals](#9-approvals) 
+- [Introduction](#introduction)
+- [1. Objectives](#1-objectives)
+- [2. Testing Strategy](#2-testing-strategy)
+  - [2-1 Functional Testing](#2-1-functional-testing)
+  - [2-2 Performance Testing](#2-2-performance-testing)
+  - [2-3 Stress Testing](#2-3-stress-testing)
+  - [2-4 Hardware Testing](#2-4-hardware-testing)
+  - [2-5 User Interface Testing](#2-5-user-interface-testing)
+  - [2-6 Regression Testing](#2-6-regression-testing)
+- [3. Features to test](#3-features-to-test)
+  - [3-1 Functional Testing](#3-1-functional-testing)
+  - [3-2 Performance Testing](#3-2-performance-testing)
+  - [3-3 Stress Testing](#3-3-stress-testing)
+  - [3-4 Hardware Testing](#3-4-hardware-testing)
+  - [3-5 User Interface Testing](#3-5-user-interface-testing)
+  - [3-6 Regression Testing](#3-6-regression-testing)
+- [4. Features to not test](#4-features-to-not-test)
+- [5. Hardware Requirements](#5-hardware-requirements)
+- [6. Environment Requirements](#6-environment-requirements)
+- [7. Problem Reporting](#7-problem-reporting)
+- [8. Risks & Assumptions](#8-risks--assumptions)
+- [9. Approvals](#9-approvals)
 
 </details>
 
@@ -49,7 +49,7 @@ The test plan covers a broad range of scenarios, including hardware, software, a
 
 This document will also enumerate the test cases required to cover these areas, detailing both functional and performance tests to ensure the Frogger game performs optimally on the FPGA platform.
 
-## 1.Objectives 
+## 1. Objectives 
 
 The goal of this project is to program a version of the famous game Frogger: it's a game where we play a frog attempting to cross a road and a river to join his home, and who must avoid certain obstacles like cars while trying to get the highest score possible.
 
@@ -65,42 +65,42 @@ Concerning the game rules:
 
 The project must be completed for October 21th 2024.
 
-## 2.Testing Strategy
+## 2. Testing Strategy
 The test cases will be separated in 6 different domain of testing. Indeed, we want to check each type individually to ensure their performance before testing the cases together.
 
-### 2.1.Functional Testing
+### 2-1 Functional Testing
 Probably the most important, this first type of testing concerns the game logic: its goal is to ensure the game's functions work correctly, such as the player movements, the collisions and the reset conditions.
 
 The testing will be executed by the Q.A., with the possible assistance of the Software Engineers and the Program Manager. In fact, the test cases will be accomplished in a way the tester is currently playing the game.
 
-### 2.2.Performance Testing
+### 2-2 Performance Testing
 This testing deals about the clock timing, where the game logic follows the clock cycle allowed by the FPGA module. Furthermore, it will allow to measure the latency and the refresh rate of the game.
 
 The Q.A. and the Tech Lead will be the involved testers, where various softwares and tools would be required to measure the performance. In reality, the goal will be to test the game by monitoring the player's actions and the game's responses.
 
-### 2.3.Stress Testing
+### 2-3 Stress Testing
 Stress Testing is particular, because it involves inconsistent conditions such as simulating multiple inputs or slow loading conditions.
 
 The Q.A., possibly accompanied by the Software Engineers and the Tech Lead, will work on that type of testing. For that, they will pretend to play the game in an "agressive manner" and use a software to simulate a slow latency.
 
-### 2.4.Hardware Testing
+### 2-4 Hardware Testing
 This one will be required because it's focused on the use of the FPGA module. Indeed, we will have to make sure the module will handle the required program of the game, that its components like switches and lead still work, and potentially display the level number on his LCD screen.
 
 The Q.A. will work on that testing with the assistance of the Tech Lead, where they will test various programs to ensure the hardware performance of the FPGA module.
 
-### 2.5.User Interface Testing
+### 2-5 User Interface Testing
 User Interface Testing, as its name implies, deals with the interaction between the user and the game's interface. Indeed, it will test if the games responds well to the player's inputs and if the game's screen displays correctly on a monitor or another device.
 
 Once again, the Q.A. will be in charge of the test, but with the possible assistance of the Software Engineers and the Program Manager. For that, they will execute various inputs with the keyboard and monitor differents screen settings to visualize the game.
 
-### 2.6.Regression Testing
+### 2-6 Regression Testing
 Finally, Regression Testing should be done after one or several others types of testing have been tested. Indeed, bugs will potentially appear, and after fixing them, there is a huge chance we will have to execute the previous test cases again to ensure their functionnality.
 
 Every involved testers from previous testings, led by the Q.A., will be in charge with the previous rules decided for each testing.
 
-## 3.Features to test
+## 3. Features to test
 
-### 3.1.Functional Testing
+### 3-1 Functional Testing
 
 #### Frogger
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
@@ -111,7 +111,7 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 | Left Movement | We set a movement input signal to make the frog go to the Left.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set the Left Key input signal. <br /> 5. Wait for a few clock cycles to allow frog's movement.  |    The frog's moves 1 tile on the Left.    |     ✅       |     High     |
 | Up Movement | We set a movement input signal to make the frog go Up.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set the Up Key input signal. <br /> 5. Wait for a few clock cycles to allow frog's movement. |    The frog's moves 1 tile upwards.    |     ✅      |     High     |
 | Down Movement | We set a movement input signal to make the frog go to the Right.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set the Down Key input signal.  <br /> 5. Wait for a few clock cycles to allow frog's movement.  |    The frog's moves 1 tile downwards.    |     ✅     |     High     |
-| Sprite Rotation | We set a movement input signal different from the actual frog's direction to make him turn.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set a movement input signal different from the frog's actual direction.  <br /> 5. Wait for a few clock cycles to allow frog's movement.  |    The frog's sprite is rotated in the same direction than the last movement input.    |     TO BE TESTED.       |     Medium     |
+| Sprite Rotation | We set a movement input signal different from the actual frog's direction to make him turn.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set a movement input signal different from the frog's actual direction.  <br /> 5. Wait for a few clock cycles to allow frog's movement.  |    The frog's sprite is rotated in the same direction than the last movement input.    |      ✅       |     Medium     |
 | Walking Animation | We set a movement input signal to play the frog's walking animation.| 6 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set any movement input signal.  <br /> 5. Wait for a few clock cycles to allow frog's movement. <br /> 6. Monitor the frog's sprite behavior while the playWalkingAnimation() signal is triggered. |    The frog's moving animation is triggered.    |     TO BE TESTED.       |     Low     |
 
 #### Cars
@@ -170,7 +170,7 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 | All Lanes Occupied | Generate one moving car in each lane.| 4 |    1. Start the game <br /> 2. Set a generateCar() signal for the first lane.  <br /> 3. Wait for a few clock cycles to allow car generation and ensure a car has been generated in the first lane. <br /> 4. Repeat steps 2-3 for the other lanes. You can attempt to make the cars move in other directions. <br /> |  One car per lane has been generated, and each is able to drive smoothly and in any direction.   |     ✅       |     Medium     |
 | New lane | Add a new lane on the road with a new moving car when a player passes a level.| 5 |    1. Start the game.<br /> 2. Pass the first level.<br /> 3. Observe if a new lane appears on the screen.<br /> 4. Ensure the new lane includes a moving car.<br /> 5. Verify that the new lane and car behave as expected.|    A new lane with a moving car appears correctly when a level is passed.  |     TO BE TESTED.       |     Low|
 
-### 3.2.Performance Testing
+### 3-2 Performance Testing
 
 #### Frogger Performance
 
@@ -181,7 +181,7 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 | Left Movement Latency | Ensure the frog's movement is responsive when the player presses the Left button.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set the Left Key input signal.<br /> 5. Measure the number of clock cycles required to allow the frog's movement.  |    The time required to make the frog go left is short (e.g. < 200 ms)    |     ✅     |     High     |
 | Up Movement Latency | Ensure the frog's movement is responsive when the player presses the Up button.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set the Up Key input signal.<br /> 5. Measure the number of clock cycles required to allow the frog's movement.  |    The time required to make the frog go upwards is short (e.g. < 200 ms)    |     ✅      |     High     |
 | Down Movement Latency | Ensure the frog's movement is responsive when the player presses the Down button.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set the Down Key input signal.<br /> 5. Measure the number of clock cycles required to allow the frog's movement.  |    The time required to make the frog go downwards is short (e.g. < 200 ms)    |     ✅       |     High     |
-| Sprite Rotation Latency | Ensure the frog's rotation is responsive when the player presses a input direction the frog isn't facing.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set a movement input signal different from the frog's actual direction.  <br /> 5. Measure the number of clock cycles required to allow the frog's rotation<.>.  |    The time required to make the frog rotate is short (e.g. < 200 ms)    |     TO BE TESTED.       |     Medium     |
+| Sprite Rotation Latency | Ensure the frog's rotation is responsive when the player presses a input direction the frog isn't facing.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set a movement input signal different from the frog's actual direction.  <br /> 5. Measure the number of clock cycles required to allow the frog's rotation<.>.  |    The time required to make the frog rotate is short (e.g. < 200 ms)    |     ✅      |     Medium     |
 | Walking Animation Latency | Ensure the frog's walking animation is responsive.| 5 |    1. Start the game <br />  2. Generates the frog.  <br /> 3. Wait for a few clock cycles to allow the frog's generation. <br /> 4. Set any movement input signal.  <br /> 5. Measure the number of clock cycles to allow the frog's walking animation.  |    The time required to play the frog's walking animation is short (e.g. < 200 ms).    |     TO BE TESTED.       |     Low     |
 
 #### Cars Performance
@@ -237,7 +237,7 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 | Score to 0 Latency| Ensure the latency between the beginning of the game and the score being set at 0 is short (e.g. < 200 ms).| 2 |    1. Start the game.<br /> 2. Send a resetScore() signal.<br /> 3. Monitor the number of clock between the signal trigger and when the score is shown being reset to 0.|    The Score is set to 0 with a short latency.   |     NOT VALIDATED     |     Medium     |
 
 
-### 3.3.Stress Testing
+### 3-3 Stress Testing
 
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
@@ -245,13 +245,12 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 | Typing while Freeze| Check the game's behavior and performance when the player presses 1 to 3 buttons simultaneously while the game is frozen after the frog death, and before the game restart. | 4 |    1. Start the game.<br /> 2. Let the frog collide with a car and freeze the game after the frog's death.<br /> 3. While the game is frozen, press 1 to 3 movement buttons at the same time.<br /> 4. Observe if any input is registered, and check for game response when it resumes.|    No inputs should affect the game while frozen. When the game resumes, it should continue as expected with no movement from earlier inputs.  |     ✅        |     Medium     |
 | Frog Hits Car's Back| Check the game's behavior and performance when the frog move towards the back of a moving car and they collide while both are moving in the same direction. Both direction should be checked.| 6 |    1. Start the game.<br /> 2. Position the frog behind a car moving in the same direction.<br /> 3. Move the frog forward to collide with the back of the car.<br /> 4. Observe if the collision is detected, and note the response (e.g., death or pass through).<br /> 5. Repeat in the opposite direction.<br /> 6. Record performance during the collision event.|    Collision should be detected correctly, causing the frog's death, and game performance should remain smooth.  |     ✅        |     Medium     |
 | Car Chases Frog| Check the game's behavior and performance when the frog move while being chased by a moving frog from behind and they collide while both are moving in the same direction. Both direction should be checked.| 6 |    1. Start the game.<br /> 2. Position a car behind the frog, both moving in the same direction.<br /> 3. Move the frog forward while the car follows.<br /> 4. Observe the collision when the car reaches the frog from behind.<br /> 5. Repeat the test with the opposite direction.<br /> 6. Record any performance issues during or after the collision.|    The collision should be detected as a hit, resulting in the frog's death, with no performance degradation.  |     ✅       |     Medium     |
-| Frog to Bottom Wall| Check the game's behavior and performance while the player make the frog go to the bottom of the screen.| 3 |    1. Start the game.<br /> 2. Move the frog continuously down until it reaches the bottom edge of the screen.<br /> 3. Check for proper boundary handling and performance during and after hitting the bottom wall.|    The frog should not move beyond the bottom boundary, and the game performance should remain stable with no glitches.  |     TO BE TESTED.       |     Medium     |
-| Frog to Left Wall| Check the game's behavior and performance while the player make the frog go to the left limit of the screen.| 3 |    1. Start the game.<br /> 2. Move the frog continuously to the left until it reaches the screen's edge.<br /> 3. Observe if the frog stops at the boundary and if the game performance remains smooth.|    The frog should stop at the left boundary without moving beyond it. The game should continue running smoothly without lag or visual glitches.  |     TO BE TESTED.       |     Medium     |
-| Frog to Right Wall| Check the game's behavior and performance while the player make the frog go to the right limit of the screen.| 3 |    1. Start the game.<br /> 2. Move the frog continuously to the right until it reaches the screen's edge.<br /> 3. Observe if the frog stops at the boundary and if the game performance remains smooth.|    The frog should stop at the right boundary without moving beyond it. The game should continue running smoothly without lag or visual glitches.  |     TO BE TESTED.       |     Medium     |
-| Huge Loading Environment| Try playing the game and check its behavior and performance while several applications and software are loaded in parallel, creating a difficult loading environment.| 4 |    1. Open multiple heavy applications (e.g., browser with many tabs, IDE, etc.) while the game is running.<br /> 2. Start the game and monitor the frame rate and input latency.<br /> 3. Observe the game's performance under the load.<br /> 4. Record if there are any slowdowns, frame drops, or crashes.|    The game should continue running with minimal impact on performance, despite the heavy load. There should be no major frame drops or input delays.   |     TO BE TESTED.       |     Medium     |
-| Low Battery| Try playing the game and check its behavior and performance while the computer's battery is lower than 20%.| 4 |    1. Reduce the computer's battery to below 20%.<br /> 2. Start the game and monitor performance (e.g., frame rate, input responsiveness).<br /> 3. Play the game for a few minutes and observe if any power-saving mode affects the game. <br /> 4. Record any slowdowns, input delays, or performance issues. |    The game should continue running normally with minimal performance degradation, even when the battery is low.  |     TO BE TESTED.       |     Low     |
+| Frog to Bottom Wall| Check the game's behavior and performance while the player make the frog go to the bottom of the screen.| 3 |    1. Start the game.<br /> 2. Move the frog continuously down until it reaches the bottom edge of the screen.<br /> 3. Check for proper boundary handling and performance during and after hitting the bottom wall.|    The frog should not move beyond the bottom boundary, and the game performance should remain stable with no glitches.  |     ✅     |     Medium     |
+| Frog to Left Wall| Check the game's behavior and performance while the player make the frog go to the left limit of the screen.| 3 |    1. Start the game.<br /> 2. Move the frog continuously to the left until it reaches the screen's edge.<br /> 3. Observe if the frog stops at the boundary and if the game performance remains smooth.|    The frog should stop at the left boundary without moving beyond it. The game should continue running smoothly without lag or visual glitches.  |     ✅       |     Medium     |
+| Frog to Right Wall| Check the game's behavior and performance while the player make the frog go to the right limit of the screen.| 3 |    1. Start the game.<br /> 2. Move the frog continuously to the right until it reaches the screen's edge.<br /> 3. Observe if the frog stops at the boundary and if the game performance remains smooth.|    The frog should stop at the right boundary without moving beyond it. The game should continue running smoothly without lag or visual glitches.  |     When the frog reach the right limit, a few additional pixels appear below the frog's bottom legs.        |     Medium     |
+| Huge Loading Environment| Try playing the game and check its behavior and performance while several applications and software are loaded in parallel, creating a difficult loading environment.| 4 |    1. Open multiple heavy applications (e.g., browser with many tabs, IDE, etc.) while the game is running.<br /> 2. Start the game and monitor the frame rate and input latency.<br /> 3. Observe the game's performance under the load.<br /> 4. Record if there are any slowdowns, frame drops, or crashes.|    The game should continue running with minimal impact on performance, despite the heavy load. There should be no major frame drops or input delays.   |     NOT VALIDATED      |     Medium     |
 
-### 3.4.Hardware Testing
+### 3-4 Hardware Testing
 
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
@@ -266,17 +265,17 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 | Holding Button | If a button from the FPGA module is being held down, the frog will not continue to go in that direction. | 5 |    1. Start the game.<br /> 2. Hold down one of the direction buttons (left, right, up, or down).<br /> 3. Observe the frog's movement.<br /> 4. Verify that the frog does not continue moving continuously.<br /> 5. Release the button and observe if the frog stops correctly.|    The frog should only move once per button press, even if the button is held.  |     ✅        |     Medium   |
 | 7-Segment Display| Make sure the 7-segment display of the FPGA module are functionnal.| 4 |     1. Load a simple test program to display numbers on the 7-segment display.<br /> 2. Power up the FPGA and verify each segment lights up as expected.<br /> 3. Check that all segments are functioning by displaying numbers from 0 to 9.<br /> 4. Verify the display accuracy during gameplay.|    The 7-segment display works correctly, showing expected numbers or data.   |     ✅       |     High     |
 | Level Counter Display| Make sure the 7-segment display the correct number from 1 to the max level when the player progresses throughout the levels. Also ensure the latency is low (e.g. < 200ms).| 4 |    1. Progress through the game levels.<br /> 2. Check if the 7-segment display updates the level count after each level is completed.<br /> 3. Measure the latency between level progression and display update.<br /> 4. Verify the display shows the correct level number. |    The 7-segment display shows the correct level number with minimal latency.  |     ✅       |     High     |
-| FPGA Ressources| Check if the FPGA’s resources (like LUTs, memory) are not being over-utilized.| 4 |    1. Monitor FPGA resource usage during synthesis (e.g., logic units, memory).<br /> 2. Run the game and monitor resource utilization during gameplay.<br /> 3. Check if resource usage remains below critical thresholds.<br /> 4. Verify the game runs smoothly without exhausting the FPGA resources.|    FPGA resources are within safe limits, and the game runs without performance issues.  |     TO BE TESTED.       |     Low     |
+| FPGA Ressources| Check if the FPGA’s resources (like LUTs, memory) are not being over-utilized.| 4 |    1. Monitor FPGA resource usage during synthesis (e.g., logic units, memory).<br /> 2. Run the game and monitor resource utilization during gameplay.<br /> 3. Check if resource usage remains below critical thresholds.<br /> 4. Verify the game runs smoothly without exhausting the FPGA resources.|    FPGA resources are within safe limits, and the game runs without performance issues.  |     The game works without performance problem on Mac (87% of LUTs used), but the game can't be uploaded by a Windows computer (107% of LUTs used).       |     Low     |
 
-### 3.5.User Interface Testing
+### 3-5 User Interface Testing
 
 #### Frog U.I.
 
 | Test Name | Description | Number of steps |    Steps list     |    Expected    |       Got       |       Priority       | 
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |       ---       |       ---       | 
-| Frog Sprite Display| Ensure the game displays correctly the frog's sprite on the screen.| 4 |    1. Start the game.<br /> 2. Check if the frog's sprite appears on the screen.<br /> 3. Ensure the sprite is centered in the starting position.<br /> 4. Verify the sprite is fully rendered without missing pixels.|    The frog's sprite is displayed correctly, centered, and fully rendered.  |    A portion of the frog bottom right's leg is not visible, making the frog's sprite asymetric. + When the frog reach the bottom right corner, a few additional pixels appear on the right side of the frog.     |     High     |
+| Frog Sprite Display| Ensure the game displays correctly the frog's sprite on the screen.| 4 |    1. Start the game.<br /> 2. Check if the frog's sprite appears on the screen.<br /> 3. Ensure the sprite is centered in the starting position.<br /> 4. Verify the sprite is fully rendered without missing pixels.|    The frog's sprite is displayed correctly, centered, and fully rendered.  |    When the frog reach the right limit, a few additional pixels appear below the frog's bottom legs.     |     High     |
 | Frog Movement Display| Ensure the game displays correctly the frog's movement on the screen when the player trigger a movement input. All 4 directions (Left, Right, Up and Down) must be tested.| 5 |    1. Press the Left button and check the frog's movement.<br /> 2. Press the Right button and check the frog's movement.<br /> 3. Press the Up button and check the frog's movement.<br /> 4. Press the Down button and check the frog's movement.<br /> 5. Ensure smooth display of the frog's movement in all directions.|    The frog moves in all four directions smoothly and displays correctly.   |     ✅       |     High     |
-| Frog Orientation Display| Ensure the game displays correctly the frog's orientation on the screen when the player trigger a movement input different from the frog's current direction. All 4 directions (Left, Right, Up and Down) must be tested.| 4 |    1. Press the Left button when the frog is facing another direction and observe the orientation change.<br /> 2. Press the Right button and observe the orientation change.<br /> 3. Press the Up button and observe the orientation change.<br /> 4. Press the Down button and observe the orientation change.|    The frog correctly changes orientation when moving in different directions.   |     TO BE TESTED.       |     Medium     |
+| Frog Orientation Display| Ensure the game displays correctly the frog's orientation on the screen when the player trigger a movement input different from the frog's current direction. All 4 directions (Left, Right, Up and Down) must be tested.| 4 |    1. Press the Left button when the frog is facing another direction and observe the orientation change.<br /> 2. Press the Right button and observe the orientation change.<br /> 3. Press the Up button and observe the orientation change.<br /> 4. Press the Down button and observe the orientation change.|    The frog correctly changes orientation when moving in different directions.   |     ✅       |     Medium     |
 | Frog Walking Animation Display| Ensure the game displays correctly the frog's walking animation on the screen while its moving.| 4 |    1. Trigger a movement input.<br /> 2. Observe the frog's walking animation while moving.<br /> 3. Ensure the animation is smooth and continuous.<br /> 4. Verify the animation stops when the frog stops moving. |    The frog's walking animation is displayed smoothly during movement and stops when the frog is idle.   |     TO BE TESTED.       |     Low     |
 
 #### Car U.I.
@@ -302,7 +301,7 @@ Every involved testers from previous testings, led by the Q.A., will be in charg
 | Lane Display| Ensure the game displays correctly a lane on the screen.| 4 |    1. Start the game.<br /> 2. Observe the screen for one lane.<br /> 3. Ensure that the lane is fully rendered and clear.<br /> 4. Verify that the lane does not show any visual distortion.|    The lane is displayed fully, with no visual issues.  |     TO BE TESTED.       |     Medium     |
 | Road Display| Ensure the game displays correctly 5 lanes side by side on the screen, forming a road.| 4 |    1. Start the game.<br /> 2. Observe the screen for the full road display.<br /> 3. Verify that all five lanes are rendered side by side.<br /> 4. Ensure that the lanes are aligned and clear.|    The road is displayed with all five lanes, fully rendered and aligned.  |     TO BE TESTED.       |     Medium     |
 
-### 3.6.Regression Testing
+### 3-6 Regression Testing
 
 Throughout the project, we will update the game many times, and the program will be different at each use. So new problems due to the update could occur, even influencing some test cases that have been declared completed.
 
@@ -310,13 +309,13 @@ That's the reason we will perform bunches of testing between each update, and at
 
 | Bunch of testing | Date of testing | Number of tests performed |  Number of bugs found (including the tests already completed)    |    Number of tests completed|  
 | --------- | ----------------- | -------------------- |    ---------------     |    --------    |
-| Bunch of testing n°1 | 10/18/2024   |  83   | 3 (0) | 76  |
-| Bunch of testing n°2 | TBD  |  TBD   | TBD  | TBD  |
+| Bunch of testing n°1 | 10/18/2024  |  83   | 3 (0) | 76  |
+| Bunch of testing n°2 | 10/18/2024  |  84    | 4 (0)  | 81  |
 | Bunch of testing n°3 | TBD  |  TBD   | TBD  | TBD  |
 | Bunch of testing n°4 | TBD  |  TBD   | TBD  | TBD  |
 | Bunch of testing n°5 | TBD  |  TBD   | TBD  | TBD  |
 
-## 4.Features to not test
+## 4. Features to not test
 
 Because the time granted of our project will be limited, we have no choice but to put aside some features. 
 
@@ -333,7 +332,7 @@ Furthermore, we have decided to avoid to work on these features:
 - there won't be any menu and neither a high score chart, as the game starts immediately when the program starts.
 - a Game Over screen has been considered, but it won't be added.
 
-## 5.Hardware Requirements
+## 5. Hardware Requirements
 
 Since this project is programmed exclusively for the FPGA module, we will require specific hardware to upload and execute the code effectively.
 
@@ -343,7 +342,7 @@ Next, we will need either a flipbook or mapbook to carry out the project tests. 
 
 Finally, a secondary computer will be required to display the game through a full HD VGA screen and establish a connection to the FPGA module.
 
-## 6.Environment Requirements
+## 6. Environment Requirements
 
 A robust programming environment is crucial to conducting tests smoothly and efficiently.
 
@@ -354,7 +353,7 @@ However, additional software tools are required for specific testing tasks. Thes
 - A tool to monitor the game's framerate and overall performance
 - A simulator, such as EDA Playground, to facilitate testbench execution and verify the code functionality in a controlled environment.
 
-## 7.Problem Reporting
+## 7. Problem Reporting
 
 In case of a bug encountered, here are the following tasks to follow:
 
@@ -368,7 +367,7 @@ In case of a bug encountered, here are the following tasks to follow:
 
 - Step 5: Correct the issue, and make sure to test if the problem doesnt occur anymore.
 
-## 8.Risks & Assumptions
+## 8. Risks & Assumptions
 
 | Risks | Assumptions | 
 | ------| ----------- | 
@@ -378,11 +377,11 @@ In case of a bug encountered, here are the following tasks to follow:
 | Buttons may not respond consistently due to hardware bounce issues. | The debounce logic in the code is correctly implemented and tested for all buttons.  |
 | Difficulty debugging hardware-specific issues (e.g., slow execution on FPGA but not in simulation). | Simulation matches the FPGA's actual behavior closely, and FPGA tools provide sufficient insight into performance issues.  |
 
-## 9.Approvals
+## 9. Approvals
 
 | Role | Name | Signature | Date |
 |---|---|---|---|
-| Project Manager | Laurent	BOUQUIN | TBD | TBD |
+| Project Manager | Laurent	BOUQUIN | ✅ | 10/18/2024 |
 | Program Manager | Pavlo Prendi | TBD | TBD|
 | Tech Lead | Benoit DE KEYN | TBD | TBD |
 | Software Developer | Tino	GABET | TBD | TBD |
