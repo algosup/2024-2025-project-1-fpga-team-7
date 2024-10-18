@@ -112,6 +112,11 @@ compile.sh
 **/*.sim
 **/*.ip_user_files
 **/*.hw
+*.dblite
+*.asc
+*.bin
+*.json
+*.DS_store
+*abc.history
 
-#OS files and folders
-.DS_Store
+.vscode/
