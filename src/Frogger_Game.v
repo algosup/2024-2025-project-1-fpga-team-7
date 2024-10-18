@@ -34,9 +34,16 @@ module Frogger_Game (
     output o_Segment1_E,
     output o_Segment1_F,
     output o_Segment1_G,
+
+    output o_LED_1,
+    output o_LED_2,
+    output o_LED_3,
+    output o_LED_4,
 );
 
 reg                   r_State;
+
+reg [3:0]             r_LED_lives = 4'b1111;
 
 wire                  w_Game_Active;
 
@@ -194,11 +201,18 @@ wire [9:0]            w_H_Counter;
               end
         RUNNING: if (w_Has_Collided == 1'b1)
                  begin
-                     r_State <= IDLE;           // Send the player to an Idle state at death
+                    // shift right the number of lives
+                    r_LED_lives <= r_LED_lives >> 1;
+                    r_State <= IDLE;           // Send the player to an Idle state at death
                  end
         default: r_State <= IDLE;
     endcase
 
     assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not
+
+    assign o_LED_1 = r_LED_lives[0];
+    assign o_LED_2 = r_LED_lives[1];
+    assign o_LED_3 = r_LED_lives[2];
+    assign o_LED_4 = r_LED_lives[3];
     
 endmodule
