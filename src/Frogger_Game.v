@@ -56,8 +56,6 @@ wire                  w_Has_Collided;
 wire [NUM_BITS - 1:0] w_LFSR_Data;
 wire                  w_LFSR_Done;
 
-wire [NUM_BITS - 1:0] w_Reverse;
-
 wire                  w_Level_Up;
 
 
