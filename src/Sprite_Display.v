@@ -22,6 +22,10 @@ module Sprite_Display #(
     input  [9:0] i_V_Counter,
     input  [9:0] i_H_Counter,
 
+    // Background pixel
+
+    input  [8:0] i_Background_Pixel,
+
     // Car Reverse
     input  [3:0] i_Reverse,
 
@@ -87,7 +91,7 @@ begin
     if (i_H_Counter < H_VISIBLE_AREA && i_V_Counter < V_VISIBLE_AREA)
     begin
         // Default background color (black)
-        r_VGA_Pixel <= 9'b000000000;
+        r_VGA_Pixel <= i_Background_Pixel;
 
         // Display Frog Sprite
         if ((i_V_Counter >= i_Y_Position && i_V_Counter <= i_Y_Position + TILE_SIZE) &&
@@ -130,6 +134,10 @@ begin
         Car_Display(i_Car_3X_Position, C_LINE_3_Y, i_Reverse[2]);
         Car_Display(i_Car_4X_Position, C_LINE_4_Y, i_Reverse[3]);
 
+    end
+    else
+    begin
+        r_VGA_Pixel <= 9'd0;
     end
 end
 

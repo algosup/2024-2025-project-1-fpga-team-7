@@ -66,6 +66,8 @@ wire [3:0]            w_Score;
 wire [9:0]            w_V_Counter;
 wire [9:0]            w_H_Counter;
 
+wire [8:0]            w_VGA_Pixel;
+
     VGA_Bridge #(.H_VISIBLE_AREA(H_VISIBLE_AREA),
                  .V_VISIBLE_AREA(V_VISIBLE_AREA),
                  .H_TOTAL(H_TOTAL),
@@ -80,9 +82,9 @@ wire [9:0]            w_H_Counter;
         .o_V_Counter(w_V_Counter),
         .o_H_Counter(w_H_Counter));
 
-    LFSR #(.NUM_BITS(NUM_BITS)) LFSR_Inst(
-        .i_Clk(i_Clk),
-        .o_LFSR_Data(w_LFSR_Data));
+    // LFSR #(.NUM_BITS(NUM_BITS)) LFSR_Inst(
+    //     .i_Clk(i_Clk),
+    //     .o_LFSR_Data(w_LFSR_Data));
 
     Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_1(
         .i_Clk(i_Clk), 
@@ -123,10 +125,19 @@ wire [9:0]            w_H_Counter;
         .o_Frog_X(w_X_Position),
         .o_Frog_Y(w_Y_Position));
 
+    Background_Display #(.TILE_SIZE(TILE_SIZE),
+                         .H_VISIBLE_AREA(H_VISIBLE_AREA),
+                         .V_VISIBLE_AREA(V_VISIBLE_AREA)) Background_Display_Inst(
+        .i_Clk(i_Clk),
+        .i_H_Counter(w_H_Counter),
+        .i_V_Counter(w_V_Counter),
+        .o_VGA_Pixel(w_VGA_Pixel));
+
     Sprite_Display #(.TILE_SIZE(TILE_SIZE),
                      .H_VISIBLE_AREA(H_VISIBLE_AREA),
                      .V_VISIBLE_AREA(V_VISIBLE_AREA)) Sprite_Display_Inst(
         .i_Clk(i_Clk),
+        .i_Background_Pixel(w_VGA_Pixel),
         .i_Frog_Direction(r_Frog_Direction),
         .i_H_Counter(w_H_Counter),
         .i_V_Counter(w_V_Counter),
@@ -146,7 +157,6 @@ wire [9:0]            w_H_Counter;
         .o_VGA_Red_1(o_VGA_Red_1),
         .o_VGA_Red_2(o_VGA_Red_2),
         .o_VGA_Red_3(o_VGA_Red_3)
-        
         );
 
     Collisions #(.TILE_SIZE(TILE_SIZE))Collisions_Inst(
