@@ -19,6 +19,9 @@ module Sprite_Display #(
     input  [9:0] i_V_Counter,
     input  [9:0] i_H_Counter,
 
+    // Car Reverse
+    input  [3:0] i_Reverse,
+
     // VGA Colors
     output       o_VGA_Red_1,
     output       o_VGA_Red_2,
@@ -42,6 +45,7 @@ wire [8:0] frog_pixel_data;
 wire [8:0] car_pixel_data;
 reg  [9:0] frog_sprite_addr;
 reg  [9:0] car_sprite_addr;
+reg  [4:0] r_Car_X_Memory;
 
 // Instantiate the Frog Memory
 Memory #(.INIT_TXT_FILE(FROG_SPRITE)) frog_memory (
@@ -59,15 +63,17 @@ Memory #(.INIT_TXT_FILE(CAR_SPRITE)) car_memory (
 
 task Car_Display;
     input  [9:0]    i_Car_X_Position;
-    input  [9:0]    i_Car_Y_Position;
+    input  [8:0]    i_Car_Y_Position;
+    input           i_T_Reverse;
     begin
         if (((i_V_Counter >= i_Car_Y_Position) && (i_V_Counter <= (i_Car_Y_Position + TILE_SIZE))) &&
             ((i_H_Counter >= i_Car_X_Position) && (i_H_Counter <= (i_Car_X_Position + TILE_SIZE))))
         begin
-            car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + (i_H_Counter - i_Car_X_Position);
-            r_red   <= car_pixel_data[8:6];
-            r_green <= car_pixel_data[5:3];
-            r_blue  <= car_pixel_data[2:0];
+            r_Car_X_Memory = i_T_Reverse ? (i_H_Counter - i_Car_X_Position) : (TILE_SIZE - (i_H_Counter - i_Car_X_Position));
+            car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + r_Car_X_Memory;
+            r_red           <= car_pixel_data[8:6];
+            r_green         <= car_pixel_data[5:3];
+            r_blue          <= car_pixel_data[2:0];
         end
     end
 endtask
@@ -95,10 +101,10 @@ begin
             r_blue  <= frog_pixel_data[2:0];  // Bottom 3 bits for Blue
         end
 
-        Car_Display(i_Car_1X_Position,C_LINE_1_Y);
-        Car_Display(i_Car_2X_Position,C_LINE_2_Y);
-        Car_Display(i_Car_3X_Position,C_LINE_3_Y);
-        Car_Display(i_Car_4X_Position,C_LINE_4_Y);
+        Car_Display(i_Car_1X_Position, C_LINE_1_Y, i_Reverse[0]);
+        Car_Display(i_Car_2X_Position, C_LINE_2_Y, i_Reverse[1]);
+        Car_Display(i_Car_3X_Position, C_LINE_3_Y, i_Reverse[2]);
+        Car_Display(i_Car_4X_Position, C_LINE_4_Y, i_Reverse[3]);
 
     end
 end
