@@ -1,3 +1,22 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// Main file of the game.
+// Do the majority of the instantiations and some logic such as game logic and frog direction for display.
+//
+// I/Os:
+// It needs a Clock and a Switch for each direction as inputs.
+// As outputs, it needs an horizontal and Vertical Synchronizor, VGA components (3/colors), seven Segments
+// and four LEDs.
+// 
+// Behavior:
+// It instantiates all modules with parameters, inputs, outputs, wires or registers.
+// It sets the frog direction (display) according to switches.
+// If all the Switches are pressed at the same time, the life counter is initiated to 3 
+// and the game state change to RUNNING, else it stays to IDLE.
+// While on RUNNING, decrement life counters by 1 if collisions and set game state to IDLE when no more lives.
+// Switch on/off LEDs according to lives number.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 `include "Constants.v"
 
 module Frogger_Game (
@@ -163,7 +182,11 @@ wire [8:0]            w_VGA_Pixel;
         .o_VGA_Red_2(o_VGA_Red_2),
         .o_VGA_Red_3(o_VGA_Red_3));
 
-    Collisions #(.TILE_SIZE(TILE_SIZE))Collisions_Inst(
+    Collisions #(.TILE_SIZE(TILE_SIZE),
+                 .C_LINE_1_Y(C_LINE_1_Y),
+                 .C_LINE_2_Y(C_LINE_2_Y),
+                 .C_LINE_3_Y(C_LINE_3_Y),
+                 .C_LINE_4_Y(C_LINE_4_Y)) Collisions_Inst(
         .i_Clk(i_Clk),
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
@@ -246,7 +269,7 @@ wire [8:0]            w_VGA_Pixel;
         endcase
 
     r_Has_Collided_tracking <= w_Has_Collided;
-    
+
     end
 
     assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not

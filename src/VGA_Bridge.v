@@ -1,3 +1,16 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// This module will check if you are in the visible area of the VGA.
+//
+// I/Os:
+// To do so, it will need only a Clock as input, VGA Horizontal and Vertical Synchronizor as outputs.
+// It will also need an Horizontal and Vertical Counter as outputs.
+// 
+// Behavior:
+// This module use two local counters and increment them. One for Xs and the other for Ys.
+// Once the horizontal Counter reaches H_TOTAL, it is set to 0 and the vertical Counter is incremented by 1.
+// The VGA horizontal and vertical Synchronizors will return 1 if in the visible area and 0 elsewhere.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module VGA_Bridge #(
     parameter H_TOTAL        = 800,
     parameter V_TOTAL        = 525,

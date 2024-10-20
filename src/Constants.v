@@ -1,4 +1,4 @@
-// This file will contain all the constants we made for the game.
+// This file will contain all the constants to ensure the proper functioning of the game.
 
 // Grid constants
 parameter TILE_SIZE             = 32;
@@ -15,7 +15,6 @@ parameter C_Y_BASE_POSITION     = 384;
 // States machine
 parameter IDLE                  = 0;
 parameter RUNNING               = 1;
-
 
 // Obstacles constants
 parameter C_Y_BASE_CAR_POSITION = 11;

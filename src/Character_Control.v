@@ -1,6 +1,19 @@
-// This module handle all the movements of the frog (Player). 
-// It includes Up, Down, Left, Right. It also set the respawn 
-// coordinates when you reach the top screen or hit a car.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// Controls frog movements and respawns.
+//
+// I/Os:
+// Needs a Clock, a wire for each direction, one for collision state and another for game state as inputs.
+// As outputs, needs registers for leveling up, scoring, frog X and Y positions.
+// 
+// Behavior:
+// This module waits the game to start (You can't move elsewhere).
+// It puts the frog back at its initial position if you get hit by a car.
+// It checks the direction inputs, if the frog doesn't exceed the screen limits, 
+// the position is set to the new one (plus or minus one tile size).
+// If the frog reaches the top screen, the score is incremented by one and leveling up is momentary set to 1.
+// Finally, it sets score to 1 (first level) while game not started.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Character_Control #(
     parameter C_SCORE_INI       = 1,
     parameter C_X_BASE_POSITION = 320,
@@ -25,7 +38,6 @@ module Character_Control #(
 
     input            i_Game_Active,
 
-    output reg       o_Draw_Frog,
     output reg       o_Level_Up     = 0,
 
     // Variable storing score

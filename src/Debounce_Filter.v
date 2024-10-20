@@ -1,5 +1,16 @@
-// This module avoids what is called Rebounce when a button is pressed.
-// Avoid to click many times at once by accident.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// Avoids to move multiple times in one direction by pressing the button only one time.
+//
+// I/Os:
+// It uses a Clock and a Switch state as inputs.
+// As outputs, it uses a wire for the switch state.
+// 
+// Behavior:
+// It checks the Switch state as input differ from the register while the clock reaches a predefined limit.
+// If the limit isn't reached, a counter is incremented,
+// else it returns the new Switch state and restart the counter. 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Debounce_Filter #(parameter C_DEBOUNCE_LIMIT = 250000)(
     input  i_Clk, 
     input  i_Switch, 
@@ -18,7 +29,6 @@ module Debounce_Filter #(parameter C_DEBOUNCE_LIMIT = 250000)(
         begin
             r_Count <= r_Count + 1;
         end
-
         else if (r_Count == C_DEBOUNCE_LIMIT)
         begin
             r_State <= i_Switch;

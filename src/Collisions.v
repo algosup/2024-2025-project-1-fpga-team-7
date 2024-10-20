@@ -1,8 +1,21 @@
-
-`include "Constants.v"
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// This module checks the collisions between cars and the frog.
+//
+// I/Os:
+// It uses a Clock, wires for frog X and Y position and one for each car X position as inputs.
+// As outputs, it uses only a register for collisions.
+// 
+// Behavior:
+// It checks if the frog's top left and top right corners collide with the top of the car or its left side.
+// It returns 1 when collisions and 0 when not. 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Collisions #(
-    parameter   TILE_SIZE = 32,
+    parameter TILE_SIZE  = 32,
+    parameter C_LINE_1_Y = 128,
+    parameter C_LINE_2_Y = 192,
+    parameter C_LINE_3_Y = 256,
+    parameter C_LINE_4_Y = 320
 )(
     input  wire       i_Clk,
 
@@ -53,7 +66,7 @@ module Collisions #(
         Collisions(i_Car2_X, C_LINE_2_Y, i_Frog_X, i_Frog_Y, w_Has_Collided2);
         Collisions(i_Car3_X, C_LINE_3_Y, i_Frog_X, i_Frog_Y, w_Has_Collided3);
         Collisions(i_Car4_X, C_LINE_4_Y, i_Frog_X, i_Frog_Y, w_Has_Collided4);
-        
+
         if (w_Has_Collided1 || w_Has_Collided2 || w_Has_Collided3 || w_Has_Collided4)
         begin
             o_Has_Collided = 1'b1;
