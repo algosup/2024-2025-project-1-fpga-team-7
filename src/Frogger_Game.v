@@ -41,7 +41,7 @@ reg  [2:0]            r_Life_Counter     = 3'b111;
 
 reg  [NUM_BITS - 1:0] r_Reverse          = 4'b1010;
 
-reg  [1:0]            r_Frog_Direction;
+reg  [1:0]            r_Frog_Direction   = 2'b00;
 
 reg                   r_Has_Collided_tracking;
 
@@ -216,6 +216,10 @@ wire [8:0]            w_VGA_Pixel;
         else if (w_Switch_4 == 1)
         begin
             r_Frog_Direction <= 3;
+        end
+        else if (w_Has_Collided == 1)
+        begin
+            r_Frog_Direction <= 0;
         end
     end
 
