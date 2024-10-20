@@ -12,8 +12,13 @@
 // It returns the opposite value of this value (it appears on the board when opposite).
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Seven_Segments_Display(
+    // Clock
     input       i_Clk,
+
+    // Score lesser than 16
     input [3:0] i_Score,
+
+    // Physical display
     output      o_Segment_A,
     output      o_Segment_B,
     output      o_Segment_C,
@@ -23,6 +28,7 @@ module Seven_Segments_Display(
     output      o_Segment_G
 );
 
+    // Store a value on 7 bits, 1 for each segment
     reg [6:0]    r_Hex_Encoding;
   
     // Purpose: Creates a case statement for all possible input binary numbers.
@@ -40,7 +46,7 @@ module Seven_Segments_Display(
             4'b0111 : r_Hex_Encoding <= 7'h70;
             4'b1000 : r_Hex_Encoding <= 7'h7F;
             4'b1001 : r_Hex_Encoding <= 7'h7B;
-            default : r_Hex_Encoding <= 7'h47;
+            default : r_Hex_Encoding <= 7'h47;  // Above 10 display F for finish
         endcase
     end
 

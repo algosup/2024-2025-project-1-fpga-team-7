@@ -12,11 +12,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Collisions #(
     parameter TILE_SIZE  = 32,
-    parameter C_LINE_1_Y = 128,
-    parameter C_LINE_2_Y = 192,
-    parameter C_LINE_3_Y = 256,
-    parameter C_LINE_4_Y = 320
+    parameter C_LINE_1_Y = 128, // line car 1
+    parameter C_LINE_2_Y = 192, // line car 2
+    parameter C_LINE_3_Y = 256, // line car 3
+    parameter C_LINE_4_Y = 320  // line car 4
 )(
+    // Clock
     input  wire       i_Clk,
 
     // Frog left corner
@@ -34,11 +35,13 @@ module Collisions #(
     output reg        o_Has_Collided
 );
 
+    // Collision state for each car
     wire w_Has_Collided1;
     wire w_Has_Collided2;
     wire w_Has_Collided3;
     wire w_Has_Collided4;
 
+    // Looks if collisions between frog and a car.
     task Collisions;
         input  [9:0]    i_Car_X;
         input  [8:0]    i_Car_Y;
@@ -67,6 +70,7 @@ module Collisions #(
         Collisions(i_Car3_X, C_LINE_3_Y, i_Frog_X, i_Frog_Y, w_Has_Collided3);
         Collisions(i_Car4_X, C_LINE_4_Y, i_Frog_X, i_Frog_Y, w_Has_Collided4);
 
+        // return 1 if collision
         if (w_Has_Collided1 || w_Has_Collided2 || w_Has_Collided3 || w_Has_Collided4)
         begin
             o_Has_Collided = 1'b1;

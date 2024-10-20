@@ -21,9 +21,14 @@ module VGA_Bridge #(
     parameter V_FRONT_PORCH  = 10,
     parameter V_SYNC_PULSE   = 2
 )(
+    // Clock
     input             i_Clk,
+
+    // VGA Synchronisers
     output            o_VGA_HSync,
     output            o_VGA_VSync,
+
+    // Cursor X and Y position to display
     output wire [9:0] o_V_Counter,
     output wire [9:0] o_H_Counter
 );
@@ -53,9 +58,11 @@ module VGA_Bridge #(
         end
     end
 
+    // Assign 0 if in the visible area
     assign o_VGA_HSync = (r_h_counter >= H_VISIBLE_AREA + H_FRONT_PORCH && r_h_counter < H_VISIBLE_AREA + H_FRONT_PORCH + H_SYNC_PULSE);
     assign o_VGA_VSync = (r_v_counter >= V_VISIBLE_AREA + V_FRONT_PORCH && r_v_counter < V_VISIBLE_AREA + V_FRONT_PORCH + V_SYNC_PULSE);
 
+    // return screen 'cursor'
     assign o_H_Counter = r_h_counter;
     assign o_V_Counter = r_v_counter;
     

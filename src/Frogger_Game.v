@@ -17,16 +17,20 @@
 // Switch on/off LEDs according to life's number.
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// All global parameters are defined in Constants.v and are included with this line.
 `include "Constants.v"
 
 module Frogger_Game (
+    // Clock
     input  i_Clk,
 
+    // Physical Switches
     input  i_Switch_1,
     input  i_Switch_2,
     input  i_Switch_3,
     input  i_Switch_4,
 
+    // VGA Synchronizers and Components
     output o_VGA_HSync,
     output o_VGA_VSync,
     
@@ -40,6 +44,7 @@ module Frogger_Game (
     output o_VGA_Grn_2,
     output o_VGA_Grn_3,
 
+    // Physical score display
     output o_Segment1_A,
     output o_Segment1_B,
     output o_Segment1_C,
@@ -48,52 +53,54 @@ module Frogger_Game (
     output o_Segment1_F,
     output o_Segment1_G,
 
+    // Physical LEDs
     output o_LED_1,
     output o_LED_2,
     output o_LED_3,
     output o_LED_4
 );
 
-reg                   r_State;
+reg                   r_State;                              // Use to store game state
 
-reg  [2:0]            r_Life_Counter            = 3'b111;
+reg  [2:0]            r_Life_Counter            = 3'b111;   // Store lifes
 
-reg  [NUM_BITS - 1:0] r_Reverse                 = 4'b1010;
+reg  [NUM_BITS - 1:0] r_Reverse                 = 4'b1010;  // Reverse cars 1 and 3
 
-reg  [1:0]            r_Frog_Direction;
+reg  [1:0]            r_Frog_Direction;                     // Store frog direction for display
 
-reg                   r_Has_Collided_tracking;
+reg                   r_Has_Collided_tracking;              // Debounce Collision
 
-reg  [3:0]            r_Score;
+reg  [3:0]            r_Score;                              // Store the score
 
-wire                  w_Game_Active;
+wire                  w_Game_Active;                        // return 1 when the game is running
 
+// Switches after debounce
 wire                  w_Switch_1;
 wire                  w_Switch_2;
 wire                  w_Switch_3;
 wire                  w_Switch_4;
 
+// return 1 when all 4 switches pressed
 wire                  w_All_Switch              = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
 
-wire [8:0]            w_Y_Position; 
-wire [9:0]            w_X_Position;
+wire [8:0]            w_Y_Position;                         // frog Y position
+wire [9:0]            w_X_Position;                         // frog X position
 
+// Obstacles positions
 wire [9:0]            w_Car1_X_Position;
 wire [9:0]            w_Car2_X_Position;
 wire [9:0]            w_Car3_X_Position;
 wire [9:0]            w_Car4_X_Position; 
 
-wire                  w_Has_Collided;
+wire                  w_Has_Collided;                       // Collision state
 
-wire [NUM_BITS - 1:0] w_LFSR_Data;
-wire                  w_LFSR_Done;
+wire                  w_Level_Up;                           // 1 when leveling up
 
-wire                  w_Level_Up;
-
+// Cursor X and Y position to display
 wire [9:0]            w_V_Counter;
 wire [9:0]            w_H_Counter;
 
-wire [8:0]            w_VGA_Pixel;
+wire [8:0]            w_VGA_Pixel;                          // 1 pixel VGA components for the background display
 
     VGA_Bridge #(.H_VISIBLE_AREA(H_VISIBLE_AREA),
                  .V_VISIBLE_AREA(V_VISIBLE_AREA),
@@ -219,24 +226,24 @@ wire [8:0]            w_VGA_Pixel;
         .o_Segment_F(o_Segment1_F),
         .o_Segment_G(o_Segment1_G));
 
-    // Update r_Frog_Direction if necessary
+    // Update r_Frog_Direction to help rotating the frog sprite
     always @(posedge i_Clk) 
     begin
         if (w_Switch_1 == 1)
         begin
-            r_Frog_Direction <= 0;
+            r_Frog_Direction <= 0;  // Facing up
         end
         else if (w_Switch_2 == 1)
         begin
-            r_Frog_Direction <= 1;
+            r_Frog_Direction <= 1;  // Facing left
         end
         else if (w_Switch_3 == 1)
         begin
-            r_Frog_Direction <= 2;
+            r_Frog_Direction <= 2;  // Facing right
         end
         else if (w_Switch_4 == 1)
         begin
-            r_Frog_Direction <= 3;
+            r_Frog_Direction <= 3; // Facing down
         end
     end
 
@@ -244,6 +251,7 @@ wire [8:0]            w_VGA_Pixel;
     always @(posedge i_Clk) 
     begin
         case (r_State)
+            // Before playing or when game over
             IDLE: 
                 if (w_All_Switch == 1'b1) 
                 begin
@@ -267,13 +275,14 @@ wire [8:0]            w_VGA_Pixel;
                     end
                 end
         endcase
-
+    // Debouncing Collision
     r_Has_Collided_tracking <= w_Has_Collided;
 
     end
 
     assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not
 
+    // Display the number of lives
     assign o_LED_1       = 1'b0;
     assign o_LED_2       = r_Life_Counter[2];
     assign o_LED_3       = r_Life_Counter[1];

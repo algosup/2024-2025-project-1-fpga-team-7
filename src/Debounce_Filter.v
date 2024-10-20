@@ -12,7 +12,10 @@
 // else it returns the new Switch state and restart the counter. 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Debounce_Filter #(parameter C_DEBOUNCE_LIMIT = 250000)(
-    input  i_Clk, 
+    // Clock
+    input  i_Clk,
+
+    // Switch I/O
     input  i_Switch, 
     output o_Switch
 );
@@ -25,6 +28,7 @@ module Debounce_Filter #(parameter C_DEBOUNCE_LIMIT = 250000)(
 
     always @(posedge i_Clk)
     begin
+        // Wait a delay before changing switch state
         if (i_Switch !== r_State && r_Count < C_DEBOUNCE_LIMIT)
         begin
             r_Count <= r_Count + 1;

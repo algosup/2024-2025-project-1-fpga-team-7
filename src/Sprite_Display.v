@@ -37,6 +37,7 @@ module Sprite_Display #(
     input  [9:0] i_Car_3X_Position,
     input  [9:0] i_Car_4X_Position,
 
+    // Cursor X and Y position to display
     input  [9:0] i_V_Counter,
     input  [9:0] i_H_Counter,
 
@@ -62,7 +63,7 @@ module Sprite_Display #(
     localparam CAR_SPRITE = "car_sprite.txt";
     localparam FROG_SPRITE = "frog_sprite.txt";
 
-    reg [8:0] r_VGA_Pixel;
+    reg [8:0] r_VGA_Pixel;                      // Store the VGA components of the pixel that will be displayed
 
     // Signals to connect to the Memory modules
     reg  [9:0] frog_sprite_addr;
@@ -80,13 +81,14 @@ module Sprite_Display #(
         .o_read_data(frog_pixel_data)  // Output pixel data for frog
     );
 
-        // Instantiate the Car Memory
+    // Instantiate the Car Memory
     Memory #(.INIT_TXT_FILE(CAR_SPRITE)) car_memory (
         .i_Clk(i_Clk),
         .i_read_addr(car_sprite_addr),
         .o_read_data(car_pixel_data)  // Output pixel data for car
     );
 
+    // Display car and rotate the sprite if needed
     task Car_Display;
         input  [9:0]    i_Car_X_Position;
         input  [8:0]    i_Car_Y_Position;
@@ -110,7 +112,7 @@ module Sprite_Display #(
     begin
         if (i_H_Counter < H_VISIBLE_AREA && i_V_Counter < V_VISIBLE_AREA)
         begin
-            // Default background color (black)
+            // Default background color
             r_VGA_Pixel <= i_Background_Pixel;
     
             // Display Frog Sprite
@@ -118,25 +120,25 @@ module Sprite_Display #(
                 (i_H_Counter >= i_X_Position && i_H_Counter <= i_X_Position + TILE_SIZE))
             begin
                 case (i_Frog_Direction)
-                    0: 
+                    0:    // Facing up
                     begin
                         r_Frog_X_Memory = (i_H_Counter - i_X_Position);
                         r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
                         frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
                     end
-                    1:
+                    1:    // Facing left
                     begin
                         r_Frog_X_Memory = (i_H_Counter - i_X_Position);
                         r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
                         frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
                     end
-                    2:
+                    2:    // Facing right
                     begin
                         r_Frog_X_Memory = (TILE_SIZE - (i_H_Counter - i_X_Position));
                         r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
                         frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
                     end
-                    3:
+                    3:    // Facing down
                     begin
                         r_Frog_X_Memory = (i_H_Counter - i_X_Position);
                         r_Frog_Y_Memory = (TILE_SIZE - (i_V_Counter - i_Y_Position));

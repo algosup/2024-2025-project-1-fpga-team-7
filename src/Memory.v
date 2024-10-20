@@ -14,7 +14,7 @@
 module Memory #(
     parameter INIT_TXT_FILE = "car_sprite.txt"
 )(
-    input             i_Clk,
+    input             i_Clk,         // Clock
     input      [9:0]  i_read_addr,   // 10-bit address
     output reg [8:0]  o_read_data    // 9-bit data (1 RGB VGA pixel)
 );
@@ -24,7 +24,7 @@ module Memory #(
      
     always @(posedge i_Clk) 
     begin
-        o_read_data <= memory[i_read_addr];
+        o_read_data <= memory[i_read_addr]; // Read data from memory at 'read address'
     end
     
     // Memory initialization from file (optional)

@@ -19,6 +19,7 @@ module Background_Display #(
 )(
     input            i_Clk,
 
+    // Vertical and Horizontal Counters
     input      [9:0] i_V_Counter,
     input      [9:0] i_H_Counter,
 
@@ -46,41 +47,48 @@ wire [8:0] grass_finish_pixel_data;
 wire [8:0] grass_pixel_data;
 wire [8:0] water_pixel_data;
 
+// Instantiate a part of the block RAM with a text file
 Memory #(.INIT_TXT_FILE(ROAD_SPRITE)) road_memory (
     .i_Clk(i_Clk),
     .i_read_addr(road_sprite_addr),
     .o_read_data(road_pixel_data)  // Output pixel data for frog
 );
 
+// Instantiate a part of the block RAM with a text file
 Memory #(.INIT_TXT_FILE(SIDEWALK_SPRITE)) sidewalk_memory (
     .i_Clk(i_Clk),
     .i_read_addr(sidewalk_sprite_addr),
     .o_read_data(sidewalk_pixel_data)  // Output pixel data for frog
 );
 
+// Instantiate a part of the block RAM with a text file
 Memory #(.INIT_TXT_FILE(GRASS_FINISH_SPRITE)) grass_finish_memory (
     .i_Clk(i_Clk),
     .i_read_addr(grass_finish_sprite_addr),
     .o_read_data(grass_finish_pixel_data)  // Output pixel data for frog
 );
 
+// Instantiate a part of the block RAM with a text file
 Memory #(.INIT_TXT_FILE(GRASS_SPRITE)) grass_memory (
     .i_Clk(i_Clk),
     .i_read_addr(grass_sprite_addr),
     .o_read_data(grass_pixel_data)  // Output pixel data for frog
 );
 
+// Instantiate a part of the block RAM with a text file
 Memory #(.INIT_TXT_FILE(WATER_SPRITE)) water_memory (
     .i_Clk(i_Clk),
     .i_read_addr(water_sprite_addr),
     .o_read_data(water_pixel_data)  // Output pixel data for frog
 );
 
-    // Display logic
+// Display logic
 always @(posedge i_Clk) 
 begin
+    // Check if in Visible Area
     if (i_H_Counter < H_VISIBLE_AREA && i_V_Counter < V_VISIBLE_AREA)
     begin
+        // Returns the pixel of a sprite according to the current row 
         case (r_current_tile_row)
             0:
             begin
