@@ -55,7 +55,8 @@ module Obstacles_Movement#(
         end
     endtask
 
-    always @(posedge i_Clk) begin
+    always @(posedge i_Clk)
+    begin
         case (i_Score)
             1, 2, 3: r_Car_Speed <= C_BASE_CAR_SPEED;
             4, 5, 6: r_Car_Speed <= C_BASE_CAR_SPEED >> 1;

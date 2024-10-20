@@ -7,7 +7,7 @@ module VGA_Bridge #(
     parameter V_VISIBLE_AREA = 480,
     parameter V_FRONT_PORCH  = 10,
     parameter V_SYNC_PULSE   = 2
-    )(
+)(
     input             i_Clk,
     output            o_VGA_HSync,
     output            o_VGA_VSync,

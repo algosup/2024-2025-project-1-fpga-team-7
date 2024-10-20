@@ -1,7 +1,5 @@
-module Memory 
-
-#(parameter
-    INIT_TXT_FILE = "car_sprite.txt"
+module Memory #(
+    parameter INIT_TXT_FILE = "car_sprite.txt"
 )(
     input             i_Clk,
     input      [9:0]  i_read_addr,   // 10-bit address

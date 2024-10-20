@@ -37,23 +37,24 @@ module Frogger_Game (
 
 reg                   r_State;
 
-reg  [2:0]            r_Life_Counter     = 3'b111;
+reg  [2:0]            r_Life_Counter            = 3'b111;
 
-reg  [NUM_BITS - 1:0] r_Reverse          = 4'b1010;
+reg  [NUM_BITS - 1:0] r_Reverse                 = 4'b1010;
 
 reg  [1:0]            r_Frog_Direction;
 
 reg                   r_Has_Collided_tracking;
 
-wire                  w_Game_Active;
+reg  [3:0]            r_Score;
 
+wire                  w_Game_Active;
 
 wire                  w_Switch_1;
 wire                  w_Switch_2;
 wire                  w_Switch_3;
 wire                  w_Switch_4;
 
-wire                  w_All_Switch       = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
+wire                  w_All_Switch              = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
 
 wire [8:0]            w_Y_Position; 
 wire [9:0]            w_X_Position;
@@ -69,8 +70,6 @@ wire [NUM_BITS - 1:0] w_LFSR_Data;
 wire                  w_LFSR_Done;
 
 wire                  w_Level_Up;
-
-reg  [3:0]            r_Score;
 
 wire [9:0]            w_V_Counter;
 wire [9:0]            w_H_Counter;
@@ -162,8 +161,7 @@ wire [8:0]            w_VGA_Pixel;
         .o_VGA_Grn_3(o_VGA_Grn_3),
         .o_VGA_Red_1(o_VGA_Red_1),
         .o_VGA_Red_2(o_VGA_Red_2),
-        .o_VGA_Red_3(o_VGA_Red_3)
-        );
+        .o_VGA_Red_3(o_VGA_Red_3));
 
     Collisions #(.TILE_SIZE(TILE_SIZE))Collisions_Inst(
         .i_Clk(i_Clk),
@@ -220,37 +218,42 @@ wire [8:0]            w_VGA_Pixel;
     end
 
     //State Machine
-    always @(posedge i_Clk) begin
-    case (r_State)
-        IDLE: if (w_All_Switch == 1'b1) 
-              begin
-                  r_Life_Counter <= 3'b111;       // Reset the number of lives
-                  r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
-              end
-        RUNNING: if (w_Has_Collided == 1'b1 && r_Has_Collided_tracking == 1'b0)
-                 begin
+    always @(posedge i_Clk) 
+    begin
+        case (r_State)
+            IDLE: 
+                if (w_All_Switch == 1'b1) 
+                begin
+                    r_Life_Counter <= 3'b111;       // Reset the number of lives
+                    r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
+                end
+            RUNNING: 
+                if (w_Has_Collided == 1'b1 && r_Has_Collided_tracking == 1'b0)
+                begin
                     // shift right the number of lives
                     r_Life_Counter <= (r_Life_Counter >> 1);
-                     if (r_Life_Counter == 1) 
-                     begin
+
+                    if (r_Life_Counter == 1) 
+                    begin
                         // Send the player to an Idle state at death
                         r_State <= IDLE;
-                     end
-                     else
-                     begin          // Send the player to an Idle state at death
+                    end
+                    else
+                    begin          // Send the player to an Idle state at death
                         r_State <= RUNNING;
-                     end
-                 end
-    endcase
+                    end
+                end
+        endcase
+
     r_Has_Collided_tracking <= w_Has_Collided;
+    
     end
 
     assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not
-    //assign w_End_Game    = (r_Life_Counter == 0) ? 1'b1 : 1'b0;
 
-    assign o_LED_1 = 1'b0;
-    assign o_LED_2 = r_Life_Counter[2];
-    assign o_LED_3 = r_Life_Counter[1];
-    assign o_LED_4 = r_Life_Counter[0];
+    assign o_LED_1       = 1'b0;
+    assign o_LED_2       = r_Life_Counter[2];
+    assign o_LED_3       = r_Life_Counter[1];
+    assign o_LED_4       = r_Life_Counter[0];
     
 endmodule

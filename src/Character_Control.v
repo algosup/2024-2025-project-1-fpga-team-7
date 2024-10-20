@@ -26,22 +26,22 @@ module Character_Control #(
     input            i_Game_Active,
 
     output reg       o_Draw_Frog,
-    output reg       o_Level_Up                    = 0,
+    output reg       o_Level_Up     = 0,
 
     // Variable storing score
-    output reg [3:0] o_Score = C_SCORE_INI,
+    output reg [3:0] o_Score        = C_SCORE_INI,
 
     // Left corner of the frog (Player)
-    output reg [9:0] o_Frog_X = C_X_BASE_POSITION,
-    output reg [8:0] o_Frog_Y = C_Y_BASE_POSITION 
+    output reg [9:0] o_Frog_X       = C_X_BASE_POSITION,
+    output reg [8:0] o_Frog_Y       = C_Y_BASE_POSITION 
 );
 
     wire       w_Frog_En;
     wire       w_No_Lateral;
     wire       w_No_Vertical;
 
-    reg        r_state            = 1'b0;
-    reg [31:0] r_Counter          = 0;
+    reg        r_state          = 1'b0;
+    reg [31:0] r_Counter        = 0;
 
     // Only allow Frog to move if only one button is pushed (use XOR for exclusive movement).
     assign w_Frog_En = (i_Frog_Up ^ i_Frog_Dn) ^ (i_Frog_Lt ^ i_Frog_Rt);

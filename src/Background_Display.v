@@ -21,16 +21,16 @@ localparam WATER_SPRITE        = "Water_Sprite.txt";
 reg  [4:0] r_current_tile_row = i_V_Counter[9:5];
 
 // Signals to connect to the Memory modules
-wire [8:0] road_pixel_data;
-wire [8:0] sidewalk_pixel_data;
-wire [8:0] grass_finish_pixel_data;
-wire [8:0] grass_pixel_data;
-wire [8:0] water_pixel_data;
 reg  [9:0] road_sprite_addr;
 reg  [9:0] sidewalk_sprite_addr;
 reg  [9:0] grass_finish_sprite_addr;
 reg  [9:0] grass_sprite_addr;
 reg  [9:0] water_sprite_addr;
+wire [8:0] road_pixel_data;
+wire [8:0] sidewalk_pixel_data;
+wire [8:0] grass_finish_pixel_data;
+wire [8:0] grass_pixel_data;
+wire [8:0] water_pixel_data;
 
 Memory #(.INIT_TXT_FILE(ROAD_SPRITE)) road_memory (
     .i_Clk(i_Clk),

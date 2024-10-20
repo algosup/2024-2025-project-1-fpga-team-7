@@ -23,7 +23,6 @@ module Sprite_Display #(
     input  [9:0] i_H_Counter,
 
     // Background pixel
-
     input  [8:0] i_Background_Pixel,
 
     // Car Reverse
@@ -42,120 +41,118 @@ module Sprite_Display #(
 
 );
 
-localparam CAR_SPRITE = "car_sprite.txt";
-localparam FROG_SPRITE = "frog_sprite.txt";
+    localparam CAR_SPRITE = "car_sprite.txt";
+    localparam FROG_SPRITE = "frog_sprite.txt";
 
-reg [8:0] r_VGA_Pixel;
+    reg [8:0] r_VGA_Pixel;
 
-// Signals to connect to the Memory modules
-wire [8:0] frog_pixel_data;
-wire [8:0] car_pixel_data;
-reg  [9:0] frog_sprite_addr;
-reg  [9:0] car_sprite_addr;
-reg  [4:0] r_Car_X_Memory;
-reg  [4:0] r_Frog_X_Memory;
-reg  [4:0] r_Frog_Y_Memory;
+    // Signals to connect to the Memory modules
+    reg  [9:0] frog_sprite_addr;
+    reg  [9:0] car_sprite_addr;
+    reg  [4:0] r_Car_X_Memory;
+    reg  [4:0] r_Frog_X_Memory;
+    reg  [4:0] r_Frog_Y_Memory;
+    wire [8:0] frog_pixel_data;
+    wire [8:0] car_pixel_data;
 
-// Instantiate the Frog Memory
-Memory #(.INIT_TXT_FILE(FROG_SPRITE)) frog_memory (
-    .i_Clk(i_Clk),
-    .i_read_addr(frog_sprite_addr),
-    .o_read_data(frog_pixel_data)  // Output pixel data for frog
-);
+    // Instantiate the Frog Memory
+    Memory #(.INIT_TXT_FILE(FROG_SPRITE)) frog_memory (
+        .i_Clk(i_Clk),
+        .i_read_addr(frog_sprite_addr),
+        .o_read_data(frog_pixel_data)  // Output pixel data for frog
+    );
 
-// Instantiate the Car Memory
-Memory #(.INIT_TXT_FILE(CAR_SPRITE)) car_memory (
-    .i_Clk(i_Clk),
-    .i_read_addr(car_sprite_addr),
-    .o_read_data(car_pixel_data)  // Output pixel data for car
-);
+        // Instantiate the Car Memory
+    Memory #(.INIT_TXT_FILE(CAR_SPRITE)) car_memory (
+        .i_Clk(i_Clk),
+        .i_read_addr(car_sprite_addr),
+        .o_read_data(car_pixel_data)  // Output pixel data for car
+    );
 
-task Car_Display;
-    input  [9:0]    i_Car_X_Position;
-    input  [8:0]    i_Car_Y_Position;
-    input           i_T_Reverse;
-    begin
-        if (((i_V_Counter >= i_Car_Y_Position) && (i_V_Counter <= (i_Car_Y_Position + TILE_SIZE))) &&
-            ((i_H_Counter >= i_Car_X_Position) && (i_H_Counter <= (i_Car_X_Position + TILE_SIZE))))
+    task Car_Display;
+        input  [9:0]    i_Car_X_Position;
+        input  [8:0]    i_Car_Y_Position;
+        input           i_T_Reverse;
         begin
-            r_Car_X_Memory = i_T_Reverse ? (i_H_Counter - i_Car_X_Position) : (TILE_SIZE - (i_H_Counter - i_Car_X_Position));
-            car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + r_Car_X_Memory;
-            if (car_pixel_data != 9'b111101110)
+            if (((i_V_Counter >= i_Car_Y_Position) && (i_V_Counter <= (i_Car_Y_Position + TILE_SIZE))) &&
+                ((i_H_Counter >= i_Car_X_Position) && (i_H_Counter <= (i_Car_X_Position + TILE_SIZE))))
             begin
-                r_VGA_Pixel <= car_pixel_data;    
+                r_Car_X_Memory = i_T_Reverse ? (i_H_Counter - i_Car_X_Position) : (TILE_SIZE - (i_H_Counter - i_Car_X_Position));
+                car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + r_Car_X_Memory;
+                if (car_pixel_data != 9'b111101110)
+                begin
+                    r_VGA_Pixel <= car_pixel_data;    
+                end
             end
         end
-    end
-endtask
+    endtask
 
-// Display logic
-always @(posedge i_Clk) 
-begin
-    if (i_H_Counter < H_VISIBLE_AREA && i_V_Counter < V_VISIBLE_AREA)
+    // Display logic
+    always @(posedge i_Clk) 
     begin
-        // Default background color (black)
-        r_VGA_Pixel <= i_Background_Pixel;
-
-        // Display Frog Sprite
-        if ((i_V_Counter >= i_Y_Position && i_V_Counter <= i_Y_Position + TILE_SIZE) &&
-            (i_H_Counter >= i_X_Position && i_H_Counter <= i_X_Position + TILE_SIZE))
+        if (i_H_Counter < H_VISIBLE_AREA && i_V_Counter < V_VISIBLE_AREA)
         begin
-            case (i_Frog_Direction)
-                0: 
-                begin
-                    r_Frog_X_Memory = (i_H_Counter - i_X_Position);
-                    r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
-                    frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
-                end
-                1:
-                begin
-                    r_Frog_X_Memory = (i_H_Counter - i_X_Position);
-                    r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
-                    frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
-                end
-                2:
-                begin
-                    r_Frog_X_Memory = (TILE_SIZE - (i_H_Counter - i_X_Position));
-                    r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
-                    frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
-                end
-                3:
-                begin
-                    r_Frog_X_Memory = (i_H_Counter - i_X_Position);
-                    r_Frog_Y_Memory = (TILE_SIZE - (i_V_Counter - i_Y_Position));
-                    frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
-                end
-            endcase
-            
-            // Map 9-bit frog_pixel_data to RGB
-            if (frog_pixel_data != 9'b111101110)
+            // Default background color (black)
+            r_VGA_Pixel <= i_Background_Pixel;
+    
+            // Display Frog Sprite
+            if ((i_V_Counter >= i_Y_Position && i_V_Counter <= i_Y_Position + TILE_SIZE) &&
+                (i_H_Counter >= i_X_Position && i_H_Counter <= i_X_Position + TILE_SIZE))
             begin
-                r_VGA_Pixel <= frog_pixel_data;    
+                case (i_Frog_Direction)
+                    0: 
+                    begin
+                        r_Frog_X_Memory = (i_H_Counter - i_X_Position);
+                        r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
+                        frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
+                    end
+                    1:
+                    begin
+                        r_Frog_X_Memory = (i_H_Counter - i_X_Position);
+                        r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
+                        frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
+                    end
+                    2:
+                    begin
+                        r_Frog_X_Memory = (TILE_SIZE - (i_H_Counter - i_X_Position));
+                        r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
+                        frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
+                    end
+                    3:
+                    begin
+                        r_Frog_X_Memory = (i_H_Counter - i_X_Position);
+                        r_Frog_Y_Memory = (TILE_SIZE - (i_V_Counter - i_Y_Position));
+                        frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
+                    end
+                endcase
+
+                // Map 9-bit frog_pixel_data to RGB
+                if (frog_pixel_data != 9'b111101110)
+                begin
+                    r_VGA_Pixel <= frog_pixel_data;    
+                end
             end
+            Car_Display(i_Car_1X_Position, C_LINE_1_Y, i_Reverse[0]);
+            Car_Display(i_Car_2X_Position, C_LINE_2_Y, i_Reverse[1]);
+            Car_Display(i_Car_3X_Position, C_LINE_3_Y, i_Reverse[2]);
+            Car_Display(i_Car_4X_Position, C_LINE_4_Y, i_Reverse[3]);
         end
-
-        Car_Display(i_Car_1X_Position, C_LINE_1_Y, i_Reverse[0]);
-        Car_Display(i_Car_2X_Position, C_LINE_2_Y, i_Reverse[1]);
-        Car_Display(i_Car_3X_Position, C_LINE_3_Y, i_Reverse[2]);
-        Car_Display(i_Car_4X_Position, C_LINE_4_Y, i_Reverse[3]);
-
+        else
+        begin
+            r_VGA_Pixel <= 9'd0;
+        end
     end
-    else
-    begin
-        r_VGA_Pixel <= 9'd0;
-    end
-end
 
-// Assign VGA colors
-assign o_VGA_Blu_1 = r_VGA_Pixel[0];    // LSB of red signal
-assign o_VGA_Blu_2 = r_VGA_Pixel[1];    // Middle bit of red signal
-assign o_VGA_Blu_3 = r_VGA_Pixel[2];    // MSB of red signal
-assign o_VGA_Grn_1 = r_VGA_Pixel[3];  // LSB of green signal
-assign o_VGA_Grn_2 = r_VGA_Pixel[4];  // Middle bit of green signal
-assign o_VGA_Grn_3 = r_VGA_Pixel[5];  // MSB of green signal
-assign o_VGA_Red_1 = r_VGA_Pixel[6];   // LSB of blue signal
-assign o_VGA_Red_2 = r_VGA_Pixel[7];   // Middle bit of blue signal
-assign o_VGA_Red_3 = r_VGA_Pixel[8];   // MSB of blue signal
+    // Assign VGA colors
+    assign o_VGA_Blu_1 = r_VGA_Pixel[0];    // LSB of red signal
+    assign o_VGA_Blu_2 = r_VGA_Pixel[1];    // Middle bit of red signal
+    assign o_VGA_Blu_3 = r_VGA_Pixel[2];    // MSB of red signal
+    assign o_VGA_Grn_1 = r_VGA_Pixel[3];  // LSB of green signal
+    assign o_VGA_Grn_2 = r_VGA_Pixel[4];  // Middle bit of green signal
+    assign o_VGA_Grn_3 = r_VGA_Pixel[5];  // MSB of green signal
+    assign o_VGA_Red_1 = r_VGA_Pixel[6];   // LSB of blue signal
+    assign o_VGA_Red_2 = r_VGA_Pixel[7];   // Middle bit of blue signal
+    assign o_VGA_Red_3 = r_VGA_Pixel[8];   // MSB of blue signal
 
 endmodule
 
