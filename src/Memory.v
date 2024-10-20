@@ -7,7 +7,6 @@ module Memory
     input      [9:0]  i_read_addr,   // 10-bit address
     output reg [8:0]  o_read_data    // 9-bit data (1 RGB VGA pixel)
 );
-
     // 1024 memory locations, each 9 bits wide
     reg [8:0] memory [0:1023];
      
