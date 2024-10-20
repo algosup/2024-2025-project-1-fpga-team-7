@@ -1,3 +1,16 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// Activate and initialize block RAM. Read in the RAM.
+//
+// I/Os:
+// It needs a Clock and an address to read as inputs.
+// As output, it needs a register to store data.
+// 
+// Behavior:
+// Creates the memory.
+// Initializes it from a text file in binary.
+// It returns in the data register the data stored in the array at the input address.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Memory #(
     parameter INIT_TXT_FILE = "car_sprite.txt"
 )(

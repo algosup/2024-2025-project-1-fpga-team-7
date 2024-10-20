@@ -4,15 +4,15 @@
 //
 // I/Os:
 // Needs a Clock, a wire for each direction, one for collision state and another for game state as inputs.
-// As outputs, needs registers for leveling up, scoring, frog X and Y positions.
+// As outputs, it needs registers for leveling up, scoring, frog X and Y positions.
 // 
 // Behavior:
-// This module waits the game to start (You can't move elsewhere).
-// It puts the frog back at its initial position if you get hit by a car.
-// It checks the direction inputs, if the frog doesn't exceed the screen limits, 
+// This module waits for the game to start (You can't move elsewhere).
+// It puts the frog back in its initial position if you get hit by a car.
+// It checks the direction inputs if the frog doesn't exceed the screen limits, 
 // the position is set to the new one (plus or minus one tile size).
-// If the frog reaches the top screen, the score is incremented by one and leveling up is momentary set to 1.
-// Finally, it sets score to 1 (first level) while game not started.
+// If the frog reaches the top screen, the score is incremented by one, and leveling up is momentarily set to 1.
+// Finally, it sets the score to 1 (first level) while the game has not started.
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Character_Control #(
     parameter C_SCORE_INI       = 1,

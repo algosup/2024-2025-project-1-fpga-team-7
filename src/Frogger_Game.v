@@ -5,16 +5,16 @@
 //
 // I/Os:
 // It needs a Clock and a Switch for each direction as inputs.
-// As outputs, it needs an horizontal and Vertical Synchronizor, VGA components (3/colors), seven Segments
+// As outputs, it needs a horizontal and Vertical Synchronizer, VGA components (3/colors), seven Segments
 // and four LEDs.
 // 
 // Behavior:
-// It instantiates all modules with parameters, inputs, outputs, wires or registers.
+// It instantiates all modules with parameters, inputs, outputs, wires, or registers.
 // It sets the frog direction (display) according to switches.
 // If all the Switches are pressed at the same time, the life counter is initiated to 3 
-// and the game state change to RUNNING, else it stays to IDLE.
-// While on RUNNING, decrement life counters by 1 if collisions and set game state to IDLE when no more lives.
-// Switch on/off LEDs according to lives number.
+// and the game state changes to RUNNING, else it stays to IDLE.
+// While on RUNNING, decrement life counters by 1 if collisions and set the game state to IDLE when no more lives.
+// Switch on/off LEDs according to life's number.
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 `include "Constants.v"

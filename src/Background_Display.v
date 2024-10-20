@@ -1,14 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Purpose:
-// Initates Block RAM and read sprites text files.
+//Initiates Block RAM and reads sprites text files.
 //
 // I/Os:
-// This module needs a Clock, and a vertical and horizontal Counters as inputs.
-// In outputs, a register 9 bits wide for the VGA components.
+// This module needs a Clock, and vertical and horizontal Counters as inputs.
+// In outputs, a register is 9 bits wide for the VGA components.
 // 
 // Behavior:
 // It instantiates the Memory module for each sprite needed in the background.
-// Then it check the actual position with the horizontal and vertical Counters.
+// Then it checks the actual position with the horizontal and vertical Counters.
 // It returns the VGA components of a pixel and its address regarding the row you have predefined.
 // (Here on 15 rows)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

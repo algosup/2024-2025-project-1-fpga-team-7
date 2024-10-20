@@ -7,7 +7,7 @@
 // As outputs, it uses a wire for the switch state.
 // 
 // Behavior:
-// It checks the Switch state as input differ from the register while the clock reaches a predefined limit.
+// It checks the Switch state as input differs from the register while the clock reaches a predefined limit.
 // If the limit isn't reached, a counter is incremented,
 // else it returns the new Switch state and restart the counter. 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

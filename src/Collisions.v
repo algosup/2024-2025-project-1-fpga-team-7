@@ -3,7 +3,7 @@
 // This module checks the collisions between cars and the frog.
 //
 // I/Os:
-// It uses a Clock, wires for frog X and Y position and one for each car X position as inputs.
+// It uses a Clock, wires for frog X and Y position, and one for each car X position as inputs.
 // As outputs, it uses only a register for collisions.
 // 
 // Behavior:

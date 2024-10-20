@@ -1,3 +1,16 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// Cars movements, speeds, and directions.
+//
+// I/Os:
+// It needs a Clock, a wire for the reverse state, and one to store the current score.
+// As outputs, it needs a register for each car X position. 
+// 
+// Behavior:
+// It checks the score to update the car speed.
+// It increments the cars' X positions according to a multiplier and their previous position.
+// It teleports the cars from one side of the screen to another.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Obstacles_Movement#(
     parameter C_BASE_CAR_SPEED              = 781250,
     parameter H_VISIBLE_AREA                = 640,

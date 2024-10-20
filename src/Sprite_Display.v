@@ -1,3 +1,21 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// Display on the screen the sprites at their locations or the background if there is no sprite on the pixel.
+//
+// I/Os:
+// It needs a Clock, a wire for the frog's direction, two for the frog's X and Y positions, one for each cars'
+// X position, two for the Vertical and Horizontal Counter, another for the Background Pixel, and a last one 
+// for the reverse car state as inputs.
+// As outputs, it needs wires for the VGA components (here 3/colors).
+// 
+// Behavior:
+// It initiates the memory for the car and frog sprites.
+// If there is no car or frog on a pixel, it prints the background pixel.
+// Else if there is the frog, it looks at the direction of it and rotates the frog given to it.
+// Else it prints the car and reverses it according to the reverse register.
+// Lastly, the background is printed if the pixel in the car or frog sprite is equal to 9'b111101110.
+// It returns the 9 VGA components.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Sprite_Display #(
     parameter TILE_SIZE      = 32,
     parameter H_VISIBLE_AREA = 640,

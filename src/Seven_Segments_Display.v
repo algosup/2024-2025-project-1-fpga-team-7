@@ -1,6 +1,16 @@
-// This module show the score on the board by using the 7 segments.
-// The first one would be for the tens and the second one for the units.
-// It uses the score incremented in Frog_Movement.v as input.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// This module shows the score on the board by using the 7 segments.
+//
+// I/Os:
+// It needs a Clock and a score register as inputs.
+// As outputs, it needs seven segments to display a digital score.
+// 
+// Behavior:
+// It encodes a hexadecimal value in a register according to the score (from 1 to A).
+// It is encoded on 7 bits, one for each segment.
+// It returns the opposite value of this value (it appears on the board when opposite).
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Seven_Segments_Display(
     input       i_Clk,
     input [3:0] i_Score,
