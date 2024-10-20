@@ -20,16 +20,16 @@ module Memory #(
 );
 
     // 1024 memory locations, each 9 bits wide
-    reg [8:0] memory [0:1023];
+    reg [8:0] r_memory [0:1023];
      
     always @(posedge i_Clk) 
     begin
-        o_read_data <= memory[i_read_addr]; // Read data from memory at 'read address'
+        o_read_data <= r_memory[i_read_addr]; // Read data from memory at 'read address'
     end
     
     // Memory initialization from file (optional)
     initial begin
-        $readmemb(INIT_TXT_FILE, memory);
+        $readmemb(INIT_TXT_FILE, r_memory);
     end
     
 endmodule

@@ -66,26 +66,26 @@ module Sprite_Display #(
     reg [8:0] r_VGA_Pixel;                      // Store the VGA components of the pixel that will be displayed
 
     // Signals to connect to the Memory modules
-    reg  [9:0] frog_sprite_addr;
-    reg  [9:0] car_sprite_addr;
+    reg  [9:0] r_frog_sprite_addr;
+    reg  [9:0] r_car_sprite_addr;
     reg  [4:0] r_Car_X_Memory;
     reg  [4:0] r_Frog_X_Memory;
     reg  [4:0] r_Frog_Y_Memory;
-    wire [8:0] frog_pixel_data;
-    wire [8:0] car_pixel_data;
+    wire [8:0] w_frog_pixel_data;
+    wire [8:0] w_car_pixel_data;
 
     // Instantiate the Frog Memory
     Memory #(.INIT_TXT_FILE(FROG_SPRITE)) frog_memory (
         .i_Clk(i_Clk),
-        .i_read_addr(frog_sprite_addr),
-        .o_read_data(frog_pixel_data)  // Output pixel data for frog
+        .i_read_addr(r_frog_sprite_addr),
+        .o_read_data(w_frog_pixel_data)  // Output pixel data for frog
     );
 
     // Instantiate the Car Memory
     Memory #(.INIT_TXT_FILE(CAR_SPRITE)) car_memory (
         .i_Clk(i_Clk),
-        .i_read_addr(car_sprite_addr),
-        .o_read_data(car_pixel_data)  // Output pixel data for car
+        .i_read_addr(r_car_sprite_addr),
+        .o_read_data(w_car_pixel_data)  // Output pixel data for car
     );
 
     // Display car and rotate the sprite if needed
@@ -98,10 +98,10 @@ module Sprite_Display #(
                 ((i_H_Counter >= i_Car_X_Position) && (i_H_Counter <= (i_Car_X_Position + TILE_SIZE))))
             begin
                 r_Car_X_Memory = i_T_Reverse ? (i_H_Counter - i_Car_X_Position) : (TILE_SIZE - (i_H_Counter - i_Car_X_Position));
-                car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + r_Car_X_Memory;
-                if (car_pixel_data != 9'b111101110)
+                r_car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + r_Car_X_Memory;
+                if (w_car_pixel_data != 9'b111101110)
                 begin
-                    r_VGA_Pixel <= car_pixel_data;    
+                    r_VGA_Pixel <= w_car_pixel_data;    
                 end
             end
         end
@@ -124,32 +124,32 @@ module Sprite_Display #(
                     begin
                         r_Frog_X_Memory = (i_H_Counter - i_X_Position);
                         r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
-                        frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
+                        r_frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
                     end
                     1:    // Facing left
                     begin
                         r_Frog_X_Memory = (i_H_Counter - i_X_Position);
                         r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
-                        frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
+                        r_frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
                     end
                     2:    // Facing right
                     begin
                         r_Frog_X_Memory = (TILE_SIZE - (i_H_Counter - i_X_Position));
                         r_Frog_Y_Memory = (i_V_Counter - i_Y_Position);
-                        frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
+                        r_frog_sprite_addr <= (r_Frog_Y_Memory) + (r_Frog_X_Memory * TILE_SIZE);
                     end
                     3:    // Facing down
                     begin
                         r_Frog_X_Memory = (i_H_Counter - i_X_Position);
                         r_Frog_Y_Memory = (TILE_SIZE - (i_V_Counter - i_Y_Position));
-                        frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
+                        r_frog_sprite_addr <= (r_Frog_Y_Memory * TILE_SIZE) + (r_Frog_X_Memory);
                     end
                 endcase
 
-                // Map 9-bit frog_pixel_data to RGB
-                if (frog_pixel_data != 9'b111101110)
+                // Map 9-bit w_frog_pixel_data to RGB
+                if (w_frog_pixel_data != 9'b111101110)
                 begin
-                    r_VGA_Pixel <= frog_pixel_data;    
+                    r_VGA_Pixel <= w_frog_pixel_data;    
                 end
             end
             Car_Display(i_Car_1X_Position, C_LINE_1_Y, i_Reverse[0]);
