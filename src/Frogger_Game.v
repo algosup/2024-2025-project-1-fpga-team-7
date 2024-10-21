@@ -98,8 +98,6 @@ wire                  w_Has_Collided;                       // Collision state
 
 wire                  w_Level_Up;
 
-reg  [3:0]            r_Score;
-
 // Cursor X and Y position to display
 wire [9:0]            w_V_Counter;
 wire [9:0]            w_H_Counter;

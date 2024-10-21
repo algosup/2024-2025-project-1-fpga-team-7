@@ -36,7 +36,6 @@ module Seven_Segments_Display(
     always @(posedge i_Clk)
     begin
         case (i_Score)
-            4'b0000 : r_Hex_Encoding <= 7'h7E;
             4'b0001 : r_Hex_Encoding <= 7'h30;
             4'b0010 : r_Hex_Encoding <= 7'h6D;
             4'b0011 : r_Hex_Encoding <= 7'h79;
