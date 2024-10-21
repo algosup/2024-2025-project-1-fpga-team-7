@@ -27,12 +27,11 @@ module Background_Display #(
     output reg [8:0] o_VGA_Pixel,
 );
 
-localparam ROAD_SPRITE         = "Road_Sprite.txt";
-localparam SIDEWALK_SPRITE     = "Sidewalk_Sprite.txt";
-localparam GRASS_SPRITE        = "Grass_Sprite.txt";
-localparam WATER_LINE_SPRITE   = "Water_Line_Sprite.txt";
-localparam RIGHT_FINISH_SPRITE = "Right_Finish_Sprite.txt";
-localparam LEFT_FINISH_SPRITE  = "Left_Finish_Sprite.txt";
+localparam ROAD_SPRITE         = "sprites/Road_Sprite.txt";
+localparam SIDEWALK_SPRITE     = "sprites/Sidewalk_Sprite.txt";
+localparam GRASS_SPRITE        = "sprites/Grass_Sprite.txt";
+localparam WATER_LINE_SPRITE   = "sprites/Water_Line_Sprite.txt";
+localparam LEFT_FINISH_SPRITE  = "sprites/Left_Finish_Sprite.txt";
 
 reg  [4:0] r_current_tile_row = i_V_Counter[9:5];
 
