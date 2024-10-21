@@ -61,7 +61,11 @@ wire [9:0]            w_X_Position;
 wire [9:0]            w_Car1_X_Position;
 wire [9:0]            w_Car2_X_Position;
 wire [9:0]            w_Car3_X_Position;
-wire [9:0]            w_Car4_X_Position; 
+wire [9:0]            w_Car4_X_Position;
+wire [9:0]            w_Car5_X_Position;
+wire [9:0]            w_Car6_X_Position;
+wire [9:0]            w_Car7_X_Position;
+wire [9:0]            w_Car8_X_Position;
 
 wire                  w_Has_Collided;
 
@@ -153,6 +157,10 @@ wire [8:0]            w_VGA_Pixel;
         .i_Car_2X_Position(w_Car2_X_Position),
         .i_Car_3X_Position(w_Car3_X_Position),
         .i_Car_4X_Position(w_Car4_X_Position),
+        .i_Car_5X_Position(w_Car5_X_Position),
+        .i_Car_6X_Position(w_Car6_X_Position),
+        .i_Car_7X_Position(w_Car7_X_Position),
+        .i_Car_8X_Position(w_Car8_X_Position),
         .i_Reverse(r_Reverse),
         .o_VGA_Blu_1(o_VGA_Blu_1),
         .o_VGA_Blu_2(o_VGA_Blu_2),
@@ -173,6 +181,10 @@ wire [8:0]            w_VGA_Pixel;
         .i_Car2_X(w_Car2_X_Position),
         .i_Car3_X(w_Car3_X_Position),
         .i_Car4_X(w_Car4_X_Position),
+        .i_Car5_X(w_Car5_X_Position),
+        .i_Car6_X(w_Car6_X_Position),
+        .i_Car7_X(w_Car7_X_Position),
+        .i_Car8_X(w_Car8_X_Position),
         .o_Has_Collided(w_Has_Collided));
     
     Obstacles_Movement #(.C_BASE_CAR_SPEED(C_BASE_CAR_SPEED),
@@ -185,7 +197,11 @@ wire [8:0]            w_VGA_Pixel;
         .o_Car_X_0(w_Car1_X_Position),
         .o_Car_X_1(w_Car2_X_Position),
         .o_Car_X_2(w_Car3_X_Position),
-        .o_Car_X_3(w_Car4_X_Position));
+        .o_Car_X_3(w_Car4_X_Position),
+        .o_Car_X_4(w_Car5_X_Position),
+        .o_Car_X_5(w_Car6_X_Position),
+        .o_Car_X_6(w_Car7_X_Position),
+        .o_Car_X_7(w_Car8_X_Position));
 
     Seven_Segments_Display Seven_Segments_Display_Inst(
         .i_Clk(i_Clk),
@@ -226,7 +242,7 @@ wire [8:0]            w_VGA_Pixel;
     //State Machine
     always @(posedge i_Clk) begin
     case (r_State)
-        IDLE: if (w_All_Switch == 1'b1) 
+        IDLE: if (1'b1) 
               begin
                   r_Life_Counter <= 3'b111;       // Reset the number of lives
                   r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed

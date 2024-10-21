@@ -11,6 +11,10 @@ module Obstacles_Movement#(
     output reg [9:0]          o_Car_X_1     = (TILE_SIZE),
     output reg [9:0]          o_Car_X_2     = 2 * (TILE_SIZE),
     output reg [9:0]          o_Car_X_3     = 3 * (TILE_SIZE),
+    output reg [9:0]          o_Car_X_4     = 6 * (TILE_SIZE),
+    output reg [9:0]          o_Car_X_5     = 7 * (TILE_SIZE),
+    output reg [9:0]          o_Car_X_6     = 8 * (TILE_SIZE),
+    output reg [9:0]          o_Car_X_7     = 9 * (TILE_SIZE),
 );
 
     reg [19:0]           r_Count      = 0; // Global counter for movement timing
@@ -81,6 +85,22 @@ module Obstacles_Movement#(
             // Update Car 3
             Update_Car_Position(o_Car_X_3, i_Reverse[3], 1, o_Car_X_3);  // Car 3 speed multiplier = 1
             Check_Car_Boundary(o_Car_X_3, i_Reverse[3], o_Car_X_3);  // Adjust for boundary
+
+            // Update Car 4
+            Update_Car_Position(o_Car_X_4, i_Reverse[0], 2, o_Car_X_4);  // Car 4 speed multiplier = 2
+            Check_Car_Boundary(o_Car_X_4, i_Reverse[0], o_Car_X_4);  // Adjust for boundary
+
+            // Update Car 5
+            Update_Car_Position(o_Car_X_5, i_Reverse[1], 4, o_Car_X_5);  // Car 5 speed multiplier = 4
+            Check_Car_Boundary(o_Car_X_5, i_Reverse[1], o_Car_X_5);  // Adjust for boundary
+
+            // Update Car 6
+            Update_Car_Position(o_Car_X_6, i_Reverse[2], 2, o_Car_X_6);  // Car 6 speed multiplier = 2
+            Check_Car_Boundary(o_Car_X_6, i_Reverse[2], o_Car_X_6);  // Adjust for boundary
+
+            // Update Car 7
+            Update_Car_Position(o_Car_X_7, i_Reverse[3], 1, o_Car_X_7);  // Car 7 speed multiplier = 1
+            Check_Car_Boundary(o_Car_X_7, i_Reverse[3], o_Car_X_7);  // Adjust for boundary
 
             r_Count <= 0;  // Reset counter after updating positions
         end 

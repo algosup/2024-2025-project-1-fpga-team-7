@@ -18,6 +18,10 @@ module Sprite_Display #(
     input  [9:0] i_Car_2X_Position,
     input  [9:0] i_Car_3X_Position,
     input  [9:0] i_Car_4X_Position,
+    input  [9:0] i_Car_5X_Position,
+    input  [9:0] i_Car_6X_Position,
+    input  [9:0] i_Car_7X_Position,
+    input  [9:0] i_Car_8X_Position,
 
     input  [9:0] i_V_Counter,
     input  [9:0] i_H_Counter,
@@ -138,6 +142,10 @@ begin
         Car_Display(i_Car_2X_Position, C_LINE_2_Y, i_Reverse[1]);
         Car_Display(i_Car_3X_Position, C_LINE_3_Y, i_Reverse[2]);
         Car_Display(i_Car_4X_Position, C_LINE_4_Y, i_Reverse[3]);
+        Car_Display(i_Car_5X_Position, C_LINE_1_Y, i_Reverse[0]);
+        Car_Display(i_Car_6X_Position, C_LINE_2_Y, i_Reverse[1]);
+        Car_Display(i_Car_7X_Position, C_LINE_3_Y, i_Reverse[2]);
+        Car_Display(i_Car_8X_Position, C_LINE_4_Y, i_Reverse[3]);
 
     end
     else
