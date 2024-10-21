@@ -72,14 +72,14 @@ Memory #(.INIT_TXT_FILE(GRASS_SPRITE)) grass_memory (
 
 Memory #(.INIT_TXT_FILE(WATER_LINE_SPRITE)) water_memory (
     .i_Clk(i_Clk),
-    .i_read_addr(water_line_sprite_addr),
-    .o_read_data(water_line_pixel_data)  // Output pixel data for frog
+    .i_read_addr(r_water_line_sprite_addr),
+    .o_read_data(w_water_line_pixel_data)  // Output pixel data for frog
 );
 
 Memory #(.INIT_TXT_FILE(LEFT_FINISH_SPRITE)) left_finish_memory (
     .i_Clk(i_Clk),
-    .i_read_addr(left_finish_sprite_addr),
-    .o_read_data(left_finish_pixel_data)  // Output pixel data for frog
+    .i_read_addr(r_left_finish_sprite_addr),
+    .o_read_data(w_left_finish_pixel_data)  // Output pixel data for frog
 );
 
 
