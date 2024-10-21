@@ -56,7 +56,7 @@ This problem should not affect the project's schedule as it's not part of the cr
 
 ## Uncompleted Tasks
 
-This table is designed based on the tasks defined in the [project_planning.md](../project_planning.md). The tasks that were not completed in the week are listed below (note that some tasks may not be meant to be completed in the week):
+This table is designed based on the tasks defined in the [Project_planning.md](../Project_planning.md). The tasks that were not completed in the week are listed below (note that some tasks may not be meant to be completed in the week):
 
 
 |  id  | Task 						| Due Date 		| Additional Time Required  | Responsible 		| Status  |
