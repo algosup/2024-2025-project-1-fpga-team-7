@@ -19,12 +19,12 @@ parameter RUNNING               = 1;
 // Obstacles constants
 parameter C_Y_BASE_CAR_POSITION         = 11;
 parameter C_BASE_CAR_SPEED              = 390625;
-parameter C_LINE_6_Y                    = 320;
-parameter C_LINE_5_Y                    = 288;
-parameter C_LINE_4_Y                    = 256;
-parameter C_LINE_3_Y                    = 192;
-parameter C_LINE_2_Y                    = 160;
-parameter C_LINE_1_Y                    = 128;
+parameter C_LINE_6_Y                    = 352;
+parameter C_LINE_5_Y                    = 320;
+parameter C_LINE_4_Y                    = 288;
+parameter C_LINE_3_Y                    = 160;
+parameter C_LINE_2_Y                    = 128;
+parameter C_LINE_1_Y                    = 96;
 
 // VGA constants
 parameter H_VISIBLE_AREA        = 640;
