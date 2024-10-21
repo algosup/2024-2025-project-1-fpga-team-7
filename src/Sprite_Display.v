@@ -102,7 +102,27 @@ module Sprite_Display #(
                 r_car_sprite_addr <= ((i_V_Counter - i_Car_Y_Position) * TILE_SIZE) + r_Car_X_Memory;
                 if (w_car_pixel_data != 9'b111101110)
                 begin
-                    r_VGA_Pixel <= w_car_pixel_data;    
+                    if (w_car_pixel_data == 9'b111000000) 
+                    begin
+                        case(i_Car_Y_Position)
+                            C_LINE_1_Y,C_LINE_4_Y:
+                                begin
+                                    r_VGA_Pixel <= w_car_pixel_data;
+                                end
+                            C_LINE_2_Y,C_LINE_5_Y:
+                                begin
+                                    r_VGA_Pixel <= 000111000;
+                                end
+                            C_LINE_3_Y,C_LINE_6_Y:
+                                begin
+                                    r_VGA_Pixel <= 000000111;
+                                end
+                        endcase
+                    end
+                    else
+                    begin
+                        r_VGA_Pixel <= w_car_pixel_data;
+                    end
                 end
             end
         end
