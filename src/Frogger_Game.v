@@ -66,7 +66,7 @@ reg  [2:0]            r_Life_Counter            = 3'b111;   // Store lifes
 
 reg  [NUM_BITS - 1:0] r_Reverse                 = 4'b1010;  // Reverse cars 1 and 3
 
-reg  [1:0]            r_Frog_Direction;                     // Store frog direction for display
+reg  [1:0]            r_Frog_Direction          = 2'b00;    // Store frog direction for display 
 
 reg                   r_Has_Collided_tracking;              // Debounce Collision
 
@@ -244,6 +244,10 @@ wire [8:0]            w_VGA_Pixel;                          // 1 pixel VGA compo
         else if (w_Switch_4 == 1)
         begin
             r_Frog_Direction <= 3; // Facing down
+        end
+        else if (w_Has_Collided == 1)
+        begin
+            r_Frog_Direction <= 0;
         end
     end
 
