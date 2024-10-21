@@ -23,7 +23,7 @@ The `Technical_specifications.md` were also completed and merged before the dead
 The development team continued to implement the project's final version. 
 
 
-## Work Completed
+## Completed Tasks
 
 
 |  id  | Task 						| Due Date 	 | Responsible 		 | Status  		   |

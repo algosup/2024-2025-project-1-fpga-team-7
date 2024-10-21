@@ -22,7 +22,7 @@ The Program Manager is responsible for the `functional_specifications.md`, the T
 The development team started to study the project's requirements and started to develop the project's architecture.
 The team tried to implement each one of the requirements separately and started to develop the project's first version.
 
-## Work Completed
+## Completed Tasks
 
 
 |  id  | Task 						| Due Date 	 | Responsible 		| Status  |

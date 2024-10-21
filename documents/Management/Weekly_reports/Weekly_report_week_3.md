@@ -25,7 +25,7 @@ The test plan was continued and is expected to be completed before the deadline.
 The development team continued to implement the project's objectives. 
 
 
-## Work Completed
+## Completed Tasks
 
 
 |  id  | Task 						| Due Date 	 | Responsible 		| Status  |

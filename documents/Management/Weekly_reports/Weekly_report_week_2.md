@@ -25,7 +25,7 @@ The test plan was also started and is expected to be completed before the deadli
 The development team started to implement the project's requirements as a MVP(Minimum Viable Product) and the objectives implementation was also started.
 
 
-## Work Completed
+## Completed Tasks
 
 
 |  id  | Task 						| Due Date 	 | Responsible 		| Status  |
