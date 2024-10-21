@@ -1,6 +1,19 @@
-// This module handle all the movements of the frog (Player). 
-// It includes Up, Down, Left, Right. It also set the respawn 
-// coordinates when you reach the top screen or hit a car.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// Controls frog movements and respawns.
+//
+// I/Os:
+// Needs a Clock, a wire for each direction, one for collision state and another for game state as inputs.
+// As outputs, it needs registers for leveling up, scoring, frog X and Y positions.
+// 
+// Behavior:
+// This module waits for the game to start (You can't move elsewhere).
+// It puts the frog back in its initial position if you get hit by a car.
+// It checks the direction inputs if the frog doesn't exceed the screen limits, 
+// the position is set to the new one (plus or minus one tile size).
+// If the frog reaches the top screen, the score is incremented by one, and leveling up is momentarily set to 1.
+// Finally, it sets the score to 1 (first level) while the game has not started.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module Character_Control #(
     parameter C_SCORE_INI       = 1,
     parameter C_X_BASE_POSITION = 320,
@@ -9,7 +22,7 @@ module Character_Control #(
     parameter TILE_SIZE         = 32,
     parameter V_VISIBLE_AREA    = 480,
     parameter H_VISIBLE_AREA    = 640
-    )(
+)(
     // Clock
     input            i_Clk,
 
@@ -19,29 +32,27 @@ module Character_Control #(
     input            i_Frog_Lt,
     input            i_Frog_Rt,
 
-  // state of collision
+    // state of collision
     input            i_Has_Collided,
 
-
+    // game state
     input            i_Game_Active,
 
-    output reg       o_Draw_Frog,
-    output reg       o_Level_Up                    = 0,
+    // state when finishing a level
+    output reg       o_Level_Up     = 0,
 
     // Variable storing score
-    output reg [3:0] o_Score = C_SCORE_INI,
+    output reg [3:0] o_Score        = C_SCORE_INI,
 
     // Left corner of the frog (Player)
-    output reg [9:0] o_Frog_X = C_X_BASE_POSITION,
-    output reg [8:0] o_Frog_Y = C_Y_BASE_POSITION 
+    output reg [9:0] o_Frog_X       = C_X_BASE_POSITION,
+    output reg [8:0] o_Frog_Y       = C_Y_BASE_POSITION 
 );
 
-    wire       w_Frog_En;
-    wire       w_No_Lateral;
-    wire       w_No_Vertical;
+    wire       w_Frog_En;               // Frog in movement
 
-    reg        r_state            = 1'b0;
-    reg [31:0] r_Counter          = 0;
+    reg        r_state          = 1'b0; // Actual frog state 
+    reg [31:0] r_Counter        = 0;    // Delay counter
 
     // Only allow Frog to move if only one button is pushed (use XOR for exclusive movement).
     assign w_Frog_En = (i_Frog_Up ^ i_Frog_Dn) ^ (i_Frog_Lt ^ i_Frog_Rt);
@@ -105,7 +116,7 @@ module Character_Control #(
         end 
         else 
         begin
-            o_Score <= 1'b1;
+            o_Score <= 1'b1; // Keep Score at 1 when game not started
         end
     end
 
