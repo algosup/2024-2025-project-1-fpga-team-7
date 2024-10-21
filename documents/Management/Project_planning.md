@@ -1,4 +1,4 @@
-# Project Planning - Team 7
+# <h1 align="center">Project Planning - Team 7 </h1>
 
 <p align="center">
 <b>Project Name:</b> Frogger Game
