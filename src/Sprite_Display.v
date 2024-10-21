@@ -158,6 +158,7 @@ module Sprite_Display #(
             Car_Display(i_Car_3X_Position, C_LINE_3_Y, i_Reverse[2]);
             Car_Display(i_Car_4X_Position, C_LINE_4_Y, i_Reverse[3]);
             Car_Display(i_Car_5X_Position, C_LINE_5_Y, i_Reverse[0]);
+            Car_Display(i_Car_2X_Position, C_LINE_6_Y, i_Reverse[0]);
         end
         else
         begin

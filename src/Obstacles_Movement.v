@@ -26,10 +26,10 @@ module Obstacles_Movement#(
     // Score
     input      [3:0]          i_Score,
     output reg [9:0]          o_Car_X_0     = TILE_SIZE,
-    output reg [9:0]          o_Car_X_1     = 2 * (TILE_SIZE),
-    output reg [9:0]          o_Car_X_2     = 3 * (TILE_SIZE),
-    output reg [9:0]          o_Car_X_3     = 4 * (TILE_SIZE),
-    output reg [9:0]          o_Car_X_4     = 5 * (TILE_SIZE),
+    output reg [9:0]          o_Car_X_1     = 10 * (TILE_SIZE),
+    output reg [9:0]          o_Car_X_2     = 5 * (TILE_SIZE),
+    output reg [9:0]          o_Car_X_3     = 13 * (TILE_SIZE),
+    output reg [9:0]          o_Car_X_4     = 17 * (TILE_SIZE),
 );
 
     reg [19:0]           r_Count      = 0;                  // Global counter for movement timing
