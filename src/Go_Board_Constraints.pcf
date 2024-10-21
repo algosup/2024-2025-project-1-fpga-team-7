@@ -18,21 +18,13 @@ set_io i_Switch_4 52
 
 ### 7 Segment Outputs
 
-set_io o_Segment1_A 3
-set_io o_Segment1_B 4
-set_io o_Segment1_C 93
-set_io o_Segment1_D 91
-set_io o_Segment1_E 90
-set_io o_Segment1_F 1
-set_io o_Segment1_G 2
-
-set_io o_Segment2_A 100
-set_io o_Segment2_B 99
-set_io o_Segment2_C 97
-set_io o_Segment2_D 95
-set_io o_Segment2_E 94
-set_io o_Segment2_F 8
-set_io o_Segment2_G 96
+set_io o_Segment1_A 100
+set_io o_Segment1_B 99
+set_io o_Segment1_C 97
+set_io o_Segment1_D 95
+set_io o_Segment1_E 94
+set_io o_Segment1_F 8
+set_io o_Segment1_G 96
 
 ## UART Outputs
 
@@ -44,17 +36,17 @@ set_io -nowarn o_UART_TX 74
 set_io o_VGA_HSync 26
 set_io o_VGA_VSync 27
 
-set_io -nowarn o_VGA_Red_0 36
-set_io -nowarn o_VGA_Red_1 37
-set_io -nowarn o_VGA_Red_2 40
+set_io -nowarn o_VGA_Red_1 36
+set_io -nowarn o_VGA_Red_2 37
+set_io -nowarn o_VGA_Red_3 40
 
-set_io -nowarn o_VGA_Grn_0 29
-set_io -nowarn o_VGA_Grn_1 30
-set_io -nowarn o_VGA_Grn_2 33
+set_io -nowarn o_VGA_Grn_1 29
+set_io -nowarn o_VGA_Grn_2 30
+set_io -nowarn o_VGA_Grn_3 33
 
-set_io -nowarn o_VGA_Blu_0 28
-set_io -nowarn o_VGA_Blu_1 41
-set_io -nowarn o_VGA_Blu_2 42
+set_io -nowarn o_VGA_Blu_1 28
+set_io -nowarn o_VGA_Blu_2 41
+set_io -nowarn o_VGA_Blu_3 42
 
 ## PMOD Signals
 
@@ -62,7 +54,44 @@ set_io -nowarn io_PMOD_1 65
 set_io -nowarn io_PMOD_2 64
 set_io -nowarn io_PMOD_3 63
 set_io -nowarn io_PMOD_4 62
-set_io -nowarn io_PMOD_7 78
-set_io -nowarn io_PMOD_8 79
-set_io -nowarn io_PMOD_9 80
-set_io -nowarn io_PMOD_10 81
+
+## Memory Pins
+
+### Enable
+
+set_io -nowarn i_write_en 66
+set_io -nowarn i_read_en 68
+
+### Addresses
+
+set_io -nowarn i_write_addr[0] 69
+set_io -nowarn i_write_addr[1] 71
+set_io -nowarn i_write_addr[2] 72
+set_io -nowarn i_write_addr[3] 82
+set_io -nowarn i_write_addr[4] 79
+
+set_io -nowarn i_read_addr[0] 83
+set_io -nowarn i_read_addr[1] 85
+set_io -nowarn i_read_addr[2] 86
+set_io -nowarn i_read_addr[3] 87
+set_io -nowarn i_read_addr[4] 78
+
+### Datas
+
+set_io -nowarn i_write_data[0] 89
+set_io -nowarn i_write_data[1] 34
+set_io -nowarn i_write_data[2] 7
+set_io -nowarn i_write_data[3] 9
+set_io -nowarn i_write_data[4] 10
+set_io -nowarn i_write_data[5] 12
+set_io -nowarn i_write_data[6] 13
+set_io -nowarn i_write_data[7] 16
+
+set_io -nowarn o_read_data[0] 18
+set_io -nowarn o_read_data[1] 19
+set_io -nowarn o_read_data[2] 20
+set_io -nowarn o_read_data[3] 21
+set_io -nowarn o_read_data[4] 24
+set_io -nowarn o_read_data[5] 25
+set_io -nowarn o_read_data[6] 80
+set_io -nowarn o_read_data[7] 81
