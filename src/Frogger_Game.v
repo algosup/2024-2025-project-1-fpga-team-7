@@ -1,19 +1,36 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Purpose:
+// Main file of the game.
+// Do the majority of the instantiations and some logic such as game logic and frog direction for display.
+//
+// I/Os:
+// It needs a Clock and a Switch for each direction as inputs.
+// As outputs, it needs a horizontal and Vertical Synchronizer, VGA components (3/colors), seven Segments
+// and four LEDs.
+// 
+// Behavior:
+// It instantiates all modules with parameters, inputs, outputs, wires, or registers.
+// It sets the frog direction (display) according to switches.
+// If all the Switches are pressed at the same time, the life counter is initiated to 3 
+// and the game state changes to RUNNING, else it stays to IDLE.
+// While on RUNNING, decrement life counters by 1 if collisions and set the game state to IDLE when no more lives.
+// Switch on/off LEDs according to life's number.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// All global parameters are defined in Constants.v and are included with this line.
 `include "Constants.v"
 
 module Frogger_Game (
+    // Clock
     input  i_Clk,
 
+    // Physical Switches
     input  i_Switch_1,
     input  i_Switch_2,
     input  i_Switch_3,
     input  i_Switch_4,
 
-    input i_write_en,
-    input i_read_en,
-    input [4:0] i_write_addr,
-    input [4:0] i_read_addr,
-    input [7:0] i_write_data,
-
+    // VGA Synchronizers and Components
     output o_VGA_HSync,
     output o_VGA_VSync,
     
@@ -27,6 +44,7 @@ module Frogger_Game (
     output o_VGA_Grn_2,
     output o_VGA_Grn_3,
 
+    // Physical score display
     output o_Segment1_A,
     output o_Segment1_B,
     output o_Segment1_C,
@@ -34,47 +52,69 @@ module Frogger_Game (
     output o_Segment1_E,
     output o_Segment1_F,
     output o_Segment1_G,
+
+    // Physical LEDs
+    output o_LED_1,
+    output o_LED_2,
+    output o_LED_3,
+    output o_LED_4
 );
 
-reg                   r_State;
+reg                   r_State;                              // Use to store game state
 
-wire                  w_Game_Active;
+reg  [2:0]            r_Life_Counter            = 3'b111;   // Store lifes
 
+reg  [NUM_BITS - 1:0] r_Reverse                 = 4'b1010;  // Reverse cars 1 and 3
+
+reg  [1:0]            r_Frog_Direction          = 2'b00;    // Store frog direction for display 
+
+reg                   r_Has_Collided_tracking;              // Debounce Collision
+
+reg  [3:0]            r_Score;                              // Store the score
+
+wire                  w_Game_Active;                        // return 1 when the game is running
+
+// Switches after debounce
 wire                  w_Switch_1;
 wire                  w_Switch_2;
 wire                  w_Switch_3;
 wire                  w_Switch_4;
 
-wire                  w_All_Switch       = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
+// return 1 when all 4 switches pressed
+wire                  w_All_Switch              = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
 
-wire [8:0]            w_Y_Position; 
-wire [9:0]            w_X_Position;
+wire [8:0]            w_Y_Position;                         // frog Y position
+wire [9:0]            w_X_Position;                         // frog X position
 
-wire [8:0]            w_Car1_Y_Position  = C_LINE_1_Y;
-wire [8:0]            w_Car2_Y_Position  = C_LINE_2_Y;
-wire [8:0]            w_Car3_Y_Position  = C_LINE_3_Y;
-wire [8:0]            w_Car4_Y_Position  = C_LINE_4_Y;
+// Obstacles positions
 wire [9:0]            w_Car1_X_Position;
 wire [9:0]            w_Car2_X_Position;
 wire [9:0]            w_Car3_X_Position;
 wire [9:0]            w_Car4_X_Position; 
 
-wire                  w_Has_Collided;
+wire                  w_Has_Collided;                       // Collision state
 
-wire [NUM_BITS - 1:0] w_LFSR_Data;
-wire                  w_LFSR_Done;
+wire                  w_Level_Up;                           // 1 when leveling up
 
-wire                  w_Level_Up;
+// Cursor X and Y position to display
+wire [9:0]            w_V_Counter;
+wire [9:0]            w_H_Counter;
 
-wire [3:0]            w_Score;
-// wire [7:0] w_test_data = o_read_data;
+wire [8:0]            w_VGA_Pixel;                          // 1 pixel VGA components for the background display
 
-
-    LFSR #(.NUM_BITS(NUM_BITS)) LFSR_Inst(
+    VGA_Bridge #(.H_VISIBLE_AREA(H_VISIBLE_AREA),
+                 .V_VISIBLE_AREA(V_VISIBLE_AREA),
+                 .H_TOTAL(H_TOTAL),
+                 .V_TOTAL(V_TOTAL),
+                 .H_FRONT_PORCH(H_FRONT_PORCH),
+                 .H_SYNC_PULSE(H_SYNC_PULSE),
+                 .V_FRONT_PORCH(V_FRONT_PORCH),
+                 .V_SYNC_PULSE(V_SYNC_PULSE))VGA_Bridge_Inst(
         .i_Clk(i_Clk),
-        .i_Enable(1'b1),
-        .o_LFSR_Data(w_LFSR_Data),
-        .o_LFSR_Done(w_LFSR_Done));
+        .o_VGA_HSync(o_VGA_HSync),
+        .o_VGA_VSync(o_VGA_VSync),
+        .o_V_Counter(w_V_Counter),
+        .o_H_Counter(w_H_Counter));
 
     Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_1(
         .i_Clk(i_Clk), 
@@ -95,6 +135,7 @@ wire [3:0]            w_Score;
         .i_Clk(i_Clk), 
         .i_Switch(i_Switch_4), 
         .o_Switch(w_Switch_4));
+    
 
     Character_Control #(.C_SCORE_INI(C_SCORE_INI),
                         .C_X_BASE_POSITION(C_X_BASE_POSITION),
@@ -110,34 +151,34 @@ wire [3:0]            w_Score;
         .i_Frog_Rt(w_Switch_3),
         .i_Frog_Dn(w_Switch_4),
         .i_Game_Active(w_Game_Active),
-        .o_Score(w_Score),
+        .o_Score(r_Score),
         .o_Level_Up(w_Level_Up),
         .o_Frog_X(w_X_Position),
         .o_Frog_Y(w_Y_Position));
 
+    Background_Display #(.TILE_SIZE(TILE_SIZE),
+                         .H_VISIBLE_AREA(H_VISIBLE_AREA),
+                         .V_VISIBLE_AREA(V_VISIBLE_AREA)) Background_Display_Inst(
+        .i_Clk(i_Clk),
+        .i_H_Counter(w_H_Counter),
+        .i_V_Counter(w_V_Counter),
+        .o_VGA_Pixel(w_VGA_Pixel));
+
     Sprite_Display #(.TILE_SIZE(TILE_SIZE),
                      .H_VISIBLE_AREA(H_VISIBLE_AREA),
-                     .V_VISIBLE_AREA(V_VISIBLE_AREA),
-                     .H_TOTAL(H_TOTAL),
-                     .V_TOTAL(V_TOTAL),
-                     .H_FRONT_PORCH(H_FRONT_PORCH),
-                     .H_SYNC_PULSE(H_SYNC_PULSE),
-                     .V_FRONT_PORCH(V_FRONT_PORCH),
-                     .V_SYNC_PULSE(V_SYNC_PULSE)) Sprite_Display_Inst(
+                     .V_VISIBLE_AREA(V_VISIBLE_AREA)) Sprite_Display_Inst(
         .i_Clk(i_Clk),
-        // .i_Color(o_read_data),
+        .i_Background_Pixel(w_VGA_Pixel),
+        .i_Frog_Direction(r_Frog_Direction),
+        .i_H_Counter(w_H_Counter),
+        .i_V_Counter(w_V_Counter),
         .i_X_Position(w_X_Position),
         .i_Y_Position(w_Y_Position),
         .i_Car_1X_Position(w_Car1_X_Position),
-        .i_Car_1Y_Position(w_Car1_Y_Position),
         .i_Car_2X_Position(w_Car2_X_Position),
-        .i_Car_2Y_Position(w_Car2_Y_Position),
         .i_Car_3X_Position(w_Car3_X_Position),
-        .i_Car_3Y_Position(w_Car3_Y_Position),
         .i_Car_4X_Position(w_Car4_X_Position),
-        .i_Car_4Y_Position(w_Car4_Y_Position),
-        .o_VGA_HSync(o_VGA_HSync),
-        .o_VGA_VSync(o_VGA_VSync),
+        .i_Reverse(r_Reverse),
         .o_VGA_Blu_1(o_VGA_Blu_1),
         .o_VGA_Blu_2(o_VGA_Blu_2),
         .o_VGA_Blu_3(o_VGA_Blu_3),
@@ -146,22 +187,20 @@ wire [3:0]            w_Score;
         .o_VGA_Grn_3(o_VGA_Grn_3),
         .o_VGA_Red_1(o_VGA_Red_1),
         .o_VGA_Red_2(o_VGA_Red_2),
-        .o_VGA_Red_3(o_VGA_Red_3)
-        
-        );
+        .o_VGA_Red_3(o_VGA_Red_3));
 
-    Collisions #(.TILE_SIZE(TILE_SIZE))Collisions_Inst(
+    Collisions #(.TILE_SIZE(TILE_SIZE),
+                 .C_LINE_1_Y(C_LINE_1_Y),
+                 .C_LINE_2_Y(C_LINE_2_Y),
+                 .C_LINE_3_Y(C_LINE_3_Y),
+                 .C_LINE_4_Y(C_LINE_4_Y)) Collisions_Inst(
         .i_Clk(i_Clk),
         .i_Frog_X(w_X_Position),
         .i_Frog_Y(w_Y_Position),
         .i_Car1_X(w_Car1_X_Position),
-        .i_Car1_Y(w_Car1_Y_Position),                                       // Check collisions
         .i_Car2_X(w_Car2_X_Position),
-        .i_Car2_Y(w_Car2_Y_Position),
         .i_Car3_X(w_Car3_X_Position),
-        .i_Car3_Y(w_Car3_Y_Position),
         .i_Car4_X(w_Car4_X_Position),
-        .i_Car4_Y(w_Car4_Y_Position),
         .o_Has_Collided(w_Has_Collided));
     
     Obstacles_Movement #(.C_BASE_CAR_SPEED(C_BASE_CAR_SPEED),
@@ -169,9 +208,8 @@ wire [3:0]            w_Score;
                          .TILE_SIZE(TILE_SIZE),
                          .NUM_BITS(NUM_BITS)) Obstacles_Movement_Inst(
         .i_Clk(i_Clk),
-        .i_Level_Up(w_Level_Up),
-        .i_Score(w_Score),
-        .i_Reverse(w_LFSR_Data),
+        .i_Score(r_Score),
+        .i_Reverse(r_Reverse),
         .o_Car_X_0(w_Car1_X_Position),
         .o_Car_X_1(w_Car2_X_Position),
         .o_Car_X_2(w_Car3_X_Position),
@@ -179,7 +217,7 @@ wire [3:0]            w_Score;
 
     Seven_Segments_Display Seven_Segments_Display_Inst(
         .i_Clk(i_Clk),
-        .i_Score(w_Score),
+        .i_Score(r_Score),
         .o_Segment_A(o_Segment1_A),
         .o_Segment_B(o_Segment1_B),
         .o_Segment_C(o_Segment1_C),
@@ -188,20 +226,70 @@ wire [3:0]            w_Score;
         .o_Segment_F(o_Segment1_F),
         .o_Segment_G(o_Segment1_G));
 
+    // Update r_Frog_Direction to help rotating the frog sprite
+    always @(posedge i_Clk) 
+    begin
+        if (w_Switch_1 == 1)
+        begin
+            r_Frog_Direction <= 0;  // Facing up
+        end
+        else if (w_Switch_2 == 1)
+        begin
+            r_Frog_Direction <= 1;  // Facing left
+        end
+        else if (w_Switch_3 == 1)
+        begin
+            r_Frog_Direction <= 2;  // Facing right
+        end
+        else if (w_Switch_4 == 1)
+        begin
+            r_Frog_Direction <= 3; // Facing down
+        end
+        else if (w_Has_Collided == 1)
+        begin
+            r_Frog_Direction <= 0;
+        end
+    end
+
     //State Machine
-    always @(posedge i_Clk)
-    case (r_State)
-        IDLE: if (w_All_Switch == 1'b1) 
-              begin
-                  r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
-              end
-        RUNNING: if (w_Has_Collided == 1'b1)
-                 begin
-                     r_State <= IDLE;           // Send the player to an Idle state at death
-                 end
-        default: r_State <= IDLE;
-    endcase
+    always @(posedge i_Clk) 
+    begin
+        case (r_State)
+            // Before playing or when game over
+            IDLE: 
+                if (w_All_Switch == 1'b1) 
+                begin
+                    r_Life_Counter <= 3'b111;       // Reset the number of lives
+                    r_State <= RUNNING;           // Only allow the frog to start after all switch has been pressed
+                end
+            RUNNING: 
+                if (w_Has_Collided == 1'b1 && r_Has_Collided_tracking == 1'b0)
+                begin
+                    // shift right the number of lives
+                    r_Life_Counter <= (r_Life_Counter >> 1);
+
+                    if (r_Life_Counter == 1) 
+                    begin
+                        // Send the player to an Idle state at death
+                        r_State <= IDLE;
+                    end
+                    else
+                    begin          // Send the player to an Idle state at death
+                        r_State <= RUNNING;
+                    end
+                end
+        endcase
+    // Debouncing Collision
+    r_Has_Collided_tracking <= w_Has_Collided;
+
+    end
 
     assign w_Game_Active = (r_State == RUNNING) ? 1'b1 : 1'b0;      // Keep track of whether the game is active or not
+
+    // Display the number of lives
+    assign o_LED_1       = 1'b0;
+    assign o_LED_2       = r_Life_Counter[2];
+    assign o_LED_3       = r_Life_Counter[1];
+    assign o_LED_4       = r_Life_Counter[0];
     
 endmodule
