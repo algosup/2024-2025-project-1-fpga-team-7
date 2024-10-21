@@ -15,8 +15,10 @@ module VGA_Bridge #(
     parameter H_TOTAL        = 800,
     parameter V_TOTAL        = 525,
     parameter H_VISIBLE_AREA = 640,
+    parameter H_FRONT_PORCH  = 16,
     parameter H_SYNC_PULSE   = 96,
     parameter V_VISIBLE_AREA = 480,
+    parameter V_FRONT_PORCH  = 10,
     parameter V_SYNC_PULSE   = 2
 )(
     // Clock
@@ -57,8 +59,8 @@ module VGA_Bridge #(
     end
 
     // Assign 0 if in the visible area
-    assign o_VGA_HSync = (r_h_counter >= H_VISIBLE_AREA && r_h_counter < H_VISIBLE_AREA + H_SYNC_PULSE);
-    assign o_VGA_VSync = (r_v_counter >= V_VISIBLE_AREA && r_v_counter < V_VISIBLE_AREA + V_SYNC_PULSE);
+    assign o_VGA_HSync = (r_h_counter >= H_VISIBLE_AREA + H_FRONT_PORCH && r_h_counter < H_VISIBLE_AREA + H_FRONT_PORCH + H_SYNC_PULSE);
+    assign o_VGA_VSync = (r_v_counter >= V_VISIBLE_AREA + V_FRONT_PORCH && r_v_counter < V_VISIBLE_AREA + V_FRONT_PORCH + V_SYNC_PULSE);
 
     // return screen 'cursor'
     assign o_H_Counter = r_h_counter;
