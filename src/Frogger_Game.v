@@ -74,8 +74,14 @@ reg  [3:0]            r_Score;                              // Store the score
 
 wire                  w_Game_Active;                        // return 1 when the game is running
 
+// Switches after debounce
+wire                  w_Switch_1;
+wire                  w_Switch_2;
+wire                  w_Switch_3;
+wire                  w_Switch_4;
+
 // return 1 when all 4 switches pressed
-wire                  w_All_Switch              = i_Switch_1 && i_Switch_2 && i_Switch_3 && i_Switch_4;
+wire                  w_All_Switch              = w_Switch_1 && w_Switch_2 && w_Switch_3 && w_Switch_4;
 
 wire [8:0]            w_Y_Position;                         // frog Y position
 wire [9:0]            w_X_Position;                         // frog X position
@@ -112,6 +118,27 @@ wire [8:0]            w_VGA_Pixel;                          // 1 pixel VGA compo
         .o_V_Counter(w_V_Counter),
         .o_H_Counter(w_H_Counter));
 
+    Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_1(
+        .i_Clk(i_Clk), 
+        .i_Switch(i_Switch_1), 
+        .o_Switch(w_Switch_1));
+
+    Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_2(
+        .i_Clk(i_Clk), 
+        .i_Switch(i_Switch_2), 
+        .o_Switch(w_Switch_2));
+
+    Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_3(
+        .i_Clk(i_Clk), 
+        .i_Switch(i_Switch_3), 
+        .o_Switch(w_Switch_3));
+
+    Debounce_Filter #(.C_DEBOUNCE_LIMIT(C_DEBOUNCE_LIMIT)) Debounce_Filter_Inst_4(
+        .i_Clk(i_Clk), 
+        .i_Switch(i_Switch_4), 
+        .o_Switch(w_Switch_4));
+    
+
     Character_Control #(.C_SCORE_INI(C_SCORE_INI),
                         .C_X_BASE_POSITION(C_X_BASE_POSITION),
                         .C_Y_BASE_POSITION(C_Y_BASE_POSITION),
@@ -121,10 +148,10 @@ wire [8:0]            w_VGA_Pixel;                          // 1 pixel VGA compo
                         .H_VISIBLE_AREA(H_VISIBLE_AREA)) Character_Control_Inst(
         .i_Clk(i_Clk),
         .i_Has_Collided(w_Has_Collided),
-        .i_Frog_Up(i_Switch_1),
-        .i_Frog_Lt(i_Switch_2),
-        .i_Frog_Rt(i_Switch_3),
-        .i_Frog_Dn(i_Switch_4),
+        .i_Frog_Up(w_Switch_1),
+        .i_Frog_Lt(w_Switch_2),
+        .i_Frog_Rt(w_Switch_3),
+        .i_Frog_Dn(w_Switch_4),
         .i_Game_Active(w_Game_Active),
         .o_Score(r_Score),
         .o_Level_Up(w_Level_Up),
@@ -208,19 +235,19 @@ wire [8:0]            w_VGA_Pixel;                          // 1 pixel VGA compo
     // Update r_Frog_Direction to help rotating the frog sprite
     always @(posedge i_Clk) 
     begin
-        if (i_Switch_1 == 1)
+        if (w_Switch_1 == 1)
         begin
             r_Frog_Direction <= 0;  // Facing up
         end
-        else if (i_Switch_2 == 1)
+        else if (w_Switch_2 == 1)
         begin
             r_Frog_Direction <= 1;  // Facing left
         end
-        else if (i_Switch_3 == 1)
+        else if (w_Switch_3 == 1)
         begin
             r_Frog_Direction <= 2;  // Facing right
         end
-        else if (i_Switch_4 == 1)
+        else if (w_Switch_4 == 1)
         begin
             r_Frog_Direction <= 3; // Facing down
         end
