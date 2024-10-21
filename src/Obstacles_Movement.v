@@ -25,6 +25,8 @@ module Obstacles_Movement#(
 
     // Score
     input      [3:0]          i_Score,
+
+    // Cars X positions
     output reg [9:0]          o_Car_X_0     = TILE_SIZE,
     output reg [9:0]          o_Car_X_1     = 10 * (TILE_SIZE),
     output reg [9:0]          o_Car_X_2     = 5 * (TILE_SIZE),
