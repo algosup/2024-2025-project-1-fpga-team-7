@@ -14,8 +14,9 @@ module Collisions #(
     parameter TILE_SIZE  = 32,
     parameter C_LINE_1_Y = 128, // line car 1
     parameter C_LINE_2_Y = 192, // line car 2
-    parameter C_LINE_3_Y = 256, // line car 3
-    parameter C_LINE_4_Y = 320  // line car 4
+    parameter C_LINE_3_Y = 224, // line car 3
+    parameter C_LINE_4_Y = 256, // line car 4
+    parameter C_LINE_5_Y = 320, // line car 4
 )(
     // Clock
     input  wire       i_Clk,
@@ -30,8 +31,6 @@ module Collisions #(
     input  wire [9:0] i_Car3_X,
     input  wire [9:0] i_Car4_X,
     input  wire [9:0] i_Car5_X,
-    input  wire [9:0] i_Car6_X,
-
 
     // Is there a collision or not
     output reg        o_Has_Collided
@@ -73,9 +72,8 @@ module Collisions #(
         Collisions(i_Car2_X, C_LINE_2_Y, i_Frog_X, i_Frog_Y, w_Has_Collided2);
         Collisions(i_Car3_X, C_LINE_3_Y, i_Frog_X, i_Frog_Y, w_Has_Collided3);
         Collisions(i_Car4_X, C_LINE_4_Y, i_Frog_X, i_Frog_Y, w_Has_Collided4);
-        Collisions(i_Car5_X, C_LINE_1_Y, i_Frog_X, i_Frog_Y, w_Has_Collided5);
-        Collisions(i_Car6_X, C_LINE_2_Y, i_Frog_X, i_Frog_Y, w_Has_Collided6);
-        if (w_Has_Collided1 || w_Has_Collided2 || w_Has_Collided3 || w_Has_Collided4 || w_Has_Collided5 || w_Has_Collided6)
+        Collisions(i_Car5_X, C_LINE_5_Y, i_Frog_X, i_Frog_Y, w_Has_Collided5);
+        if (w_Has_Collided1 || w_Has_Collided2 || w_Has_Collided3 || w_Has_Collided4 || w_Has_Collided5)
         begin
             o_Has_Collided = 1'b1;
         end
