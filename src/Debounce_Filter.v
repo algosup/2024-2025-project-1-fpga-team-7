@@ -11,7 +11,7 @@
 // If the limit isn't reached, a counter is incremented,
 // else it returns the new Switch state and restart the counter. 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-module Debounce_Filter #(parameter C_DEBOUNCE_LIMIT = 250000)(
+module Debounce_Filter #(parameter C_DEBOUNCE_LIMIT = 8000)(
     // Clock
     input  i_Clk,
 
@@ -21,7 +21,7 @@ module Debounce_Filter #(parameter C_DEBOUNCE_LIMIT = 250000)(
 );
   
     // The counter is used to wait and cancel rebounces
-    reg [14:0] r_Count = 0;
+    reg [12:0] r_Count = 0;
 
     // This register is used to only activate the button when we pressed it
     reg        r_State = 1'b0;
