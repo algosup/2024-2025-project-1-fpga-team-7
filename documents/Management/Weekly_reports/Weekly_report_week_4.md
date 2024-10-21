@@ -15,7 +15,7 @@ This week will be focused on the test plan that need to be done by the start of 
 
 As planned for this week, the `Test_plan.md` was mostly completed and will be done before the deadline.
 
-The `Technical_specifications.md` were also completed and merged before the deadline.
+The `Technical_specifications.md` was also completed and merged before the deadline.
 
 
 ### Development
