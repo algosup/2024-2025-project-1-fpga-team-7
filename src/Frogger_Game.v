@@ -108,9 +108,7 @@ wire [8:0]            w_VGA_Pixel;                          // 1 pixel VGA compo
                  .V_VISIBLE_AREA(V_VISIBLE_AREA),
                  .H_TOTAL(H_TOTAL),
                  .V_TOTAL(V_TOTAL),
-                 .H_FRONT_PORCH(H_FRONT_PORCH),
                  .H_SYNC_PULSE(H_SYNC_PULSE),
-                 .V_FRONT_PORCH(V_FRONT_PORCH),
                  .V_SYNC_PULSE(V_SYNC_PULSE))VGA_Bridge_Inst(
         .i_Clk(i_Clk),
         .o_VGA_HSync(o_VGA_HSync),
