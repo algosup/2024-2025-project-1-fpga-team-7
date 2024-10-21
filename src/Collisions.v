@@ -48,6 +48,10 @@ task Collisions;
         begin
             o_Has_Collided = 1'b1;
         end
+        else
+        begin
+            o_Has_Collided = 1'b0;
+        end
     end
 endtask
 
