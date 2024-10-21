@@ -13,9 +13,9 @@
 module Collisions #(
     parameter TILE_SIZE  = 32,
     parameter C_LINE_1_Y = 128, // line car 1
-    parameter C_LINE_2_Y = 192, // line car 2
-    parameter C_LINE_3_Y = 224, // line car 3
-    parameter C_LINE_4_Y = 256, // line car 4
+    parameter C_LINE_2_Y = 160, // line car 2
+    parameter C_LINE_3_Y = 192, // line car 3
+    parameter C_LINE_4_Y = 288, // line car 4
     parameter C_LINE_5_Y = 320, // line car 4
 )(
     // Clock

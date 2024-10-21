@@ -108,12 +108,12 @@ begin
                 r_grass_sprite_addr <= (i_V_Counter * TILE_SIZE) + i_H_Counter[4:0];
                 o_VGA_Pixel   <= w_grass_pixel_data;
             end
-            3,5,9,11:
+            3,7,8,11:
             begin
                 r_sidewalk_sprite_addr <= (i_V_Counter * TILE_SIZE) + i_H_Counter[4:0];
                 o_VGA_Pixel   <= w_sidewalk_pixel_data;
             end
-            4,6,7,8,10:
+            4,5,6,9,10:
             begin
                 r_road_sprite_addr <= (i_V_Counter * TILE_SIZE) + i_H_Counter[4:0];
                 o_VGA_Pixel   <= w_road_pixel_data;
