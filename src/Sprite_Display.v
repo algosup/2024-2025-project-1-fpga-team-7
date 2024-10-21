@@ -60,8 +60,8 @@ module Sprite_Display #(
 
 );
 
-    localparam CAR_SPRITE = "car_sprite.txt";
-    localparam FROG_SPRITE = "frog_sprite.txt";
+    localparam CAR_SPRITE = "sprites/car_sprite.txt";
+    localparam FROG_SPRITE = "sprites/frog_sprite.txt";
 
     reg [8:0] r_VGA_Pixel;                      // Store the VGA components of the pixel that will be displayed
 
