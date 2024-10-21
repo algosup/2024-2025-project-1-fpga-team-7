@@ -40,8 +40,6 @@ parameter V_BACK_PORCH          = 33;
 parameter V_TOTAL               = V_VISIBLE_AREA + V_FRONT_PORCH + V_SYNC_PULSE + V_BACK_PORCH;
 
 // Clock constaints 
-parameter C_DEBOUNCE_LIMIT      = 25000;
-
 parameter COUNT_LIMIT           = 3125000;
 
 parameter NUM_BITS              = 4;                                                             // LFSR parameter
