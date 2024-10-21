@@ -93,12 +93,12 @@ wire [9:0]            w_Car3_X_Position;
 wire [9:0]            w_Car4_X_Position;
 wire [9:0]            w_Car5_X_Position;
 wire [9:0]            w_Car6_X_Position;
-wire [9:0]            w_Car7_X_Position;
-wire [9:0]            w_Car8_X_Position;
 
 wire                  w_Has_Collided;                       // Collision state
 
-wire                  w_Level_Up;                           // 1 when leveling up
+wire                  w_Level_Up;
+
+reg  [3:0]            r_Score;
 
 // Cursor X and Y position to display
 wire [9:0]            w_V_Counter;
@@ -184,8 +184,6 @@ wire [8:0]            w_VGA_Pixel;                          // 1 pixel VGA compo
         .i_Car_4X_Position(w_Car4_X_Position),
         .i_Car_5X_Position(w_Car5_X_Position),
         .i_Car_6X_Position(w_Car6_X_Position),
-        .i_Car_7X_Position(w_Car7_X_Position),
-        .i_Car_8X_Position(w_Car8_X_Position),
         .i_Reverse(r_Reverse),
         .o_VGA_Blu_1(o_VGA_Blu_1),
         .o_VGA_Blu_2(o_VGA_Blu_2),
@@ -211,8 +209,6 @@ wire [8:0]            w_VGA_Pixel;                          // 1 pixel VGA compo
         .i_Car4_X(w_Car4_X_Position),
         .i_Car5_X(w_Car5_X_Position),
         .i_Car6_X(w_Car6_X_Position),
-        .i_Car7_X(w_Car7_X_Position),
-        .i_Car8_X(w_Car8_X_Position),
         .o_Has_Collided(w_Has_Collided));
     
     Obstacles_Movement #(.C_BASE_CAR_SPEED(C_BASE_CAR_SPEED),
@@ -227,9 +223,7 @@ wire [8:0]            w_VGA_Pixel;                          // 1 pixel VGA compo
         .o_Car_X_2(w_Car3_X_Position),
         .o_Car_X_3(w_Car4_X_Position),
         .o_Car_X_4(w_Car5_X_Position),
-        .o_Car_X_5(w_Car6_X_Position),
-        .o_Car_X_6(w_Car7_X_Position),
-        .o_Car_X_7(w_Car8_X_Position));
+        .o_Car_X_5(w_Car6_X_Position));
 
     Seven_Segments_Display Seven_Segments_Display_Inst(
         .i_Clk(i_Clk),
