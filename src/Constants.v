@@ -10,7 +10,7 @@ parameter C_SCORE_INI           = 1;
 
 // Player constants
 parameter C_X_BASE_POSITION     = 320;
-parameter C_Y_BASE_POSITION     = 384;
+parameter C_Y_BASE_POSITION     = 416;
 
 // States machine
 parameter IDLE                  = 0;

@@ -17,7 +17,7 @@
 module Character_Control #(
     parameter C_SCORE_INI       = 1,
     parameter C_X_BASE_POSITION = 320,
-    parameter C_Y_BASE_POSITION = 384,
+    parameter C_Y_BASE_POSITION = 416,
     parameter COUNT_LIMIT       = 3125000,
     parameter TILE_SIZE         = 32,
     parameter V_VISIBLE_AREA    = 480,
