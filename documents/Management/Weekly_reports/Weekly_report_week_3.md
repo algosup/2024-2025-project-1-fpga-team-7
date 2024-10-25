@@ -1,4 +1,4 @@
-# Weekly Report 3 - 10/7/2024 to 10/11/2024
+# Weekly Report 3 - 10/07/2024 to 10/11/2024
 
 ## Overview
 
