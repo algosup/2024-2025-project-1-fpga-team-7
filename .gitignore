@@ -105,18 +105,18 @@ core.*
 *.vivado*
 *.Vivado*
 # .*
-__*
+_*
 compile.sh
 **/*.runs
 **/*.cache
 **/*.sim
 **/*.ip_user_files
 **/*.hw
-*.dblite
+#*.dblite
 *.asc
 *.bin
-*.json
+#*.json
 *.DS_store
-*abc.history
+#*abc.history
 
 .vscode/
